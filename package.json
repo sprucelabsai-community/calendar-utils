@@ -1,69 +1,104 @@
 {
-	"name": "@sprucelabs/spruce-calendar-utils",
-	"publishConfig": {
-		"access": "public"
-	},
-	"version": "0.0.1",
-	"devDependencies": {
-		"@sprucelabs/jest-json-reporter": "latest",
-		"@sprucelabs/resolve-path-aliases": "latest",
-		"@sprucelabs/semantic-release": "^4.0.6",
-		"@sprucelabs/spruce-test-fixtures": "latest",
-		"@sprucelabs/test": "latest",
-		"@sprucelabs/test-utils": "latest",
-		"chokidar-cli": "^2.1.0",
-		"concurrently": "^6.2.0",
-		"eslint": "^7.28.0",
-		"eslint-config-spruce": "^10.10.6",
-		"jest": "^27.0.4",
-		"jest-circus": "^27.0.4",
-		"prettier": "^2.3.1",
-		"ts-node": "^10.0.0",
-		"tsconfig-paths": "^3.9.0",
-		"typescript": "^4.3.2"
-	},
-	"description": "helpful calendar utilities",
-	"skill": {
-		"namespace": "calendar"
-	},
-	"jest": {
-		"testRunner": "jest-circus/runner",
-		"maxWorkers": 4,
-		"testTimeout": 120000,
-		"testEnvironment": "node",
-		"testPathIgnorePatterns": [
-			"<rootDir>/tmp/",
-			"<rootDir>/src/",
-			"<rootDir>/node_modules/",
-			"<rootDir>/build/__tests__/testDirsAndFiles/"
-		],
-		"testMatch": [
-			"**/__tests__/**/*.test.js?(x)"
-		],
-		"moduleNameMapper": {
-			"^#spruce/(.*)$": "<rootDir>/build/.spruce/$1"
-		}
-	},
-	"scripts": {
-		"watch.build.dev": "concurrently 'yarn build.dev' 'yarn watch.tsc' \"chokidar 'src/**/*' --ignore '.*/tmp/.*' -c 'yarn build.copy-files && yarn build.resolve-paths'\"",
-		"test": "jest",
-		"watch.tests": "jest --watch",
-		"watch.tsc": "tsc -w",
-		"build.dev": "yarn build.tsc ; yarn resolve-paths.lint",
-		"build.tsc": "yarn build.copy-files && tsc",
-		"build.copy-files": "mkdir -p build && rsync -avzq --exclude='*.ts' ./src/ ./build/",
-		"build.resolve-paths": "resolve-path-aliases --target build --patterns '**/*.js,**/*.d.ts'",
-		"resolve-paths.lint": "yarn build.resolve-paths ; yarn lint",
-		"lint": "eslint --cache '**/*.ts'",
-		"build.esm-postbuild": "esm-postbuild --target build/esm --patterns '**/*.js'",
-		"build.dist": "yarn build.tsc && tsc --project tsconfig.dist.json && yarn build.esm-postbuild",
-		"release": "semantic-release"
-	},
-	"dependencies": {
-		"@sprucelabs/schema": "latest",
-		"@sprucelabs/spruce-core-schemas": "latest",
-		"@sprucelabs/spruce-event-utils": "^14.1.26",
-		"date-fns": "^2.22.1",
-		"rrule": "^2.6.8"
-	}
+  "name": "@sprucelabs/spruce-calendar-utils",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "1.1.2",
+  "files": [
+    "build/**/*",
+    "!build/__tests__",
+    "tsconfig.json"
+  ],
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "module": "./build/esm/index.js",
+  "sideEffects": false,
+  "license": "MIT",
+  "description": "helpful calendar utilities",
+  "skill": {
+    "namespace": "calendar"
+  },
+  "keywords": [
+    "node",
+    "sprucelabs"
+  ],
+  "homepage": "https://github.com/sprucelabsai/spruce-calendar-utils",
+  "bugs": {
+    "url": "https://github.com/sprucelabsai/spruce-calendar-utils/issues"
+  },
+  "scripts": {
+    "watch.build.dev": "concurrently 'yarn build.dev' 'yarn watch.tsc' \"chokidar 'src/**/*' --ignore '.*/tmp/.*' -c 'yarn build.copy-files && yarn build.resolve-paths'\"",
+    "test": "jest",
+    "watch.tests": "jest --watch",
+    "watch.tsc": "tsc -w",
+    "build.dev": "yarn build.tsc ; yarn resolve-paths.lint",
+    "build.tsc": "yarn build.copy-files && tsc",
+    "build.copy-files": "mkdir -p build && rsync -avzq --exclude='*.ts' ./src/ ./build/",
+    "build.resolve-paths": "resolve-path-aliases --target build --patterns '**/*.js,**/*.d.ts'",
+    "resolve-paths.lint": "yarn build.resolve-paths ; yarn lint",
+    "lint": "eslint --cache '**/*.ts'",
+    "build.esm-postbuild": "esm-postbuild --target build/esm --patterns '**/*.js'",
+    "build.dist": "yarn build.tsc && tsc --project tsconfig.dist.json && yarn build.esm-postbuild",
+    "release": "semantic-release",
+    "build.ci": "yarn build.tsc",
+    "upgrade.packages": "yarn-upgrade-all && rm -f yarn.lock ; yarn ; yarn fix.lint ; true",
+    "upgrade.packages.all": "yarn install && yarn upgrade.packages",
+    "upgrade.packages.test": "yarn upgrade.packages.all && yarn lint && yarn build.dev && yarn test"
+  },
+  "dependencies": {
+    "date-fns": "^2.22.1",
+    "rrule": "^2.6.8"
+  },
+  "devDependencies": {
+    "@sprucelabs/esm-postbuild": "latest",
+    "@sprucelabs/jest-json-reporter": "latest",
+    "@sprucelabs/resolve-path-aliases": "latest",
+    "@sprucelabs/semantic-release": "latest",
+    "@sprucelabs/spruce-test-fixtures": "^4.7.3",
+    "@sprucelabs/test": "latest",
+    "@sprucelabs/test-utils": "latest",
+    "chokidar-cli": "^2.1.0",
+    "concurrently": "^6.2.0",
+    "eslint": "^7.28.0",
+    "eslint-config-spruce": "^10.10.6",
+    "jest": "^27.0.4",
+    "jest-circus": "^27.0.4",
+    "prettier": "^2.3.1",
+    "ts-node": "^10.0.0",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.3.2",
+    "yarn-upgrade-all": "^0.5.4"
+  },
+  "jest": {
+    "testRunner": "jest-circus/runner",
+    "maxWorkers": 4,
+    "testTimeout": 120000,
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "<rootDir>/tmp/",
+      "<rootDir>/src/",
+      "<rootDir>/node_modules/",
+      "<rootDir>/build/__tests__/testDirsAndFiles/"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.test.js?(x)"
+    ],
+    "moduleNameMapper": {
+      "^#spruce/(.*)$": "<rootDir>/build/.spruce/$1"
+    }
+  },
+  "yarn-upgrade-all": {
+    "ignore": [
+      "@sprucelabs/error",
+      "@sprucelabs/esm-postbuild",
+      "@sprucelabs/jest-json-reporter",
+      "@sprucelabs/resolve-path-aliases",
+      "@sprucelabs/schema",
+      "@sprucelabs/semantic-release",
+      "@sprucelabs/test",
+      "@sprucelabs/test-utils",
+      "conventional-changelog-sprucelabs",
+      "eslint-config-spruce"
+    ]
+  }
 }

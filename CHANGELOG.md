@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v1.2.0...v1.3.0) (2021-06-15)
+
+
+### Features
+
+* added  calendarEventSchema export ([faf61ac](https://github.com/sprucelabsai/spruce-calendar-utils/commit/faf61ac))
+
 # [1.2.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v1.1.2...v1.2.0) (2021-06-15)
 
 

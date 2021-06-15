@@ -1,5 +1,8 @@
 {
-  "name": "spruce-calendar-utils",
+  "name": "@sprucelabs/spruce-calendar-utils",
+  "publishConfig": {
+		"access": "public"
+	},
   "version": "0.0.1",
   "devDependencies": {
     "@sprucelabs/jest-json-reporter": "latest",

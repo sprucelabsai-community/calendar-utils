@@ -57,7 +57,9 @@
     "lint": "eslint --cache '**/*.ts'",
     "build.esm-postbuild": "esm-postbuild --target build/esm --patterns '**/*.js'",
     "build.dist": "yarn build.tsc && tsc --project tsconfig.dist.json && yarn build.esm-postbuild",
-    "release": "semantic-release"
+    "release": "semantic-release",	
+    "build.ci": "yarn build.tsc"
+
   },
   "dependencies": {
     "date-fns": "^2.22.1",

@@ -51,6 +51,9 @@
     "build.copy-files": "mkdir -p build && rsync -avzq --exclude='*.ts' ./src/ ./build/",
     "build.resolve-paths": "resolve-path-aliases --target build --patterns '**/*.js,**/*.d.ts'",
     "resolve-paths.lint": "yarn build.resolve-paths ; yarn lint",
-    "lint": "eslint --cache '**/*.ts'"
+    "lint": "eslint --cache '**/*.ts'",
+    "build.esm-postbuild": "esm-postbuild --target build/esm --patterns '**/*.js'",
+    "build.dist": "yarn build.tsc && tsc --project tsconfig.dist.json && yarn build.esm-postbuild",
+    "release": "semantic-release"
   }
 }

@@ -52,5 +52,9 @@
     "build.resolve-paths": "resolve-path-aliases --target build --patterns '**/*.js,**/*.d.ts'",
     "resolve-paths.lint": "yarn build.resolve-paths ; yarn lint",
     "lint": "eslint --cache '**/*.ts'"
+  },
+  "dependencies": {
+    "date-fns": "^2.22.1",
+    "rrule": "^2.6.8"
   }
 }

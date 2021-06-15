@@ -5,27 +5,27 @@
   },
   "version": "1.1.0",
   "files": [
-		"build/**/*",
-		"!build/__tests__",
-		"tsconfig.json"
-	],
+    "build/**/*",
+    "!build/__tests__",
+    "tsconfig.json"
+  ],
   "main": "./build/index.js",
-	"types": "./build/index.d.ts",
-	"module": "./build/esm/index.js",
-	"sideEffects": false,
+  "types": "./build/index.d.ts",
+  "module": "./build/esm/index.js",
+  "sideEffects": false,
   "license": "MIT",
   "description": "helpful calendar utilities",
   "skill": {
     "namespace": "spruce-calendar-utils"
   },
   "keywords": [
-		"node",
-		"sprucelabs"
-	],
-	"homepage": "https://github.com/sprucelabsai/spruce-calendar-utils",
-	"bugs": {
-		"url": "https://github.com/sprucelabsai/spruce-calendar-utils/issues"
-	},
+    "node",
+    "sprucelabs"
+  ],
+  "homepage": "https://github.com/sprucelabsai/spruce-calendar-utils",
+  "bugs": {
+    "url": "https://github.com/sprucelabsai/spruce-calendar-utils/issues"
+  },
   "scripts": {
     "watch.build.dev": "concurrently 'yarn build.dev' 'yarn watch.tsc' \"chokidar 'src/**/*' --ignore '.*/tmp/.*' -c 'yarn build.copy-files && yarn build.resolve-paths'\"",
     "test": "jest",
@@ -54,7 +54,7 @@
     "@sprucelabs/jest-json-reporter": "latest",
     "@sprucelabs/resolve-path-aliases": "latest",
     "@sprucelabs/semantic-release": "latest",
-    "@sprucelabs/spruce-test-fixtures": "latest",
+    "@sprucelabs/spruce-test-fixtures": "^4.7.3",
     "@sprucelabs/test": "latest",
     "@sprucelabs/test-utils": "latest",
     "chokidar-cli": "^2.1.0",
@@ -69,7 +69,6 @@
     "typescript": "^4.3.2",
     "yarn-upgrade-all": "^0.5.4"
   },
-
   "jest": {
     "testRunner": "jest-circus/runner",
     "maxWorkers": 4,

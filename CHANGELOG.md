@@ -1,3 +1,10 @@
+# [2.0.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v1.3.2...v2.0.0) (2021-06-16)
+
+
+### Breaking Changes
+
+* schema version change ([9b7ea7e](https://github.com/sprucelabsai/spruce-calendar-utils/commit/9b7ea7e))
+
 ## [1.3.2](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v1.3.1...v1.3.2) (2021-06-16)
 
 ## [1.3.1](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v1.3.0...v1.3.1) (2021-06-16)

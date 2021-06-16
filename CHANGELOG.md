@@ -1,3 +1,10 @@
+# [3.0.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v2.1.0...v3.0.0) (2021-06-16)
+
+
+### Breaking Changes
+
+* version change ([daad2be](https://github.com/sprucelabsai/spruce-calendar-utils/commit/daad2be))
+
 # [2.1.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v2.0.0...v2.1.0) (2021-06-16)
 
 

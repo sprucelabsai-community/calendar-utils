@@ -13,7 +13,7 @@ import * as SpruceSchema from '@sprucelabs/schema'
 declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schemas.types' {
 
 
-	namespace SpruceSchemas.Calendar.v2021_05_05 {
+	namespace SpruceSchemas.Calendar.v2021_05_19 {
 
 		
 		interface EventExclusionDate {
@@ -28,7 +28,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 
 		interface EventExclusionDateSchema extends SpruceSchema.Schema {
 			id: 'eventExclusionDate',
-			version: 'v2021_05_05',
+			version: 'v2021_05_19',
 			namespace: 'Calendar',
 			name: '',
 			    fields: {
@@ -53,12 +53,12 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			    }
 		}
 
-		type EventExclusionDateEntity = SchemaEntity<SpruceSchemas.Calendar.v2021_05_05.EventExclusionDateSchema>
+		type EventExclusionDateEntity = SchemaEntity<SpruceSchemas.Calendar.v2021_05_19.EventExclusionDateSchema>
 
 	}
 
 
-	namespace SpruceSchemas.Calendar.v2021_05_05 {
+	namespace SpruceSchemas.Calendar.v2021_05_19 {
 
 		
 		interface EventTarget {
@@ -77,7 +77,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 
 		interface EventTargetSchema extends SpruceSchema.Schema {
 			id: 'eventTarget',
-			version: 'v2021_05_05',
+			version: 'v2021_05_19',
 			namespace: 'Calendar',
 			name: '',
 			    fields: {
@@ -109,12 +109,12 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			    }
 		}
 
-		type EventTargetEntity = SchemaEntity<SpruceSchemas.Calendar.v2021_05_05.EventTargetSchema>
+		type EventTargetEntity = SchemaEntity<SpruceSchemas.Calendar.v2021_05_19.EventTargetSchema>
 
 	}
 
 
-	namespace SpruceSchemas.Calendar.v2021_05_05 {
+	namespace SpruceSchemas.Calendar.v2021_05_19 {
 
 		
 		interface CalendarEvent {
@@ -122,9 +122,9 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				
 				'id': string
 				
-				'source': SpruceSchemas.Calendar.v2021_05_05.EventTarget
+				'source': SpruceSchemas.Calendar.v2021_05_19.EventTarget
 				
-				'target': SpruceSchemas.Calendar.v2021_05_05.EventTarget
+				'target': SpruceSchemas.Calendar.v2021_05_19.EventTarget
 				
 				'calendarId': string
 				
@@ -148,7 +148,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				
 				'activeUntilDate': number
 				
-				'exclusionDates'?: SpruceSchemas.Calendar.v2021_05_05.EventExclusionDate[]| undefined | null
+				'exclusionDates'?: SpruceSchemas.Calendar.v2021_05_19.EventExclusionDate[]| undefined | null
 				
 				'dateDeleted'?: number| undefined | null
 				
@@ -157,7 +157,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 
 		interface CalendarEventSchema extends SpruceSchema.Schema {
 			id: 'calendarEvent',
-			version: 'v2021_05_05',
+			version: 'v2021_05_19',
 			namespace: 'Calendar',
 			name: '',
 			    fields: {
@@ -171,13 +171,13 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            'source': {
 			                type: 'schema',
 			                isRequired: true,
-			                options: {schema: SpruceSchemas.Calendar.v2021_05_05.EventTargetSchema,}
+			                options: {schema: SpruceSchemas.Calendar.v2021_05_19.EventTargetSchema,}
 			            },
 			            /** . */
 			            'target': {
 			                type: 'schema',
 			                isRequired: true,
-			                options: {schema: SpruceSchemas.Calendar.v2021_05_05.EventTargetSchema,}
+			                options: {schema: SpruceSchemas.Calendar.v2021_05_19.EventTargetSchema,}
 			            },
 			            /** . */
 			            'calendarId': {
@@ -245,7 +245,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            'exclusionDates': {
 			                type: 'schema',
 			                isArray: true,
-			                options: {schema: SpruceSchemas.Calendar.v2021_05_05.EventExclusionDateSchema,}
+			                options: {schema: SpruceSchemas.Calendar.v2021_05_19.EventExclusionDateSchema,}
 			            },
 			            /** . */
 			            'dateDeleted': {
@@ -261,7 +261,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			    }
 		}
 
-		type CalendarEventEntity = SchemaEntity<SpruceSchemas.Calendar.v2021_05_05.CalendarEventSchema>
+		type CalendarEventEntity = SchemaEntity<SpruceSchemas.Calendar.v2021_05_19.CalendarEventSchema>
 
 	}
 

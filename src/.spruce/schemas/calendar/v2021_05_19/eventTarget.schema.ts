@@ -3,9 +3,9 @@ import { SpruceSchemas } from '../../schemas.types'
 
 
 
-const eventTargetSchema: SpruceSchemas.Calendar.v2021_05_05.EventTargetSchema  = {
+const eventTargetSchema: SpruceSchemas.Calendar.v2021_05_19.EventTargetSchema  = {
 	id: 'eventTarget',
-	version: 'v2021_05_05',
+	version: 'v2021_05_19',
 	namespace: 'Calendar',
 	name: '',
 	    fields: {

@@ -1,12 +1,12 @@
 import { SchemaRegistry } from '@sprucelabs/schema'
 import { SpruceSchemas } from '../../schemas.types'
 
-import eventTargetSchema_v2021_05_05 from '#spruce/schemas/calendar/v2021_05_05/eventTarget.schema'
-import eventExclusionDateSchema_v2021_05_05 from '#spruce/schemas/calendar/v2021_05_05/eventExclusionDate.schema'
+import eventTargetSchema_v2021_05_19 from '#spruce/schemas/calendar/v2021_05_19/eventTarget.schema'
+import eventExclusionDateSchema_v2021_05_19 from '#spruce/schemas/calendar/v2021_05_19/eventExclusionDate.schema'
 
-const calendarEventSchema: SpruceSchemas.Calendar.v2021_05_05.CalendarEventSchema  = {
+const calendarEventSchema: SpruceSchemas.Calendar.v2021_05_19.CalendarEventSchema  = {
 	id: 'calendarEvent',
-	version: 'v2021_05_05',
+	version: 'v2021_05_19',
 	namespace: 'Calendar',
 	name: '',
 	    fields: {
@@ -20,13 +20,13 @@ const calendarEventSchema: SpruceSchemas.Calendar.v2021_05_05.CalendarEventSchem
 	            'source': {
 	                type: 'schema',
 	                isRequired: true,
-	                options: {schema: eventTargetSchema_v2021_05_05,}
+	                options: {schema: eventTargetSchema_v2021_05_19,}
 	            },
 	            /** . */
 	            'target': {
 	                type: 'schema',
 	                isRequired: true,
-	                options: {schema: eventTargetSchema_v2021_05_05,}
+	                options: {schema: eventTargetSchema_v2021_05_19,}
 	            },
 	            /** . */
 	            'calendarId': {
@@ -94,7 +94,7 @@ const calendarEventSchema: SpruceSchemas.Calendar.v2021_05_05.CalendarEventSchem
 	            'exclusionDates': {
 	                type: 'schema',
 	                isArray: true,
-	                options: {schema: eventExclusionDateSchema_v2021_05_05,}
+	                options: {schema: eventExclusionDateSchema_v2021_05_19,}
 	            },
 	            /** . */
 	            'dateDeleted': {

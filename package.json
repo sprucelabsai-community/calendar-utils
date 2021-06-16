@@ -16,7 +16,7 @@
   "license": "MIT",
   "description": "Helpful calendar utilities",
   "skill": {
-    "namespace": "calendar"
+    "namespace": "calendar-utils"
   },
   "keywords": [
     "node",

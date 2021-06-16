@@ -1,13 +1,13 @@
 import { SchemaRegistry } from '@sprucelabs/schema'
 import { SpruceSchemas } from '../../schemas.types'
 
-import eventTargetSchema_v2021_05_19 from '#spruce/schemas/calendar/v2021_05_19/eventTarget.schema'
-import eventExclusionDateSchema_v2021_05_19 from '#spruce/schemas/calendar/v2021_05_19/eventExclusionDate.schema'
+import eventTargetSchema_v2021_05_19 from '#spruce/schemas/calendarUtils/v2021_05_19/eventTarget.schema'
+import eventExclusionDateSchema_v2021_05_19 from '#spruce/schemas/calendarUtils/v2021_05_19/eventExclusionDate.schema'
 
-const calendarEventSchema: SpruceSchemas.Calendar.v2021_05_19.CalendarEventSchema  = {
+const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventSchema  = {
 	id: 'calendarEvent',
 	version: 'v2021_05_19',
-	namespace: 'Calendar',
+	namespace: 'CalendarUtils',
 	name: '',
 	    fields: {
 	            /** . */

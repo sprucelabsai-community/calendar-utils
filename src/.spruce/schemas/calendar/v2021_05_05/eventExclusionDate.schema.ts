@@ -3,9 +3,9 @@ import { SpruceSchemas } from '../../schemas.types'
 
 
 
-const eventExclusionDateSchema: SpruceSchemas.Calendar.v2021_06_15.EventExclusionDateSchema  = {
+const eventExclusionDateSchema: SpruceSchemas.Calendar.v2021_05_05.EventExclusionDateSchema  = {
 	id: 'eventExclusionDate',
-	version: 'v2021_06_15',
+	version: 'v2021_05_05',
 	namespace: 'Calendar',
 	name: '',
 	    fields: {

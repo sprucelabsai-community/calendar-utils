@@ -30,6 +30,8 @@
     "watch.build.dev": "concurrently 'yarn build.dev' 'yarn watch.tsc' \"chokidar 'src/**/*' --ignore '.*/tmp/.*' -c 'yarn build.copy-files && yarn build.resolve-paths'\"",
     "test": "jest",
     "watch.tests": "jest --watch",
+    "clean": "rm -rf build/",
+    "clean.all": "yarn clean && rm -f yarn.lock package-lock.json && rm -rf node_modules/",
     "watch.tsc": "tsc -w",
     "build.dev": "yarn build.tsc ; yarn resolve-paths.lint",
     "build.tsc": "yarn build.copy-files && tsc",
@@ -43,7 +45,8 @@
     "build.ci": "yarn build.tsc",
     "upgrade.packages": "yarn-upgrade-all && rm -f yarn.lock ; yarn ; yarn fix.lint ; true",
     "upgrade.packages.all": "yarn install && yarn upgrade.packages",
-    "upgrade.packages.test": "yarn upgrade.packages.all && yarn lint && yarn build.dev && yarn test"
+    "upgrade.packages.test": "yarn upgrade.packages.all && yarn lint && yarn build.dev && yarn test",
+    "rebuild": "yarn clean.all && yarn && yarn build.dev"
   },
   "dependencies": {
     "date-fns": "^2.22.1",

@@ -90,6 +90,9 @@
       "^#spruce/(.*)$": "<rootDir>/build/.spruce/$1"
     }
   },
+  "resolutions": {
+    "marked": "2.0.7"
+  },
   "yarn-upgrade-all": {
     "ignore": [
       "@sprucelabs/error",

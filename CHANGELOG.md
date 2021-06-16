@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v2.0.0...v2.1.0) (2021-06-16)
+
+
+### Features
+
+* added duration utility ([2f56819](https://github.com/sprucelabsai/spruce-calendar-utils/commit/2f56819))
+
 # [2.0.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v1.3.2...v2.0.0) (2021-06-16)
 
 

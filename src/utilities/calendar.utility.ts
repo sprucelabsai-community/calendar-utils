@@ -1,21 +1,3 @@
-// interface Event {
-// 	repeats?: 'weekly' | 'monthly' | 'daily'
-// 	repeatsUntil?: number
-// 	interval?: number
-// 	daysOfWeek?: DayOfWeek[]
-// 	startDate: number
-// 	endDate: number
-// 	occurrences?: number
-// 	nthOccurrences?: number[]
-// 	exclusionDates?: ExclusionDates[]
-// }
-
-// interface ExclusionDates {
-// 	year: number
-// 	month: number
-// 	day: number
-// }
-
 import RRule from 'rrule'
 import { CalendarEvent } from '../types/calendar.types'
 import dateUtil from './date.utility'
@@ -37,13 +19,39 @@ const calendarUtil = {
 		sun: RRule.SU,
 	},
 
-	applyRuleAndGetEvents(e: CalendarEvent, dateUntil: number) {
+	applyRuleAndGetEvents(
+		e: Pick<
+			CalendarEvent,
+			| 'repeats'
+			| 'repeatsUntil'
+			| 'daysOfWeek'
+			| 'interval'
+			| 'startDate'
+			| 'occurrences'
+			| 'nthOccurrences'
+			| 'endDate'
+		>,
+		dateUntil: number
+	) {
 		const events = this.applyRuleAndGetEventsWithoutExclusion(e, dateUntil)
-		const excludedEvents = events.filter((e) => !this.isExcluded(e as any))
+		const excludedEvents = events.filter((e) => !this.isExcluded(e))
 
 		return excludedEvents
 	},
-	applyRuleAndGetEventsWithoutExclusion(e: CalendarEvent, dateUntil: number) {
+	applyRuleAndGetEventsWithoutExclusion(
+		e: Pick<
+			CalendarEvent,
+			| 'repeats'
+			| 'repeatsUntil'
+			| 'daysOfWeek'
+			| 'interval'
+			| 'startDate'
+			| 'occurrences'
+			| 'nthOccurrences'
+			| 'endDate'
+		>,
+		dateUntil: number
+	) {
 		let repeatsUntil: number | undefined
 
 		if (e.repeats) {
@@ -75,17 +83,20 @@ const calendarUtil = {
 
 		return [e]
 	},
-	filterEventRulesAndGetEvents(rule: RRule, event: CalendarEvent) {
-		const duration = dateUtil.getDurationMs(event.startDate, event.endDate)
+	filterEventRulesAndGetEvents(
+		rule: RRule,
+		e: Pick<CalendarEvent, 'startDate' | 'endDate'>
+	) {
+		const duration = dateUtil.getDurationMs(e.startDate, e.endDate)
 		let events = rule.all().map((r) => ({
-			...event,
+			...e,
 			startDate: r.getTime(),
 			endDate: dateUtil.addMilliseconds(r.getTime(), duration),
 		})) as CalendarEvent[]
 
 		return events
 	},
-	isExcluded(e: CalendarEvent) {
+	isExcluded(e: Pick<CalendarEvent, 'exclusionDates' | 'startDate'>) {
 		if (e.exclusionDates) {
 			const splitedStartDate = dateUtil.splitDate(e.startDate)
 
@@ -106,10 +117,23 @@ const calendarUtil = {
 		return false
 	},
 
-	getEventFromRangeByDate(values: CalendarEvent, date: number) {
+	getEventFromRangeByDate(
+		values: Pick<
+			CalendarEvent,
+			| 'repeats'
+			| 'repeatsUntil'
+			| 'daysOfWeek'
+			| 'interval'
+			| 'startDate'
+			| 'occurrences'
+			| 'nthOccurrences'
+			| 'endDate'
+		>,
+		date: number
+	) {
 		const dateUntil = dateUtil.addYears(new Date().getTime(), 10)
 		const searchDate = dateUtil.splitDate(date)
-		const repeatingEvents = this.applyRuleAndGetEvents(values as any, dateUntil)
+		const repeatingEvents = this.applyRuleAndGetEvents(values, dateUntil)
 		return repeatingEvents.find((e) => {
 			const event = dateUtil.splitDate(e.startDate)
 			if (

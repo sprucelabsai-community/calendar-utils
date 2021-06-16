@@ -1,3 +1,10 @@
+# [5.0.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v4.0.1...v5.0.0) (2021-06-16)
+
+
+### Breaking Changes
+
+* namespace update ([72a54f2](https://github.com/sprucelabsai/spruce-calendar-utils/commit/72a54f2))
+
 ## [4.0.1](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v4.0.0...v4.0.1) (2021-06-16)
 
 # [4.0.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v3.0.1...v4.0.0) (2021-06-16)

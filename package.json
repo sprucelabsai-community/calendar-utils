@@ -38,7 +38,7 @@
     "resolve-paths.lint": "yarn build.resolve-paths ; yarn lint",
     "lint": "eslint --cache '**/*.ts'",
     "build.esm-postbuild": "esm-postbuild --target build/esm --patterns '**/*.js'",
-    "build.dist": "yarn build.tsc && tsc --project tsconfig.dist.json && yarn build.esm-postbuild",
+    "build.dist": "yarn build.tsc && tsc --project tsconfig.dist.json && yarn build.resolve-paths && yarn build.esm-postbuild",
     "release": "semantic-release",
     "build.ci": "yarn build.tsc",
     "upgrade.packages": "yarn-upgrade-all && rm -f yarn.lock ; yarn ; yarn fix.lint ; true",

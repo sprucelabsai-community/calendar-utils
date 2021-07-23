@@ -53,7 +53,7 @@
     "watch.tsc": "tsc -w"
   },
   "dependencies": {
-    "date-fns": "^2.22.1",
+    "date-fns": "^2.23.0",
     "rrule": "^2.6.8"
   },
   "devDependencies": {
@@ -61,7 +61,7 @@
     "@sprucelabs/jest-json-reporter": "latest",
     "@sprucelabs/resolve-path-aliases": "latest",
     "@sprucelabs/semantic-release": "latest",
-    "@sprucelabs/spruce-test-fixtures": "^5.0.0",
+    "@sprucelabs/spruce-test-fixtures": "^5.1.0",
     "@sprucelabs/test": "latest",
     "@sprucelabs/test-utils": "latest",
     "chokidar-cli": "^2.1.0",

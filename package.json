@@ -64,7 +64,7 @@
     "@sprucelabs/spruce-test-fixtures": "^5.1.8",
     "@sprucelabs/test": "latest",
     "@sprucelabs/test-utils": "latest",
-    "chokidar-cli": "^2.1.0",
+    "chokidar-cli": "^3.0.0",
     "concurrently": "^6.2.0",
     "eslint": "^7.31.0",
     "eslint-config-spruce": "^10.10.6",

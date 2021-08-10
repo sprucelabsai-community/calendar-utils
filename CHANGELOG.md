@@ -1,3 +1,5 @@
+## [5.0.142](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v5.0.141...v5.0.142) (2021-08-10)
+
 ## [5.0.141](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v5.0.140...v5.0.141) (2021-08-09)
 
 ## [5.0.140](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v5.0.139...v5.0.140) (2021-08-09)

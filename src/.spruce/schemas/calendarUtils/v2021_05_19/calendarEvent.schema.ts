@@ -1,6 +1,7 @@
 import { SchemaRegistry } from '@sprucelabs/schema'
 import { SpruceSchemas } from '../../schemas.types'
 
+import eventSourceSchema_v2021_05_19 from '#spruce/schemas/calendarUtils/v2021_05_19/eventSource.schema'
 import eventTargetSchema_v2021_05_19 from '#spruce/schemas/calendarUtils/v2021_05_19/eventTarget.schema'
 import eventExclusionDateSchema_v2021_05_19 from '#spruce/schemas/calendarUtils/v2021_05_19/eventExclusionDate.schema'
 
@@ -20,7 +21,7 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	            'source': {
 	                type: 'schema',
 	                isRequired: true,
-	                options: {schema: eventTargetSchema_v2021_05_19,}
+	                options: {schema: eventSourceSchema_v2021_05_19,}
 	            },
 	            /** . */
 	            'target': {
@@ -32,6 +33,11 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	            'calendarId': {
 	                type: 'id',
 	                isRequired: true,
+	                options: undefined
+	            },
+	            /** . */
+	            'eventTypeSlug': {
+	                type: 'text',
 	                options: undefined
 	            },
 	            /** . */

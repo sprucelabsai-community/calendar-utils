@@ -53,6 +53,7 @@
     "watch.tsc": "tsc -w"
   },
   "dependencies": {
+    "@sprucelabs/spruce-core-schemas": "^22.5.22",
     "date-fns": "^2.23.0",
     "rrule": "^2.6.8"
   },

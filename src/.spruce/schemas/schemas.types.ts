@@ -117,16 +117,81 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 	namespace SpruceSchemas.CalendarUtils.v2021_05_19 {
 
 		
+		interface EventSource {
+			
+				
+				'locationId'?: string| undefined | null
+				
+				'personId'?: string| undefined | null
+				
+				'organizationId'?: string| undefined | null
+				
+				'skillId'?: string| undefined | null
+				
+				'roleId'?: string| undefined | null
+				
+				'proxyToken'?: string| undefined | null
+		}
+
+		interface EventSourceSchema extends SpruceSchema.Schema {
+			id: 'eventSource',
+			version: 'v2021_05_19',
+			namespace: 'CalendarUtils',
+			name: '',
+			    fields: {
+			            /** . */
+			            'locationId': {
+			                type: 'id',
+			                options: undefined
+			            },
+			            /** . */
+			            'personId': {
+			                type: 'id',
+			                options: undefined
+			            },
+			            /** . */
+			            'organizationId': {
+			                type: 'id',
+			                options: undefined
+			            },
+			            /** . */
+			            'skillId': {
+			                type: 'id',
+			                options: undefined
+			            },
+			            /** . */
+			            'roleId': {
+			                type: 'id',
+			                options: undefined
+			            },
+			            /** . */
+			            'proxyToken': {
+			                type: 'id',
+			                options: undefined
+			            },
+			    }
+		}
+
+		type EventSourceEntity = SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.EventSourceSchema>
+
+	}
+
+
+	namespace SpruceSchemas.CalendarUtils.v2021_05_19 {
+
+		
 		interface CalendarEvent {
 			
 				
 				'id': string
 				
-				'source': SpruceSchemas.CalendarUtils.v2021_05_19.EventTarget
+				'source': SpruceSchemas.CalendarUtils.v2021_05_19.EventSource
 				
 				'target': SpruceSchemas.CalendarUtils.v2021_05_19.EventTarget
 				
 				'calendarId': string
+				
+				'eventTypeSlug'?: string| undefined | null
 				
 				'startDate': number
 				
@@ -171,7 +236,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            'source': {
 			                type: 'schema',
 			                isRequired: true,
-			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.EventTargetSchema,}
+			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.EventSourceSchema,}
 			            },
 			            /** . */
 			            'target': {
@@ -183,6 +248,11 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            'calendarId': {
 			                type: 'id',
 			                isRequired: true,
+			                options: undefined
+			            },
+			            /** . */
+			            'eventTypeSlug': {
+			                type: 'text',
 			                options: undefined
 			            },
 			            /** . */
@@ -264,33 +334,5 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 		type CalendarEventEntity = SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventSchema>
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

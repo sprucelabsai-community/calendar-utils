@@ -48,6 +48,9 @@ export default buildSchema({
 			type: 'id',
 			isRequired: true,
 		},
+		eventTypeSlug: {
+			type: 'text',
+		},
 		startDate: {
 			type: 'number',
 			isRequired: true,

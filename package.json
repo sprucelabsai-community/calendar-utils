@@ -78,6 +78,7 @@
     "yarn-upgrade-all": "^0.5.4"
   },
   "jest": {
+    "globalSetup": "<rootDir>/globalSetup.js",
     "testRunner": "jest-circus/runner",
     "maxWorkers": 4,
     "testTimeout": 120000,

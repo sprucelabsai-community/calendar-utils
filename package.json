@@ -60,13 +60,13 @@
     "rrule": "^2.6.8"
   },
   "devDependencies": {
-    "@sprucelabs/esm-postbuild": "latest",
-    "@sprucelabs/jest-json-reporter": "latest",
-    "@sprucelabs/resolve-path-aliases": "latest",
+    "@sprucelabs/esm-postbuild": "^1.0.38",
+    "@sprucelabs/jest-json-reporter": "^6.0.32",
+    "@sprucelabs/resolve-path-aliases": "^1.0.72",
     "@sprucelabs/semantic-release": "latest",
     "@sprucelabs/spruce-test-fixtures": "^5.4.21",
-    "@sprucelabs/test": "latest",
-    "@sprucelabs/test-utils": "latest",
+    "@sprucelabs/test": "^7.7.59",
+    "@sprucelabs/test-utils": "^3.0.54",
     "chokidar-cli": "^3.0.0",
     "eslint": "^7.32.0",
     "eslint-config-spruce": "^10.10.6",

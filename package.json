@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "@sprucelabs/schema": "^25.3.1",
-    "@sprucelabs/spruce-core-schemas": "^22.5.48",
+    "@sprucelabs/spruce-core-schemas": "^22.5.49",
     "date-fns": "^2.23.0",
     "rrule": "^2.6.8"
   },

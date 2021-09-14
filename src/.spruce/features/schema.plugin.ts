@@ -1,7 +1,7 @@
 import fs from "fs";
 import globby from "globby";
 import pathUtil from "path";
-import SpruceError from '../../errors/SpruceError'
+
 import {
 	SchemaHealthCheckItem,
 	SkillFeature,
@@ -9,6 +9,7 @@ import {
 	diskUtil,
 	HASH_SPRUCE_DIR_NAME,
 } from "@sprucelabs/spruce-skill-utils";
+import { SchemaError } from "@sprucelabs/schema";
 
 class SchemaFeature implements SkillFeature {
 	private skill: Skill;
@@ -77,10 +78,9 @@ class SchemaFeature implements SkillFeature {
 						description: schema.description,
 					}
 				} catch (err) {
-					throw new SpruceError({ 
+					throw new SchemaError({ 
 						//@ts-ignore
 						code: 'FAILED_LOADING_SCHEMA', 
-						originalError: err, 
 						friendlyMessage: `Error importing schema from: ${file}.` })
 				}
 			});

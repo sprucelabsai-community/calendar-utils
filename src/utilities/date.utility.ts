@@ -88,11 +88,24 @@ const dateUtil = {
 			minute: date.getMinutes(),
 		}
 	},
-	setTimeOfDay(startTimestamp: number, hours: number, minutes: number) {
+	setTimeOfDay(
+		startTimestamp: number,
+		hours: number,
+		minutes: number,
+		seconds?: number,
+		milliseconds?: number
+	) {
 		const date = new Date(startTimestamp)
 
 		date.setHours(hours)
 		date.setMinutes(minutes)
+		if (typeof seconds == 'number') {
+			date.setSeconds(seconds)
+		}
+
+		if (typeof milliseconds == 'number') {
+			date.setMilliseconds(milliseconds)
+		}
 
 		return date.getTime()
 	},

@@ -510,6 +510,39 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		assert.isEqual(result, expected)
 	}
 
+	@test(
+		'Wednesday, September 15, 2021 9:30:00.000 AM',
+		1631669408000,
+		{ hour: 9, minute: 30, seconds: 0, milliseconds: 0 },
+		1631698200000
+	)
+	@test(
+		'Wednesday, September 15, 2021 9:30:00.001 AM',
+		1631669408000,
+		{ hour: 9, minute: 30, seconds: 0, milliseconds: 1 },
+		1631698200001
+	)
+	@test(
+		'Wednesday, September 15, 2021 9:30:06.001 AM',
+		1631669408000,
+		{ hour: 9, minute: 30, seconds: 6, milliseconds: 1 },
+		1631698206001
+	)
+	protected static async canSetTimeOfDayWithSecondsAndMilliseconds(
+		timestamp: number,
+		time: any,
+		expectedTimeStamp: number
+	) {
+		const result = dateUtil.setTimeOfDay(
+			new Date().getTime(),
+			time.hour,
+			time.minute,
+			time.seconds,
+			time.milliseconds
+		)
+		assert.isEqual(result, expectedTimeStamp)
+	}
+
 	private static stripSeconds(number: number): string {
 		const str = `${number}`
 		return str.slice(0, -4)

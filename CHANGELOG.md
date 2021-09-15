@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v5.0.165...v5.1.0) (2021-09-15)
+
+
+### Features
+
+* can set time of day with sec and ms ([3cf8cad](https://github.com/sprucelabsai/spruce-calendar-utils/commit/3cf8cad))
+
 ## [5.0.165](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v5.0.164...v5.0.165) (2021-09-14)
 
 ## [5.0.164](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v5.0.163...v5.0.164) (2021-09-14)

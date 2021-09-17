@@ -1,3 +1,10 @@
+## [5.1.4](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v5.1.3...v5.1.4) (2021-09-17)
+
+
+### Bug Fixes
+
+* improved tests ([18a6139](https://github.com/sprucelabsai/spruce-calendar-utils/commit/18a6139))
+
 ## [5.1.3](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v5.1.2...v5.1.3) (2021-09-15)
 
 ## [5.1.2](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v5.1.1...v5.1.2) (2021-09-15)

@@ -528,13 +528,37 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		{ hour: 9, minute: 30, seconds: 6, milliseconds: 1 },
 		1631698206001
 	)
+	@test(
+		'Friday, September 17, 2021 6:00:30 PM',
+		1631901630000,
+		{ hour: 18, minute: 0, seconds: 30, milliseconds: 1 },
+		1631901630001
+	)
+	@test(
+		'Friday, September 17, 2021 6:00:30 AM',
+		1631858430000,
+		{ hour: 6, minute: 0, seconds: 30, milliseconds: 1 },
+		1631858430001
+	)
+	@test(
+		'Friday, September 17, 2021 11:00:30 PM',
+		1631840430000,
+		{ hour: 23, minute: 0, seconds: 30, milliseconds: 1 },
+		1631919630001
+	)
+	@test(
+		'Friday, September 17, 2021 1:00:30 AM',
+		1631923199000,
+		{ hour: 1, minute: 0, seconds: 30, milliseconds: 1 },
+		1631840430001
+	)
 	protected static async canSetTimeOfDayWithSecondsAndMilliseconds(
 		timestamp: number,
 		time: any,
 		expectedTimeStamp: number
 	) {
 		const result = dateUtil.setTimeOfDay(
-			new Date().getTime(),
+			timestamp,
 			time.hour,
 			time.minute,
 			time.seconds,

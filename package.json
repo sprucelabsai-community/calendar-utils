@@ -64,11 +64,11 @@
     "rrule": "^2.6.8"
   },
   "devDependencies": {
-    "@sprucelabs/esm-postbuild": "^1.0.61",
+    "@sprucelabs/esm-postbuild": "^1.0.62",
     "@sprucelabs/jest-json-reporter": "^6.0.43",
     "@sprucelabs/resolve-path-aliases": "^1.0.80",
     "@sprucelabs/semantic-release": "^4.0.6",
-    "@sprucelabs/spruce-test-fixtures": "^5.4.61",
+    "@sprucelabs/spruce-test-fixtures": "^5.4.62",
     "@sprucelabs/test": "^7.7.63",
     "@sprucelabs/test-utils": "^3.0.56",
     "@types/node": "^16.9.2",

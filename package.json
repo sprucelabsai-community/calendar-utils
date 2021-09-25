@@ -58,8 +58,8 @@
     "watch.rebuild": "yarn clean.all && yarn && yarn watch.build.dev"
   },
   "dependencies": {
-    "@sprucelabs/schema": "^25.3.93",
-    "@sprucelabs/spruce-core-schemas": "^22.5.161",
+    "@sprucelabs/schema": "^25.3.94",
+    "@sprucelabs/spruce-core-schemas": "^22.5.162",
     "date-fns": "^2.24.0",
     "rrule": "^2.6.8"
   },
@@ -76,8 +76,8 @@
     "concurrently": "^6.2.1",
     "eslint": "^7.32.0",
     "eslint-config-spruce": "^10.10.11",
-    "jest": "^27.2.1",
-    "jest-circus": "^27.2.1",
+    "jest": "^27.2.2",
+    "jest-circus": "^27.2.2",
     "marked": "^3.0.4",
     "prettier": "^2.4.1",
     "ts-node": "^10.2.1",

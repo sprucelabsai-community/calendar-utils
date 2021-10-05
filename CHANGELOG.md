@@ -1,3 +1,10 @@
+# [6.0.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v5.1.330...v6.0.0) (2021-10-05)
+
+
+### Breaking Changes
+
+* changed startDate -> startDateTimeMs ([719cf26](https://github.com/sprucelabsai/spruce-calendar-utils/commit/719cf26))
+
 ## [5.1.330](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v5.1.329...v5.1.330) (2021-10-05)
 
 ## [5.1.329](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v5.1.328...v5.1.329) (2021-10-04)

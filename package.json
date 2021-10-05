@@ -60,7 +60,7 @@
   "dependencies": {
     "@sprucelabs/schema": "^25.3.257",
     "@sprucelabs/spruce-core-schemas": "^22.5.324",
-    "date-fns": "^2.24.0",
+    "date-fns": "^2.25.0",
     "rrule": "^2.6.8"
   },
   "devDependencies": {

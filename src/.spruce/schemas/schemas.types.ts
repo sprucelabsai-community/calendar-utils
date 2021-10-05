@@ -9,6 +9,7 @@ import { default as SchemaEntity } from '@sprucelabs/schema'
 
 import * as SpruceSchema from '@sprucelabs/schema'
 
+import '@sprucelabs/spruce-event-utils'
 
 declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schemas.types' {
 
@@ -61,141 +62,22 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 	namespace SpruceSchemas.CalendarUtils.v2021_05_19 {
 
 		
-		interface EventTarget {
-			
-				
-				'locationId'?: string| undefined | null
-				
-				'personId'?: string| undefined | null
-				
-				'organizationId'?: string| undefined | null
-				
-				'skillId'?: string| undefined | null
-				
-				'roleId'?: string| undefined | null
-		}
-
-		interface EventTargetSchema extends SpruceSchema.Schema {
-			id: 'eventTarget',
-			version: 'v2021_05_19',
-			namespace: 'CalendarUtils',
-			name: '',
-			    fields: {
-			            /** . */
-			            'locationId': {
-			                type: 'id',
-			                options: undefined
-			            },
-			            /** . */
-			            'personId': {
-			                type: 'id',
-			                options: undefined
-			            },
-			            /** . */
-			            'organizationId': {
-			                type: 'id',
-			                options: undefined
-			            },
-			            /** . */
-			            'skillId': {
-			                type: 'id',
-			                options: undefined
-			            },
-			            /** . */
-			            'roleId': {
-			                type: 'id',
-			                options: undefined
-			            },
-			    }
-		}
-
-		type EventTargetEntity = SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.EventTargetSchema>
-
-	}
-
-
-	namespace SpruceSchemas.CalendarUtils.v2021_05_19 {
-
-		
-		interface EventSource {
-			
-				
-				'locationId'?: string| undefined | null
-				
-				'personId'?: string| undefined | null
-				
-				'organizationId'?: string| undefined | null
-				
-				'skillId'?: string| undefined | null
-				
-				'roleId'?: string| undefined | null
-				
-				'proxyToken'?: string| undefined | null
-		}
-
-		interface EventSourceSchema extends SpruceSchema.Schema {
-			id: 'eventSource',
-			version: 'v2021_05_19',
-			namespace: 'CalendarUtils',
-			name: '',
-			    fields: {
-			            /** . */
-			            'locationId': {
-			                type: 'id',
-			                options: undefined
-			            },
-			            /** . */
-			            'personId': {
-			                type: 'id',
-			                options: undefined
-			            },
-			            /** . */
-			            'organizationId': {
-			                type: 'id',
-			                options: undefined
-			            },
-			            /** . */
-			            'skillId': {
-			                type: 'id',
-			                options: undefined
-			            },
-			            /** . */
-			            'roleId': {
-			                type: 'id',
-			                options: undefined
-			            },
-			            /** . */
-			            'proxyToken': {
-			                type: 'id',
-			                options: undefined
-			            },
-			    }
-		}
-
-		type EventSourceEntity = SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.EventSourceSchema>
-
-	}
-
-
-	namespace SpruceSchemas.CalendarUtils.v2021_05_19 {
-
-		
 		interface CalendarEvent {
 			
 				
 				'id': string
 				
-				'source': SpruceSchemas.CalendarUtils.v2021_05_19.EventSource
+				'source': SpruceSchemas.SpruceEventUtils.v2021_09_13.EventSource
 				
-				'target': SpruceSchemas.CalendarUtils.v2021_05_19.EventTarget
+				'target': SpruceSchemas.SpruceEventUtils.v2021_09_13.EventTarget
 				
 				'calendarId': string
 				
 				'eventTypeSlug'?: string| undefined | null
 				
-				'startDate': number
+				'startDateTimeMs': number
 				
-				'endDate': number
+				'endDateTimeMs': number
 				
 				'title': string
 				
@@ -218,6 +100,8 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				'dateDeleted'?: number| undefined | null
 				
 				'dateCreated': number
+				
+				'personId': string
 		}
 
 		interface CalendarEventSchema extends SpruceSchema.Schema {
@@ -236,13 +120,13 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            'source': {
 			                type: 'schema',
 			                isRequired: true,
-			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.EventSourceSchema,}
+			                options: {schema: SpruceSchemas.SpruceEventUtils.v2021_09_13.EventSourceSchema,}
 			            },
 			            /** . */
 			            'target': {
 			                type: 'schema',
 			                isRequired: true,
-			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.EventTargetSchema,}
+			                options: {schema: SpruceSchemas.SpruceEventUtils.v2021_09_13.EventTargetSchema,}
 			            },
 			            /** . */
 			            'calendarId': {
@@ -256,13 +140,13 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			                options: undefined
 			            },
 			            /** . */
-			            'startDate': {
+			            'startDateTimeMs': {
 			                type: 'number',
 			                isRequired: true,
 			                options: undefined
 			            },
 			            /** . */
-			            'endDate': {
+			            'endDateTimeMs': {
 			                type: 'number',
 			                isRequired: true,
 			                options: undefined
@@ -325,6 +209,12 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            /** . */
 			            'dateCreated': {
 			                type: 'number',
+			                isRequired: true,
+			                options: undefined
+			            },
+			            /** . */
+			            'personId': {
+			                type: 'id',
 			                isRequired: true,
 			                options: undefined
 			            },

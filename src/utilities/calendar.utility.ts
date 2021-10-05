@@ -26,10 +26,10 @@ const calendarUtil = {
 			| 'repeatsUntil'
 			| 'daysOfWeek'
 			| 'interval'
-			| 'startDate'
+			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
-			| 'endDate'
+			| 'endDateTimeMs'
 		>,
 		dateUntil: number
 	) {
@@ -45,10 +45,10 @@ const calendarUtil = {
 			| 'repeatsUntil'
 			| 'daysOfWeek'
 			| 'interval'
-			| 'startDate'
+			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
-			| 'endDate'
+			| 'endDateTimeMs'
 		>,
 		dateUntil: number
 	) {
@@ -65,7 +65,7 @@ const calendarUtil = {
 				freq: this.freqMapToRRule[e.repeats],
 				interval: e.interval ?? 1,
 				byweekday: e.daysOfWeek?.map((d) => this.weekDaysMapToRRuleDays[d]),
-				dtstart: new Date(e.startDate),
+				dtstart: new Date(e.startDateTimeMs),
 				until: new Date(repeatsUntil),
 				count: e.occurrences,
 				bysetpos: e.nthOccurrences?.map((o) => {
@@ -85,20 +85,20 @@ const calendarUtil = {
 	},
 	filterEventRulesAndGetEvents(
 		rule: RRule,
-		e: Pick<CalendarEvent, 'startDate' | 'endDate'>
+		e: Pick<CalendarEvent, 'startDateTimeMs' | 'endDateTimeMs'>
 	) {
-		const duration = dateUtil.getDurationMs(e.startDate, e.endDate)
+		const duration = dateUtil.getDurationMs(e.startDateTimeMs, e.endDateTimeMs)
 		let events = rule.all().map((r) => ({
 			...e,
-			startDate: r.getTime(),
-			endDate: dateUtil.addMilliseconds(r.getTime(), duration),
+			startDateTimeMs: r.getTime(),
+			endDateTimeMs: dateUtil.addMilliseconds(r.getTime(), duration),
 		})) as CalendarEvent[]
 
 		return events
 	},
-	isExcluded(e: Pick<CalendarEvent, 'exclusionDates' | 'startDate'>) {
+	isExcluded(e: Pick<CalendarEvent, 'exclusionDates' | 'startDateTimeMs'>) {
 		if (e.exclusionDates) {
-			const splitedStartDate = dateUtil.splitDate(e.startDate)
+			const splitedStartDate = dateUtil.splitDate(e.startDateTimeMs)
 
 			const isExcluded = e.exclusionDates.find((d) => {
 				if (
@@ -124,10 +124,10 @@ const calendarUtil = {
 			| 'repeatsUntil'
 			| 'daysOfWeek'
 			| 'interval'
-			| 'startDate'
+			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
-			| 'endDate'
+			| 'endDateTimeMs'
 		>,
 		date: number
 	) {
@@ -135,7 +135,7 @@ const calendarUtil = {
 		const searchDate = dateUtil.splitDate(date)
 		const repeatingEvents = this.applyRuleAndGetEvents(values, dateUntil)
 		return repeatingEvents.find((e) => {
-			const event = dateUtil.splitDate(e.startDate)
+			const event = dateUtil.splitDate(e.startDateTimeMs)
 			if (
 				searchDate.year === event.year &&
 				searchDate.month === event.month &&

@@ -51,11 +51,11 @@ export default buildSchema({
 		eventTypeSlug: {
 			type: 'text',
 		},
-		startDate: {
+		startDateTimeMs: {
 			type: 'number',
 			isRequired: true,
 		},
-		endDate: {
+		endDateTimeMs: {
 			type: 'number',
 			isRequired: true,
 		},
@@ -110,6 +110,10 @@ export default buildSchema({
 		},
 		dateCreated: {
 			type: 'number',
+			isRequired: true,
+		},
+		personId: {
+			type: 'id',
 			isRequired: true,
 		},
 	},

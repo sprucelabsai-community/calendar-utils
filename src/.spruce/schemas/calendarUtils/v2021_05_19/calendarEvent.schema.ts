@@ -1,8 +1,8 @@
 import { SchemaRegistry } from '@sprucelabs/schema'
 import { SpruceSchemas } from '../../schemas.types'
 
-import eventSourceSchema_v2021_05_19 from '#spruce/schemas/calendarUtils/v2021_05_19/eventSource.schema'
-import eventTargetSchema_v2021_05_19 from '#spruce/schemas/calendarUtils/v2021_05_19/eventTarget.schema'
+import eventSourceSchema_v2021_09_13 from '#spruce/schemas/spruceEventUtils/v2021_09_13/eventSource.schema'
+import eventTargetSchema_v2021_09_13 from '#spruce/schemas/spruceEventUtils/v2021_09_13/eventTarget.schema'
 import eventExclusionDateSchema_v2021_05_19 from '#spruce/schemas/calendarUtils/v2021_05_19/eventExclusionDate.schema'
 
 const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventSchema  = {
@@ -21,13 +21,13 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	            'source': {
 	                type: 'schema',
 	                isRequired: true,
-	                options: {schema: eventSourceSchema_v2021_05_19,}
+	                options: {schema: eventSourceSchema_v2021_09_13,}
 	            },
 	            /** . */
 	            'target': {
 	                type: 'schema',
 	                isRequired: true,
-	                options: {schema: eventTargetSchema_v2021_05_19,}
+	                options: {schema: eventTargetSchema_v2021_09_13,}
 	            },
 	            /** . */
 	            'calendarId': {
@@ -41,13 +41,13 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	                options: undefined
 	            },
 	            /** . */
-	            'startDate': {
+	            'startDateTimeMs': {
 	                type: 'number',
 	                isRequired: true,
 	                options: undefined
 	            },
 	            /** . */
-	            'endDate': {
+	            'endDateTimeMs': {
 	                type: 'number',
 	                isRequired: true,
 	                options: undefined
@@ -110,6 +110,12 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	            /** . */
 	            'dateCreated': {
 	                type: 'number',
+	                isRequired: true,
+	                options: undefined
+	            },
+	            /** . */
+	            'personId': {
+	                type: 'id',
 	                isRequired: true,
 	                options: undefined
 	            },

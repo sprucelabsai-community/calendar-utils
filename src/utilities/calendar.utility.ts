@@ -29,7 +29,7 @@ const calendarUtil = {
 			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
-			| 'endDateTimeMs'
+			| 'timeBlocks'
 		>,
 		dateUntil: number
 	) {
@@ -48,7 +48,7 @@ const calendarUtil = {
 			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
-			| 'endDateTimeMs'
+			| 'timeBlocks'
 		>,
 		dateUntil: number
 	) {
@@ -85,13 +85,11 @@ const calendarUtil = {
 	},
 	filterEventRulesAndGetEvents(
 		rule: RRule,
-		e: Pick<CalendarEvent, 'startDateTimeMs' | 'endDateTimeMs'>
+		e: Pick<CalendarEvent, 'startDateTimeMs'>
 	) {
-		const duration = dateUtil.getDurationMs(e.startDateTimeMs, e.endDateTimeMs)
 		let events = rule.all().map((r) => ({
 			...e,
 			startDateTimeMs: r.getTime(),
-			endDateTimeMs: dateUtil.addMilliseconds(r.getTime(), duration),
 		})) as CalendarEvent[]
 
 		return events
@@ -127,7 +125,7 @@ const calendarUtil = {
 			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
-			| 'endDateTimeMs'
+			| 'timeBlocks'
 		>,
 		date: number
 	) {

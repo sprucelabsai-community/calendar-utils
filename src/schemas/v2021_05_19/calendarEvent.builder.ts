@@ -55,15 +55,22 @@ export default buildSchema({
 			type: 'number',
 			isRequired: true,
 		},
-		endDateTimeMs: {
-			type: 'number',
+		timeBlocks: {
+			type: 'schema',
+			isArray: true,
 			isRequired: true,
+			minArrayLength: 1,
+			options: {
+				schema: {
+					id: 'timeBlockSchema',
+					fields: {
+						title: { type: 'text', isRequired: true },
+						isBusy: { type: 'boolean', isRequired: true },
+						durationMinutes: { type: 'number', isRequired: true },
+					},
+				},
+			},
 		},
-		title: {
-			type: 'text',
-			isRequired: true,
-		},
-
 		repeats: {
 			type: 'select',
 			options: {

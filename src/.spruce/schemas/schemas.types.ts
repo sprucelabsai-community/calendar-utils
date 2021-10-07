@@ -62,6 +62,51 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 	namespace SpruceSchemas.CalendarUtils.v2021_05_19 {
 
 		
+		interface TimeBlockSchema {
+			
+				
+				'title': string
+				
+				'isBusy': boolean
+				
+				'durationMinutes': number
+		}
+
+		interface TimeBlockSchemaSchema extends SpruceSchema.Schema {
+			id: 'timeBlockSchema',
+			version: 'v2021_05_19',
+			namespace: 'CalendarUtils',
+			name: '',
+			    fields: {
+			            /** . */
+			            'title': {
+			                type: 'text',
+			                isRequired: true,
+			                options: undefined
+			            },
+			            /** . */
+			            'isBusy': {
+			                type: 'boolean',
+			                isRequired: true,
+			                options: undefined
+			            },
+			            /** . */
+			            'durationMinutes': {
+			                type: 'number',
+			                isRequired: true,
+			                options: undefined
+			            },
+			    }
+		}
+
+		type TimeBlockSchemaEntity = SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.TimeBlockSchemaSchema>
+
+	}
+
+
+	namespace SpruceSchemas.CalendarUtils.v2021_05_19 {
+
+		
 		interface CalendarEvent {
 			
 				
@@ -77,9 +122,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				
 				'startDateTimeMs': number
 				
-				'endDateTimeMs': number
-				
-				'title': string
+				'timeBlocks': SpruceSchemas.CalendarUtils.v2021_05_19.TimeBlockSchema[]
 				
 				'repeats'?: ("weekly" | "monthly" | "daily")| undefined | null
 				
@@ -146,16 +189,12 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			                options: undefined
 			            },
 			            /** . */
-			            'endDateTimeMs': {
-			                type: 'number',
+			            'timeBlocks': {
+			                type: 'schema',
 			                isRequired: true,
-			                options: undefined
-			            },
-			            /** . */
-			            'title': {
-			                type: 'text',
-			                isRequired: true,
-			                options: undefined
+			                isArray: true,
+			                minArrayLength: 1,
+			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.TimeBlockSchemaSchema,}
 			            },
 			            /** . */
 			            'repeats': {

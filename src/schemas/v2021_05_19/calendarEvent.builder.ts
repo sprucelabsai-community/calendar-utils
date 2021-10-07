@@ -23,6 +23,15 @@ export const eventExclusionDateSchema = buildSchema({
 	},
 })
 
+export const eventTimeBlocksSchema = buildSchema({
+	id: 'eventTimeBlockSchema',
+	fields: {
+		title: { type: 'text', isRequired: true },
+		isBusy: { type: 'boolean', isRequired: true },
+		durationMinutes: { type: 'number', isRequired: true },
+	},
+})
+
 export default buildSchema({
 	id: 'calendarEvent',
 	fields: {
@@ -61,14 +70,7 @@ export default buildSchema({
 			isRequired: true,
 			minArrayLength: 1,
 			options: {
-				schema: {
-					id: 'timeBlockSchema',
-					fields: {
-						title: { type: 'text', isRequired: true },
-						isBusy: { type: 'boolean', isRequired: true },
-						durationMinutes: { type: 'number', isRequired: true },
-					},
-				},
+				schema: eventTimeBlocksSchema,
 			},
 		},
 		repeats: {

@@ -62,7 +62,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 	namespace SpruceSchemas.CalendarUtils.v2021_05_19 {
 
 		
-		interface TimeBlockSchema {
+		interface EventTimeBlockSchema {
 			
 				
 				'title': string
@@ -72,8 +72,8 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				'durationMinutes': number
 		}
 
-		interface TimeBlockSchemaSchema extends SpruceSchema.Schema {
-			id: 'timeBlockSchema',
+		interface EventTimeBlockSchemaSchema extends SpruceSchema.Schema {
+			id: 'eventTimeBlockSchema',
 			version: 'v2021_05_19',
 			namespace: 'CalendarUtils',
 			name: '',
@@ -99,7 +99,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			    }
 		}
 
-		type TimeBlockSchemaEntity = SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.TimeBlockSchemaSchema>
+		type EventTimeBlockSchemaEntity = SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.EventTimeBlockSchemaSchema>
 
 	}
 
@@ -122,7 +122,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				
 				'startDateTimeMs': number
 				
-				'timeBlocks': SpruceSchemas.CalendarUtils.v2021_05_19.TimeBlockSchema[]
+				'timeBlocks': SpruceSchemas.CalendarUtils.v2021_05_19.EventTimeBlockSchema[]
 				
 				'repeats'?: ("weekly" | "monthly" | "daily")| undefined | null
 				
@@ -194,7 +194,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			                isRequired: true,
 			                isArray: true,
 			                minArrayLength: 1,
-			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.TimeBlockSchemaSchema,}
+			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.EventTimeBlockSchemaSchema,}
 			            },
 			            /** . */
 			            'repeats': {

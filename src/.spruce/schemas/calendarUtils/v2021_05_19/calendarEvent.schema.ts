@@ -3,7 +3,7 @@ import { SpruceSchemas } from '../../schemas.types'
 
 import eventSourceSchema_v2021_09_13 from '#spruce/schemas/spruceEventUtils/v2021_09_13/eventSource.schema'
 import eventTargetSchema_v2021_09_13 from '#spruce/schemas/spruceEventUtils/v2021_09_13/eventTarget.schema'
-import timeBlockSchemaSchema_v2021_05_19 from '#spruce/schemas/calendarUtils/v2021_05_19/timeBlockSchema.schema'
+import eventTimeBlockSchemaSchema_v2021_05_19 from '#spruce/schemas/calendarUtils/v2021_05_19/eventTimeBlockSchema.schema'
 import eventExclusionDateSchema_v2021_05_19 from '#spruce/schemas/calendarUtils/v2021_05_19/eventExclusionDate.schema'
 
 const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventSchema  = {
@@ -53,7 +53,7 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	                isRequired: true,
 	                isArray: true,
 	                minArrayLength: 1,
-	                options: {schema: timeBlockSchemaSchema_v2021_05_19,}
+	                options: {schema: eventTimeBlockSchemaSchema_v2021_05_19,}
 	            },
 	            /** . */
 	            'repeats': {

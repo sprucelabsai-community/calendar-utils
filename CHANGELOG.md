@@ -1,3 +1,5 @@
+## [7.1.6](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.1.5...v7.1.6) (2021-10-12)
+
 ## [7.1.5](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.1.4...v7.1.5) (2021-10-12)
 
 ## [7.1.4](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.1.3...v7.1.4) (2021-10-12)

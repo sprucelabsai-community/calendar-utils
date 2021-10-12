@@ -1,3 +1,10 @@
+# [7.1.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.0.30...v7.1.0) (2021-10-12)
+
+
+### Features
+
+* export spruce schemas ([0107ded](https://github.com/sprucelabsai/spruce-calendar-utils/commit/0107ded))
+
 ## [7.0.30](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.0.29...v7.0.30) (2021-10-09)
 
 ## [7.0.29](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.0.28...v7.0.29) (2021-10-09)

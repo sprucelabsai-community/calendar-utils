@@ -1,3 +1,10 @@
+# [7.2.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.1.24...v7.2.0) (2021-10-13)
+
+
+### Features
+
+* schema name change ([94468ee](https://github.com/sprucelabsai/spruce-calendar-utils/commit/94468ee))
+
 ## [7.1.24](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.1.23...v7.1.24) (2021-10-13)
 
 ## [7.1.23](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.1.22...v7.1.23) (2021-10-13)

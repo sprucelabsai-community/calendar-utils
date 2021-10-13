@@ -24,7 +24,7 @@ export const eventExclusionDateSchema = buildSchema({
 })
 
 export const eventTimeBlocksSchema = buildSchema({
-	id: 'eventTimeBlockSchema',
+	id: 'eventTimeBlock',
 	fields: {
 		title: { type: 'text', isRequired: true },
 		isBusy: { type: 'boolean', isRequired: true },

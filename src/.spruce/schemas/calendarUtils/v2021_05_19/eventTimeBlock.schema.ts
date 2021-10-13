@@ -3,8 +3,8 @@ import { SpruceSchemas } from '../../schemas.types'
 
 
 
-const eventTimeBlockSchemaSchema: SpruceSchemas.CalendarUtils.v2021_05_19.EventTimeBlockSchemaSchema  = {
-	id: 'eventTimeBlockSchema',
+const eventTimeBlockSchema: SpruceSchemas.CalendarUtils.v2021_05_19.EventTimeBlockSchema  = {
+	id: 'eventTimeBlock',
 	version: 'v2021_05_19',
 	namespace: 'CalendarUtils',
 	name: '',
@@ -30,6 +30,6 @@ const eventTimeBlockSchemaSchema: SpruceSchemas.CalendarUtils.v2021_05_19.EventT
 	    }
 }
 
-SchemaRegistry.getInstance().trackSchema(eventTimeBlockSchemaSchema)
+SchemaRegistry.getInstance().trackSchema(eventTimeBlockSchema)
 
-export default eventTimeBlockSchemaSchema
+export default eventTimeBlockSchema

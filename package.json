@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "7.4.1",
+  "version": "7.5.0",
   "files": [
     "build/**/*",
     "!build/__tests__",
@@ -61,21 +61,21 @@
     "watch.rebuild": "yarn clean.all && yarn && yarn watch.build.dev"
   },
   "dependencies": {
-    "@sprucelabs/schema": "^25.3.297",
-    "@sprucelabs/spruce-core-schemas": "^22.5.367",
+    "@sprucelabs/schema": "^25.3.298",
+    "@sprucelabs/spruce-core-schemas": "^22.5.368",
     "@sprucelabs/spruce-event-utils": "^16.0.378",
-    "@sprucelabs/spruce-skill-utils": "^20.6.236",
+    "@sprucelabs/spruce-skill-utils": "^20.6.237",
     "date-fns": "^2.25.0",
     "rrule": "^2.6.8"
   },
   "devDependencies": {
     "@sprucelabs/esm-postbuild": "^1.0.262",
-    "@sprucelabs/jest-json-reporter": "^6.0.203",
+    "@sprucelabs/jest-json-reporter": "^6.0.204",
     "@sprucelabs/resolve-path-aliases": "^1.0.213",
     "@sprucelabs/semantic-release": "^4.0.7",
     "@sprucelabs/spruce-test-fixtures": "^5.4.142",
     "@sprucelabs/test": "^7.7.192",
-    "@sprucelabs/test-utils": "^3.0.198",
+    "@sprucelabs/test-utils": "^3.0.199",
     "@types/node": "^16.10.9",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^6.3.0",

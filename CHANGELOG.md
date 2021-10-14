@@ -1,3 +1,10 @@
+# [7.5.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.4.1...v7.5.0) (2021-10-14)
+
+
+### Features
+
+* missed date unit export ([fd13b1d](https://github.com/sprucelabsai/spruce-calendar-utils/commit/fd13b1d))
+
 ## [7.4.1](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.4.0...v7.4.1) (2021-10-14)
 
 # [7.4.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.3.2...v7.4.0) (2021-10-14)

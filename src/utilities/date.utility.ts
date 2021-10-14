@@ -18,7 +18,7 @@ export interface IDate {
 	minute?: number
 }
 
-type DateUnit = 'days' | 'weeks' | 'months' | 'years' | 'minutes'
+export type DateUnit = 'days' | 'weeks' | 'months' | 'years' | 'minutes'
 
 const dateUtil = {
 	eventDaysOfWeek: daysOfWeek,

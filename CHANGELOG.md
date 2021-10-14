@@ -1,3 +1,10 @@
+# [7.3.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.2.9...v7.3.0) (2021-10-14)
+
+
+### Features
+
+* add weeks and format dates ([b42eadb](https://github.com/sprucelabsai/spruce-calendar-utils/commit/b42eadb))
+
 ## [7.2.9](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.2.8...v7.2.9) (2021-10-14)
 
 ## [7.2.8](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.2.7...v7.2.8) (2021-10-13)

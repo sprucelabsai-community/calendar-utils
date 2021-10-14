@@ -18,6 +18,8 @@ export interface IDate {
 	minute?: number
 }
 
+type DateUnit = 'days' | 'weeks' | 'months' | 'years' | 'minutes'
+
 const dateUtil = {
 	eventDaysOfWeek: daysOfWeek,
 	getStartOfDay(timestamp?: number) {
@@ -58,6 +60,9 @@ const dateUtil = {
 	},
 	addWeeks(startTimestamp: number, weeks: number) {
 		return addWeeks(startTimestamp, weeks).getTime()
+	},
+	addMonths(startTimestamp: number, months: number) {
+		return addMonths(startTimestamp, months).getTime()
 	},
 	addYears(startTimestamp: number, years: number) {
 		return addYears(startTimestamp, years).getTime()
@@ -118,7 +123,7 @@ const dateUtil = {
 	},
 	getDateNMonthsFromStartOfDay(count: number, timestamp?: number) {
 		const startOfDay = this.getStartOfDay(timestamp)
-		return addMonths(startOfDay, count).getTime()
+		return this.addMonths(startOfDay, count)
 	},
 	getDateNMonthsFromStartOfMonth(count: number, timestamp?: number) {
 		return addMonths(this.getStartOfMonth(timestamp), count).getTime()
@@ -135,6 +140,17 @@ const dateUtil = {
 	format(timestamp: number, format: string) {
 		return formatDate(timestamp, format)
 	},
+	add(timestamp: number, count: number, unit: DateUnit) {
+		return adders[unit](timestamp, count)
+	},
 }
 
 export default dateUtil
+
+const adders: Record<DateUnit, (timestamp: number, count: number) => number> = {
+	years: dateUtil.addYears.bind(dateUtil),
+	weeks: dateUtil.addWeeks.bind(dateUtil),
+	days: dateUtil.addDays.bind(dateUtil),
+	minutes: dateUtil.addMinutes.bind(dateUtil),
+	months: dateUtil.addMonths.bind(dateUtil),
+}

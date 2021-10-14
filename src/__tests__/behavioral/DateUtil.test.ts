@@ -261,17 +261,18 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		minutes: number,
 		expected: number
 	) {
-		const result = dateUtil.addMinutes(
-			Date.UTC(
-				date.year,
-				date.month,
-				date.day,
-				date.hour ?? 0,
-				date.minute ?? 0
-			),
-			minutes
+		const timestamp = Date.UTC(
+			date.year,
+			date.month,
+			date.day,
+			date.hour ?? 0,
+			date.minute ?? 0
 		)
-		assert.isEqual(result, expected)
+		const actual = dateUtil.addMinutes(timestamp, minutes)
+		assert.isEqual(actual, expected)
+
+		const actual2 = dateUtil.add(timestamp, minutes, 'minutes')
+		assert.isEqual(actual2, expected)
 	}
 
 	@test(
@@ -323,18 +324,20 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		days: number,
 		expected: number
 	) {
-		const result = dateUtil.addDays(
-			new Date(
-				date.year,
-				date.month,
-				date.day,
-				date.hour ?? 0,
-				date.minute ?? 0,
-				date.seconds ?? 0
-			).getTime(),
-			days
-		)
-		assert.isEqual(result, expected)
+		const timestamp = new Date(
+			date.year,
+			date.month,
+			date.day,
+			date.hour ?? 0,
+			date.minute ?? 0,
+			date.seconds ?? 0
+		).getTime()
+
+		const actual = dateUtil.addDays(timestamp, days)
+		assert.isEqual(actual, expected)
+
+		const actual2 = dateUtil.add(timestamp, days, 'days')
+		assert.isEqual(actual2, expected)
 	}
 
 	@test(
@@ -355,23 +358,20 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		1,
 		1635206400000
 	)
-	protected static addYearsReturnsRightTimestamp(
-		date: any,
-		years: number,
-		expected: number
-	) {
-		const result = dateUtil.addYears(
-			new Date(
-				date.year,
-				date.month,
-				date.day,
-				date.hour ?? 0,
-				date.minute ?? 0,
-				date.seconds ?? 0
-			).getTime(),
-			years
-		)
-		assert.isEqual(result, expected)
+	protected static addingYears(date: any, years: number, expected: number) {
+		const timestamp = new Date(
+			date.year,
+			date.month,
+			date.day,
+			date.hour ?? 0,
+			date.minute ?? 0,
+			date.seconds ?? 0
+		).getTime()
+		const actual = dateUtil.addYears(timestamp, years)
+		assert.isEqual(actual, expected)
+
+		const actual2 = dateUtil.add(timestamp, years, 'years')
+		assert.isEqual(actual2, expected)
 	}
 
 	@test(
@@ -572,11 +572,29 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	protected static canAddWeeks(weeks: number, start: number, expected: number) {
 		const actual = dateUtil.addWeeks(start, weeks)
 		assert.isEqual(actual, expected)
+
+		const actual2 = dateUtil.add(start, weeks, 'weeks')
+		assert.isEqual(actual2, expected)
+	}
+
+	@test('can add 1 month', 1, 441788400000, 444466800000)
+	@test('can add 2 month', 2, 444466800000, 449650800000)
+	protected static canAddMonths(
+		months: number,
+		start: number,
+		expected: number
+	) {
+		const actual = dateUtil.addMonths(start, months)
+		assert.isEqual(actual, expected)
+
+		const actual2 = dateUtil.add(start, months, 'months')
+		assert.isEqual(actual2, expected)
 	}
 
 	@test('date format 1', 444121200000, 'yyyy-MM-d', '1984-01-28')
 	@test('date format 2', 458632800000, 'yyyy-MM-d', '1984-07-14')
 	@test('date format 3', 458632800000, 'yyyy', '1984')
+	@test('date format 4', 458632800000, 'M', '7')
 	protected static canFormatDate(
 		start: number,
 		format: string,

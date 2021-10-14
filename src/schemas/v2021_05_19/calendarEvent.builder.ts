@@ -27,6 +27,7 @@ export const eventTimeBlocksSchema = buildSchema({
 	id: 'eventTimeBlock',
 	fields: {
 		title: { type: 'text', isRequired: true },
+		subtitle: { type: 'text' },
 		isBusy: { type: 'boolean', isRequired: true },
 		durationMinutes: { type: 'number', isRequired: true },
 	},

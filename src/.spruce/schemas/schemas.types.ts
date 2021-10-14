@@ -67,6 +67,8 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				
 				'title': string
 				
+				'subtitle'?: string| undefined | null
+				
 				'isBusy': boolean
 				
 				'durationMinutes': number
@@ -82,6 +84,11 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            'title': {
 			                type: 'text',
 			                isRequired: true,
+			                options: undefined
+			            },
+			            /** . */
+			            'subtitle': {
+			                type: 'text',
 			                options: undefined
 			            },
 			            /** . */

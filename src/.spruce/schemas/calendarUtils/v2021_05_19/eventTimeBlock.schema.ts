@@ -16,6 +16,11 @@ const eventTimeBlockSchema: SpruceSchemas.CalendarUtils.v2021_05_19.EventTimeBlo
 	                options: undefined
 	            },
 	            /** . */
+	            'subtitle': {
+	                type: 'text',
+	                options: undefined
+	            },
+	            /** . */
 	            'isBusy': {
 	                type: 'boolean',
 	                isRequired: true,

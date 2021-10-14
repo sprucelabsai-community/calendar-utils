@@ -1,3 +1,10 @@
+# [7.6.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.5.0...v7.6.0) (2021-10-14)
+
+
+### Features
+
+* subtitle on event time block ([e405ea3](https://github.com/sprucelabsai/spruce-calendar-utils/commit/e405ea3))
+
 # [7.5.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.4.1...v7.5.0) (2021-10-14)
 
 

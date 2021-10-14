@@ -1,3 +1,10 @@
+# [7.4.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.3.2...v7.4.0) (2021-10-14)
+
+
+### Features
+
+* generic add util and DateUnit intreface ([7b8f400](https://github.com/sprucelabsai/spruce-calendar-utils/commit/7b8f400))
+
 ## [7.3.2](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.3.1...v7.3.2) (2021-10-14)
 
 ## [7.3.1](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.3.0...v7.3.1) (2021-10-14)

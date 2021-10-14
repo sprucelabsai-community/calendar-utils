@@ -1,6 +1,7 @@
-import { startOfDay } from 'date-fns'
+import { addWeeks, startOfDay } from 'date-fns'
 import { startOfMonth } from 'date-fns'
 import { addDays } from 'date-fns'
+import { format as formatDate } from 'date-fns'
 import { addMonths } from 'date-fns'
 import { addYears } from 'date-fns'
 import { endOfWeek } from 'date-fns'
@@ -19,7 +20,6 @@ export interface IDate {
 
 const dateUtil = {
 	eventDaysOfWeek: daysOfWeek,
-
 	getStartOfDay(timestamp?: number) {
 		if (!timestamp) {
 			timestamp = new Date().getTime()
@@ -55,6 +55,9 @@ const dateUtil = {
 	},
 	addDays(startTimestamp: number, days: number) {
 		return addDays(startTimestamp, days).getTime()
+	},
+	addWeeks(startTimestamp: number, weeks: number) {
+		return addWeeks(startTimestamp, weeks).getTime()
 	},
 	addYears(startTimestamp: number, years: number) {
 		return addYears(startTimestamp, years).getTime()
@@ -128,6 +131,9 @@ const dateUtil = {
 			date.hour ?? 0,
 			date.minute ?? 0
 		)
+	},
+	format(timestamp: number, format: string) {
+		return formatDate(timestamp, format)
 	},
 }
 

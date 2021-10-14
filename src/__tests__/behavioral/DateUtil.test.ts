@@ -3,12 +3,12 @@ import dateUtil from '../../utilities/date.utility'
 
 export default class DateUtilityTest extends AbstractSpruceTest {
 	@test()
-	protected static async canCreateDateUtility() {
+	protected static canCreateDateUtility() {
 		assert.isTruthy(dateUtil)
 	}
 
 	@test()
-	protected static async constructsDateInUtcForTomorrow() {
+	protected static constructsDateInUtcForTomorrow() {
 		const date = new Date()
 
 		const tomorrowMillis = date.getTime() + 24 * 60 * 60 * 1000
@@ -107,7 +107,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		{ month: 0, day: 13, year: 2020, hour: 23, minute: 59 },
 		1578787200000
 	)
-	protected static async startOfWeekReturnsSunday(date: any, expected: number) {
+	protected static startOfWeekReturnsSunday(date: any, expected: number) {
 		const startOfWeek = dateUtil.getStartOfWeek(
 			Date.UTC(
 				date.year,
@@ -141,7 +141,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		{ month: 9, day: 26, year: 2020, hour: 3, minute: 23 },
 		1603670400000
 	)
-	protected static async getsStartOfDay(date: any, expected: number) {
+	protected static getsStartOfDay(date: any, expected: number) {
 		const startOfDay = dateUtil.getStartOfDay(
 			Date.UTC(
 				date.year,
@@ -174,7 +174,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		{ month: 9, day: 26, year: 2020, hour: 3, minute: 23 },
 		1603756799999
 	)
-	protected static async getRightEndOfDay(date: any, expected: number) {
+	protected static getRightEndOfDay(date: any, expected: number) {
 		const startOfDay = dateUtil.getEndOfDay(
 			Date.UTC(
 				date.year,
@@ -202,7 +202,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		{ month: 9, day: 26, year: 2020, hour: 3, minute: 23 },
 		1601510400000
 	)
-	protected static async getRightStartOfMonth(date: any, expected: number) {
+	protected static getRightStartOfMonth(date: any, expected: number) {
 		const startOfDay = dateUtil.getStartOfMonth(
 			Date.UTC(
 				date.year,
@@ -226,7 +226,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		183,
 		1622592000000
 	)
-	protected static async getRightNDaysFromStartOfDay(
+	protected static getRightNDaysFromStartOfDay(
 		date: any,
 		days: number,
 		expected: number
@@ -256,7 +256,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		365 * 24 * 60,
 		1635206400000
 	)
-	protected static async addMinutesReturnsRightTimestamp(
+	protected static addMinutesReturnsRightTimestamp(
 		date: any,
 		minutes: number,
 		expected: number
@@ -286,7 +286,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		365 * 24 * 60 * 60 * 1000,
 		1635206400000
 	)
-	protected static async addMillisecondsReturnsRightTimestamp(
+	protected static addMillisecondsReturnsRightTimestamp(
 		date: any,
 		ms: number,
 		expected: number
@@ -318,7 +318,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		25,
 		1603670400000
 	)
-	protected static async addDayReturnsRightTimestamp(
+	protected static addDayReturnsRightTimestamp(
 		date: any,
 		days: number,
 		expected: number
@@ -355,7 +355,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		1,
 		1635206400000
 	)
-	protected static async addYearsReturnsRightTimestamp(
+	protected static addYearsReturnsRightTimestamp(
 		date: any,
 		years: number,
 		expected: number
@@ -380,7 +380,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		{ month: 0, day: 12, year: 2020, hour: 1, minute: 0 },
 		120
 	)
-	protected static async getDurationInMinutesReturnsRightTimestamp(
+	protected static getDurationInMinutesReturnsRightTimestamp(
 		start: any,
 		end: any,
 		expected: number
@@ -418,7 +418,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		{ month: 2, day: 1, year: 2020, hour: 0, minute: 0 },
 		3
 	)
-	protected static async getDurationInDaysReturnsRightTimestamp(
+	protected static getDurationInDaysReturnsRightTimestamp(
 		start: any,
 		end: any,
 		expected: number
@@ -458,7 +458,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		0,
 		1586649600000
 	)
-	protected static async setTimeOfDayReturnsRightTimestamp(
+	protected static setTimeOfDayReturnsRightTimestamp(
 		start: any,
 		hour: number,
 		minute: number,
@@ -492,7 +492,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		5,
 		1603670400000
 	)
-	protected static async getRightDateNMonthsFromStartOfDay(
+	protected static getRightDateNMonthsFromStartOfDay(
 		date: any,
 		count: number,
 		expected: number
@@ -552,7 +552,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		{ hour: 1, minute: 0, seconds: 30, milliseconds: 1 },
 		1631840430001
 	)
-	protected static async canSetTimeOfDayWithSecondsAndMilliseconds(
+	protected static canSetTimeOfDayWithSecondsAndMilliseconds(
 		timestamp: number,
 		time: any,
 		expectedTimeStamp: number
@@ -565,6 +565,25 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 			time.milliseconds
 		)
 		assert.isEqual(result, expectedTimeStamp)
+	}
+
+	@test('can add 1 week', 1, 1609484400000, 1610089200000)
+	@test('can add 2 weeks', 2, 1609484400000, 1610694000000)
+	protected static canAddWeeks(weeks: number, start: number, expected: number) {
+		const actual = dateUtil.addWeeks(start, weeks)
+		assert.isEqual(actual, expected)
+	}
+
+	@test('date format 1', 444121200000, 'yyyy-MM-d', '1984-01-28')
+	@test('date format 2', 458632800000, 'yyyy-MM-d', '1984-07-14')
+	@test('date format 3', 458632800000, 'yyyy', '1984')
+	protected static canFormatDate(
+		start: number,
+		format: string,
+		expected: string
+	) {
+		const actual = dateUtil.format(start, format)
+		assert.isEqual(actual, expected)
 	}
 
 	private static stripSeconds(number: number): string {

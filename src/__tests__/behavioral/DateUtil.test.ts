@@ -604,6 +604,19 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		assert.isEqual(actual, expected)
 	}
 
+	@test('is not same day 1', 631177200000, 631263600000, false)
+	@test('is same day 1', 655574400000, 655575120000, true)
+	@test('is not same day if different year', 655574400000, 687111120000, false)
+	@test('is not same day if different month', 663527520000, 689793120000, false)
+	protected static canCheckSameDay(
+		date1: number,
+		date2: number,
+		isSame: boolean
+	) {
+		const isSameDay = dateUtil.isSameDay(date1, date2)
+		assert.isTrue(isSameDay === isSame)
+	}
+
 	private static stripSeconds(number: number): string {
 		const str = `${number}`
 		return str.slice(0, -4)

@@ -498,6 +498,12 @@ const dateUtil = {
 	add(timestamp: number, count: number, unit: DateUnit) {
 		return adders[unit](timestamp, count)
 	},
+	isSameDay(timestamp1: number, timestamp2: number) {
+		const { day, year, month } = this.splitDate(timestamp1)
+		const { day: day2, year: year2, month: month2 } = this.splitDate(timestamp2)
+
+		return day === day2 && year === year2 && month === month2
+	},
 }
 
 export default dateUtil

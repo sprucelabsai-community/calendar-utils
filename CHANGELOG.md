@@ -1,3 +1,10 @@
+# [7.7.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.6.16...v7.7.0) (2021-10-15)
+
+
+### Features
+
+* isSameDay check ([ed0b6cf](https://github.com/sprucelabsai/spruce-calendar-utils/commit/ed0b6cf))
+
 ## [7.6.16](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.6.15...v7.6.16) (2021-10-15)
 
 ## [7.6.15](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.6.14...v7.6.15) (2021-10-15)

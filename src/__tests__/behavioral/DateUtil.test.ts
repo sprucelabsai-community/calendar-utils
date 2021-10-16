@@ -9,6 +9,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		sec?: number | undefined,
 		ms?: number | undefined
 	) => number
+
 	protected static async beforeAll() {
 		await super.beforeAll()
 		this.oldSetUtcHours = Date.prototype.setUTCHours
@@ -74,7 +75,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	}
 
 	@test(
-		'Wednesday 01-01-2020 00:00 -> Sunday 12-29-2019 00:00 GMT',
+		'Start of week: Wednesday 01-01-2020 00:00 -> Sunday 12-29-2019 00:00 GMT',
 		{ month: 0, day: 1, year: 2020, hour: 0, minute: 0 },
 		1577577600000
 	)
@@ -84,54 +85,54 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		1577577600000
 	)
 	@test(
-		'Tuesday 01-07-2020 00:00 -> Sunday 01-05-2020 00:00 GMT',
+		'Start of week: Tuesday 01-07-2020 00:00 -> Sunday 01-05-2020 00:00 GMT',
 		{ month: 0, day: 7, year: 2020, hour: 0, minute: 0 },
 		1578182400000
 	)
 	@test(
-		'Tuesday 01-07-2020 23:59 -> Sunday 01-05-2020 00:00 GMT',
+		'Start of week: Tuesday 01-07-2020 23:59 -> Sunday 01-05-2020 00:00 GMT',
 		{ month: 0, day: 7, year: 2020, hour: 23, minute: 59 },
 		1578182400000
 	)
 	@test(
-		'Saturday 01-11-2020 00:00 -> Sunday 01-05-2020 00:00 GMT',
+		'Start of week: Saturday 01-11-2020 00:00 -> Sunday 01-05-2020 00:00 GMT',
 		{ month: 0, day: 11, year: 2020, hour: 0, minute: 0 },
 		1578182400000
 	)
 	@test(
-		'Saturday 01-11-2020 23:59 -> Sunday 01-05-2020 00:00 GMT',
+		'Start of week: Saturday 01-11-2020 23:59 -> Sunday 01-05-2020 00:00 GMT',
 		{ month: 0, day: 11, year: 2020, hour: 23, minute: 59 },
 		1578182400000
 	)
 	@test(
-		'Sunday 01-12-2020 00:00 -> Sunday 01-12-2020 00:00 GMT',
+		'Start of week: Sunday 01-12-2020 00:00 -> Sunday 01-12-2020 00:00 GMT',
 		{ month: 0, day: 12, year: 2020, hour: 0, minute: 0 },
 		1578787200000
 	)
 	@test(
-		'Sunday 01-12-2020 23:59 -> Sunday 01-12-2020 00:00 GMT',
+		'Start of week: Sunday 01-12-2020 23:59 -> Sunday 01-12-2020 00:00 GMT',
 		{ month: 0, day: 12, year: 2020, hour: 23, minute: 59 },
 		1578787200000
 	)
 	@test(
-		'Monday 01-13-2020 00:00 -> Sunday 01-12-2020 00:00 GMT',
+		'Start of week: Monday 01-13-2020 00:00 -> Sunday 01-12-2020 00:00 GMT',
 		{ month: 0, day: 13, year: 2020, hour: 0, minute: 0 },
 		1578787200000
 	)
 	@test(
-		'Monday 01-13-2020 23:59 -> Sunday 01-12-2020 00:00 GMT',
+		'Start of week: Monday 01-13-2020 23:59 -> Sunday 01-12-2020 00:00 GMT',
 		{ month: 0, day: 13, year: 2020, hour: 23, minute: 59 },
 		1578787200000
 	)
 	protected static startOfWeekReturnsSunday(date: any, expected: number) {
 		const startOfWeek = dateUtil.getStartOfWeek(
-			Date.UTC(
-				date.year,
-				date.month,
-				date.day,
-				date.hour ?? 0,
-				date.minute ?? 0
-			)
+			dateUtil.date({
+				year: date.year,
+				month: date.month,
+				day: date.day,
+				hour: date.hour ?? 0,
+				minute: date.minute ?? 0,
+			})
 		)
 
 		assert.isEqual(startOfWeek, expected)
@@ -159,13 +160,13 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	)
 	protected static getsStartOfDay(date: any, expected: number) {
 		const startOfDay = dateUtil.getStartOfDay(
-			Date.UTC(
-				date.year,
-				date.month,
-				date.day,
-				date.hour ?? 0,
-				date.minute ?? 0
-			)
+			dateUtil.date({
+				year: date.year,
+				month: date.month,
+				day: date.day,
+				hour: date.hour ?? 0,
+				minute: date.minute ?? 0,
+			})
 		)
 		assert.isEqual(startOfDay, expected)
 	}
@@ -192,52 +193,52 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	)
 	protected static getRightEndOfDay(date: any, expected: number) {
 		const startOfDay = dateUtil.getEndOfDay(
-			Date.UTC(
-				date.year,
-				date.month,
-				date.day,
-				date.hour ?? 0,
-				date.minute ?? 0
-			)
+			dateUtil.date({
+				year: date.year,
+				month: date.month,
+				day: date.day,
+				hour: date.hour ?? 0,
+				minute: date.minute ?? 0,
+			})
 		)
 		assert.isEqual(startOfDay, expected)
 	}
 
 	@test(
-		'December 31, 2020 11:59:00 PM -> Thursday, December 1, 2020 12:00:00 AM',
+		'Gets start of month: December 31, 2020 11:59:00 PM -> Thursday, December 1, 2020 12:00:00 AM',
 		{ month: 11, day: 31, year: 2020, hour: 23, minute: 59 },
 		1606780800000
 	)
 	@test(
-		'Thursday, December 1, 2020 12:00:00am -> Thursday, December 1, 2020 12:00:00 AM',
+		'Gets start of month: Thursday, December 1, 2020 12:00:00am -> Thursday, December 1, 2020 12:00:00 AM',
 		{ month: 11, day: 1, year: 2020, hour: 0, minute: 0 },
 		1606780800000
 	)
 	@test(
-		'Monday, October 26, 2020 3:23:00 AM -> Monday,October 1, 2020 12:00:00 AM',
+		'Gets start of month: Monday, October 26, 2020 3:23:00 AM -> Monday,October 1, 2020 12:00:00 AM',
 		{ month: 9, day: 26, year: 2020, hour: 3, minute: 23 },
 		1601510400000
 	)
 	protected static getRightStartOfMonth(date: any, expected: number) {
 		const startOfDay = dateUtil.getStartOfMonth(
-			Date.UTC(
-				date.year,
-				date.month,
-				date.day,
-				date.hour ?? 0,
-				date.minute ?? 0
-			)
+			dateUtil.date({
+				year: date.year,
+				month: date.month,
+				day: date.day,
+				hour: date.hour ?? 0,
+				minute: date.minute ?? 0,
+			})
 		)
 		assert.isEqual(startOfDay, expected)
 	}
 	@test(
-		'Thursday,January 1, 2020 12:00:00 AM',
+		'Gets 10 days from Thursday,January 1, 2020 12:00:00 AM',
 		{ month: 0, day: 1, year: 2020, hour: 0, minute: 0 },
 		10,
 		1578700800000
 	)
 	@test(
-		'Thursday, December 1, 2020 12:00:00 AM',
+		'Gets 183 days from Thursday, December 1, 2020 12:00:00 AM',
 		{ month: 11, day: 1, year: 2020, hour: 0, minute: 0 },
 		183,
 		1622592000000
@@ -249,25 +250,25 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	) {
 		const startOfDay = dateUtil.getDateNDaysFromStartOfDay(
 			days,
-			Date.UTC(
-				date.year,
-				date.month,
-				date.day,
-				date.hour ?? 0,
-				date.minute ?? 0
-			)
+			dateUtil.date({
+				year: date.year,
+				month: date.month,
+				day: date.day,
+				hour: date.hour ?? 0,
+				minute: date.minute ?? 0,
+			})
 		)
 		assert.isEqual(startOfDay, expected)
 	}
 
 	@test(
-		'Wednesday, January 1, 2020 3:00:00 AM',
+		'Add 30 minutes to Wednesday, January 1, 2020 3:00:00 AM',
 		{ month: 0, day: 1, year: 2020, hour: 2, minute: 30 },
 		30,
 		1577847600000
 	)
 	@test(
-		'Monday,October 26, 2020 12:00:00 AM',
+		'Add 525,600 minutes to Monday,October 26, 2020 12:00:00 AM',
 		{ month: 9, day: 26, year: 2020, hour: 0, minute: 0 },
 		365 * 24 * 60,
 		1635206400000
@@ -277,13 +278,13 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		minutes: number,
 		expected: number
 	) {
-		const timestamp = Date.UTC(
-			date.year,
-			date.month,
-			date.day,
-			date.hour ?? 0,
-			date.minute ?? 0
-		)
+		const timestamp = dateUtil.date({
+			year: date.year,
+			month: date.month,
+			day: date.day,
+			hour: date.hour ?? 0,
+			minute: date.minute ?? 0,
+		})
 		const actual = dateUtil.addMinutes(timestamp, minutes)
 		assert.isEqual(actual, expected)
 
@@ -292,13 +293,13 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	}
 
 	@test(
-		'Wednesday, January 1, 2020 11:30:00 PM',
+		'Add 1800000 milliseconds to Wednesday, January 1, 2020 11:30:00 PM',
 		{ month: 0, day: 1, year: 2020, hour: 23, minute: 0, ms: 0 },
 		1800000,
 		1577921400000
 	)
 	@test(
-		'Monday,October 26, 2020 12:00:00 AM',
+		'Add (365 * 24 * 60 * 60 * 1000) milliseconds to Monday,October 26, 2020 12:00:00 AM',
 		{ month: 9, day: 26, year: 2020, hour: 0, minute: 0 },
 		365 * 24 * 60 * 60 * 1000,
 		1635206400000
@@ -309,31 +310,37 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		expected: number
 	) {
 		const result = dateUtil.addMilliseconds(
-			Date.UTC(
-				date.year,
-				date.month,
-				date.day,
-				date.hour ?? 0,
-				date.minute ?? 0,
-				date.seconds ?? 0,
-				date.ms ?? 0
-			),
+			dateUtil.date({
+				year: date.year,
+				month: date.month,
+				day: date.day,
+				hour: date.hour ?? 0,
+				minute: date.minute ?? 0,
+				second: date.seconds ?? 0,
+				milliseconds: date.ms ?? 0,
+			}),
 			ms
 		)
 		assert.isEqual(result, expected)
 	}
 
 	@test(
-		'Wednesday, January 11, 2020 11:00:00 PM',
+		'Add 10 days to Wednesday, January 11, 2020 11:00:00 PM',
 		{ month: 0, day: 1, year: 2020, hour: 23, minute: 0 },
 		10,
 		1578783600000
 	)
 	@test(
-		'Monday,October 26, 2020 12:00:00 AM',
+		'Add 25 days to Monday, October 26, 2020 12:00:00 AM',
 		{ month: 9, day: 1, year: 2020, hour: 0, minute: 0 },
 		25,
 		1603670400000
+	)
+	@test(
+		'Add 3 days to Friday, December 31, 2021 10:30:00 AM',
+		{ month: 11, day: 31, year: 2021, hour: 10, minute: 30 },
+		3,
+		1641205800000
 	)
 	protected static addDayReturnsRightTimestamp(
 		date: any,
@@ -357,19 +364,19 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	}
 
 	@test(
-		'Wednesday, January 11, 2025 11:00:00 PM',
+		'Add 5 years to Wednesday, January 11, 2025 11:00:00 PM',
 		{ month: 0, day: 11, year: 2020, hour: 23, minute: 0 },
 		5,
 		1736636400000
 	)
 	@test(
-		'Monday, March 9, 2020 12:00:00 AM',
+		'Add 1 year to Monday, March 9, 2020 12:00:00 AM',
 		{ month: 2, day: 9, year: 2020, hour: 0, minute: 0 },
 		1,
 		1615248000000
 	)
 	@test(
-		'Monday, October 26, 2020 12:00:00 AM',
+		'Add 1 year to Monday, October 26, 2020 12:00:00 AM',
 		{ month: 9, day: 26, year: 2020, hour: 0, minute: 0 },
 		1,
 		1635206400000
@@ -423,7 +430,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	}
 
 	@test(
-		'Wednesday, January 11, 2025 11:00:00 PM',
+		'3 days between Wednesday, January 11, 2025 11:00:00 PM and Sat, January 14, 2025 11:00:00 PM',
 		{ month: 0, day: 11, year: 2020, hour: 23, minute: 0 },
 		{ month: 0, day: 14, year: 2020, hour: 1, minute: 0 },
 		3
@@ -461,14 +468,14 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	}
 
 	@test(
-		'Wednesday, January 11, 2020 10:00:00 PM',
+		'Can set timeOfDay to Wednesday, January 11, 2020 10:00:00 PM',
 		{ month: 0, day: 11, year: 2020, hour: 10, minute: 30 },
 		20,
 		30,
 		1578774600000
 	)
 	@test(
-		'Sunday, April 12, 2020 12:00:00 AM',
+		'Can set timeOfDay to Sunday, April 12, 2020 12:00:00 AM',
 		{ month: 3, day: 12, year: 2020, hour: 23, minute: 59 },
 		0,
 		0,
@@ -497,13 +504,13 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	}
 
 	@test(
-		'Thursday, December 1, 2020 12:00:00 AM',
+		'Add 6 months to Thursday, December 1, 2020 12:00:00 AM',
 		{ month: 11, day: 1, year: 2020, hour: 0, minute: 0 },
 		6,
 		1622505600000
 	)
 	@test(
-		'Monday, October 26, 2020 12:00:00 AM',
+		'Add 5 months to Monday, October 26, 2020 12:00:00 AM',
 		{ month: 4, day: 26, year: 2020, hour: 0, minute: 0 },
 		5,
 		1603670400000
@@ -515,13 +522,13 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	) {
 		const result = dateUtil.getDateNMonthsFromStartOfDay(
 			count,
-			Date.UTC(
-				date.year,
-				date.month,
-				date.day,
-				date.hour ?? 0,
-				date.minute ?? 0
-			)
+			dateUtil.date({
+				year: date.year,
+				month: date.month,
+				day: date.day,
+				hour: date.hour ?? 0,
+				minute: date.minute ?? 0,
+			})
 		)
 		assert.isEqual(result, expected)
 	}
@@ -594,7 +601,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	}
 
 	@test('can add 1 month', 1, 441788400000, 444466800000)
-	@test('can add 2 month', 2, 444466800000, 449650800000)
+	@test('can add 2 months', 2, 444466800000, 449650800000)
 	protected static canAddMonths(
 		months: number,
 		start: number,
@@ -611,6 +618,8 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	@test('date format 2', 458632800000, 'yyyy-MM-d', '1984-07-14')
 	@test('date format 3', 458632800000, 'yyyy', '1984')
 	@test('date format 4', 458632800000, 'M', '7')
+	@test('date format with time over dst', 1634401800000, 'hmbbb', '430pm')
+	@test('date format with time not dst', 1234201800000, 'hmbbb', '550pm')
 	protected static canFormatDate(
 		start: number,
 		format: string,

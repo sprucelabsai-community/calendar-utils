@@ -85,6 +85,7 @@
     "jest-circus": "^27.2.5",
     "marked": "^3.0.7",
     "prettier": "^2.4.1",
+    "timezone-mock": "^1.2.2",
     "ts-node": "^10.3.0",
     "tsc-watch": "^4.5.0",
     "tsconfig-paths": "^3.11.0",

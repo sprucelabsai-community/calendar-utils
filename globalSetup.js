@@ -1,3 +1,11 @@
 module.exports = async () => {
-	process.env.TZ = 'UTC'
+	const timezones = [
+		'Australia/Adelaide',
+		'Brazil/East',
+		'Europe/London',
+		'US/Eastern',
+		'US/Pacific',
+		'UTC',
+	]
+	process.env.TZ = timezones[2]
 }

@@ -1,17 +1,15 @@
 import { SchemaError } from '@sprucelabs/schema'
-import { addWeeks, startOfDay } from 'date-fns'
-import { startOfMonth } from 'date-fns'
-import { addDays } from 'date-fns'
-import { format as formatDate } from 'date-fns'
-import { addMonths } from 'date-fns'
-import { addYears } from 'date-fns'
-import { endOfWeek } from 'date-fns'
 import {
 	addMilliseconds,
-	endOfDay,
 	getDay,
 	startOfWeek,
 	addMinutes,
+	addWeeks,
+	addDays,
+	addMonths,
+	addYears,
+	endOfWeek,
+	format as formatDate,
 } from 'date-fns'
 import { daysOfWeek } from '../constants'
 import { DayOfWeek } from '../types/calendar.types'
@@ -34,7 +32,12 @@ const dateUtil = {
 		if (!timestamp) {
 			timestamp = new Date().getTime()
 		}
-		return startOfDay(timestamp).getTime()
+
+		const date = new Date(timestamp)
+
+		date.setUTCHours(0, 0, 0, 0)
+
+		return date.getTime()
 	},
 	getStartOfWeek(timestamp?: number) {
 		if (!timestamp) {
@@ -46,7 +49,11 @@ const dateUtil = {
 		if (!timestamp) {
 			timestamp = new Date().getTime()
 		}
-		return endOfDay(timestamp).getTime()
+
+		const date = new Date(timestamp)
+		date.setUTCHours(23, 59, 59, 999)
+
+		return date.getTime()
 	},
 	getEndOfWeek(timestamp: number) {
 		return endOfWeek(timestamp).getTime()
@@ -55,7 +62,11 @@ const dateUtil = {
 		if (!timestamp) {
 			timestamp = new Date().getTime()
 		}
-		return startOfMonth(timestamp).getTime()
+		const date = new Date(timestamp)
+		date.setUTCDate(1)
+		date.setUTCHours(0, 0, 0, 0)
+
+		return date.getTime()
 	},
 	addMinutes(startTimestamp: number, minutes: number) {
 		return addMinutes(startTimestamp, minutes).getTime()
@@ -69,49 +80,65 @@ const dateUtil = {
 	addWeeks(startTimestamp: number, weeks: number) {
 		return addWeeks(startTimestamp, weeks).getTime()
 	},
-	addMonths(startTimestamp: number, months: number) {
-		return addMonths(startTimestamp, months).getTime()
+	addMonths(timestamp: number, months: number) {
+		const date = new Date(timestamp)
+		const dayOfMonth = date.getUTCDate()
+		const endOfDesiredMonth = new Date(date.getTime())
+
+		endOfDesiredMonth.setUTCMonth(date.getUTCMonth() + months + 1, 0)
+		const daysInMonth = endOfDesiredMonth.getUTCDate()
+
+		if (dayOfMonth >= daysInMonth) {
+			return endOfDesiredMonth.getTime()
+		} else {
+			date.setUTCFullYear(
+				endOfDesiredMonth.getUTCFullYear(),
+				endOfDesiredMonth.getUTCMonth(),
+				dayOfMonth
+			)
+			return date.getTime()
+		}
 	},
-	addYears(startTimestamp: number, years: number) {
-		return addYears(startTimestamp, years).getTime()
+	addYears(timestamp: number, years: number) {
+		return this.addMonths(timestamp, years * 12)
 	},
-	getDurationMs(startTimestamp: number, endTimestamp: number) {
-		return endTimestamp - startTimestamp
+	getDurationMs(timestamp: number, endTimestamp: number) {
+		return endTimestamp - timestamp
 	},
-	getDurationMinutes(startTimestamp: number, endTimestamp: number) {
-		const durationMs = this.getDurationMs(startTimestamp, endTimestamp)
+	getDurationMinutes(timestamp: number, endTimestamp: number) {
+		const durationMs = this.getDurationMs(timestamp, endTimestamp)
 
 		const durationSeconds = durationMs / 1000
 		const durationMinutes = durationSeconds / 60
 
 		return durationMinutes
 	},
-	getDurationDays(startTimestamp: number, endTimestamp: number) {
-		const diff = endTimestamp - startTimestamp
+	getDurationDays(timestamp: number, endTimestamp: number) {
+		const diff = endTimestamp - timestamp
 		return Math.ceil(diff / (1000 * 3600 * 24))
 	},
-	getDayOfWeek(startTimestamp: number): DayOfWeek {
+	getDayOfWeek(timestamp: number): DayOfWeek {
 		//@ts-ignore
-		return Object.keys(daysOfWeek)[getDay(startTimestamp)]
+		return Object.keys(daysOfWeek)[getDay(timestamp)]
 	},
-	splitDate(startTimestamp: number) {
-		const date = new Date(startTimestamp)
+	splitDate(timestamp: number) {
+		const date = new Date(timestamp)
 		return {
-			year: date.getFullYear(),
-			month: date.getMonth(),
-			day: date.getDate(),
+			year: date.getUTCFullYear(),
+			month: date.getUTCMonth(),
+			day: date.getUTCDate(),
 			hour: date.getUTCHours(),
-			minute: date.getMinutes(),
+			minute: date.getUTCMinutes(),
 		}
 	},
 	setTimeOfDay(
-		startTimestamp: number,
+		timestamp: number,
 		hours: number,
 		minutes?: number,
 		seconds?: number,
 		milliseconds?: number
 	) {
-		const date = new Date(startTimestamp)
+		const date = new Date(timestamp)
 
 		const invalid: string[] = []
 		const errorMessages: string[] = []
@@ -134,29 +161,31 @@ const dateUtil = {
 		date.setUTCHours(hours)
 
 		if (typeof minutes === 'number') {
-			date.setMinutes(minutes)
+			date.setUTCMinutes(minutes)
 		}
 
 		if (typeof seconds == 'number') {
-			date.setSeconds(seconds)
+			date.setUTCSeconds(seconds)
 		}
 
 		if (typeof milliseconds == 'number') {
-			date.setMilliseconds(milliseconds)
+			date.setUTCMilliseconds(milliseconds)
 		}
 
 		return date.getTime()
 	},
 	getDateNDaysFromStartOfDay(days: number, timestamp?: number) {
 		const startOfDay = this.getStartOfDay(timestamp)
-		return addDays(startOfDay, days).getTime()
+		const date = new Date(startOfDay)
+		date.setUTCDate(date.getUTCDate() + days)
+		return date.getTime()
 	},
 	getDateNMonthsFromStartOfDay(count: number, timestamp?: number) {
 		const startOfDay = this.getStartOfDay(timestamp)
 		return this.addMonths(startOfDay, count)
 	},
 	getDateNMonthsFromStartOfMonth(count: number, timestamp?: number) {
-		return addMonths(this.getStartOfMonth(timestamp), count).getTime()
+		return this.addMonths(this.getStartOfMonth(timestamp), count)
 	},
 	date(date: IDate) {
 		return Date.UTC(
@@ -525,7 +554,9 @@ const dateUtil = {
 	 *
 	 */
 	format(timestamp: number, format: string) {
-		return formatDate(timestamp, format)
+		const date = new Date(timestamp)
+		const offsetMinutes = date.getTimezoneOffset()
+		return formatDate(timestamp + offsetMinutes * 60 * 1000, format)
 	},
 	add(timestamp: number, count: number, unit: DateUnit) {
 		return adders[unit](timestamp, count)

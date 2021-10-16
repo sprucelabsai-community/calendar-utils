@@ -7,5 +7,5 @@ module.exports = async () => {
 		'US/Pacific',
 		'UTC',
 	]
-	process.env.TZ = timezones[2]
+	process.env.TZ = timezones[Math.round(Math.random() * timezones.length)]
 }

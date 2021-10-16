@@ -1,3 +1,4 @@
+import SpruceError from '@sprucelabs/schema/build/errors/SpruceError'
 import { addWeeks, startOfDay } from 'date-fns'
 import { startOfMonth } from 'date-fns'
 import { addDays } from 'date-fns'
@@ -109,6 +110,31 @@ const dateUtil = {
 		milliseconds?: number
 	) {
 		const date = new Date(startTimestamp)
+
+		const invalid: string[] = []
+		const errorMessages: string[] = []
+
+		if (typeof hours !== 'number') {
+			invalid.push('hours')
+			errorMessages.push(
+				'hours must be a string when calling dateUtil.setTimeOfDay'
+			)
+		}
+
+		if (typeof minutes !== 'number') {
+			invalid.push('minutes')
+			errorMessages.push(
+				'hours must be a number when calling dateUtil.setTimeOfDay'
+			)
+		}
+
+		if (invalid.length > 0) {
+			throw new SpruceError({
+				code: 'INVALID_PARAMETERS',
+				friendlyMessages: errorMessages,
+				parameters: invalid,
+			})
+		}
 
 		date.setHours(hours)
 		date.setMinutes(minutes)

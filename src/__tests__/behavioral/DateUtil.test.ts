@@ -1,4 +1,5 @@
 import AbstractSpruceTest, { test, assert } from '@sprucelabs/test'
+import { errorAssertUtil } from '@sprucelabs/test-utils'
 import dateUtil from '../../utilities/date.utility'
 
 export default class DateUtilityTest extends AbstractSpruceTest {
@@ -615,6 +616,27 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	) {
 		const isSameDay = dateUtil.isSameDay(date1, date2)
 		assert.isTrue(isSameDay === isSame)
+	}
+
+	@test()
+	protected static mustSendNumbersToSetTimeOfDay() {
+		errorAssertUtil.assertError(
+			assert.doesThrow(() =>
+				//@ts-ignore
+				dateUtil.setTimeOfDay(new Date().getTime(), 'aoeu', 0)
+			),
+			'INVALID_PARAMETERS',
+			{ parameters: ['hours'] }
+		)
+
+		errorAssertUtil.assertError(
+			assert.doesThrow(() =>
+				//@ts-ignore
+				dateUtil.setTimeOfDay(new Date().getTime(), 'aoeu', 'aoeu')
+			),
+			'INVALID_PARAMETERS',
+			{ parameters: ['hours', 'minutes'] }
+		)
 	}
 
 	private static stripSeconds(number: number): string {

@@ -22,6 +22,8 @@ export interface IDate {
 	year: number
 	hour?: number
 	minute?: number
+	second?: number
+	milliseconds?: number
 }
 
 export type DateUnit = 'days' | 'weeks' | 'months' | 'years' | 'minutes'
@@ -129,7 +131,7 @@ const dateUtil = {
 			})
 		}
 
-		date.setHours(hours)
+		date.setUTCHours(hours)
 
 		if (typeof minutes === 'number') {
 			date.setMinutes(minutes)
@@ -162,7 +164,9 @@ const dateUtil = {
 			date.month,
 			date.day,
 			date.hour ?? 0,
-			date.minute ?? 0
+			date.minute ?? 0,
+			date.second ?? 0,
+			date.milliseconds ?? 0
 		)
 	},
 	/**

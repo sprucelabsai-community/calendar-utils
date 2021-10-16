@@ -3,6 +3,21 @@ import { errorAssertUtil } from '@sprucelabs/test-utils'
 import dateUtil from '../../utilities/date.utility'
 
 export default class DateUtilityTest extends AbstractSpruceTest {
+	private static oldSetUtcHours: (
+		hours: number,
+		min?: number | undefined,
+		sec?: number | undefined,
+		ms?: number | undefined
+	) => number
+	protected static async beforeAll() {
+		await super.beforeAll()
+		this.oldSetUtcHours = Date.prototype.setUTCHours
+	}
+
+	protected static async beforeEach() {
+		Date.prototype.setUTCHours = this.oldSetUtcHours
+	}
+
 	@test()
 	protected static canCreateDateUtility() {
 		assert.isTruthy(dateUtil)
@@ -648,7 +663,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 			const { hour } = dateUtil.splitDate(current)
 			hours.push(hour)
 
-			current = dateUtil.setTimeOfDay(current, hour + 1)
+			current = dateUtil.setTimeOfDay(current, hour + 1, 0)
 		} while (dateUtil.isSameDay(current, endOfDay))
 
 		assert.isEqualDeep(
@@ -658,6 +673,17 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 				20, 21, 22, 23,
 			]
 		)
+	}
+
+	@test()
+	protected static setHourUsesUtcSetters() {
+		let args: any
+		//@ts-ignore
+		Date.prototype.setUTCHours = (hours) => {
+			args = hours
+		}
+		dateUtil.setTimeOfDay(new Date().getTime(), 10, 30, 1, 0)
+		assert.isEqualDeep(args, 10)
 	}
 
 	private static stripSeconds(number: number): string {

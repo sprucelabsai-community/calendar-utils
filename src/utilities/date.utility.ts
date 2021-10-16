@@ -1,4 +1,4 @@
-import SpruceError from '@sprucelabs/schema/build/errors/SpruceError'
+import { SchemaError } from '@sprucelabs/schema'
 import { addWeeks, startOfDay } from 'date-fns'
 import { startOfMonth } from 'date-fns'
 import { addDays } from 'date-fns'
@@ -129,7 +129,7 @@ const dateUtil = {
 		}
 
 		if (invalid.length > 0) {
-			throw new SpruceError({
+			throw new SchemaError({
 				code: 'INVALID_PARAMETERS',
 				friendlyMessages: errorMessages,
 				parameters: invalid,

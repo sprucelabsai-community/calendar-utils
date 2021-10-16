@@ -105,7 +105,7 @@ const dateUtil = {
 	setTimeOfDay(
 		startTimestamp: number,
 		hours: number,
-		minutes: number,
+		minutes?: number,
 		seconds?: number,
 		milliseconds?: number
 	) {
@@ -117,14 +117,7 @@ const dateUtil = {
 		if (typeof hours !== 'number') {
 			invalid.push('hours')
 			errorMessages.push(
-				'hours must be a string when calling dateUtil.setTimeOfDay'
-			)
-		}
-
-		if (typeof minutes !== 'number') {
-			invalid.push('minutes')
-			errorMessages.push(
-				'hours must be a number when calling dateUtil.setTimeOfDay'
+				'hours must be a numbers when calling dateUtil.setTimeOfDay'
 			)
 		}
 
@@ -137,7 +130,11 @@ const dateUtil = {
 		}
 
 		date.setHours(hours)
-		date.setMinutes(minutes)
+
+		if (typeof minutes === 'number') {
+			date.setMinutes(minutes)
+		}
+
 		if (typeof seconds == 'number') {
 			date.setSeconds(seconds)
 		}

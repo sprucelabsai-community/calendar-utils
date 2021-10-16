@@ -628,14 +628,35 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 			'INVALID_PARAMETERS',
 			{ parameters: ['hours'] }
 		)
+	}
 
-		errorAssertUtil.assertError(
-			assert.doesThrow(() =>
-				//@ts-ignore
-				dateUtil.setTimeOfDay(new Date().getTime(), 'aoeu', 'aoeu')
-			),
-			'INVALID_PARAMETERS',
-			{ parameters: ['hours', 'minutes'] }
+	@test()
+	protected static setTimeOfDayGetsAndSetsSameHour() {
+		const date = dateUtil.setTimeOfDay(new Date().getTime(), 7, 0)
+		const { hour } = dateUtil.splitDate(date)
+
+		assert.isEqual(hour, 7)
+	}
+
+	@test()
+	protected static canIncrementByHour() {
+		const endOfDay = dateUtil.getEndOfDay(new Date().getTime())
+		let current = dateUtil.getStartOfDay(endOfDay)
+		let hours: number[] = []
+
+		do {
+			const { hour } = dateUtil.splitDate(current)
+			hours.push(hour)
+
+			current = dateUtil.setTimeOfDay(current, hour + 1)
+		} while (dateUtil.isSameDay(current, endOfDay))
+
+		assert.isEqualDeep(
+			hours,
+			[
+				0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+				20, 21, 22, 23,
+			]
 		)
 	}
 

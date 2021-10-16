@@ -5,8 +5,13 @@ import { format as formatDate } from 'date-fns'
 import { addMonths } from 'date-fns'
 import { addYears } from 'date-fns'
 import { endOfWeek } from 'date-fns'
-import { addMilliseconds, endOfDay, getDay, startOfWeek } from 'date-fns'
-import addMinutes from 'date-fns/addMinutes'
+import {
+	addMilliseconds,
+	endOfDay,
+	getDay,
+	startOfWeek,
+	addMinutes,
+} from 'date-fns'
 import { daysOfWeek } from '../constants'
 import { DayOfWeek } from '../types/calendar.types'
 

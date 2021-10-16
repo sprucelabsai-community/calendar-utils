@@ -1,3 +1,28 @@
+## [8.0.9](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.0.8...v8.0.9) (2021-10-16)
+
+## [8.0.8](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.0.7...v8.0.8) (2021-10-16)
+
+## [8.0.7](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.0.6...v8.0.7) (2021-10-16)
+
+## [8.0.6](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.0.5...v8.0.6) (2021-10-16)
+
+## [8.0.5](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.0.4...v8.0.5) (2021-10-16)
+
+## [8.0.4](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.0.3...v8.0.4) (2021-10-16)
+
+## [8.0.3](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.0.2...v8.0.3) (2021-10-16)
+
+## [8.0.2](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.0.1...v8.0.2) (2021-10-16)
+
+## [8.0.1](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.0.0...v8.0.1) (2021-10-16)
+
+# [8.0.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.7.26...v8.0.0) (2021-10-16)
+
+
+### Breaking Changes
+
+* setTimeOfDay has typechecking on incoming params and throws vs returning NaN ([a77bb4d](https://github.com/sprucelabsai/spruce-calendar-utils/commit/a77bb4d))
+
 ## [7.7.26](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.7.25...v7.7.26) (2021-10-16)
 
 ## [7.7.25](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.7.24...v7.7.25) (2021-10-16)

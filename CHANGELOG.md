@@ -1,3 +1,10 @@
+# [8.0.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.7.26...v8.0.0) (2021-10-16)
+
+
+### Breaking Changes
+
+* setTimeOfDay has typechecking on incoming params and throws vs returning NaN ([a77bb4d](https://github.com/sprucelabsai/spruce-calendar-utils/commit/a77bb4d))
+
 ## [7.7.26](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.7.25...v7.7.26) (2021-10-16)
 
 ## [7.7.25](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v7.7.24...v7.7.25) (2021-10-16)

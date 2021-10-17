@@ -61,10 +61,10 @@
     "watch.rebuild": "yarn clean.all && yarn && yarn watch.build.dev"
   },
   "dependencies": {
-    "@sprucelabs/schema": "^25.3.321",
-    "@sprucelabs/spruce-core-schemas": "^22.5.406",
-    "@sprucelabs/spruce-event-utils": "^16.0.425",
-    "@sprucelabs/spruce-skill-utils": "^20.6.262",
+    "@sprucelabs/schema": "^25.3.322",
+    "@sprucelabs/spruce-core-schemas": "^22.5.408",
+    "@sprucelabs/spruce-event-utils": "^16.0.428",
+    "@sprucelabs/spruce-skill-utils": "^20.6.263",
     "date-fns": "^2.25.0",
     "rrule": "^2.6.8"
   },
@@ -73,7 +73,7 @@
     "@sprucelabs/jest-json-reporter": "^6.0.207",
     "@sprucelabs/resolve-path-aliases": "^1.0.213",
     "@sprucelabs/semantic-release": "^4.0.7",
-    "@sprucelabs/spruce-test-fixtures": "^5.4.157",
+    "@sprucelabs/spruce-test-fixtures": "^5.4.158",
     "@sprucelabs/test": "^7.7.195",
     "@sprucelabs/test-utils": "^3.0.205",
     "@types/node": "^16.11.0",

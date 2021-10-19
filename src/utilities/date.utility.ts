@@ -1,10 +1,5 @@
 import { SchemaError } from '@sprucelabs/schema'
-import {
-	addMilliseconds,
-	addMinutes,
-	endOfWeek,
-	format as formatDate,
-} from 'date-fns'
+import { addMilliseconds, addMinutes, format as formatDate } from 'date-fns'
 import { daysOfWeek } from '../constants'
 import { DayOfWeek } from '../types/calendar.types'
 

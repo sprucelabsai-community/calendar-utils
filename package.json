@@ -61,7 +61,7 @@
     "watch.rebuild": "yarn clean.all && yarn && yarn watch.build.dev"
   },
   "dependencies": {
-    "@sprucelabs/schema": "^25.3.340",
+    "@sprucelabs/schema": "^25.3.341",
     "@sprucelabs/spruce-core-schemas": "^22.5.438",
     "@sprucelabs/spruce-event-utils": "^16.0.475",
     "@sprucelabs/spruce-skill-utils": "^20.6.283",

@@ -2,7 +2,6 @@ import { SchemaError } from '@sprucelabs/schema'
 import {
 	addMilliseconds,
 	addMinutes,
-	addWeeks,
 	endOfWeek,
 	format as formatDate,
 } from 'date-fns'
@@ -82,7 +81,7 @@ const dateUtil = {
 		return startTimestamp + days * 24 * 60 * 60 * 1000
 	},
 	addWeeks(startTimestamp: number, weeks: number) {
-		return addWeeks(startTimestamp, weeks).getTime()
+		return this.addDays(startTimestamp, 7 * weeks)
 	},
 	addMonths(timestamp: number, months: number) {
 		const date = new Date(timestamp)

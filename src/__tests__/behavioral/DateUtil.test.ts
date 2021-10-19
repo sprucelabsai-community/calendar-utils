@@ -598,6 +598,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 
 	@test('can add 1 week', 1, 1609484400000, 1610089200000)
 	@test('can add 2 weeks', 2, 1609484400000, 1610694000000)
+	@test('can add 4 weeks (Oct 1 -> oct 28)', 4, 1601510400000, 1603929600000)
 	protected static canAddWeeks(weeks: number, start: number, expected: number) {
 		const actual = dateUtil.addWeeks(start, weeks)
 		assert.isEqual(actual, expected)
@@ -608,6 +609,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 
 	@test('can add 1 month', 1, 441788400000, 444466800000)
 	@test('can add 2 months', 2, 444466800000, 449650800000)
+	@test('can add 4 months', 4, 1601510400000, 1612137600000)
 	protected static canAddMonths(
 		months: number,
 		start: number,

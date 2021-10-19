@@ -1,3 +1,10 @@
+## [8.1.1](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.1.0...v8.1.1) (2021-10-19)
+
+
+### Bug Fixes
+
+* addDays DST issue ([2db2825](https://github.com/sprucelabsai/spruce-calendar-utils/commit/2db2825))
+
 # [8.1.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.0.30...v8.1.0) (2021-10-19)
 
 

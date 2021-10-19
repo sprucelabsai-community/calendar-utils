@@ -139,6 +139,35 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	}
 
 	@test(
+		'End of week: Saturday 01-11-2020 23:59 -> Saturdy 01-11-2020 23:59:59.999 GMT',
+		{ month: 0, day: 11, year: 2020, hour: 23, minute: 59 },
+		1578787199999
+	)
+	@test(
+		'End of week: Monday 01-13-2020 23:59 -> Saturday 01-18-2020 23:59:59.999 GMT',
+		{ month: 0, day: 13, year: 2020, hour: 23, minute: 59 },
+		1579391999999
+	)
+	@test(
+		'End of Week: Monday, 10-26-2020 3:23 -> Saturday, October 26, 2020 23:59:59.999 AM',
+		{ month: 9, day: 26, year: 2020, hour: 3, minute: 23 },
+		1604188799999
+	)
+	protected static endOfWeekReturnsSaturday(date: any, expected: number) {
+		const endOfWeek = dateUtil.getEndOfWeek(
+			dateUtil.date({
+				year: date.year,
+				month: date.month,
+				day: date.day,
+				hour: date.hour ?? 0,
+				minute: date.minute ?? 0,
+			})
+		)
+
+		assert.isEqual(endOfWeek, expected)
+	}
+
+	@test(
 		'Friday, January 1, 2021 03:34:00 AM -> Friday, January 1, 2021 00:00:00 AM',
 		{ month: 0, day: 1, year: 2021, hour: 3, minute: 34 },
 		1609459200000

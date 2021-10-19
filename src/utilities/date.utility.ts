@@ -59,7 +59,19 @@ const dateUtil = {
 		return date.getTime()
 	},
 	getEndOfWeek(timestamp: number) {
-		return endOfWeek(timestamp).getTime()
+		if (!timestamp) {
+			timestamp = new Date().getTime()
+		}
+
+		const weekStartsOn = 0
+		const tempDate = new Date(timestamp)
+		const day = tempDate.getUTCDay()
+		let diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn)
+
+		const date = new Date(timestamp + diff * 24 * 60 * 60 * 1000)
+
+		date.setUTCHours(23, 59, 59, 999)
+		return date.getTime()
 	},
 	getStartOfMonth(timestamp?: number) {
 		if (!timestamp) {

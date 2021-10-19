@@ -1,3 +1,10 @@
+# [8.1.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.0.30...v8.1.0) (2021-10-19)
+
+
+### Features
+
+* run tests with different timezones ([023037b](https://github.com/sprucelabsai/spruce-calendar-utils/commit/023037b))
+
 ## [8.0.30](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.0.29...v8.0.30) (2021-10-19)
 
 ## [8.0.29](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.0.28...v8.0.29) (2021-10-18)

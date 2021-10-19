@@ -1,11 +1,8 @@
 import { SchemaError } from '@sprucelabs/schema'
 import {
 	addMilliseconds,
-	getDay,
-	startOfWeek,
 	addMinutes,
 	addWeeks,
-	addDays,
 	endOfWeek,
 	format as formatDate,
 } from 'date-fns'
@@ -41,7 +38,16 @@ const dateUtil = {
 		if (!timestamp) {
 			timestamp = new Date().getTime()
 		}
-		return startOfWeek(timestamp).getTime()
+
+		const weekStartsOn = 0
+		const tempDate = new Date(timestamp)
+		const day = tempDate.getUTCDay()
+		let diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn
+
+		const date = new Date(timestamp - diff * 24 * 60 * 60 * 1000)
+
+		date.setUTCHours(0, 0, 0, 0)
+		return date.getTime()
 	},
 	getEndOfDay(timestamp?: number) {
 		if (!timestamp) {
@@ -73,7 +79,7 @@ const dateUtil = {
 		return addMilliseconds(startTimestamp, ms).getTime()
 	},
 	addDays(startTimestamp: number, days: number) {
-		return addDays(startTimestamp, days).getTime()
+		return startTimestamp + days * 24 * 60 * 60 * 1000
 	},
 	addWeeks(startTimestamp: number, weeks: number) {
 		return addWeeks(startTimestamp, weeks).getTime()
@@ -116,8 +122,11 @@ const dateUtil = {
 		return Math.ceil(diff / (1000 * 3600 * 24))
 	},
 	getDayOfWeek(timestamp: number): DayOfWeek {
+		const tempDate = new Date(timestamp)
+		const day = tempDate.getUTCDay()
+
 		//@ts-ignore
-		return Object.keys(daysOfWeek)[getDay(timestamp)]
+		return Object.keys(daysOfWeek)[day]
 	},
 	splitDate(timestamp: number) {
 		const date = new Date(timestamp)

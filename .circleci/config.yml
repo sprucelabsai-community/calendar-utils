@@ -22,7 +22,12 @@ jobs:
       - run: yarn install
       - run: yarn lint
       - run: yarn build.ci
-      - run: yarn test
+      - run: TEST_TZ_INDEX=0 yarn test
+      - run: TEST_TZ_INDEX=1 yarn test
+      - run: TEST_TZ_INDEX=2 yarn test
+      - run: TEST_TZ_INDEX=3 yarn test
+      - run: TEST_TZ_INDEX=4 yarn test
+      - run: TEST_TZ_INDEX=5 yarn test
       - run:
           name: Check branch for auto-upgrade
           command: |

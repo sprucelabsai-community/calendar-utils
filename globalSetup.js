@@ -7,5 +7,10 @@ module.exports = async () => {
 		'US/Pacific',
 		'UTC',
 	]
-	process.env.TZ = timezones[Math.round(Math.random() * timezones.length)]
+	const tzIndex = process.env.TEST_TZ_INDEX
+		? parseInt(process.env.TEST_TZ_INDEX)
+		: 0
+
+	process.env.TZ = timezones[tzIndex]
+	console.log(`Running tests in ${process.env.TZ} timezone`)
 }

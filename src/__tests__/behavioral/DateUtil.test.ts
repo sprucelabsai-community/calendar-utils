@@ -325,19 +325,19 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	}
 
 	@test(
-		'Add 10 days to Wednesday, January 11, 2020 11:00:00 PM',
+		'Add 10 days to get to Wednesday, January 11, 2020 11:00:00 PM',
 		{ month: 0, day: 1, year: 2020, hour: 23, minute: 0 },
 		10,
 		1578783600000
 	)
 	@test(
-		'Add 25 days to Monday, October 26, 2020 12:00:00 AM',
+		'Add 25 days to get to Monday, October 26, 2020 12:00:00 AM',
 		{ month: 9, day: 1, year: 2020, hour: 0, minute: 0 },
 		25,
 		1603670400000
 	)
 	@test(
-		'Add 3 days to Friday, December 31, 2021 10:30:00 AM',
+		'Add 3 days to get to Friday, December 31, 2021 10:30:00 AM',
 		{ month: 11, day: 31, year: 2021, hour: 10, minute: 30 },
 		3,
 		1641205800000
@@ -348,12 +348,14 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		expected: number
 	) {
 		const timestamp = new Date(
-			date.year,
-			date.month,
-			date.day,
-			date.hour ?? 0,
-			date.minute ?? 0,
-			date.seconds ?? 0
+			Date.UTC(
+				date.year,
+				date.month,
+				date.day,
+				date.hour ?? 0,
+				date.minute ?? 0,
+				date.seconds ?? 0
+			)
 		).getTime()
 
 		const actual = dateUtil.addDays(timestamp, days)
@@ -383,12 +385,14 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	)
 	protected static addingYears(date: any, years: number, expected: number) {
 		const timestamp = new Date(
-			date.year,
-			date.month,
-			date.day,
-			date.hour ?? 0,
-			date.minute ?? 0,
-			date.seconds ?? 0
+			Date.UTC(
+				date.year,
+				date.month,
+				date.day,
+				date.hour ?? 0,
+				date.minute ?? 0,
+				date.seconds ?? 0
+			)
 		).getTime()
 		const actual = dateUtil.addYears(timestamp, years)
 		assert.isEqual(actual, expected)
@@ -489,12 +493,14 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	) {
 		const result = dateUtil.setTimeOfDay(
 			new Date(
-				start.year,
-				start.month,
-				start.day,
-				start.hour ?? 0,
-				start.minute ?? 0,
-				start.seconds ?? 0
+				Date.UTC(
+					start.year,
+					start.month,
+					start.day,
+					start.hour ?? 0,
+					start.minute ?? 0,
+					start.seconds ?? 0
+				)
 			).getTime(),
 			hour,
 			minute

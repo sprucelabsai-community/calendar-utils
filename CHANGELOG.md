@@ -1,3 +1,5 @@
+## [8.1.32](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.1.31...v8.1.32) (2021-10-20)
+
 ## [8.1.31](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.1.30...v8.1.31) (2021-10-20)
 
 ## [8.1.30](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v8.1.29...v8.1.30) (2021-10-20)

@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "8.1.45",
+  "version": "8.1.46",
   "files": [
     "build/**/*",
     "!build/__tests__",
@@ -69,14 +69,14 @@
     "rrule": "^2.6.8"
   },
   "devDependencies": {
-    "@sprucelabs/esm-postbuild": "^1.0.268",
+    "@sprucelabs/esm-postbuild": "^1.0.269",
     "@sprucelabs/jest-json-reporter": "^6.0.215",
     "@sprucelabs/resolve-path-aliases": "^1.0.217",
     "@sprucelabs/semantic-release": "^4.0.8",
     "@sprucelabs/spruce-test-fixtures": "^5.5.14",
     "@sprucelabs/test": "^7.7.203",
     "@sprucelabs/test-utils": "^3.0.219",
-    "@types/node": "^16.11.1",
+    "@types/node": "^16.11.2",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^6.3.0",
     "eslint": "^8.0.1",

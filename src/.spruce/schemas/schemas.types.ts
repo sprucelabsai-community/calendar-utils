@@ -114,6 +114,70 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 	namespace SpruceSchemas.CalendarUtils.v2021_05_19 {
 
 		
+		interface CalendarEventTarget {
+			
+				
+				'locationId'?: string| undefined | null
+				
+				'personId'?: string| undefined | null
+				
+				'organizationId'?: string| undefined | null
+				
+				'skillId'?: string| undefined | null
+				
+				'roleId'?: string| undefined | null
+				
+				'calendarEventPersonId': string
+		}
+
+		interface CalendarEventTargetSchema extends SpruceSchema.Schema {
+			id: 'calendarEventTarget',
+			version: 'v2021_05_19',
+			namespace: 'CalendarUtils',
+			name: '',
+			    fields: {
+			            /** . */
+			            'locationId': {
+			                type: 'id',
+			                options: undefined
+			            },
+			            /** . */
+			            'personId': {
+			                type: 'id',
+			                options: undefined
+			            },
+			            /** . */
+			            'organizationId': {
+			                type: 'id',
+			                options: undefined
+			            },
+			            /** . */
+			            'skillId': {
+			                type: 'id',
+			                options: undefined
+			            },
+			            /** . */
+			            'roleId': {
+			                type: 'id',
+			                options: undefined
+			            },
+			            /** . */
+			            'calendarEventPersonId': {
+			                type: 'id',
+			                isRequired: true,
+			                options: undefined
+			            },
+			    }
+		}
+
+		type CalendarEventTargetEntity = SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventTargetSchema>
+
+	}
+
+
+	namespace SpruceSchemas.CalendarUtils.v2021_05_19 {
+
+		
 		interface CalendarEvent {
 			
 				
@@ -121,7 +185,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				
 				'source': SpruceSchemas.SpruceEventUtils.v2021_09_13.EventSource
 				
-				'target': SpruceSchemas.SpruceEventUtils.v2021_09_13.EventTarget
+				'target': SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventTarget
 				
 				'calendarId': string
 				
@@ -150,8 +214,6 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				'dateDeleted'?: number| undefined | null
 				
 				'dateCreated': number
-				
-				'personId': string
 		}
 
 		interface CalendarEventSchema extends SpruceSchema.Schema {
@@ -176,7 +238,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            'target': {
 			                type: 'schema',
 			                isRequired: true,
-			                options: {schema: SpruceSchemas.SpruceEventUtils.v2021_09_13.EventTargetSchema,}
+			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventTargetSchema,}
 			            },
 			            /** . */
 			            'calendarId': {
@@ -255,12 +317,6 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            /** . */
 			            'dateCreated': {
 			                type: 'number',
-			                isRequired: true,
-			                options: undefined
-			            },
-			            /** . */
-			            'personId': {
-			                type: 'id',
 			                isRequired: true,
 			                options: undefined
 			            },

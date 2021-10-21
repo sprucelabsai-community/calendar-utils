@@ -1,3 +1,10 @@
+# [9.2.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.1.2...v9.2.0) (2021-10-21)
+
+
+### Features
+
+* export eventTimeBlockSchema ([ee3cf69](https://github.com/sprucelabsai/spruce-calendar-utils/commit/ee3cf69))
+
 ## [9.1.2](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.1.1...v9.1.2) (2021-10-21)
 
 ## [9.1.1](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.1.0...v9.1.1) (2021-10-21)

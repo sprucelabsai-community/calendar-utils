@@ -2,7 +2,7 @@ import { SchemaRegistry } from '@sprucelabs/schema'
 import { SpruceSchemas } from '../../schemas.types'
 
 import eventSourceSchema_v2021_09_13 from '#spruce/schemas/spruceEventUtils/v2021_09_13/eventSource.schema'
-import eventTargetSchema_v2021_09_13 from '#spruce/schemas/spruceEventUtils/v2021_09_13/eventTarget.schema'
+import calendarEventTargetSchema_v2021_05_19 from '#spruce/schemas/calendarUtils/v2021_05_19/calendarEventTarget.schema'
 import eventTimeBlockSchema_v2021_05_19 from '#spruce/schemas/calendarUtils/v2021_05_19/eventTimeBlock.schema'
 import eventExclusionDateSchema_v2021_05_19 from '#spruce/schemas/calendarUtils/v2021_05_19/eventExclusionDate.schema'
 
@@ -29,7 +29,7 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	            'target': {
 	                type: 'schema',
 	                isRequired: true,
-	                options: {schema: eventTargetSchema_v2021_09_13,}
+	                options: {schema: calendarEventTargetSchema_v2021_05_19,}
 	            },
 	            /** . */
 	            'calendarId': {
@@ -108,12 +108,6 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	            /** . */
 	            'dateCreated': {
 	                type: 'number',
-	                isRequired: true,
-	                options: undefined
-	            },
-	            /** . */
-	            'personId': {
-	                type: 'id',
 	                isRequired: true,
 	                options: undefined
 	            },

@@ -51,7 +51,16 @@ export default buildSchema({
 			type: 'schema',
 			isRequired: true,
 			options: {
-				schema: eventTargetSchema,
+				schema: {
+					id: 'calendarEventTarget',
+					fields: {
+						...eventTargetSchema.fields,
+						calendarEventPersonId: {
+							type: 'id',
+							isRequired: true,
+						},
+					},
+				},
 			},
 		},
 		calendarId: {
@@ -120,10 +129,6 @@ export default buildSchema({
 		},
 		dateCreated: {
 			type: 'number',
-			isRequired: true,
-		},
-		personId: {
-			type: 'id',
 			isRequired: true,
 		},
 	},

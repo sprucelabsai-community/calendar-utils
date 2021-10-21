@@ -8,6 +8,7 @@ const calendarEventTargetSchema: SpruceSchemas.CalendarUtils.v2021_05_19.Calenda
 	version: 'v2021_05_19',
 	namespace: 'CalendarUtils',
 	name: '',
+	moduleToImportFromWhenRemote: '@sprucelabs/spruce-calendar-utils',
 	    fields: {
 	            /** . */
 	            'locationId': {

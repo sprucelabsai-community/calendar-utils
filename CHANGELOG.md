@@ -1,3 +1,10 @@
+# [9.1.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.0.3...v9.1.0) (2021-10-21)
+
+
+### Features
+
+* moduleToImportFromWhenRemote ([541015c](https://github.com/sprucelabsai/spruce-calendar-utils/commit/541015c))
+
 ## [9.0.3](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.0.2...v9.0.3) (2021-10-21)
 
 ## [9.0.2](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.0.1...v9.0.2) (2021-10-21)

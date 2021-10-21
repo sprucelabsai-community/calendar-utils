@@ -19,7 +19,7 @@
     "namespace": "calendar-utils",
     "upgradeIgnoreList": [],
     "commandOverrides": {
-      "sync.schemas": "--shouldFetchCoreSchemas false"
+      "sync.schemas": "--shouldFetchCoreSchemas false --moduleToImportFromWhenRemote @sprucelabs/spruce-calendar-utils"
     }
   },
   "keywords": [

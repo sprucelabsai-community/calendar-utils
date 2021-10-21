@@ -32,6 +32,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			version: 'v2021_05_19',
 			namespace: 'CalendarUtils',
 			name: '',
+			moduleToImportFromWhenRemote: '@sprucelabs/spruce-calendar-utils',
 			    fields: {
 			            /** . */
 			            'year': {
@@ -79,6 +80,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			version: 'v2021_05_19',
 			namespace: 'CalendarUtils',
 			name: '',
+			moduleToImportFromWhenRemote: '@sprucelabs/spruce-calendar-utils',
 			    fields: {
 			            /** . */
 			            'title': {
@@ -159,6 +161,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			version: 'v2021_05_19',
 			namespace: 'CalendarUtils',
 			name: '',
+			moduleToImportFromWhenRemote: '@sprucelabs/spruce-calendar-utils',
 			    fields: {
 			            /** . */
 			            'id': {

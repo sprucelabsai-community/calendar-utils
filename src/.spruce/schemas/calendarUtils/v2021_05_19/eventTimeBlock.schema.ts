@@ -8,6 +8,7 @@ const eventTimeBlockSchema: SpruceSchemas.CalendarUtils.v2021_05_19.EventTimeBlo
 	version: 'v2021_05_19',
 	namespace: 'CalendarUtils',
 	name: '',
+	moduleToImportFromWhenRemote: '@sprucelabs/spruce-calendar-utils',
 	    fields: {
 	            /** . */
 	            'title': {

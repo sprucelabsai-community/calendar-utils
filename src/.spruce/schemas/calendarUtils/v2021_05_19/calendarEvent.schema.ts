@@ -11,6 +11,7 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	version: 'v2021_05_19',
 	namespace: 'CalendarUtils',
 	name: '',
+	moduleToImportFromWhenRemote: '@sprucelabs/spruce-calendar-utils',
 	    fields: {
 	            /** . */
 	            'id': {

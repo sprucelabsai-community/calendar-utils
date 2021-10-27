@@ -78,6 +78,20 @@ const dateUtil = {
 
 		return date.getTime()
 	},
+	getEndOfMonth(timestamp?: number) {
+		if (!timestamp) {
+			timestamp = new Date().getTime()
+		}
+
+		const date = new Date(timestamp)
+
+		let month = date.getUTCMonth()
+
+		date.setUTCFullYear(date.getUTCFullYear(), month + 1, 0)
+		date.setUTCHours(23, 59, 59, 999)
+
+		return date.getTime()
+	},
 	addMinutes(startTimestamp: number, minutes: number) {
 		return addMinutes(startTimestamp, minutes).getTime()
 	},

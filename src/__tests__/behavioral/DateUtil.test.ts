@@ -1,6 +1,6 @@
 import AbstractSpruceTest, { test, assert } from '@sprucelabs/test'
 import { errorAssertUtil } from '@sprucelabs/test-utils'
-import dateUtil from '../../utilities/date.utility'
+import dateUtil, { IDate } from '../../utilities/date.utility'
 
 export default class DateUtilityTest extends AbstractSpruceTest {
 	private static oldSetUtcHours: (
@@ -248,7 +248,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		{ month: 9, day: 26, year: 2020, hour: 3, minute: 23 },
 		1601510400000
 	)
-	protected static getRightStartOfMonth(date: any, expected: number) {
+	protected static getStartOfMonth(date: IDate, expected: number) {
 		const startOfDay = dateUtil.getStartOfMonth(
 			dateUtil.date({
 				year: date.year,
@@ -260,6 +260,31 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		)
 		assert.isEqual(startOfDay, expected)
 	}
+
+	@test(
+		'Gets end of month: Monday, October 26, 2020 3:23:00 AM -> Monday,October 31, 2020 11:59:59 PM',
+		{ month: 9, day: 26, year: 2020, hour: 3, minute: 23 },
+		1604188799999
+	)
+	@test(
+		'Gets end of month: Thursday, December 1, 2020 12:00:00am -> Thursday, December 31, 2020 11:59:59 PM',
+		{ month: 11, day: 1, year: 2020, hour: 0, minute: 0 },
+		1609459199999
+	)
+	protected static getsEndOfMonth(date: IDate, expected: number) {
+		const startOfDay = dateUtil.getEndOfMonth(
+			dateUtil.date({
+				year: date.year,
+				month: date.month,
+				day: date.day,
+				hour: date.hour ?? 0,
+				minute: date.minute ?? 0,
+			})
+		)
+
+		assert.isEqual(startOfDay, expected)
+	}
+
 	@test(
 		'Gets 10 days from Thursday,January 1, 2020 12:00:00 AM',
 		{ month: 0, day: 1, year: 2020, hour: 0, minute: 0 },

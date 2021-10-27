@@ -1,3 +1,265 @@
+## [9.3.2](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.3.1...v9.3.2) (2021-10-27)
+
+## [9.3.1](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.3.0...v9.3.1) (2021-10-27)
+
+# [9.3.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.122...v9.3.0) (2021-10-27)
+
+
+### Features
+
+* export calendarEventTargetSchema ([06e6dbb](https://github.com/sprucelabsai/spruce-calendar-utils/commit/06e6dbb))
+
+## [9.2.122](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.121...v9.2.122) (2021-10-27)
+
+## [9.2.121](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.120...v9.2.121) (2021-10-27)
+
+## [9.2.120](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.119...v9.2.120) (2021-10-27)
+
+## [9.2.119](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.118...v9.2.119) (2021-10-27)
+
+## [9.2.118](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.117...v9.2.118) (2021-10-27)
+
+## [9.2.117](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.116...v9.2.117) (2021-10-27)
+
+## [9.2.116](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.115...v9.2.116) (2021-10-27)
+
+## [9.2.115](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.114...v9.2.115) (2021-10-27)
+
+## [9.2.114](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.113...v9.2.114) (2021-10-27)
+
+## [9.2.113](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.112...v9.2.113) (2021-10-27)
+
+## [9.2.112](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.111...v9.2.112) (2021-10-27)
+
+## [9.2.111](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.110...v9.2.111) (2021-10-27)
+
+## [9.2.110](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.109...v9.2.110) (2021-10-26)
+
+## [9.2.109](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.108...v9.2.109) (2021-10-26)
+
+## [9.2.108](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.107...v9.2.108) (2021-10-26)
+
+## [9.2.107](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.106...v9.2.107) (2021-10-26)
+
+## [9.2.106](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.105...v9.2.106) (2021-10-26)
+
+## [9.2.105](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.104...v9.2.105) (2021-10-26)
+
+## [9.2.104](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.103...v9.2.104) (2021-10-26)
+
+## [9.2.103](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.102...v9.2.103) (2021-10-26)
+
+## [9.2.102](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.101...v9.2.102) (2021-10-26)
+
+## [9.2.101](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.100...v9.2.101) (2021-10-26)
+
+## [9.2.100](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.99...v9.2.100) (2021-10-26)
+
+## [9.2.99](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.98...v9.2.99) (2021-10-26)
+
+## [9.2.98](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.97...v9.2.98) (2021-10-26)
+
+## [9.2.97](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.96...v9.2.97) (2021-10-26)
+
+## [9.2.96](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.95...v9.2.96) (2021-10-26)
+
+## [9.2.95](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.94...v9.2.95) (2021-10-26)
+
+## [9.2.94](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.93...v9.2.94) (2021-10-26)
+
+## [9.2.93](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.92...v9.2.93) (2021-10-26)
+
+## [9.2.92](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.91...v9.2.92) (2021-10-26)
+
+## [9.2.91](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.90...v9.2.91) (2021-10-26)
+
+## [9.2.90](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.89...v9.2.90) (2021-10-26)
+
+## [9.2.89](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.88...v9.2.89) (2021-10-25)
+
+## [9.2.88](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.87...v9.2.88) (2021-10-25)
+
+## [9.2.87](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.86...v9.2.87) (2021-10-25)
+
+## [9.2.86](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.85...v9.2.86) (2021-10-25)
+
+## [9.2.85](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.84...v9.2.85) (2021-10-25)
+
+## [9.2.84](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.83...v9.2.84) (2021-10-25)
+
+## [9.2.83](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.82...v9.2.83) (2021-10-25)
+
+## [9.2.82](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.81...v9.2.82) (2021-10-25)
+
+## [9.2.81](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.80...v9.2.81) (2021-10-25)
+
+## [9.2.80](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.79...v9.2.80) (2021-10-25)
+
+## [9.2.79](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.78...v9.2.79) (2021-10-25)
+
+## [9.2.78](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.77...v9.2.78) (2021-10-25)
+
+## [9.2.77](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.76...v9.2.77) (2021-10-25)
+
+## [9.2.76](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.75...v9.2.76) (2021-10-25)
+
+## [9.2.75](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.74...v9.2.75) (2021-10-25)
+
+## [9.2.74](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.73...v9.2.74) (2021-10-25)
+
+## [9.2.73](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.72...v9.2.73) (2021-10-25)
+
+## [9.2.72](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.71...v9.2.72) (2021-10-25)
+
+## [9.2.71](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.70...v9.2.71) (2021-10-25)
+
+## [9.2.70](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.69...v9.2.70) (2021-10-25)
+
+## [9.2.69](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.68...v9.2.69) (2021-10-24)
+
+## [9.2.68](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.67...v9.2.68) (2021-10-24)
+
+## [9.2.67](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.66...v9.2.67) (2021-10-24)
+
+## [9.2.66](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.65...v9.2.66) (2021-10-24)
+
+## [9.2.65](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.64...v9.2.65) (2021-10-24)
+
+## [9.2.64](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.63...v9.2.64) (2021-10-24)
+
+## [9.2.63](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.62...v9.2.63) (2021-10-24)
+
+## [9.2.62](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.61...v9.2.62) (2021-10-24)
+
+## [9.2.61](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.60...v9.2.61) (2021-10-24)
+
+## [9.2.60](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.59...v9.2.60) (2021-10-24)
+
+## [9.2.59](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.58...v9.2.59) (2021-10-24)
+
+## [9.2.58](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.57...v9.2.58) (2021-10-24)
+
+## [9.2.57](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.56...v9.2.57) (2021-10-24)
+
+## [9.2.56](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.55...v9.2.56) (2021-10-24)
+
+## [9.2.55](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.54...v9.2.55) (2021-10-24)
+
+## [9.2.54](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.53...v9.2.54) (2021-10-24)
+
+## [9.2.53](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.52...v9.2.53) (2021-10-23)
+
+## [9.2.52](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.51...v9.2.52) (2021-10-23)
+
+## [9.2.51](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.50...v9.2.51) (2021-10-23)
+
+## [9.2.50](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.49...v9.2.50) (2021-10-23)
+
+## [9.2.49](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.48...v9.2.49) (2021-10-23)
+
+## [9.2.48](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.47...v9.2.48) (2021-10-23)
+
+## [9.2.47](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.46...v9.2.47) (2021-10-23)
+
+## [9.2.46](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.45...v9.2.46) (2021-10-23)
+
+## [9.2.45](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.44...v9.2.45) (2021-10-23)
+
+## [9.2.44](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.43...v9.2.44) (2021-10-23)
+
+## [9.2.43](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.42...v9.2.43) (2021-10-23)
+
+## [9.2.42](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.41...v9.2.42) (2021-10-23)
+
+## [9.2.41](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.40...v9.2.41) (2021-10-23)
+
+## [9.2.40](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.39...v9.2.40) (2021-10-23)
+
+## [9.2.39](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.38...v9.2.39) (2021-10-23)
+
+## [9.2.38](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.37...v9.2.38) (2021-10-23)
+
+## [9.2.37](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.36...v9.2.37) (2021-10-23)
+
+## [9.2.36](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.35...v9.2.36) (2021-10-23)
+
+## [9.2.35](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.34...v9.2.35) (2021-10-23)
+
+## [9.2.34](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.33...v9.2.34) (2021-10-23)
+
+## [9.2.33](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.32...v9.2.33) (2021-10-23)
+
+## [9.2.32](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.31...v9.2.32) (2021-10-23)
+
+## [9.2.31](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.30...v9.2.31) (2021-10-22)
+
+## [9.2.30](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.29...v9.2.30) (2021-10-22)
+
+## [9.2.29](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.28...v9.2.29) (2021-10-22)
+
+## [9.2.28](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.27...v9.2.28) (2021-10-22)
+
+## [9.2.27](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.26...v9.2.27) (2021-10-22)
+
+## [9.2.26](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.25...v9.2.26) (2021-10-22)
+
+## [9.2.25](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.24...v9.2.25) (2021-10-22)
+
+## [9.2.24](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.23...v9.2.24) (2021-10-22)
+
+## [9.2.23](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.22...v9.2.23) (2021-10-22)
+
+## [9.2.22](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.21...v9.2.22) (2021-10-22)
+
+## [9.2.21](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.20...v9.2.21) (2021-10-22)
+
+## [9.2.20](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.19...v9.2.20) (2021-10-22)
+
+## [9.2.19](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.18...v9.2.19) (2021-10-22)
+
+## [9.2.18](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.17...v9.2.18) (2021-10-22)
+
+## [9.2.17](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.16...v9.2.17) (2021-10-22)
+
+## [9.2.16](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.15...v9.2.16) (2021-10-22)
+
+## [9.2.15](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.14...v9.2.15) (2021-10-22)
+
+## [9.2.14](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.13...v9.2.14) (2021-10-22)
+
+## [9.2.13](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.12...v9.2.13) (2021-10-22)
+
+## [9.2.12](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.11...v9.2.12) (2021-10-22)
+
+## [9.2.11](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.10...v9.2.11) (2021-10-22)
+
+## [9.2.10](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.9...v9.2.10) (2021-10-22)
+
+## [9.2.9](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.8...v9.2.9) (2021-10-22)
+
+## [9.2.8](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.7...v9.2.8) (2021-10-22)
+
+## [9.2.7](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.6...v9.2.7) (2021-10-21)
+
+## [9.2.6](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.5...v9.2.6) (2021-10-21)
+
+## [9.2.5](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.4...v9.2.5) (2021-10-21)
+
+## [9.2.4](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.3...v9.2.4) (2021-10-21)
+
+## [9.2.3](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.2...v9.2.3) (2021-10-21)
+
+## [9.2.2](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.1...v9.2.2) (2021-10-21)
+
+## [9.2.1](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.0...v9.2.1) (2021-10-21)
+
+# [9.2.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.1.2...v9.2.0) (2021-10-21)
+
+
+### Features
+
+* export eventTimeBlockSchema ([ee3cf69](https://github.com/sprucelabsai/spruce-calendar-utils/commit/ee3cf69))
+
 ## [9.1.2](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.1.1...v9.1.2) (2021-10-21)
 
 ## [9.1.1](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.1.0...v9.1.1) (2021-10-21)

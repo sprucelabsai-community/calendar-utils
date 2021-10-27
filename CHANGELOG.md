@@ -1,3 +1,10 @@
+# [9.3.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.122...v9.3.0) (2021-10-27)
+
+
+### Features
+
+* export calendarEventTargetSchema ([06e6dbb](https://github.com/sprucelabsai/spruce-calendar-utils/commit/06e6dbb))
+
 ## [9.2.122](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.121...v9.2.122) (2021-10-27)
 
 ## [9.2.121](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.2.120...v9.2.121) (2021-10-27)

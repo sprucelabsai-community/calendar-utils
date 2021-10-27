@@ -1,3 +1,10 @@
+# [9.4.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.3.2...v9.4.0) (2021-10-27)
+
+
+### Features
+
+* dateUtil.getEndOfMonth() ([0015b2d](https://github.com/sprucelabsai/spruce-calendar-utils/commit/0015b2d))
+
 ## [9.3.2](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.3.1...v9.3.2) (2021-10-27)
 
 ## [9.3.1](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.3.0...v9.3.1) (2021-10-27)

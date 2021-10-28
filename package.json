@@ -62,9 +62,9 @@
   },
   "dependencies": {
     "@sprucelabs/schema": "^25.3.418",
-    "@sprucelabs/spruce-core-schemas": "^22.5.565",
-    "@sprucelabs/spruce-event-utils": "^16.0.646",
-    "@sprucelabs/spruce-skill-utils": "^20.6.368",
+    "@sprucelabs/spruce-core-schemas": "^22.5.566",
+    "@sprucelabs/spruce-event-utils": "^16.0.647",
+    "@sprucelabs/spruce-skill-utils": "^20.6.369",
     "date-fns": "^2.25.0",
     "rrule": "^2.6.8"
   },

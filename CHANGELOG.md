@@ -1,3 +1,10 @@
+# [9.6.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.5.0...v9.6.0) (2021-10-31)
+
+
+### Features
+
+* getTotalDaysInMonth in date util ([a8b5ccc](https://github.com/sprucelabsai/spruce-calendar-utils/commit/a8b5ccc))
+
 # [9.5.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.4.87...v9.5.0) (2021-10-31)
 
 

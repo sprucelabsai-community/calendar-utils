@@ -764,6 +764,19 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		assert.isEqualDeep(args, 10)
 	}
 
+	@test('gets 31 days for jan 2020', 2020, 0, 31)
+	@test('gets 30 days for jun 2020', 2020, 5, 30)
+	@test('gets 28 days for feb 2021', 2021, 2, 28)
+	protected static canGetDaysInMonth(
+		year: number,
+		month: number,
+		expected: number
+	) {
+		const total = dateUtil.getTotalDaysInMonth(year, month)
+
+		assert.isEqual(total, expected)
+	}
+
 	private static stripSeconds(number: number): string {
 		const str = `${number}`
 		return str.slice(0, -4)

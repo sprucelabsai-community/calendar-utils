@@ -36,16 +36,23 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		assert.isEqual(this.stripSeconds(expected), this.stripSeconds(actual))
 	}
 
-	@test('jan 1 2021 11:59pm is fri', 1609545540000, 'fri')
-	@test('feb 28 2020 11:59pm is fri', 1582934340000, 'fri')
-	@test('dec 31 2020 11:59pm is thur', 1609459140000, 'thur')
-	@test('jan 1 2020 12:00am is wed', 1577836800000, 'wed')
-	@test('june 1 2021 12:00am is tue', 1622505600000, 'tue')
-	@test('oct 26 2020 12:00am is mon', 1603670400000, 'mon')
-	protected static getsRightDayOfWeek(millis: number, expected: string) {
+	@test('jan 1 2021 11:59pm is fri', 1609545540000, 'fri', 5)
+	@test('feb 28 2020 11:59pm is fri', 1582934340000, 'fri', 5)
+	@test('dec 31 2020 11:59pm is thur', 1609459140000, 'thur', 4)
+	@test('jan 1 2020 12:00am is wed', 1577836800000, 'wed', 3)
+	@test('june 1 2021 12:00am is tue', 1622505600000, 'tue', 2)
+	@test('oct 26 2020 12:00am is mon', 1603670400000, 'mon', 1)
+	protected static getsRightDayOfWeek(
+		millis: number,
+		expected: string,
+		expectedDayIndex: number
+	) {
 		const dow = dateUtil.getDayOfWeek(millis)
 
 		assert.isEqual(dow, expected)
+
+		const index = dateUtil.getDayOfWeekIndex(millis)
+		assert.isEqual(index, expectedDayIndex)
 	}
 
 	@test(

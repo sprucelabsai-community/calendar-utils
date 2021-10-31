@@ -142,11 +142,14 @@ const dateUtil = {
 		return Math.ceil(diff / (1000 * 3600 * 24))
 	},
 	getDayOfWeek(timestamp: number): DayOfWeek {
-		const tempDate = new Date(timestamp)
-		const day = tempDate.getUTCDay()
+		const index = this.getDayOfWeekIndex(timestamp)
 
 		//@ts-ignore
-		return Object.keys(daysOfWeek)[day]
+		return Object.keys(daysOfWeek)[index]
+	},
+	getDayOfWeekIndex(timestamp: number): number {
+		const tempDate = new Date(timestamp)
+		return tempDate.getUTCDay()
 	},
 	splitDate(timestamp: number) {
 		const date = new Date(timestamp)

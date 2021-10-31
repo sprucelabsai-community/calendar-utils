@@ -1,3 +1,10 @@
+# [9.5.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.4.87...v9.5.0) (2021-10-31)
+
+
+### Features
+
+* day of weeek index ([d05a5a6](https://github.com/sprucelabsai/spruce-calendar-utils/commit/d05a5a6))
+
 ## [9.4.87](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.4.86...v9.4.87) (2021-10-31)
 
 ## [9.4.86](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.4.85...v9.4.86) (2021-10-31)

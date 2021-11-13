@@ -62,9 +62,9 @@
   },
   "dependencies": {
     "@sprucelabs/schema": "^25.3.495",
-    "@sprucelabs/spruce-core-schemas": "^22.6.87",
-    "@sprucelabs/spruce-event-utils": "^17.1.48",
-    "@sprucelabs/spruce-skill-utils": "^22.0.67",
+    "@sprucelabs/spruce-core-schemas": "^22.6.88",
+    "@sprucelabs/spruce-event-utils": "^17.1.49",
+    "@sprucelabs/spruce-skill-utils": "^22.0.68",
     "date-fns": "^2.25.0",
     "rrule": "^2.6.8"
   },
@@ -78,7 +78,7 @@
     "@sprucelabs/test-utils": "^3.0.251",
     "@types/node": "^16.11.7",
     "chokidar-cli": "^3.0.0",
-    "concurrently": "^6.3.0",
+    "concurrently": "^6.4.0",
     "eslint": "^8.2.0",
     "eslint-config-spruce": "^10.10.15",
     "jest": "^27.3.1",

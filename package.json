@@ -62,8 +62,8 @@
   },
   "dependencies": {
     "@sprucelabs/schema": "^25.3.523",
-    "@sprucelabs/spruce-core-schemas": "^22.6.129",
-    "@sprucelabs/spruce-event-utils": "^17.1.104",
+    "@sprucelabs/spruce-core-schemas": "^22.6.130",
+    "@sprucelabs/spruce-event-utils": "^17.1.105",
     "@sprucelabs/spruce-skill-utils": "^22.0.100",
     "date-fns": "^2.26.0",
     "rrule": "^2.6.8"
@@ -83,7 +83,7 @@
     "eslint-config-spruce": "^10.10.15",
     "jest": "^27.3.1",
     "jest-circus": "^27.3.1",
-    "marked": "^4.0.3",
+    "marked": "^4.0.4",
     "prettier": "^2.4.1",
     "timezone-mock": "^1.2.2",
     "ts-node": "^10.4.0",

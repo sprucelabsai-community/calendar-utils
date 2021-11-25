@@ -83,7 +83,7 @@
     "eslint-config-spruce": "^10.10.15",
     "jest": "^27.3.1",
     "jest-circus": "^27.3.1",
-    "marked": "^4.0.4",
+    "marked": "^4.0.5",
     "prettier": "^2.4.1",
     "timezone-mock": "^1.2.2",
     "ts-node": "^10.4.0",

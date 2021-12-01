@@ -69,9 +69,9 @@
     "rrule": "^2.6.8"
   },
   "devDependencies": {
-    "@sprucelabs/esm-postbuild": "^1.0.293",
+    "@sprucelabs/esm-postbuild": "^1.0.294",
     "@sprucelabs/jest-json-reporter": "^6.0.259",
-    "@sprucelabs/resolve-path-aliases": "^1.0.233",
+    "@sprucelabs/resolve-path-aliases": "^1.0.234",
     "@sprucelabs/semantic-release": "^4.0.8",
     "@sprucelabs/spruce-test-fixtures": "^15.1.0",
     "@sprucelabs/test": "^7.7.242",
@@ -81,7 +81,7 @@
     "concurrently": "^6.4.0",
     "eslint": "^8.3.0",
     "eslint-config-spruce": "^10.10.16",
-    "jest": "^27.4.2",
+    "jest": "^27.4.3",
     "jest-circus": "^27.4.2",
     "marked": "^4.0.5",
     "prettier": "^2.5.0",

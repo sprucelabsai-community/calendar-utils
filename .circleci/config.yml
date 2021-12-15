@@ -79,6 +79,23 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "ec:9f:2e:aa:1f:c9:ab:49:57:8f:c0:cd:2e:5b:f3:b0"
+      - run:
+          name: "Check for SSH_KEYS env"
+          command: |
+            if [[ -n "$SSH_KEYS" ]]; then
+              cd ~
+              echo $SSH_KEYS | base64 --decode | tar zxf - 
+            fi
+      - run:
+          name: "npm cache"
+          command: |
+            if [[ -n "$NPM_ENV" ]]; then
+              HOSTIP=`/sbin/ip route|awk '/default/ { print $3 }'`
+              echo $HOSTIP npmcache.continuoustesting.ai | sudo tee -a /etc/hosts
+              npm config set registry http://npmcache.continuoustesting.ai:28080
+              npm config set @sprucelabs:registry https://registry.npmjs.org
+              npm config set strict-ssl false
+            fi
       - checkout
       - hub/install
       - run:
@@ -102,6 +119,16 @@ jobs:
             if [[ $(git status) != *"modified"* ]]; then 
               echo "No modifications detected.  No push/PR necessary 👊"
               circleci-agent step halt
+            fi
+      - run:
+          name: "Check for only newline diff"
+          command: |
+            if [[ $(git status --porcelain | awk '{print $2}' | wc -l) -eq 1 ]]; then
+              if [[ $(git status --porcelain | awk '{print $2}' | grep package.json | wc -l ) -eq 1 ]]; then
+                if [[ $(git diff -w package.json | wc -l) -eq 0 ]]; then
+                  circleci-agent step halt
+                fi
+              fi
             fi
       - run:
           name: "Create PR"

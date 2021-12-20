@@ -63,7 +63,7 @@
   "dependencies": {
     "@sprucelabs/schema": "^25.4.142",
     "@sprucelabs/spruce-core-schemas": "^22.6.339",
-    "@sprucelabs/spruce-event-utils": "^17.1.381",
+    "@sprucelabs/spruce-event-utils": "^17.1.382",
     "@sprucelabs/spruce-skill-utils": "^22.2.44",
     "date-fns": "^2.27.0",
     "rrule": "^2.6.8"

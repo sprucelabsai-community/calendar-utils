@@ -66,7 +66,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 		interface EventTimeBlock {
 			
 				
-				'title': string
+				'title'?: string| undefined | null
 				
 				'subtitle'?: string| undefined | null
 				
@@ -85,7 +85,6 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            /** . */
 			            'title': {
 			                type: 'text',
-			                isRequired: true,
 			                options: undefined
 			            },
 			            /** . */

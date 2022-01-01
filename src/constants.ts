@@ -168,6 +168,7 @@ export const eventStyles = [
 	'past',
 	'warn',
 	'critical',
+	'draft',
 ]
 
 export const eventStyleChoices = eventStyles.map((i) => ({

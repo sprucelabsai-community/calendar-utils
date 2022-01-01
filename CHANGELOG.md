@@ -1,3 +1,10 @@
+# [10.1.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v10.0.2...v10.1.0) (2022-01-01)
+
+
+### Features
+
+* New draft event style to make styling even more STYLING ([90c2308](https://github.com/sprucelabsai/spruce-calendar-utils/commit/90c2308))
+
 ## [10.0.2](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v10.0.1...v10.0.2) (2022-01-01)
 
 ## [10.0.1](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v10.0.0...v10.0.1) (2022-01-01)

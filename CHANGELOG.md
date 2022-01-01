@@ -1,3 +1,10 @@
+# [10.0.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.6.594...v10.0.0) (2022-01-01)
+
+
+### Breaking Changes
+
+* migrating calendar from v2 ([6f3bddc](https://github.com/sprucelabsai/spruce-calendar-utils/commit/6f3bddc))
+
 ## [9.6.594](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.6.593...v9.6.594) (2022-01-01)
 
 ## [9.6.593](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v9.6.592...v9.6.593) (2022-01-01)

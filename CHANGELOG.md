@@ -1,3 +1,10 @@
+# [11.0.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v10.1.1...v11.0.0) (2022-01-01)
+
+
+### Breaking Changes
+
+* line icons on calendar events accept a title ([9fdc652](https://github.com/sprucelabsai/spruce-calendar-utils/commit/9fdc652))
+
 ## [10.1.1](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v10.1.0...v10.1.1) (2022-01-01)
 
 # [10.1.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v10.0.2...v10.1.0) (2022-01-01)

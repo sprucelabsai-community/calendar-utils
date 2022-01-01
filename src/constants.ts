@@ -599,8 +599,6 @@ export const fancyIcons = [
 	'loading',
 ] as const
 
-export const defaultSubmitButtonLabel = 'Go!'
-
 export const lineIconChoices = lineIcons.map((i) => ({
 	value: i,
 	label: i,

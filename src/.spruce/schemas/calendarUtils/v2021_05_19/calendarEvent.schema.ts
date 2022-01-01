@@ -49,6 +49,26 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	                options: undefined
 	            },
 	            /** . */
+	            'isBusy': {
+	                type: 'boolean',
+	                options: undefined
+	            },
+	            /** . */
+	            'isResizeable': {
+	                type: 'boolean',
+	                options: undefined
+	            },
+	            /** . */
+	            'style': {
+	                type: 'select',
+	                options: {choices: [{"value":"tentative","label":"tentative"},{"value":"upcoming","label":"upcoming"},{"value":"unavailable","label":"unavailable"},{"value":"blocked","label":"blocked"},{"value":"active","label":"active"},{"value":"past","label":"past"},{"value":"warn","label":"warn"},{"value":"critical","label":"critical"}],}
+	            },
+	            /** . */
+	            'groupId': {
+	                type: 'id',
+	                options: undefined
+	            },
+	            /** . */
 	            'timeBlocks': {
 	                type: 'schema',
 	                isRequired: true,

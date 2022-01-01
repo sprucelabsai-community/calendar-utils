@@ -35,12 +35,6 @@ const calendarEventTargetSchema: SpruceSchemas.CalendarUtils.v2021_05_19.Calenda
 	                type: 'id',
 	                options: undefined
 	            },
-	            /** . */
-	            'calendarEventPersonId': {
-	                type: 'id',
-	                isRequired: true,
-	                options: undefined
-	            },
 	    }
 }
 

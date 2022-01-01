@@ -4,6 +4,7 @@ import {
 	eventTargetSchema,
 } from '@sprucelabs/spruce-event-utils'
 import { daysOfWeek, repeats } from '../../constants'
+import { eventStyleChoices, lineIconChoices } from '../../types/calendar.types'
 
 export const eventExclusionDateSchema = buildSchema({
 	id: 'eventExclusionDate',
@@ -30,6 +31,20 @@ export const eventTimeBlocksSchema = buildSchema({
 		subtitle: { type: 'text' },
 		isBusy: { type: 'boolean', isRequired: true },
 		durationMinutes: { type: 'number', isRequired: true },
+		rightIcons: {
+			type: 'select',
+			isArray: true,
+			options: {
+				choices: lineIconChoices,
+			},
+		},
+		leftIcons: {
+			type: 'select',
+			isArray: true,
+			options: {
+				choices: lineIconChoices,
+			},
+		},
 	},
 })
 
@@ -55,10 +70,6 @@ export default buildSchema({
 					id: 'calendarEventTarget',
 					fields: {
 						...eventTargetSchema.fields,
-						calendarEventPersonId: {
-							type: 'id',
-							isRequired: true,
-						},
 					},
 				},
 			},
@@ -73,6 +84,21 @@ export default buildSchema({
 		startDateTimeMs: {
 			type: 'number',
 			isRequired: true,
+		},
+		isBusy: {
+			type: 'boolean',
+		},
+		isResizeable: {
+			type: 'boolean',
+		},
+		style: {
+			type: 'select',
+			options: {
+				choices: eventStyleChoices,
+			},
+		},
+		groupId: {
+			type: 'id',
 		},
 		timeBlocks: {
 			type: 'schema',

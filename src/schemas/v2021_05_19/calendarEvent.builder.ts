@@ -28,6 +28,22 @@ export const eventExclusionDateSchema = buildSchema({
 	},
 })
 
+const calendarEventLineIconSchema = buildSchema({
+	id: 'calendarEventLineIcon',
+	fields: {
+		icon: {
+			type: 'select',
+			isRequired: true,
+			options: {
+				choices: lineIconChoices,
+			},
+		},
+		hint: {
+			type: 'text',
+		},
+	},
+})
+
 export const eventTimeBlocksSchema = buildSchema({
 	id: 'eventTimeBlock',
 	fields: {
@@ -36,17 +52,17 @@ export const eventTimeBlocksSchema = buildSchema({
 		isBusy: { type: 'boolean', isRequired: true },
 		durationMinutes: { type: 'number', isRequired: true },
 		rightIcons: {
-			type: 'select',
+			type: 'schema',
 			isArray: true,
 			options: {
-				choices: lineIconChoices,
+				schema: calendarEventLineIconSchema,
 			},
 		},
 		leftIcons: {
-			type: 'select',
+			type: 'schema',
 			isArray: true,
 			options: {
-				choices: lineIconChoices,
+				schema: calendarEventLineIconSchema,
 			},
 		},
 	},

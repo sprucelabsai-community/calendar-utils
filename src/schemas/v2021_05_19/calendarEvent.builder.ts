@@ -74,6 +74,10 @@ export default buildSchema({
 					id: 'calendarEventTarget',
 					fields: {
 						...eventTargetSchema.fields,
+						personId: {
+							type: 'id',
+							isRequired: true,
+						},
 					},
 				},
 			},

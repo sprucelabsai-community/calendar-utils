@@ -3,8 +3,12 @@ import {
 	eventSourceSchema,
 	eventTargetSchema,
 } from '@sprucelabs/spruce-event-utils'
-import { daysOfWeek, repeats } from '../../constants'
-import { eventStyleChoices, lineIconChoices } from '../../types/calendar.types'
+import {
+	daysOfWeek,
+	eventStyleChoices,
+	lineIconChoices,
+	repeats,
+} from '../../constants'
 
 export const eventExclusionDateSchema = buildSchema({
 	id: 'eventExclusionDate',

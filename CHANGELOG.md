@@ -1,3 +1,10 @@
+# [12.0.0](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v11.0.3...v12.0.0) (2022-01-02)
+
+
+### Breaking Changes
+
+* activeUntilDateNotRequired ([6d59492](https://github.com/sprucelabsai/spruce-calendar-utils/commit/6d59492))
+
 ## [11.0.3](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v11.0.2...v11.0.3) (2022-01-02)
 
 ## [11.0.2](https://github.com/sprucelabsai/spruce-calendar-utils/compare/v11.0.1...v11.0.2) (2022-01-02)

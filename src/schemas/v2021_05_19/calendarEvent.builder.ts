@@ -165,7 +165,6 @@ export default buildSchema({
 		},
 		activeUntilDate: {
 			type: 'number',
-			isRequired: true,
 		},
 		exclusionDates: {
 			type: 'schema',

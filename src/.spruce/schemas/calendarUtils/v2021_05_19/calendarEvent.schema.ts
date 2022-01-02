@@ -111,7 +111,6 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	            /** . */
 	            'activeUntilDate': {
 	                type: 'number',
-	                isRequired: true,
 	                options: undefined
 	            },
 	            /** . */

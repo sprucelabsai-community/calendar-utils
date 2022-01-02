@@ -263,7 +263,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				
 				'nthOccurrences'?: number[]| undefined | null
 				
-				'activeUntilDate': number
+				'activeUntilDate'?: number| undefined | null
 				
 				'exclusionDates'?: SpruceSchemas.CalendarUtils.v2021_05_19.EventExclusionDate[]| undefined | null
 				
@@ -377,7 +377,6 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            /** . */
 			            'activeUntilDate': {
 			                type: 'number',
-			                isRequired: true,
 			                options: undefined
 			            },
 			            /** . */

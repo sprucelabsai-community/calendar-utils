@@ -32,7 +32,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			version: 'v2021_05_19',
 			namespace: 'CalendarUtils',
 			name: '',
-			moduleToImportFromWhenRemote: '@sprucelabs/spruce-calendar-utils',
+			moduleToImportFromWhenRemote: '@sprucelabs/calendar-utils',
 			    fields: {
 			            /** . */
 			            'year': {
@@ -76,7 +76,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			version: 'v2021_05_19',
 			namespace: 'CalendarUtils',
 			name: '',
-			moduleToImportFromWhenRemote: '@sprucelabs/spruce-calendar-utils',
+			moduleToImportFromWhenRemote: '@sprucelabs/calendar-utils',
 			    fields: {
 			            /** . */
 			            'icon': {
@@ -121,7 +121,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			version: 'v2021_05_19',
 			namespace: 'CalendarUtils',
 			name: '',
-			moduleToImportFromWhenRemote: '@sprucelabs/spruce-calendar-utils',
+			moduleToImportFromWhenRemote: '@sprucelabs/calendar-utils',
 			    fields: {
 			            /** . */
 			            'title': {
@@ -187,7 +187,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			version: 'v2021_05_19',
 			namespace: 'CalendarUtils',
 			name: '',
-			moduleToImportFromWhenRemote: '@sprucelabs/spruce-calendar-utils',
+			moduleToImportFromWhenRemote: '@sprucelabs/calendar-utils',
 			    fields: {
 			            /** . */
 			            'locationId': {
@@ -277,7 +277,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			version: 'v2021_05_19',
 			namespace: 'CalendarUtils',
 			name: '',
-			moduleToImportFromWhenRemote: '@sprucelabs/spruce-calendar-utils',
+			moduleToImportFromWhenRemote: '@sprucelabs/calendar-utils',
 			    fields: {
 			            /** . */
 			            'id': {

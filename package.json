@@ -1,5 +1,5 @@
 {
-  "name": "@sprucelabs/spruce-calendar-utils",
+  "name": "@sprucelabs/calendar-utils",
   "publishConfig": {
     "access": "public"
   },
@@ -19,16 +19,16 @@
     "namespace": "calendar-utils",
     "upgradeIgnoreList": [],
     "commandOverrides": {
-      "sync.schemas": "--shouldFetchCoreSchemas false --moduleToImportFromWhenRemote @sprucelabs/spruce-calendar-utils"
+      "sync.schemas": "--shouldFetchCoreSchemas false --moduleToImportFromWhenRemote @sprucelabs/calendar-utils"
     }
   },
   "keywords": [
     "node",
     "sprucelabs"
   ],
-  "homepage": "https://github.com/sprucelabsai/spruce-calendar-utils",
+  "homepage": "https://github.com/sprucelabsai/calendar-utils",
   "bugs": {
-    "url": "https://github.com/sprucelabsai/spruce-calendar-utils/issues"
+    "url": "https://github.com/sprucelabsai/calendar-utils/issues"
   },
   "scripts": {
     "build.ci": "yarn build.tsc && yarn build.resolve-paths && yarn lint",

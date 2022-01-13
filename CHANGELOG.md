@@ -1,3 +1,10 @@
+# [12.1.0](https://github.com/sprucelabsai/calendar-utils/compare/v12.0.69...v12.1.0) (2022-01-13)
+
+
+### Features
+
+* people sorter utility can help sort people on a calendar based on name and selected events ([cef03dc](https://github.com/sprucelabsai/calendar-utils/commit/cef03dc))
+
 ## [12.0.69](https://github.com/sprucelabsai/calendar-utils/compare/v12.0.68...v12.0.69) (2022-01-13)
 
 ## [12.0.68](https://github.com/sprucelabsai/calendar-utils/compare/v12.0.67...v12.0.68) (2022-01-13)

@@ -1,4 +1,4 @@
-import { sortBy } from 'lodash'
+import sortBy from 'lodash/sortBy'
 
 export type Person = { id: string; casualName: string }
 export type CalendarEvent = {

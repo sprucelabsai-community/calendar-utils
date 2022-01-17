@@ -1,3 +1,10 @@
+# [13.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v12.1.21...v13.0.0) (2022-01-17)
+
+
+### Breaking Changes
+
+* name changes ([745cc77](https://github.com/sprucelabsai/calendar-utils/commit/745cc77))
+
 ## [12.1.21](https://github.com/sprucelabsai/calendar-utils/compare/v12.1.20...v12.1.21) (2022-01-17)
 
 ## [12.1.20](https://github.com/sprucelabsai/calendar-utils/compare/v12.1.19...v12.1.20) (2022-01-16)

@@ -1,5 +1,5 @@
 import AbstractSpruceTest, { test, assert } from '@sprucelabs/test'
-import { default as PeopleSorter } from '../../utilities/peopleSorter.utility'
+import { default as PeopleSorter } from '../../utilities/PeopleSorter'
 
 export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 	private static peopleSorterUtil: PeopleSorter

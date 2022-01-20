@@ -173,6 +173,9 @@ export default buildSchema({
 				schema: eventExclusionDateSchema,
 			},
 		},
+		eventType: {
+			type: 'id',
+		},
 		dateDeleted: {
 			type: 'number',
 		},

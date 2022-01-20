@@ -267,6 +267,8 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				
 				'exclusionDates'?: SpruceSchemas.CalendarUtils.v2021_05_19.EventExclusionDate[]| undefined | null
 				
+				'eventType'?: string| undefined | null
+				
 				'dateDeleted'?: number| undefined | null
 				
 				'dateCreated': number
@@ -384,6 +386,11 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			                type: 'schema',
 			                isArray: true,
 			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.EventExclusionDateSchema,}
+			            },
+			            /** . */
+			            'eventType': {
+			                type: 'id',
+			                options: undefined
 			            },
 			            /** . */
 			            'dateDeleted': {

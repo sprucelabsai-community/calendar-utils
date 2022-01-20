@@ -1,3 +1,10 @@
+# [13.1.0](https://github.com/sprucelabsai/calendar-utils/compare/v13.0.17...v13.1.0) (2022-01-20)
+
+
+### Features
+
+* event type field on event schemas ([4fc0383](https://github.com/sprucelabsai/calendar-utils/commit/4fc0383))
+
 ## [13.0.17](https://github.com/sprucelabsai/calendar-utils/compare/v13.0.16...v13.0.17) (2022-01-20)
 
 ## [13.0.16](https://github.com/sprucelabsai/calendar-utils/compare/v13.0.15...v13.0.16) (2022-01-20)

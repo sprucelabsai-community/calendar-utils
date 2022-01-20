@@ -120,11 +120,6 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	                options: {schema: eventExclusionDateSchema_v2021_05_19,}
 	            },
 	            /** . */
-	            'eventType': {
-	                type: 'id',
-	                options: undefined
-	            },
-	            /** . */
 	            'dateDeleted': {
 	                type: 'number',
 	                options: undefined

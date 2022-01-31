@@ -106,7 +106,7 @@ export default buildSchema({
 			type: 'text',
 		},
 		startDateTimeMs: {
-			type: 'number',
+			type: 'dateTime',
 			isRequired: true,
 		},
 		isBusy: {
@@ -151,7 +151,7 @@ export default buildSchema({
 			},
 		},
 		repeatsUntil: {
-			type: 'number',
+			type: 'dateTime',
 		},
 		occurrences: {
 			type: 'number',
@@ -164,7 +164,7 @@ export default buildSchema({
 			isArray: true,
 		},
 		activeUntilDate: {
-			type: 'number',
+			type: 'dateTime',
 		},
 		exclusionDates: {
 			type: 'schema',
@@ -174,10 +174,10 @@ export default buildSchema({
 			},
 		},
 		dateDeleted: {
-			type: 'number',
+			type: 'dateTime',
 		},
 		dateCreated: {
-			type: 'number',
+			type: 'dateTime',
 			isRequired: true,
 		},
 	},

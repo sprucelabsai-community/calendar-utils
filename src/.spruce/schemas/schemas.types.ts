@@ -239,7 +239,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				
 				'eventTypeSlug'?: string| undefined | null
 				
-				'startDateTimeMs': number
+				'startDateTimeMs': SpruceSchema.DateTimeFieldValue
 				
 				'isBusy'?: boolean| undefined | null
 				
@@ -255,7 +255,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				
 				'daysOfWeek'?: ("sun" | "mon" | "tue" | "wed" | "thur" | "fri" | "sat")[]| undefined | null
 				
-				'repeatsUntil'?: number| undefined | null
+				'repeatsUntil'?: SpruceSchema.DateTimeFieldValue| undefined | null
 				
 				'occurrences'?: number| undefined | null
 				
@@ -263,13 +263,13 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				
 				'nthOccurrences'?: number[]| undefined | null
 				
-				'activeUntilDate'?: number| undefined | null
+				'activeUntilDate'?: SpruceSchema.DateTimeFieldValue| undefined | null
 				
 				'exclusionDates'?: SpruceSchemas.CalendarUtils.v2021_05_19.EventExclusionDate[]| undefined | null
 				
-				'dateDeleted'?: number| undefined | null
+				'dateDeleted'?: SpruceSchema.DateTimeFieldValue| undefined | null
 				
-				'dateCreated': number
+				'dateCreated': SpruceSchema.DateTimeFieldValue
 		}
 
 		interface CalendarEventSchema extends SpruceSchema.Schema {
@@ -310,7 +310,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            },
 			            /** . */
 			            'startDateTimeMs': {
-			                type: 'number',
+			                type: 'dateTime',
 			                isRequired: true,
 			                options: undefined
 			            },
@@ -355,7 +355,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            },
 			            /** . */
 			            'repeatsUntil': {
-			                type: 'number',
+			                type: 'dateTime',
 			                options: undefined
 			            },
 			            /** . */
@@ -376,7 +376,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            },
 			            /** . */
 			            'activeUntilDate': {
-			                type: 'number',
+			                type: 'dateTime',
 			                options: undefined
 			            },
 			            /** . */
@@ -387,12 +387,12 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            },
 			            /** . */
 			            'dateDeleted': {
-			                type: 'number',
+			                type: 'dateTime',
 			                options: undefined
 			            },
 			            /** . */
 			            'dateCreated': {
-			                type: 'number',
+			                type: 'dateTime',
 			                isRequired: true,
 			                options: undefined
 			            },

@@ -44,7 +44,7 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	            },
 	            /** . */
 	            'startDateTimeMs': {
-	                type: 'number',
+	                type: 'dateTime',
 	                isRequired: true,
 	                options: undefined
 	            },
@@ -89,7 +89,7 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	            },
 	            /** . */
 	            'repeatsUntil': {
-	                type: 'number',
+	                type: 'dateTime',
 	                options: undefined
 	            },
 	            /** . */
@@ -110,7 +110,7 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	            },
 	            /** . */
 	            'activeUntilDate': {
-	                type: 'number',
+	                type: 'dateTime',
 	                options: undefined
 	            },
 	            /** . */
@@ -121,12 +121,12 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	            },
 	            /** . */
 	            'dateDeleted': {
-	                type: 'number',
+	                type: 'dateTime',
 	                options: undefined
 	            },
 	            /** . */
 	            'dateCreated': {
-	                type: 'number',
+	                type: 'dateTime',
 	                isRequired: true,
 	                options: undefined
 	            },

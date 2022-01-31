@@ -181,7 +181,7 @@ export default buildSchema({
 			isRequired: true,
 		},
 	},
-}) as any
+})
 
 function buildDaysOfWeekChoices(): {
 	value: string

@@ -1,3 +1,10 @@
+# [14.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v13.1.50...v14.0.0) (2022-01-31)
+
+
+### Breaking Changes
+
+* upgrade ([d16bf1c](https://github.com/sprucelabsai/calendar-utils/commit/d16bf1c))
+
 ## [13.1.50](https://github.com/sprucelabsai/calendar-utils/compare/v13.1.49...v13.1.50) (2022-01-29)
 
 ## [13.1.49](https://github.com/sprucelabsai/calendar-utils/compare/v13.1.48...v13.1.49) (2022-01-29)

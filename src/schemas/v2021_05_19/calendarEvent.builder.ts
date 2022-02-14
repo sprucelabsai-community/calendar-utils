@@ -150,6 +150,11 @@ export default buildSchema({
 				choices: buildDaysOfWeekChoices(),
 			},
 		},
+		daysOfMonth: {
+			type: 'select',
+			isArray: true,
+			options: { choices: buildDaysOfMonthChoices() },
+		},
 		repeatsUntil: {
 			type: 'dateTime',
 		},
@@ -185,12 +190,21 @@ export default buildSchema({
 
 function buildDaysOfWeekChoices(): {
 	value: string
-	//@ts-ignore
 	label: any
 }[] {
 	return Object.keys(daysOfWeek).map((r) => ({
 		value: r,
 		//@ts-ignore
 		label: daysOfWeek[r],
+	}))
+}
+
+function buildDaysOfMonthChoices(): {
+	value: string
+	label: string
+}[] {
+	return Array.from({ length: 31 }, (_, i) => i + 1).map((n) => ({
+		value: `${n}`,
+		label: `${n}`,
 	}))
 }

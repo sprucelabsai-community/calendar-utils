@@ -25,6 +25,7 @@ const calendarUtil = {
 			| 'repeats'
 			| 'repeatsUntil'
 			| 'daysOfWeek'
+			| 'daysOfMonth'
 			| 'interval'
 			| 'startDateTimeMs'
 			| 'occurrences'
@@ -44,6 +45,7 @@ const calendarUtil = {
 			| 'repeats'
 			| 'repeatsUntil'
 			| 'daysOfWeek'
+			| 'daysOfMonth'
 			| 'interval'
 			| 'startDateTimeMs'
 			| 'occurrences'
@@ -66,6 +68,7 @@ const calendarUtil = {
 				interval: e.interval ?? 1,
 				byweekday: e.daysOfWeek?.map((d) => this.weekDaysMapToRRuleDays[d]),
 				dtstart: new Date(e.startDateTimeMs),
+				bymonthday: e.daysOfMonth?.map((d) => parseInt(d)),
 				until: new Date(repeatsUntil),
 				count: e.occurrences,
 				bysetpos: e.nthOccurrences?.map((o) => {
@@ -121,6 +124,7 @@ const calendarUtil = {
 			| 'repeats'
 			| 'repeatsUntil'
 			| 'daysOfWeek'
+			| 'daysOfMonth'
 			| 'interval'
 			| 'startDateTimeMs'
 			| 'occurrences'

@@ -1,3 +1,10 @@
+# [14.1.0](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.76...v14.1.0) (2022-02-14)
+
+
+### Features
+
+* monthly repeating can now specify multiple days of the month ([08a2ab2](https://github.com/sprucelabsai/calendar-utils/commit/08a2ab2))
+
 ## [14.0.76](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.75...v14.0.76) (2022-02-14)
 
 ## [14.0.75](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.74...v14.0.75) (2022-02-14)

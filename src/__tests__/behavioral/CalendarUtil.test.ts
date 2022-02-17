@@ -52,22 +52,13 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
 	@test('applyRuleAndGetMonthlyRepeatingDaysOfMonth 0 hour', 0)
 	@test('applyRuleAndGetMonthlyRepeatingDaysOfMonth 13 hour', 13)
 	public static async applyRuleAndGetMonthlyRepeatingDaysOfMonth(hour: number) {
-		const start = this.getUTCTimestampForDay({
-			year: 2020,
-			month: 0,
-			day: 1,
+		const start = this.getStart({
 			hour,
 		})
-		const dateUntil = dateUtil.addMonths(start, 7)
-		const events = calendarUtil.applyRuleAndGetEvents(
-			{
-				startDateTimeMs: start,
-				repeats: 'monthly',
-				timeBlocks: [{ title: 'Session', isBusy: true, durationMinutes: 120 }],
-				daysOfMonth: ['7'],
-			},
-			dateUntil
-		)
+
+		const events = this.applyRulesAndGetEventsForNMonths(start, 7, {
+			daysOfMonth: ['7'],
+		})
 		assert.isTruthy(events)
 		const eventsSplitDate = events.map((e) => {
 			return dateUtil.splitDate(e.startDateTimeMs)
@@ -89,21 +80,13 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
 	@test('applyRuleAndGetMonthlyRepeating 0 hour', 0)
 	@test('applyRuleAndGetMonthlyRepeating 13 hour', 13)
 	public static async applyRuleAndGetMonthlyRepeating(hour: number) {
-		const start = this.getUTCTimestampForDay({
-			year: 2020,
-			month: 0,
+		const start = this.getStart({
 			day: 3,
 			hour,
 		})
-		const dateUntil = dateUtil.addMonths(start, 7)
-		const events = calendarUtil.applyRuleAndGetEvents(
-			{
-				startDateTimeMs: start,
-				repeats: 'monthly',
-				timeBlocks: [{ title: 'Session', isBusy: true, durationMinutes: 120 }],
-			},
-			dateUntil
-		)
+
+		const events = this.applyRulesAndGetEventsForNMonths(start, 7, {})
+
 		assert.isTruthy(events)
 		const eventsSplitDate = events.map((e) => {
 			return dateUtil.splitDate(e.startDateTimeMs)
@@ -157,23 +140,16 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
 		daysOfMonth: string[],
 		expected: any
 	) {
-		const start = this.getUTCTimestampForDay({
-			year: 2020,
+		const start = this.getStart({
 			month: 6,
 			day: 11,
 			hour,
 		})
-		const dateUntil = dateUtil.addMonths(start, 3)
-		const events = calendarUtil.applyRuleAndGetEvents(
-			{
-				startDateTimeMs: start,
-				repeats: 'monthly',
-				timeBlocks: [{ title: 'Session', isBusy: true, durationMinutes: 120 }],
-				//@ts-ignore
-				daysOfMonth,
-			},
-			dateUntil
-		)
+
+		const events = this.applyRulesAndGetEventsForNMonths(start, 3, {
+			daysOfMonth,
+		})
+
 		assert.isTruthy(events)
 		const eventsSplitDate = events.map((e) => {
 			return dateUtil.splitDate(e.startDateTimeMs)
@@ -181,6 +157,72 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
 
 		assert.isLength(events, expected.length)
 		assert.isEqualDeep(eventsSplitDate, expected)
+	}
+
+	@test()
+	public static async applyRuleAndGetMonthlyRepeatingIncludesNthInRepeating() {
+		const start = this.getStart()
+
+		const events = this.applyRulesAndGetEventsForNMonths(start, 3, {
+			daysOfMonth: ['7'],
+		})
+
+		assert.isNumber(events[0].nthInRepeating)
+		for (const [idx, event] of events.entries()) {
+			assert.isEqual(event.nthInRepeating, idx)
+		}
+	}
+
+	@test()
+	public static async getEventFromRangeByDateMonthlyRepeatingIncludesNthInRepeating() {
+		const start = this.getStart()
+		const dateUntil = dateUtil.addMonths(start, 3)
+		const event = calendarUtil.getEventFromRangeByDate(
+			{
+				startDateTimeMs: start,
+				repeats: 'monthly',
+				timeBlocks: [{ title: 'Session', isBusy: true, durationMinutes: 120 }],
+				daysOfMonth: ['1'],
+			},
+			dateUntil
+		)
+
+		assert.isTruthy(event)
+		assert.isNumber(event.nthInRepeating)
+		assert.isEqual(event.nthInRepeating, 3)
+	}
+
+	private static applyRulesAndGetEventsForNMonths(
+		start: number,
+		months: number,
+		values: any
+	) {
+		const dateUntil = dateUtil.addMonths(start, months)
+		const events = calendarUtil.applyRuleAndGetEvents(
+			{
+				startDateTimeMs: start,
+				repeats: 'monthly',
+				timeBlocks: [{ title: 'Session', isBusy: true, durationMinutes: 120 }],
+				...values,
+			},
+			dateUntil
+		)
+		return events
+	}
+
+	private static getStart(values?: {
+		year?: number
+		month?: number
+		day?: number
+		hour?: number
+	}) {
+		return this.getUTCTimestampForDay({
+			year: 2020,
+			month: 0,
+			day: 1,
+			hour: 18,
+			...values,
+		})
 	}
 
 	private static getUTCTimestampForDay(date: {

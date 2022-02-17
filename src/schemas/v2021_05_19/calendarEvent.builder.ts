@@ -168,6 +168,9 @@ export default buildSchema({
 			type: 'number',
 			isArray: true,
 		},
+		nthInRepeating: {
+			type: 'number',
+		},
 		activeUntilDate: {
 			type: 'dateTime',
 		},

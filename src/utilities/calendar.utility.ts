@@ -30,6 +30,7 @@ const calendarUtil = {
 			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
+			| 'nthInRepeating'
 			| 'timeBlocks'
 		>,
 		dateUntil: number
@@ -50,6 +51,7 @@ const calendarUtil = {
 			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
+			| 'nthInRepeating'
 			| 'timeBlocks'
 		>,
 		dateUntil: number
@@ -79,19 +81,17 @@ const calendarUtil = {
 				}),
 			})
 
-			const events = this.filterEventRulesAndGetEvents(rule, e)
+			const events = this.mapRulesToEvents(rule, e)
 
 			return events
 		}
 
 		return [e]
 	},
-	filterEventRulesAndGetEvents(
-		rule: RRule,
-		e: Pick<CalendarEvent, 'startDateTimeMs'>
-	) {
-		let events = rule.all().map((r) => ({
+	mapRulesToEvents(rule: RRule, e: Pick<CalendarEvent, 'startDateTimeMs'>) {
+		let events = rule.all().map((r, idx) => ({
 			...e,
+			nthInRepeating: idx,
 			startDateTimeMs: r.getTime(),
 		})) as CalendarEvent[]
 
@@ -129,6 +129,7 @@ const calendarUtil = {
 			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
+			| 'nthInRepeating'
 			| 'timeBlocks'
 		>,
 		date: number

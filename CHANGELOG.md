@@ -1,3 +1,10 @@
+# [14.2.0](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.20...v14.2.0) (2022-02-17)
+
+
+### Features
+
+* calendarUtility now returns nthInRepeating ([dbeeefd](https://github.com/sprucelabsai/calendar-utils/commit/dbeeefd))
+
 ## [14.1.20](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.19...v14.1.20) (2022-02-17)
 
 ## [14.1.19](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.18...v14.1.19) (2022-02-17)

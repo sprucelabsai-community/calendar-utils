@@ -115,11 +115,6 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	                options: undefined
 	            },
 	            /** . */
-	            'nthInRepeating': {
-	                type: 'number',
-	                options: undefined
-	            },
-	            /** . */
 	            'activeUntilDate': {
 	                type: 'dateTime',
 	                options: undefined
@@ -139,6 +134,16 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	            'dateCreated': {
 	                type: 'dateTime',
 	                isRequired: true,
+	                options: undefined
+	            },
+	            /** . */
+	            'nthInRepeating': {
+	                type: 'number',
+	                options: undefined
+	            },
+	            /** . */
+	            'totalInRepeating': {
+	                type: 'number',
 	                options: undefined
 	            },
 	    }

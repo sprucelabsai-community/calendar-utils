@@ -30,8 +30,9 @@ const calendarUtil = {
 			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
-			| 'nthInRepeating'
 			| 'timeBlocks'
+			| 'nthInRepeating'
+			| 'totalInRepeating'
 		>,
 		dateUntil: number
 	) {
@@ -51,8 +52,9 @@ const calendarUtil = {
 			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
-			| 'nthInRepeating'
 			| 'timeBlocks'
+			| 'nthInRepeating'
+			| 'totalInRepeating'
 		>,
 		dateUntil: number
 	) {
@@ -89,9 +91,11 @@ const calendarUtil = {
 		return [e]
 	},
 	mapRulesToEvents(rule: RRule, e: Pick<CalendarEvent, 'startDateTimeMs'>) {
-		let events = rule.all().map((r, idx) => ({
+		const allEvents = rule.all()
+		let events = allEvents.map((r, idx) => ({
 			...e,
 			nthInRepeating: idx,
+			totalInRepeating: allEvents.length,
 			startDateTimeMs: r.getTime(),
 		})) as CalendarEvent[]
 
@@ -129,8 +133,9 @@ const calendarUtil = {
 			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
-			| 'nthInRepeating'
 			| 'timeBlocks'
+			| 'nthInRepeating'
+			| 'totalInRepeating'
 		>,
 		date: number
 	) {

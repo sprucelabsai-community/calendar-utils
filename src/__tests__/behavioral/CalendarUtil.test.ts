@@ -177,19 +177,45 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
 	public static async getEventFromRangeByDateMonthlyRepeatingIncludesNthInRepeating() {
 		const start = this.getStart()
 		const dateUntil = dateUtil.addMonths(start, 3)
-		const event = calendarUtil.getEventFromRangeByDate(
-			{
-				startDateTimeMs: start,
-				repeats: 'monthly',
-				timeBlocks: [{ title: 'Session', isBusy: true, durationMinutes: 120 }],
-				daysOfMonth: ['1'],
-			},
-			dateUntil
-		)
+		const event = this.getEventFromRangeByDate(start, dateUntil)
 
 		assert.isTruthy(event)
 		assert.isNumber(event.nthInRepeating)
 		assert.isEqual(event.nthInRepeating, 3)
+	}
+
+	@test()
+	public static async applyRuleAndGetMonthlyRepeatingIncludesTotalInRepeating() {
+		const start = this.getStart()
+
+		const events = this.applyRulesAndGetEventsForNMonths(start, 10, {
+			daysOfMonth: ['7'],
+		})
+
+		assert.isNumber(events[0].totalInRepeating)
+		for (const event of events) {
+			assert.isEqual(event.totalInRepeating, 10)
+		}
+	}
+
+	@test()
+	public static async getEventFromRangeByDateMonthlyRepeatingIncludesTotalInRepeating() {
+		const start = dateUtil.getStartOfMonth(new Date().getTime())
+		const event = this.getEventFromRangeByDate(
+			start,
+			dateUtil.addMonths(start, 3)
+		)
+
+		assert.isTruthy(event)
+		assert.isNumber(event.totalInRepeating)
+		assert.isAbove(event.totalInRepeating, 118)
+		assert.isBelow(event.totalInRepeating, 122)
+
+		const event2 = this.getEventFromRangeByDate(
+			start,
+			dateUtil.addMonths(start, 13)
+		)
+		assert.isEqual(event2?.totalInRepeating, event.totalInRepeating)
 	}
 
 	private static applyRulesAndGetEventsForNMonths(
@@ -208,6 +234,18 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
 			dateUntil
 		)
 		return events
+	}
+
+	private static getEventFromRangeByDate(start: number, dateUntil: number) {
+		return calendarUtil.getEventFromRangeByDate(
+			{
+				startDateTimeMs: start,
+				repeats: 'monthly',
+				timeBlocks: [{ title: 'Session', isBusy: true, durationMinutes: 120 }],
+				daysOfMonth: ['1'],
+			},
+			dateUntil
+		)
 	}
 
 	private static getStart(values?: {

@@ -1,3 +1,10 @@
+# [14.3.0](https://github.com/sprucelabsai/calendar-utils/compare/v14.2.7...v14.3.0) (2022-02-18)
+
+
+### Features
+
+* calendarUtility now returns totalInRepeating ([41bb32d](https://github.com/sprucelabsai/calendar-utils/commit/41bb32d))
+
 ## [14.2.7](https://github.com/sprucelabsai/calendar-utils/compare/v14.2.6...v14.2.7) (2022-02-18)
 
 ## [14.2.6](https://github.com/sprucelabsai/calendar-utils/compare/v14.2.5...v14.2.6) (2022-02-18)

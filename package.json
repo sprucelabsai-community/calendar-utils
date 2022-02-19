@@ -76,7 +76,7 @@
     "@sprucelabs/jest-json-reporter": "^6.0.327",
     "@sprucelabs/resolve-path-aliases": "^1.0.260",
     "@sprucelabs/semantic-release": "^4.0.8",
-    "@sprucelabs/spruce-test-fixtures": "^25.0.9",
+    "@sprucelabs/spruce-test-fixtures": "^25.0.10",
     "@sprucelabs/test": "^7.7.281",
     "@sprucelabs/test-utils": "^3.0.438",
     "@types/lodash": "^4.14.178",

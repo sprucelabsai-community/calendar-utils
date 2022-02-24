@@ -6,20 +6,23 @@ const durationUtil = {
 			hours = Math.floor((duration / (1000 * 60 * 60)) % 24)
 		let durationStr = ''
 		if (hours > 0) {
-			durationStr += `${hours}hr `
+			durationStr += `${hours}hr`
 		}
 		if (hours > 0 && minutes > 0) {
 			durationStr += `${minutes}min `
 		}
-		if (durationStr.length > 0 && seconds > 0) {
-			durationStr += `${seconds}s `
-		}
-		if (hours === 0 && minutes === 0) {
-			if (seconds > 0) {
-				durationStr = `${seconds}.${milliseconds}s`
-			} else {
-				durationStr += `${milliseconds}ms`
+		if (seconds > 0) {
+			if (hours > 0) {
+				durationStr += '& '
 			}
+			if (milliseconds !== 0) {
+				durationStr += `${(seconds * 1000 + milliseconds) / 1000}sec `
+			} else {
+				durationStr += `${seconds}sec `
+			}
+		}
+		if (milliseconds > 0 && seconds === 0) {
+			durationStr += `${milliseconds}ms`
 		}
 		return durationStr.trim()
 	},

@@ -1,3 +1,246 @@
+## [14.3.45](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.44...v14.3.45) (2022-02-24)
+
+## [14.3.44](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.43...v14.3.44) (2022-02-24)
+
+## [14.3.43](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.42...v14.3.43) (2022-02-23)
+
+## [14.3.42](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.41...v14.3.42) (2022-02-23)
+
+## [14.3.41](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.40...v14.3.41) (2022-02-23)
+
+## [14.3.40](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.39...v14.3.40) (2022-02-23)
+
+## [14.3.39](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.38...v14.3.39) (2022-02-23)
+
+## [14.3.38](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.37...v14.3.38) (2022-02-23)
+
+## [14.3.37](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.36...v14.3.37) (2022-02-22)
+
+## [14.3.36](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.35...v14.3.36) (2022-02-22)
+
+## [14.3.35](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.34...v14.3.35) (2022-02-22)
+
+## [14.3.34](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.33...v14.3.34) (2022-02-22)
+
+## [14.3.33](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.32...v14.3.33) (2022-02-22)
+
+## [14.3.32](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.31...v14.3.32) (2022-02-22)
+
+## [14.3.31](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.30...v14.3.31) (2022-02-22)
+
+## [14.3.30](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.29...v14.3.30) (2022-02-22)
+
+## [14.3.29](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.28...v14.3.29) (2022-02-22)
+
+## [14.3.28](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.27...v14.3.28) (2022-02-21)
+
+## [14.3.27](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.26...v14.3.27) (2022-02-21)
+
+## [14.3.26](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.25...v14.3.26) (2022-02-21)
+
+## [14.3.25](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.24...v14.3.25) (2022-02-21)
+
+## [14.3.24](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.23...v14.3.24) (2022-02-21)
+
+## [14.3.23](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.22...v14.3.23) (2022-02-21)
+
+## [14.3.22](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.21...v14.3.22) (2022-02-21)
+
+## [14.3.21](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.20...v14.3.21) (2022-02-20)
+
+## [14.3.20](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.19...v14.3.20) (2022-02-20)
+
+## [14.3.19](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.18...v14.3.19) (2022-02-20)
+
+## [14.3.18](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.17...v14.3.18) (2022-02-20)
+
+## [14.3.17](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.16...v14.3.17) (2022-02-20)
+
+## [14.3.16](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.15...v14.3.16) (2022-02-20)
+
+## [14.3.15](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.14...v14.3.15) (2022-02-20)
+
+## [14.3.14](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.13...v14.3.14) (2022-02-20)
+
+## [14.3.13](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.12...v14.3.13) (2022-02-20)
+
+## [14.3.12](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.11...v14.3.12) (2022-02-19)
+
+## [14.3.11](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.10...v14.3.11) (2022-02-19)
+
+## [14.3.10](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.9...v14.3.10) (2022-02-19)
+
+## [14.3.9](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.8...v14.3.9) (2022-02-19)
+
+## [14.3.8](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.7...v14.3.8) (2022-02-19)
+
+## [14.3.7](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.6...v14.3.7) (2022-02-19)
+
+## [14.3.6](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.5...v14.3.6) (2022-02-19)
+
+## [14.3.5](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.4...v14.3.5) (2022-02-19)
+
+## [14.3.4](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.3...v14.3.4) (2022-02-19)
+
+## [14.3.3](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.2...v14.3.3) (2022-02-19)
+
+## [14.3.2](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.1...v14.3.2) (2022-02-18)
+
+## [14.3.1](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.0...v14.3.1) (2022-02-18)
+
+# [14.3.0](https://github.com/sprucelabsai/calendar-utils/compare/v14.2.7...v14.3.0) (2022-02-18)
+
+
+### Features
+
+* calendarUtility now returns totalInRepeating ([41bb32d](https://github.com/sprucelabsai/calendar-utils/commit/41bb32d))
+
+## [14.2.7](https://github.com/sprucelabsai/calendar-utils/compare/v14.2.6...v14.2.7) (2022-02-18)
+
+## [14.2.6](https://github.com/sprucelabsai/calendar-utils/compare/v14.2.5...v14.2.6) (2022-02-18)
+
+## [14.2.5](https://github.com/sprucelabsai/calendar-utils/compare/v14.2.4...v14.2.5) (2022-02-18)
+
+## [14.2.4](https://github.com/sprucelabsai/calendar-utils/compare/v14.2.3...v14.2.4) (2022-02-18)
+
+## [14.2.3](https://github.com/sprucelabsai/calendar-utils/compare/v14.2.2...v14.2.3) (2022-02-18)
+
+## [14.2.2](https://github.com/sprucelabsai/calendar-utils/compare/v14.2.1...v14.2.2) (2022-02-18)
+
+## [14.2.1](https://github.com/sprucelabsai/calendar-utils/compare/v14.2.0...v14.2.1) (2022-02-18)
+
+# [14.2.0](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.20...v14.2.0) (2022-02-17)
+
+
+### Features
+
+* calendarUtility now returns nthInRepeating ([dbeeefd](https://github.com/sprucelabsai/calendar-utils/commit/dbeeefd))
+
+## [14.1.20](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.19...v14.1.20) (2022-02-17)
+
+## [14.1.19](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.18...v14.1.19) (2022-02-17)
+
+## [14.1.18](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.17...v14.1.18) (2022-02-17)
+
+## [14.1.17](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.16...v14.1.17) (2022-02-17)
+
+## [14.1.16](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.15...v14.1.16) (2022-02-17)
+
+## [14.1.15](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.14...v14.1.15) (2022-02-17)
+
+## [14.1.14](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.13...v14.1.14) (2022-02-17)
+
+## [14.1.13](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.12...v14.1.13) (2022-02-16)
+
+## [14.1.12](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.11...v14.1.12) (2022-02-16)
+
+## [14.1.11](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.10...v14.1.11) (2022-02-16)
+
+## [14.1.10](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.9...v14.1.10) (2022-02-16)
+
+## [14.1.9](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.8...v14.1.9) (2022-02-16)
+
+## [14.1.8](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.7...v14.1.8) (2022-02-16)
+
+## [14.1.7](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.6...v14.1.7) (2022-02-16)
+
+## [14.1.6](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.5...v14.1.6) (2022-02-15)
+
+## [14.1.5](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.4...v14.1.5) (2022-02-15)
+
+## [14.1.4](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.3...v14.1.4) (2022-02-15)
+
+## [14.1.3](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.2...v14.1.3) (2022-02-15)
+
+## [14.1.2](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.1...v14.1.2) (2022-02-14)
+
+## [14.1.1](https://github.com/sprucelabsai/calendar-utils/compare/v14.1.0...v14.1.1) (2022-02-14)
+
+# [14.1.0](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.76...v14.1.0) (2022-02-14)
+
+
+### Features
+
+* monthly repeating can now specify multiple days of the month ([08a2ab2](https://github.com/sprucelabsai/calendar-utils/commit/08a2ab2))
+
+## [14.0.76](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.75...v14.0.76) (2022-02-14)
+
+## [14.0.75](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.74...v14.0.75) (2022-02-14)
+
+## [14.0.74](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.73...v14.0.74) (2022-02-14)
+
+## [14.0.73](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.72...v14.0.73) (2022-02-14)
+
+## [14.0.72](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.71...v14.0.72) (2022-02-14)
+
+## [14.0.71](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.70...v14.0.71) (2022-02-14)
+
+## [14.0.70](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.69...v14.0.70) (2022-02-12)
+
+## [14.0.69](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.68...v14.0.69) (2022-02-12)
+
+## [14.0.68](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.67...v14.0.68) (2022-02-12)
+
+## [14.0.67](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.66...v14.0.67) (2022-02-12)
+
+## [14.0.66](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.65...v14.0.66) (2022-02-12)
+
+## [14.0.65](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.64...v14.0.65) (2022-02-12)
+
+## [14.0.64](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.63...v14.0.64) (2022-02-12)
+
+## [14.0.63](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.62...v14.0.63) (2022-02-12)
+
+## [14.0.62](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.61...v14.0.62) (2022-02-11)
+
+## [14.0.61](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.60...v14.0.61) (2022-02-11)
+
+## [14.0.60](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.59...v14.0.60) (2022-02-11)
+
+## [14.0.59](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.58...v14.0.59) (2022-02-10)
+
+## [14.0.58](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.57...v14.0.58) (2022-02-10)
+
+## [14.0.57](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.56...v14.0.57) (2022-02-10)
+
+## [14.0.56](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.55...v14.0.56) (2022-02-10)
+
+## [14.0.55](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.54...v14.0.55) (2022-02-10)
+
+## [14.0.54](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.53...v14.0.54) (2022-02-10)
+
+## [14.0.53](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.52...v14.0.53) (2022-02-09)
+
+## [14.0.52](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.51...v14.0.52) (2022-02-09)
+
+## [14.0.51](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.50...v14.0.51) (2022-02-09)
+
+## [14.0.50](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.49...v14.0.50) (2022-02-09)
+
+## [14.0.49](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.48...v14.0.49) (2022-02-09)
+
+## [14.0.48](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.47...v14.0.48) (2022-02-09)
+
+## [14.0.47](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.46...v14.0.47) (2022-02-09)
+
+## [14.0.46](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.45...v14.0.46) (2022-02-08)
+
+## [14.0.45](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.44...v14.0.45) (2022-02-08)
+
+## [14.0.44](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.43...v14.0.44) (2022-02-08)
+
+## [14.0.43](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.42...v14.0.43) (2022-02-08)
+
+## [14.0.42](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.41...v14.0.42) (2022-02-08)
+
+## [14.0.41](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.40...v14.0.41) (2022-02-08)
+
+## [14.0.40](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.39...v14.0.40) (2022-02-08)
+
+## [14.0.39](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.38...v14.0.39) (2022-02-08)
+
+## [14.0.38](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.37...v14.0.38) (2022-02-07)
+
 ## [14.0.37](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.36...v14.0.37) (2022-02-07)
 
 ## [14.0.36](https://github.com/sprucelabsai/calendar-utils/compare/v14.0.35...v14.0.36) (2022-02-07)

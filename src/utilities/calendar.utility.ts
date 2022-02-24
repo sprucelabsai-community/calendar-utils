@@ -25,11 +25,14 @@ const calendarUtil = {
 			| 'repeats'
 			| 'repeatsUntil'
 			| 'daysOfWeek'
+			| 'daysOfMonth'
 			| 'interval'
 			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
 			| 'timeBlocks'
+			| 'nthInRepeating'
+			| 'totalInRepeating'
 		>,
 		dateUntil: number
 	) {
@@ -44,11 +47,14 @@ const calendarUtil = {
 			| 'repeats'
 			| 'repeatsUntil'
 			| 'daysOfWeek'
+			| 'daysOfMonth'
 			| 'interval'
 			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
 			| 'timeBlocks'
+			| 'nthInRepeating'
+			| 'totalInRepeating'
 		>,
 		dateUntil: number
 	) {
@@ -66,6 +72,7 @@ const calendarUtil = {
 				interval: e.interval ?? 1,
 				byweekday: e.daysOfWeek?.map((d) => this.weekDaysMapToRRuleDays[d]),
 				dtstart: new Date(e.startDateTimeMs),
+				bymonthday: e.daysOfMonth?.map((d) => parseInt(d)),
 				until: new Date(repeatsUntil),
 				count: e.occurrences,
 				bysetpos: e.nthOccurrences?.map((o) => {
@@ -76,20 +83,19 @@ const calendarUtil = {
 				}),
 			})
 
-			const events = this.filterEventRulesAndGetEvents(rule, e)
+			const events = this.mapRulesToEvents(rule, e)
 
 			return events
 		}
 
 		return [e]
 	},
-	filterEventRulesAndGetEvents(
-		rule: RRule,
-		e: Pick<CalendarEvent, 'startDateTimeMs'>
-	) {
-		let events = rule.all().map((r) => ({
+	mapRulesToEvents(rule: RRule, e: Pick<CalendarEvent, 'startDateTimeMs'>) {
+		const allEvents = rule.all()
+		let events = allEvents.map((r, idx) => ({
 			...e,
 			nthInRepeating: idx,
+			totalInRepeating: allEvents.length,
 			startDateTimeMs: r.getTime(),
 		})) as CalendarEvent[]
 
@@ -122,11 +128,14 @@ const calendarUtil = {
 			| 'repeats'
 			| 'repeatsUntil'
 			| 'daysOfWeek'
+			| 'daysOfMonth'
 			| 'interval'
 			| 'startDateTimeMs'
 			| 'occurrences'
 			| 'nthOccurrences'
 			| 'timeBlocks'
+			| 'nthInRepeating'
+			| 'totalInRepeating'
 		>,
 		date: number
 	) {

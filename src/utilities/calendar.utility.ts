@@ -89,6 +89,7 @@ const calendarUtil = {
 	) {
 		let events = rule.all().map((r) => ({
 			...e,
+			nthInRepeating: idx,
 			startDateTimeMs: r.getTime(),
 		})) as CalendarEvent[]
 
@@ -96,13 +97,13 @@ const calendarUtil = {
 	},
 	isExcluded(e: Pick<CalendarEvent, 'exclusionDates' | 'startDateTimeMs'>) {
 		if (e.exclusionDates) {
-			const splitedStartDate = dateUtil.splitDate(e.startDateTimeMs)
+			const splitStartDate = dateUtil.splitDate(e.startDateTimeMs)
 
 			const isExcluded = e.exclusionDates.find((d) => {
 				if (
-					splitedStartDate.year === d.year &&
-					splitedStartDate.month === d.month &&
-					splitedStartDate.day === d.day
+					splitStartDate.year === d.year &&
+					splitStartDate.month === d.month &&
+					splitStartDate.day === d.day
 				) {
 					return true
 				}

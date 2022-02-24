@@ -8,10 +8,10 @@ const durationUtil = {
 		if (hours > 0) {
 			durationStr += `${hours}hr `
 		}
-		if (hours > 0 || minutes > 0) {
+		if (hours > 0 && minutes > 0) {
 			durationStr += `${minutes}min `
 		}
-		if (durationStr.length > 0 || seconds > 0) {
+		if (durationStr.length > 0 && seconds > 0) {
 			durationStr += `${seconds}s `
 		}
 		if (hours === 0 && minutes === 0) {

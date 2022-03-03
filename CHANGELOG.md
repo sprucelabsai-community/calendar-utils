@@ -1,3 +1,10 @@
+# [18.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v17.0.0...v18.0.0) (2022-03-03)
+
+
+### Breaking Changes
+
+* **auto-upgrade:** upgraded packages [upgrade-all] ([e48c6ba](https://github.com/sprucelabsai/calendar-utils/commit/e48c6ba))
+
 # [17.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v16.0.2...v17.0.0) (2022-03-03)
 
 

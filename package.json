@@ -17,7 +17,10 @@
   "description": "Helpful calendar utilities",
   "skill": {
     "namespace": "calendar-utils",
-    "upgradeIgnoreList": [],
+    "upgradeIgnoreList": [
+      "@sprucelabs/spruce-skill-utils",
+      "@sprucelabs/spruce-test-fixtures"
+    ],
     "commandOverrides": {
       "sync.schemas": "--shouldFetchCoreSchemas false --moduleToImportFromWhenRemote @sprucelabs/calendar-utils"
     }
@@ -66,7 +69,6 @@
     "@sprucelabs/schema": "^27.1.0",
     "@sprucelabs/spruce-core-schemas": "^25.0.16",
     "@sprucelabs/spruce-event-utils": "^19.0.2",
-    "@sprucelabs/spruce-skill-utils": "^25.0.11",
     "date-fns": "^2.28.0",
     "lodash": "^4.17.21",
     "rrule": "^2.6.8"
@@ -76,7 +78,6 @@
     "@sprucelabs/jest-json-reporter": "^6.0.334",
     "@sprucelabs/resolve-path-aliases": "^1.1.4",
     "@sprucelabs/semantic-release": "^4.0.8",
-    "@sprucelabs/spruce-test-fixtures": "^28.0.0",
     "@sprucelabs/test": "^7.7.284",
     "@sprucelabs/test-utils": "^3.0.485",
     "@types/lodash": "^4.14.179",
@@ -87,7 +88,6 @@
     "eslint-config-spruce": "^10.11.2",
     "jest": "^27.5.1",
     "jest-circus": "^27.5.1",
-    "marked": "^4.0.12",
     "prettier": "^2.5.1",
     "timezone-mock": "^1.3.1",
     "ts-node": "^10.6.0",

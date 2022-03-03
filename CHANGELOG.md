@@ -1,3 +1,10 @@
+# [16.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v15.0.0...v16.0.0) (2022-03-03)
+
+
+### Breaking Changes
+
+* upgarde ([576ea0c](https://github.com/sprucelabsai/calendar-utils/commit/576ea0c))
+
 # [15.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.68...v15.0.0) (2022-03-03)
 
 

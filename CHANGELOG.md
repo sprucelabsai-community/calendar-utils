@@ -1,3 +1,38 @@
+## [18.0.5](https://github.com/sprucelabsai/calendar-utils/compare/v18.0.4...v18.0.5) (2022-03-04)
+
+## [18.0.4](https://github.com/sprucelabsai/calendar-utils/compare/v18.0.3...v18.0.4) (2022-03-04)
+
+## [18.0.3](https://github.com/sprucelabsai/calendar-utils/compare/v18.0.2...v18.0.3) (2022-03-03)
+
+## [18.0.2](https://github.com/sprucelabsai/calendar-utils/compare/v18.0.1...v18.0.2) (2022-03-03)
+
+## [18.0.1](https://github.com/sprucelabsai/calendar-utils/compare/v18.0.0...v18.0.1) (2022-03-03)
+
+# [18.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v17.0.0...v18.0.0) (2022-03-03)
+
+
+### Breaking Changes
+
+* **auto-upgrade:** upgraded packages [upgrade-all] ([e48c6ba](https://github.com/sprucelabsai/calendar-utils/commit/e48c6ba))
+
+# [17.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v16.0.2...v17.0.0) (2022-03-03)
+
+
+### Breaking Changes
+
+* **auto-upgrade:** upgraded packages [upgrade-all] ([68e28ff](https://github.com/sprucelabsai/calendar-utils/commit/68e28ff))
+
+## [16.0.2](https://github.com/sprucelabsai/calendar-utils/compare/v16.0.1...v16.0.2) (2022-03-03)
+
+## [16.0.1](https://github.com/sprucelabsai/calendar-utils/compare/v16.0.0...v16.0.1) (2022-03-03)
+
+# [16.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v15.0.0...v16.0.0) (2022-03-03)
+
+
+### Breaking Changes
+
+* upgarde ([576ea0c](https://github.com/sprucelabsai/calendar-utils/commit/576ea0c))
+
 # [15.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v14.3.68...v15.0.0) (2022-03-03)
 
 

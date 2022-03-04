@@ -8,7 +8,7 @@ const durationUtil = {
 		if (hours > 0) {
 			durationStr += `${hours}hr`
 		}
-		if (hours > 0 && minutes > 0) {
+		if (minutes > 0) {
 			durationStr += `${minutes}min `
 		}
 		if (seconds > 0) {

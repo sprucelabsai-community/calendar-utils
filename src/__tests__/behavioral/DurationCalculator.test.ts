@@ -1,7 +1,7 @@
 import { SpruceSchemas } from '@sprucelabs/mercury-types'
 import AbstractSpruceTest, { test, assert } from '@sprucelabs/test'
-import calculateServiceDurationMillis from '../../durationCalculators/calculateEventDurationMillis'
-import calculateServiceDurationMinutes from '../../durationCalculators/calculateEventDurationMinutes'
+import calculateEventDurationMillis from '../../durationCalculators/calculateEventDurationMillis'
+import calculateEventDurationMinutes from '../../durationCalculators/calculateEventDurationMinutes'
 import dateUtil from '../../utilities/date.utility'
 
 //extracted from calendar skill, most tests there.
@@ -9,9 +9,9 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
 	@test()
 	protected static async canCalculateDurationMillis() {
 		const event = generateEventValues()
-		const durationMin = calculateServiceDurationMinutes(event)
+		const durationMin = calculateEventDurationMinutes(event)
 		const expected = durationMin * 60 * 1000
-		const actual = calculateServiceDurationMillis(event)
+		const actual = calculateEventDurationMillis(event)
 		assert.isEqual(actual, expected)
 	}
 }

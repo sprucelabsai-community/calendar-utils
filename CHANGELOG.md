@@ -1,3 +1,10 @@
+# [18.1.0](https://github.com/sprucelabsai/calendar-utils/compare/v18.0.7...v18.1.0) (2022-03-05)
+
+
+### Features
+
+* duration calculators ([72d144f](https://github.com/sprucelabsai/calendar-utils/commit/72d144f))
+
 ## [18.0.7](https://github.com/sprucelabsai/calendar-utils/compare/v18.0.6...v18.0.7) (2022-03-04)
 
 ## [18.0.6](https://github.com/sprucelabsai/calendar-utils/compare/v18.0.5...v18.0.6) (2022-03-04)

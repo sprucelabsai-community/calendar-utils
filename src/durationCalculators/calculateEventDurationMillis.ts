@@ -1,4 +1,4 @@
-import { SpruceSchemas } from '@sprucelabs/heartwood-view-controllers'
+import { SpruceSchemas } from '@sprucelabs/mercury-types'
 import calculateServiceDurationMinutes from './calculateEventDurationMinutes'
 
 export default function calculateServiceDurationMillis(service: {

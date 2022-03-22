@@ -75,4 +75,4 @@ workflows:
           filters:
             branches:
               only:
-                - neverRunOnlyForCron
+                - never_run_only_for_cron

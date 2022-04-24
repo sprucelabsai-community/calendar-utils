@@ -1,3 +1,5 @@
+## [18.1.89](https://github.com/sprucelabsai/calendar-utils/compare/v18.1.88...v18.1.89) (2022-04-24)
+
 ## [18.1.88](https://github.com/sprucelabsai/calendar-utils/compare/v18.1.87...v18.1.88) (2022-04-23)
 
 ## [18.1.87](https://github.com/sprucelabsai/calendar-utils/compare/v18.1.86...v18.1.87) (2022-04-23)

@@ -1,3 +1,5 @@
+import dateUtil from './date.utility'
+
 const durationUtil = {
 	msToFriendly(duration: number): string {
 		let milliseconds = duration % 1000,
@@ -25,6 +27,31 @@ const durationUtil = {
 			durationStr += `${milliseconds}ms`
 		}
 		return durationStr.trim()
+	},
+
+	timeUntilFriendly(start: number) {
+		const now = new Date().getTime()
+
+		let startDateAndTime = 'today'
+		const daysFromNow = Math.round((start - now) / (1000 * 3600 * 24))
+
+		if (daysFromNow === -1) {
+			startDateAndTime = 'yesterday'
+		} else if (daysFromNow === 1) {
+			startDateAndTime = 'tomorrow'
+		} else if (daysFromNow > 1) {
+			startDateAndTime =
+				dateUtil.format(start, 'MMM do') + ` (in ${daysFromNow} days)`
+		} else if (daysFromNow < 1) {
+			startDateAndTime =
+				dateUtil.format(start, 'MMM do') + ` (${daysFromNow * -1} days ago)`
+		}
+
+		startDateAndTime += ` @ ${dateUtil.format(start, 'h:mmaaa')}`.replace(
+			':00',
+			''
+		)
+		return startDateAndTime
 	},
 }
 export default durationUtil

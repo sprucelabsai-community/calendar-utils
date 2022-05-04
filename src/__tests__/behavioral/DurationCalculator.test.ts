@@ -4,8 +4,11 @@ import { lunch, tomorrowLunch } from '../../dates'
 import calculateEventDurationMillis from '../../durationCalculators/calculateEventDurationMillis'
 import calculateEventDurationMinutes from '../../durationCalculators/calculateEventDurationMinutes'
 import dateUtil from '../../utilities/date.utility'
-import durationUtil from '../../utilities/duration.utility'
+import durationUtil, {
+	TimeUntilPrefixOptions,
+} from '../../utilities/duration.utility'
 
+const MONTH_DAY_FORMAT = 'MMM do'
 //extracted from calendar skill, most tests there.
 export default class DurationCalculatorTest extends AbstractSpruceTest {
 	@test()
@@ -26,13 +29,13 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
 	@test(
 		'sets expected startDateAndTime to day after tomorrow',
 		dateUtil.addDays(lunch(), 2),
-		dateUtil.format(dateUtil.addDays(lunch(), 2), 'MMM do') +
+		dateUtil.format(dateUtil.addDays(lunch(), 2), MONTH_DAY_FORMAT) +
 			' (in 2 days) @ 12pm'
 	)
 	@test(
 		'sets expected startDateAndTime for in 3 days',
 		dateUtil.addDays(lunch(), 3),
-		dateUtil.format(dateUtil.addDays(lunch(), 3), 'MMM do') +
+		dateUtil.format(dateUtil.addDays(lunch(), 3), MONTH_DAY_FORMAT) +
 			' (in 3 days) @ 12pm'
 	)
 	@test(
@@ -48,15 +51,64 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
 	@test(
 		'sets expected startDateAndTime for back 3 days',
 		dateUtil.addDays(lunch(), -3),
-		dateUtil.format(dateUtil.addDays(lunch(), -3), 'MMM do') +
+		dateUtil.format(dateUtil.addDays(lunch(), -3), MONTH_DAY_FORMAT) +
 			' (3 days ago) @ 12pm'
 	)
 	protected static async expectedFriendlyStartBasedOnFirstBookedService(
 		date: number,
 		expected: string
 	) {
-		const actual = durationUtil.timeUntilFriendly(date)
+		const actual = this.timeUntil(date)
+		assert.isEqual(actual, 'for ' + expected)
+	}
+
+	@test()
+	protected static async canChangeTheSuffixForToday() {
+		const actual = this.timeUntil(lunch(), { today: 'is' })
+		assert.isEqual(actual.substring(0, 3), `is `)
+	}
+
+	@test()
+	protected static async canChangeTheSuffixes() {
+		this.assertExpectedSuffix(tomorrowLunch(), 'tomorrow', 'future')
+		this.assertExpectedSuffix(
+			dateUtil.addDays(lunch(), -1),
+			'yesterday',
+			'past'
+		)
+		this.assertExpectedSuffix(dateUtil.addDays(lunch(), 10), 'future', 'future')
+		this.assertExpectedSuffix(dateUtil.addDays(lunch(), -10), 'past', 'back')
+	}
+
+	@test()
+	protected static async nullPrefixRendersNoPrefix() {
+		const actual = this.timeUntilWithPrefix(lunch(), 'today', null)
+		const expected = 'today @ 12pm'
 		assert.isEqual(actual, expected)
+	}
+
+	private static assertExpectedSuffix(
+		date: number,
+		key: keyof TimeUntilPrefixOptions,
+		prefix: string
+	) {
+		const actual = this.timeUntilWithPrefix(date, key, prefix)
+		assert.isEqual(actual.substring(0, prefix.length + 1), `${prefix} `)
+	}
+
+	private static timeUntilWithPrefix(
+		date: number,
+		key: keyof TimeUntilPrefixOptions,
+		prefix: string | null
+	) {
+		return this.timeUntil(date, { [key]: prefix })
+	}
+
+	private static timeUntil(
+		date: number,
+		suffixes?: Partial<TimeUntilPrefixOptions>
+	) {
+		return durationUtil.timeUntilFriendly(date, suffixes)
 	}
 }
 

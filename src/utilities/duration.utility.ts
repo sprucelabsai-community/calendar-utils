@@ -29,20 +29,35 @@ const durationUtil = {
 		return durationStr.trim()
 	},
 
-	timeUntilFriendly(start: number) {
+	timeUntilFriendly(
+		start: number,
+		preffixes?: Partial<TimeUntilPrefixOptions>
+	): string {
 		const now = new Date().getTime()
+		const {
+			today = 'for',
+			tomorrow = 'for',
+			yesterday = 'for',
+			future = 'for',
+			past = 'for',
+		} = preffixes ?? {}
+		let prefix = today
 
 		let startDateAndTime = 'today'
 		const daysFromNow = Math.round((start - now) / (1000 * 3600 * 24))
 
 		if (daysFromNow === -1) {
+			prefix = yesterday
 			startDateAndTime = 'yesterday'
 		} else if (daysFromNow === 1) {
+			prefix = tomorrow
 			startDateAndTime = 'tomorrow'
 		} else if (daysFromNow > 1) {
+			prefix = future
 			startDateAndTime =
 				dateUtil.format(start, 'MMM do') + ` (in ${daysFromNow} days)`
 		} else if (daysFromNow < -1) {
+			prefix = past
 			startDateAndTime =
 				dateUtil.format(start, 'MMM do') + ` (${daysFromNow * -1} days ago)`
 		}
@@ -51,7 +66,15 @@ const durationUtil = {
 			':00',
 			''
 		)
-		return startDateAndTime
+		return `${prefix ? `${prefix} ` : ''}${startDateAndTime}`
 	},
 }
 export default durationUtil
+
+export interface TimeUntilPrefixOptions {
+	yesterday?: string | null
+	today?: string | null
+	tomorrow?: string | null
+	future?: string | null
+	past?: string | null
+}

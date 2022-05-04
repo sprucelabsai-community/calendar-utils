@@ -1,3 +1,11 @@
+# [19.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v18.2.1...v19.0.0) (2022-05-04)
+
+
+### Breaking Changes
+
+* duration util now includes prefix configuration for timeUntilFriendly ([a33087f](https://github.com/sprucelabsai/calendar-utils/commit/a33087f))
+* renamed timeUntilFriendly to dateTimeUntilFriendly to indicate it includes both a date and a time ([e5f21ed](https://github.com/sprucelabsai/calendar-utils/commit/e5f21ed))
+
 ## [18.2.1](https://github.com/sprucelabsai/calendar-utils/compare/v18.2.0...v18.2.1) (2022-05-04)
 
 # [18.2.0](https://github.com/sprucelabsai/calendar-utils/compare/v18.1.116...v18.2.0) (2022-05-04)

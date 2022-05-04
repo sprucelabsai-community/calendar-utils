@@ -1,3 +1,10 @@
+# [18.2.0](https://github.com/sprucelabsai/calendar-utils/compare/v18.1.116...v18.2.0) (2022-05-04)
+
+
+### Features
+
+* duration util now has friendly time until generator and now lots of helpful date utils are exported ([2e1d24b](https://github.com/sprucelabsai/calendar-utils/commit/2e1d24b))
+
 ## [18.1.116](https://github.com/sprucelabsai/calendar-utils/compare/v18.1.115...v18.1.116) (2022-05-03)
 
 ## [18.1.115](https://github.com/sprucelabsai/calendar-utils/compare/v18.1.114...v18.1.115) (2022-05-03)

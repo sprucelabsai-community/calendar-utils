@@ -29,7 +29,7 @@ const durationUtil = {
 		return durationStr.trim()
 	},
 
-	timeUntilFriendly(
+	dateTimeUntilFriendly(
 		start: number,
 		preffixes?: Partial<TimeUntilPrefixOptions>
 	): string {

@@ -108,7 +108,7 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
 		date: number,
 		suffixes?: Partial<TimeUntilPrefixOptions>
 	) {
-		return durationUtil.timeUntilFriendly(date, suffixes)
+		return durationUtil.dateTimeUntilFriendly(date, suffixes)
 	}
 }
 

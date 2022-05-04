@@ -35,11 +35,11 @@ const durationUtil = {
 	): string {
 		const now = new Date().getTime()
 		const {
-			today = 'for',
-			tomorrow = 'for',
-			yesterday = 'for',
-			future = 'for',
-			past = 'for',
+			today = null,
+			tomorrow = null,
+			yesterday = null,
+			future = null,
+			past = null,
 		} = preffixes ?? {}
 		let prefix = today
 

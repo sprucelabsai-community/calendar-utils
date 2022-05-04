@@ -58,7 +58,13 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
 		date: number,
 		expected: string
 	) {
-		const actual = this.timeUntil(date)
+		const actual = this.timeUntil(date, {
+			future: 'for',
+			past: 'for',
+			today: 'for',
+			tomorrow: 'for',
+			yesterday: 'for',
+		})
 		assert.isEqual(actual, 'for ' + expected)
 	}
 

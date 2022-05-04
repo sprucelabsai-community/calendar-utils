@@ -22,6 +22,7 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
 		tomorrowLunch(),
 		'tomorrow @ 12pm'
 	)
+	@test('sets expected startDateAndTime to today', lunch(), 'today @ 12pm')
 	@test(
 		'sets expected startDateAndTime to day after tomorrow',
 		dateUtil.addDays(lunch(), 2),

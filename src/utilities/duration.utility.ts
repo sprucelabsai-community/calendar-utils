@@ -42,7 +42,7 @@ const durationUtil = {
 		} else if (daysFromNow > 1) {
 			startDateAndTime =
 				dateUtil.format(start, 'MMM do') + ` (in ${daysFromNow} days)`
-		} else if (daysFromNow < 1) {
+		} else if (daysFromNow < -1) {
 			startDateAndTime =
 				dateUtil.format(start, 'MMM do') + ` (${daysFromNow * -1} days ago)`
 		}

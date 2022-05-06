@@ -1,3 +1,10 @@
+# [20.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v19.0.6...v20.0.0) (2022-05-06)
+
+
+### Breaking Changes
+
+* **auto-upgrade:** upgraded packages [upgrade-all] ([604442c](https://github.com/sprucelabsai/calendar-utils/commit/604442c))
+
 ## [19.0.6](https://github.com/sprucelabsai/calendar-utils/compare/v19.0.5...v19.0.6) (2022-05-06)
 
 ## [19.0.5](https://github.com/sprucelabsai/calendar-utils/compare/v19.0.4...v19.0.5) (2022-05-06)

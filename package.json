@@ -68,7 +68,7 @@
     "@sprucelabs/mercury-types": "^28.0.36",
     "@sprucelabs/schema": "^28.2.10",
     "@sprucelabs/spruce-core-schemas": "^27.1.23",
-    "@sprucelabs/spruce-event-utils": "^20.1.43",
+    "@sprucelabs/spruce-event-utils": "^20.1.44",
     "date-fns": "^2.28.0",
     "lodash": "^4.17.21",
     "rrule": "^2.6.9"

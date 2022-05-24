@@ -1,3 +1,10 @@
+# [22.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v21.0.2...v22.0.0) (2022-05-24)
+
+
+### Breaking Changes
+
+* spruce upgrade ([a2eb57b](https://github.com/sprucelabsai/calendar-utils/commit/a2eb57b))
+
 ## [21.0.2](https://github.com/sprucelabsai/calendar-utils/compare/v21.0.1...v21.0.2) (2022-05-24)
 
 ## [21.0.1](https://github.com/sprucelabsai/calendar-utils/compare/v21.0.0...v21.0.1) (2022-05-24)

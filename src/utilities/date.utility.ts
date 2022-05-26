@@ -1,3 +1,4 @@
+import { timeStamp } from 'console'
 import { SchemaError } from '@sprucelabs/schema'
 import { addMilliseconds, addMinutes, format as formatDate } from 'date-fns'
 import { daysOfWeek } from '../constants'
@@ -587,6 +588,20 @@ const dateUtil = {
 		const date = new Date(timestamp)
 		const offsetMinutes = date.getTimezoneOffset()
 		return formatDate(timestamp + offsetMinutes * 60 * 1000, format)
+	},
+
+	formatTime(timestamp: number): string {
+		return this.format(timestamp, 'h:mmaaa').replace(':00', '')
+	},
+	formatDateTime(timestamp: number): string {
+		return (
+			this.format(timestamp, 'MMM do, yyyy').replace(
+				this.format(new Date().getTime(), ', yyyy'),
+				''
+			) +
+			' @ ' +
+			this.formatTime(timestamp)
+		)
 	},
 	add(timestamp: number, count: number, unit: DateUnit) {
 		return adders[unit](timestamp, count)

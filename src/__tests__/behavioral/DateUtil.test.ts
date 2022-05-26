@@ -777,6 +777,58 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		assert.isEqual(total, expected)
 	}
 
+	@test()
+	protected static rendersFriendlies() {
+		const { year } = dateUtil.splitDate(new Date().getTime())
+		this.assertFormatTimeEquals(10, 30, '10:30am')
+		this.assertFormatTimeEquals(9, 45, '9:45am')
+		this.assertFormatTimeEquals(13, 12, '1:12pm')
+		this.assertFormatTimeEquals(8, 0, '8am')
+		this.assertFormatDateTimeEquals(year, 0, 8, 10, 10, 'Jan 8th @ 10:10am')
+		this.assertFormatDateTimeEquals(year, 1, 8, 10, 10, 'Feb 8th @ 10:10am')
+		this.assertFormatDateTimeEquals(year, 1, 10, 10, 10, 'Feb 10th @ 10:10am')
+		this.assertFormatDateTimeEquals(year, 1, 10, 14, 20, 'Feb 10th @ 2:20pm')
+		this.assertFormatDateTimeEquals(
+			year + 1,
+			1,
+			10,
+			14,
+			20,
+			`Feb 10th, ${year + 1} @ 2:20pm`
+		)
+	}
+
+	private static assertFormatTimeEquals(
+		hour: number,
+		minutes: number,
+		expected: string
+	) {
+		const time = dateUtil.formatTime(
+			dateUtil.setTimeOfDay(new Date().getTime(), hour, minutes, 0, 0)
+		)
+		assert.isEqual(time, expected)
+	}
+
+	private static assertFormatDateTimeEquals(
+		year: number,
+		month: number,
+		day: number,
+		hour: number,
+		minute: number,
+		expected: string
+	) {
+		const time = dateUtil.formatDateTime(
+			dateUtil.date({
+				year,
+				month,
+				day,
+				hour,
+				minute,
+			})
+		)
+		assert.isEqual(time, expected)
+	}
+
 	private static stripSeconds(number: number): string {
 		const str = `${number}`
 		return str.slice(0, -4)

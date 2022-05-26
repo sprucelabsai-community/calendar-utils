@@ -592,15 +592,15 @@ const dateUtil = {
 	formatTime(timestamp: number): string {
 		return this.format(timestamp, 'h:mmaaa').replace(':00', '')
 	},
-	formatDateTime(timestamp: number): string {
-		return (
-			this.format(timestamp, 'MMM do, yyyy').replace(
-				this.format(new Date().getTime(), ', yyyy'),
-				''
-			) +
-			' @ ' +
-			this.formatTime(timestamp)
+	formatDate(timestamp: number): string {
+		return this.format(timestamp, 'MMM do, yyyy').replace(
+			this.format(new Date().getTime(), ', yyyy'),
+			''
 		)
+	},
+
+	formatDateTime(timestamp: number): string {
+		return this.formatDate(timestamp) + ' @ ' + this.formatTime(timestamp)
 	},
 	add(timestamp: number, count: number, unit: DateUnit) {
 		return adders[unit](timestamp, count)

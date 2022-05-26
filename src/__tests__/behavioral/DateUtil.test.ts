@@ -796,6 +796,11 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 			20,
 			`Feb 10th, ${year + 1} @ 2:20pm`
 		)
+
+		this.assertFormatDateEquals(year, 0, 8, 10, 10, 'Jan 8th')
+		this.assertFormatDateEquals(year, 1, 8, 10, 10, 'Feb 8th')
+		this.assertFormatDateEquals(year, 1, 10, 10, 10, 'Feb 10th')
+		this.assertFormatDateEquals(year, 1, 10, 14, 20, 'Feb 10th')
 	}
 
 	private static assertFormatTimeEquals(
@@ -805,6 +810,25 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	) {
 		const time = dateUtil.formatTime(
 			dateUtil.setTimeOfDay(new Date().getTime(), hour, minutes, 0, 0)
+		)
+		assert.isEqual(time, expected)
+	}
+	private static assertFormatDateEquals(
+		year: number,
+		month: number,
+		day: number,
+		hour: number,
+		minute: number,
+		expected: string
+	) {
+		const time = dateUtil.formatDate(
+			dateUtil.date({
+				year,
+				month,
+				day,
+				hour,
+				minute,
+			})
 		)
 		assert.isEqual(time, expected)
 	}

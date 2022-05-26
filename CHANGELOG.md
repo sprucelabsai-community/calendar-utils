@@ -1,3 +1,10 @@
+# [22.1.0](https://github.com/sprucelabsai/calendar-utils/compare/v22.0.4...v22.1.0) (2022-05-26)
+
+
+### Features
+
+* date formatting to make working with dates and times even more INTUITIVE! ([d573152](https://github.com/sprucelabsai/calendar-utils/commit/d573152))
+
 ## [22.0.4](https://github.com/sprucelabsai/calendar-utils/compare/v22.0.3...v22.0.4) (2022-05-26)
 
 ## [22.0.3](https://github.com/sprucelabsai/calendar-utils/compare/v22.0.2...v22.0.3) (2022-05-26)

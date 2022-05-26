@@ -1,4 +1,3 @@
-import { timeStamp } from 'console'
 import { SchemaError } from '@sprucelabs/schema'
 import { addMilliseconds, addMinutes, format as formatDate } from 'date-fns'
 import { daysOfWeek } from '../constants'

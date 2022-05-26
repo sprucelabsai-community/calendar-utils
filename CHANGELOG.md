@@ -1,3 +1,10 @@
+# [22.2.0](https://github.com/sprucelabsai/calendar-utils/compare/v22.1.1...v22.2.0) (2022-05-26)
+
+
+### Features
+
+* format date missed ([790c189](https://github.com/sprucelabsai/calendar-utils/commit/790c189))
+
 ## [22.1.1](https://github.com/sprucelabsai/calendar-utils/compare/v22.1.0...v22.1.1) (2022-05-26)
 
 # [22.1.0](https://github.com/sprucelabsai/calendar-utils/compare/v22.0.4...v22.1.0) (2022-05-26)

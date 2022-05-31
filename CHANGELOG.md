@@ -1,3 +1,10 @@
+# [22.3.0](https://github.com/sprucelabsai/calendar-utils/compare/v22.2.6...v22.3.0) (2022-05-31)
+
+
+### Features
+
+* dateUtil.date() returns date if passed no arguments ([b16cf89](https://github.com/sprucelabsai/calendar-utils/commit/b16cf89))
+
 ## [22.2.6](https://github.com/sprucelabsai/calendar-utils/compare/v22.2.5...v22.2.6) (2022-05-28)
 
 ## [22.2.5](https://github.com/sprucelabsai/calendar-utils/compare/v22.2.4...v22.2.5) (2022-05-28)

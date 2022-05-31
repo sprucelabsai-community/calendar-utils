@@ -803,6 +803,13 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		this.assertFormatDateEquals(year, 1, 10, 14, 20, 'Feb 10th')
 	}
 
+	@test()
+	protected static async dateReturnsNowWhenPassedNothing() {
+		const now = new Date().getTime()
+		const actual = dateUtil.date()
+		assert.isEqual(actual, now)
+	}
+
 	private static assertFormatTimeEquals(
 		hour: number,
 		minutes: number,

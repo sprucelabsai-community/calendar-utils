@@ -217,7 +217,10 @@ const dateUtil = {
 	getDateNMonthsFromStartOfMonth(count: number, timestamp?: number) {
 		return this.addMonths(this.getStartOfMonth(timestamp), count)
 	},
-	date(date: IDate) {
+	date(date?: IDate) {
+		if (!date) {
+			return new Date().getTime()
+		}
 		return Date.UTC(
 			date.year,
 			date.month,

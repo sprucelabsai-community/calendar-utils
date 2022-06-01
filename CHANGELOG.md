@@ -1,3 +1,10 @@
+# [25.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v24.0.0...v25.0.0) (2022-06-01)
+
+
+### Breaking Changes
+
+* **auto-upgrade:** upgraded packages [upgrade-all] ([edec1cd](https://github.com/sprucelabsai/calendar-utils/commit/edec1cd))
+
 # [24.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v23.0.1...v24.0.0) (2022-06-01)
 
 

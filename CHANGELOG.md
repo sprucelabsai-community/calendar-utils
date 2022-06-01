@@ -1,3 +1,10 @@
+# [24.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v23.0.1...v24.0.0) (2022-06-01)
+
+
+### Breaking Changes
+
+* **auto-upgrade:** upgraded packages [upgrade-all] ([146a867](https://github.com/sprucelabsai/calendar-utils/commit/146a867))
+
 ## [23.0.1](https://github.com/sprucelabsai/calendar-utils/compare/v23.0.0...v23.0.1) (2022-05-31)
 
 # [23.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v22.3.0...v23.0.0) (2022-05-31)

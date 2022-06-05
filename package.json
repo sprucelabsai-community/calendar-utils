@@ -71,7 +71,7 @@
     "@sprucelabs/spruce-event-utils": "^26.0.24",
     "date-fns": "^2.28.0",
     "lodash": "^4.17.21",
-    "rrule": "^2.6.9"
+    "rrule": "^2.7.0"
   },
   "devDependencies": {
     "@sprucelabs/esm-postbuild": "^1.0.489",

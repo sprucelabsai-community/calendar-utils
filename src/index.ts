@@ -1,6 +1,7 @@
 export { default as calendarUtil } from './utilities/calendar.utility'
 export { default as dateUtil } from './utilities/date.utility'
 export * from './utilities/date.utility'
+export * from './types/calendar.types'
 export { default as durationUtil } from './utilities/duration.utility'
 export * from './utilities/duration.utility'
 export { default as PeopleSorter } from './utilities/PeopleSorter'

@@ -1,3 +1,10 @@
+# [26.1.0](https://github.com/sprucelabsai/calendar-utils/compare/v26.0.25...v26.1.0) (2022-06-07)
+
+
+### Features
+
+* sorter and timezone ([8cf36d1](https://github.com/sprucelabsai/calendar-utils/commit/8cf36d1))
+
 ## [26.0.25](https://github.com/sprucelabsai/calendar-utils/compare/v26.0.24...v26.0.25) (2022-06-05)
 
 ## [26.0.24](https://github.com/sprucelabsai/calendar-utils/compare/v26.0.23...v26.0.24) (2022-06-05)

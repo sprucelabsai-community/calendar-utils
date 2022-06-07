@@ -106,6 +106,6 @@ export default class TimezoneSortingTest extends AbstractSpruceTest {
 	}
 
 	private static sort(choices: SelectChoice[]) {
-		return this.sorter.sort(choices)
+		return this.sorter.sort(choices as any)
 	}
 }

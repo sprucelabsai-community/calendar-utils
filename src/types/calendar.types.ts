@@ -10,7 +10,7 @@ export type CalendarEvent =
 	SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 export type DayOfWeek = NonNullable<CalendarEvent['daysOfWeek']>[number]
 
-type TimezoneChoices = typeof timezoneChoices
+export type TimezoneChoices = typeof timezoneChoices
 export type TimezoneName = TimezoneChoices[number]['value']
 
 export type Locale = Pick<

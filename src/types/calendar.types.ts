@@ -1,5 +1,6 @@
 import { timezoneChoices } from '@sprucelabs/spruce-core-schemas'
 import { SpruceSchemas } from '#spruce/schemas/schemas.types'
+import LocaleImpl from '../locales/Locale'
 import dateUtil from '../utilities/date.utility'
 
 type D = typeof dateUtil
@@ -12,8 +13,13 @@ export type DayOfWeek = NonNullable<CalendarEvent['daysOfWeek']>[number]
 type TimezoneChoices = typeof timezoneChoices
 export type TimezoneName = TimezoneChoices[number]['value']
 
-export interface Locale {
-	setTimezoneOffsetMinutes(offset: number): void
-	getTimezoneOffsetMinutes(): number
-	zoneNameToOffsetMinutes(name: TimezoneName): number
-}
+export type Locale = Pick<
+	LocaleImpl,
+	| 'on'
+	| 'getZoneName'
+	| 'offsetMinutesToZoneName'
+	| 'getTimezoneOffsetMinutes'
+	| 'setTimezoneOffsetMinutes'
+	| 'setZoneName'
+	| 'zoneNameToOffsetMinutes'
+>

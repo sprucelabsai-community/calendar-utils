@@ -1,4 +1,5 @@
 import { assertOptions, SelectChoice } from '@sprucelabs/schema'
+import { timezoneChoices } from '@sprucelabs/spruce-core-schemas'
 import { Locale } from '../types/calendar.types'
 
 export default class TimezoneChoiceSorter {
@@ -8,7 +9,7 @@ export default class TimezoneChoiceSorter {
 		assertOptions({ locale }, ['locale'])
 		this.locale = locale
 	}
-	public sort(choices: SelectChoice[]) {
+	public sort(choices: typeof timezoneChoices) {
 		assertOptions({ choices }, ['choices'])
 		let results = []
 		if (choices.length > 0) {

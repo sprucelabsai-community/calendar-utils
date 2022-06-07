@@ -3,7 +3,7 @@ import { DateUtils } from '../types/calendar.types'
 import { IDate } from '../utilities/date.utility'
 import LocaleImpl from './Locale'
 
-export class DateUtilDecorator {
+export default class DateUtilDecorator {
 	private locale: LocaleImpl
 
 	public constructor(locale: LocaleImpl) {

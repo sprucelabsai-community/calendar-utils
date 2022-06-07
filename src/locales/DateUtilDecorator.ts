@@ -1,0 +1,49 @@
+import { assertOptions } from '@sprucelabs/schema'
+import { DateUtils } from '../types/calendar.types'
+import { IDate } from '../utilities/date.utility'
+import HeartwoodLocale from './HeartwoodLocale'
+
+export class DateUtilDecorator {
+	private locale: HeartwoodLocale
+
+	public constructor(locale: HeartwoodLocale) {
+		assertOptions({ locale }, ['locale'])
+		this.locale = locale
+	}
+
+	public makeLocaleAware(dateUtil: any): DateUtils {
+		assertOptions({ dateUtil }, ['dateUtil'])
+		return {
+			...dateUtil,
+			//@ts-ignore
+			__beenDecorated: true,
+			date: (date?: IDate) => {
+				let value: number | undefined
+				if (!date) {
+					const d = new Date()
+					value = d.getTime() - d.getTimezoneOffset() * 60 * 1000
+				} else {
+					value = dateUtil.date(date)
+				}
+				return this.addOffset(value!)
+			},
+			setTimeOfDay: (...args: number[]) => {
+				return this.addOffset(dateUtil.setTimeOfDay(...args))
+			},
+			formatTime: (date: number) => {
+				return dateUtil.formatTime(this.addOffset(date, false))
+			},
+			formatDate: (date: number) => {
+				return dateUtil.formatDate(this.addOffset(date, false))
+			},
+		}
+	}
+
+	private addOffset(value: number, shouldInverse = true): number {
+		let offset = this.locale.getTimezoneOffsetMinutes(value) * 60 * 1000
+		if (shouldInverse) {
+			offset = offset * -1
+		}
+		return value + offset
+	}
+}

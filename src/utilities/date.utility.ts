@@ -1,5 +1,5 @@
 import { SchemaError } from '@sprucelabs/schema'
-import { addMilliseconds, addMinutes, format as formatDate } from 'date-fns'
+import { addMilliseconds, format as formatDate } from 'date-fns'
 import { daysOfWeek } from '../constants'
 import { DayOfWeek } from '../types/calendar.types'
 
@@ -93,7 +93,7 @@ const dateUtil = {
 		return date.getTime()
 	},
 	addMinutes(startTimestamp: number, minutes: number) {
-		return addMinutes(startTimestamp, minutes).getTime()
+		return startTimestamp + minutes * 60 * 1000
 	},
 	addMilliseconds(startTimestamp: number, ms: number) {
 		return addMilliseconds(startTimestamp, ms).getTime()

@@ -7,7 +7,7 @@ import SpruceError from '../errors/SpruceError'
 import { Locale, TimezoneName } from '../types/calendar.types'
 import TimezoneChoiceSorter from './TimezoneChoiceSorter'
 
-export default class HeartwoodLocale
+export default class LocaleImpl
 	extends AbstractEventEmitter<LocaleContract>
 	implements Locale
 {

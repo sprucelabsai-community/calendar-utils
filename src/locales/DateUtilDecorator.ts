@@ -1,12 +1,12 @@
 import { assertOptions } from '@sprucelabs/schema'
 import { DateUtils } from '../types/calendar.types'
 import { IDate } from '../utilities/date.utility'
-import HeartwoodLocale from './HeartwoodLocale'
+import LocaleImpl from './Locale'
 
 export class DateUtilDecorator {
-	private locale: HeartwoodLocale
+	private locale: LocaleImpl
 
-	public constructor(locale: HeartwoodLocale) {
+	public constructor(locale: LocaleImpl) {
 		assertOptions({ locale }, ['locale'])
 		this.locale = locale
 	}

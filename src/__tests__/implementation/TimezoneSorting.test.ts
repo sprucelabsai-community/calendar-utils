@@ -1,16 +1,16 @@
 import { SelectChoice } from '@sprucelabs/schema'
 import AbstractSpruceTest, { test, assert } from '@sprucelabs/test'
 import { errorAssert } from '@sprucelabs/test-utils'
-import HeartwoodLocale from '../../locales/HeartwoodLocale'
+import LocaleImpl from '../../locales/Locale'
 import TimezoneChoiceSorter from '../../locales/TimezoneChoiceSorter'
 
 export default class TimezoneSortingTest extends AbstractSpruceTest {
 	private static sorter: TimezoneChoiceSorter
-	private static locale: HeartwoodLocale
+	private static locale: LocaleImpl
 
 	protected static async beforeEach() {
 		await super.beforeEach()
-		this.locale = new HeartwoodLocale()
+		this.locale = new LocaleImpl()
 		this.sorter = new TimezoneChoiceSorter(this.locale)
 	}
 

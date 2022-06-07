@@ -4,19 +4,19 @@ import { errorAssert } from '@sprucelabs/test-utils'
 import { getTimezoneOffset } from 'date-fns-tz'
 import { generateId } from '../../generateId'
 import { DateUtilDecorator } from '../../locales/DateUtilDecorator'
-import HeartwoodLocale from '../../locales/HeartwoodLocale'
+import LocaleImpl from '../../locales/Locale'
 import TimezoneChoiceSorter from '../../locales/TimezoneChoiceSorter'
 import { DateUtils, TimezoneName } from '../../types/calendar.types'
 import dateUtil, { IDate } from '../../utilities/date.utility'
 
 export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
-	private static locale: HeartwoodLocale
+	private static locale: LocaleImpl
 	private static dates: DateUtils = dateUtil as any
 	private static decorator: DateUtilDecorator
 
 	protected static async beforeEach() {
 		await super.beforeEach()
-		this.locale = new HeartwoodLocale()
+		this.locale = new LocaleImpl()
 		this.decorator = new DateUtilDecorator(this.locale)
 		this.dates = this.decorator.makeLocaleAware(dateUtil)
 	}

@@ -1,3 +1,9 @@
+## [26.1.4](https://github.com/sprucelabsai/calendar-utils/compare/v26.1.3...v26.1.4) (2022-06-07)
+
+## [26.1.3](https://github.com/sprucelabsai/calendar-utils/compare/v26.1.2...v26.1.3) (2022-06-07)
+
+## [26.1.2](https://github.com/sprucelabsai/calendar-utils/compare/v26.1.1...v26.1.2) (2022-06-07)
+
 ## [26.1.1](https://github.com/sprucelabsai/calendar-utils/compare/v26.1.0...v26.1.1) (2022-06-07)
 
 # [26.1.0](https://github.com/sprucelabsai/calendar-utils/compare/v26.0.25...v26.1.0) (2022-06-07)

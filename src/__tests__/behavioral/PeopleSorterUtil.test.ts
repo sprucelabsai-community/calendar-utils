@@ -183,6 +183,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 			{ id: 'event222', startDateTimeMs: 1641993848, personId: 'person222' },
 			{ id: 'event333', startDateTimeMs: 1641993833, personId: 'person333' },
 		])
+
 		this.peopleSorterUtil.setSelectedEvents([
 			{ id: 'event111' },
 			{ id: 'event222' },

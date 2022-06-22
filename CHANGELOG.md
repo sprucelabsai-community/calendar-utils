@@ -1,3 +1,10 @@
+# [26.2.0](https://github.com/sprucelabsai/calendar-utils/compare/v26.1.56...v26.2.0) (2022-06-22)
+
+
+### Features
+
+* duration util can now render time ranges!! ([bb3c912](https://github.com/sprucelabsai/calendar-utils/commit/bb3c912))
+
 ## [26.1.56](https://github.com/sprucelabsai/calendar-utils/compare/v26.1.55...v26.1.56) (2022-06-22)
 
 ## [26.1.55](https://github.com/sprucelabsai/calendar-utils/compare/v26.1.54...v26.1.55) (2022-06-22)

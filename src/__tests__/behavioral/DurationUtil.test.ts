@@ -1,4 +1,5 @@
 import AbstractSpruceTest, { test, assert } from '@sprucelabs/test'
+import dateUtil from '../../utilities/date.utility'
 import durationUtil from '../../utilities/duration.utility'
 
 export default class DurationUtilTest extends AbstractSpruceTest {
@@ -22,7 +23,28 @@ export default class DurationUtilTest extends AbstractSpruceTest {
 		duration: number,
 		expected: string
 	) {
-		const actual = durationUtil.msToFriendly(duration)
+		const actual = durationUtil.renderDuration(duration)
+		assert.isEqual(actual, expected)
+	}
+
+	@test(
+		'can render time range 1',
+		dateUtil.setTimeOfDay(new Date().getTime(), 1, 0, 0, 0),
+		dateUtil.setTimeOfDay(new Date().getTime(), 1, 30, 0, 0),
+		'1am to 1:30am'
+	)
+	@test(
+		'can render time range 2',
+		dateUtil.setTimeOfDay(new Date().getTime(), 2, 0, 0, 0),
+		dateUtil.setTimeOfDay(new Date().getTime(), 2, 45, 0, 0),
+		'2am to 2:45am'
+	)
+	protected static canRenderTimeRanges(
+		date1: number,
+		date2: number,
+		expected: string
+	) {
+		const actual = durationUtil.renderTimeRange(date1, date2)
 		assert.isEqual(actual, expected)
 	}
 }

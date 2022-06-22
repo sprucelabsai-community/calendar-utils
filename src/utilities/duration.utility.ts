@@ -1,7 +1,13 @@
 import dateUtil from './date.utility'
 
 const durationUtil = {
+	/**
+	 * @deprecated durationUtil.msToFriendly(...) -> dateTimeUntilFriendly.renderDuration(...)
+	 */
 	msToFriendly(duration: number): string {
+		return this.renderDuration(duration)
+	},
+	renderDuration(duration: number): string {
 		let milliseconds = duration % 1000,
 			seconds = Math.floor((duration / 1000) % 60),
 			minutes = Math.floor((duration / (1000 * 60)) % 60),
@@ -29,9 +35,19 @@ const durationUtil = {
 		return durationStr.trim()
 	},
 
+	/**
+	 * @deprecated durationUtil.dateTimeUntilFriendly(...) -> dateTimeUntilFriendly.renderDateTimeUntil(...)
+	 */
 	dateTimeUntilFriendly(
 		start: number,
-		preffixes?: Partial<TimeUntilPrefixOptions>
+		prefixes?: Partial<TimeUntilPrefixOptions>
+	): string {
+		return this.renderDateTimeUntil(start, prefixes)
+	},
+
+	renderDateTimeUntil(
+		start: number,
+		prefixes?: Partial<TimeUntilPrefixOptions>
 	): string {
 		const now = new Date().getTime()
 		const {
@@ -40,7 +56,7 @@ const durationUtil = {
 			yesterday = null,
 			future = null,
 			past = null,
-		} = preffixes ?? {}
+		} = prefixes ?? {}
 		let prefix = today
 
 		let startDateAndTime = 'today'
@@ -67,6 +83,10 @@ const durationUtil = {
 			''
 		)
 		return `${prefix ? `${prefix} ` : ''}${startDateAndTime}`
+	},
+
+	renderTimeRange(date1: number, date2: number): string {
+		return dateUtil.formatTime(date1) + ' to ' + dateUtil.formatTime(date2)
 	},
 }
 export default durationUtil

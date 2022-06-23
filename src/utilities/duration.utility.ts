@@ -1,6 +1,7 @@
 import dateUtil from './date.utility'
 
 const durationUtil = {
+	dates: dateUtil,
 	/**
 	 * @deprecated durationUtil.msToFriendly(...) -> dateTimeUntilFriendly.renderDuration(...)
 	 */
@@ -86,7 +87,7 @@ const durationUtil = {
 	},
 
 	renderTimeRange(date1: number, date2: number): string {
-		return dateUtil.formatTime(date1) + ' to ' + dateUtil.formatTime(date2)
+		return this.dates.formatTime(date1) + ' to ' + this.dates.formatTime(date2)
 	},
 }
 export default durationUtil

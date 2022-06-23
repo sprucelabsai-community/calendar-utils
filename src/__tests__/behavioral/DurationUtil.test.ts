@@ -47,4 +47,17 @@ export default class DurationUtilTest extends AbstractSpruceTest {
 		const actual = durationUtil.renderTimeRange(date1, date2)
 		assert.isEqual(actual, expected)
 	}
+
+	@test()
+	protected static usesDateUtilOnObject() {
+		durationUtil.dates.formatTime = () => {
+			return 'aoeu'
+		}
+
+		const actual = durationUtil.renderTimeRange(
+			new Date().getTime(),
+			new Date().getTime()
+		)
+		assert.isEqual(actual, 'aoeu to aoeu')
+	}
 }

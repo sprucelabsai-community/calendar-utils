@@ -3,7 +3,7 @@ import dateUtil from './date.utility'
 const durationUtil = {
 	dates: dateUtil,
 	/**
-	 * @deprecated durationUtil.msToFriendly(...) -> dateTimeUntilFriendly.renderDuration(...)
+	 * @deprecated durationUtil.msToFriendly(...) -> durationUtil.renderDuration(...)
 	 */
 	msToFriendly(duration: number): string {
 		return this.renderDuration(duration)
@@ -37,7 +37,7 @@ const durationUtil = {
 	},
 
 	/**
-	 * @deprecated durationUtil.dateTimeUntilFriendly(...) -> dateTimeUntilFriendly.renderDateTimeUntil(...)
+	 * @deprecated durationUtil.dateTimeUntilFriendly(...) -> durationUtil.renderDateTimeUntil(...)
 	 */
 	dateTimeUntilFriendly(
 		start: number,

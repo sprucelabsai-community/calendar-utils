@@ -29,11 +29,8 @@ export default class DateUtilDecorator {
 			setTimeOfDay: (...args: number[]) => {
 				return this.addOffset(dateUtil.setTimeOfDay(...args))
 			},
-			formatTime: (date: number) => {
-				return dateUtil.formatTime(this.addOffset(date, false))
-			},
-			formatDate: (date: number) => {
-				return dateUtil.formatDate(this.addOffset(date, false))
+			format: (date: number, format: string) => {
+				return dateUtil.format(this.addOffset(date, false), format)
 			},
 		}
 	}

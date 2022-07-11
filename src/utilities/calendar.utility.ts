@@ -1,4 +1,4 @@
-import RRule from 'rrule'
+import { RRule } from 'rrule'
 import { CalendarEvent } from '../types/calendar.types'
 import dateUtil from './date.utility'
 

@@ -55,7 +55,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			    }
 		}
 
-		type EventExclusionDateEntity = SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.EventExclusionDateSchema>
+		interface EventExclusionDateEntity extends SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.EventExclusionDateSchema> {}
 
 	}
 
@@ -92,7 +92,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			    }
 		}
 
-		type CalendarEventLineIconEntity = SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventLineIconSchema>
+		interface CalendarEventLineIconEntity extends SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventLineIconSchema> {}
 
 	}
 
@@ -160,7 +160,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			    }
 		}
 
-		type EventTimeBlockEntity = SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.EventTimeBlockSchema>
+		interface EventTimeBlockEntity extends SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.EventTimeBlockSchema> {}
 
 	}
 
@@ -218,7 +218,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			    }
 		}
 
-		type CalendarEventTargetEntity = SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventTargetSchema>
+		interface CalendarEventTargetEntity extends SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventTargetSchema> {}
 
 	}
 
@@ -421,7 +421,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			    }
 		}
 
-		type CalendarEventEntity = SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventSchema>
+		interface CalendarEventEntity extends SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventSchema> {}
 
 	}
 

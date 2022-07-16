@@ -160,6 +160,7 @@ export const lineIconChoices = lineIcons.map((i) => ({
 }))
 
 export const eventStyles = [
+	'draft',
 	'tentative',
 	'upcoming',
 	'unavailable',
@@ -168,19 +169,18 @@ export const eventStyles = [
 	'past',
 	'warn',
 	'critical',
-	'draft',
 ]
 
 const eventLabels = [
+	'Draft',
 	'Tentative',
 	'Upcoming',
 	'Unavailable',
 	'Blocked',
 	'Active',
 	'Past',
-	'Warn',
+	'Warning',
 	'Critical',
-	'Draft',
 ]
 
 export const eventStyleChoices = eventStyles.map((i, idx) => ({

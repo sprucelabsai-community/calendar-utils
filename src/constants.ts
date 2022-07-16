@@ -171,7 +171,19 @@ export const eventStyles = [
 	'draft',
 ]
 
-export const eventStyleChoices = eventStyles.map((i) => ({
+const eventLabels = [
+	'Tentative',
+	'Upcoming',
+	'Unavailable',
+	'Blocked',
+	'Active',
+	'Past',
+	'Warn',
+	'Critical',
+	'Draft',
+]
+
+export const eventStyleChoices = eventStyles.map((i, idx) => ({
 	value: i,
-	label: i,
+	label: eventLabels[idx],
 }))

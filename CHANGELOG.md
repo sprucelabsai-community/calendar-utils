@@ -1,3 +1,10 @@
+# [27.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v26.2.149...v27.0.0) (2022-08-16)
+
+
+### Breaking Changes
+
+* renderDateTimeUntil now requires a "now" to know what the current date/time is ([c02c96a](https://github.com/sprucelabsai/calendar-utils/commit/c02c96a))
+
 ## [26.2.149](https://github.com/sprucelabsai/calendar-utils/compare/v26.2.148...v26.2.149) (2022-08-16)
 
 ## [26.2.148](https://github.com/sprucelabsai/calendar-utils/compare/v26.2.147...v26.2.148) (2022-08-16)

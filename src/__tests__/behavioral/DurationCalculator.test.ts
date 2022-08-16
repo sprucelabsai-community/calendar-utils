@@ -114,7 +114,11 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
 		date: number,
 		suffixes?: Partial<TimeUntilPrefixOptions>
 	) {
-		return durationUtil.renderDateTimeUntil(date, suffixes)
+		return durationUtil.renderDateTimeUntil(
+			date,
+			new Date().getTime(),
+			suffixes
+		)
 	}
 }
 

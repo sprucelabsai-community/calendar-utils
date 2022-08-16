@@ -43,14 +43,14 @@ const durationUtil = {
 		start: number,
 		prefixes?: Partial<TimeUntilPrefixOptions>
 	): string {
-		return this.renderDateTimeUntil(start, prefixes)
+		return this.renderDateTimeUntil(start, new Date().getTime(), prefixes)
 	},
 
 	renderDateTimeUntil(
 		start: number,
+		now: number,
 		prefixes?: Partial<TimeUntilPrefixOptions>
 	): string {
-		const now = new Date().getTime()
 		const {
 			today = null,
 			tomorrow = null,

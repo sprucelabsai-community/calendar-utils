@@ -19,8 +19,7 @@
     "namespace": "calendar-utils",
     "upgradeIgnoreList": [
       "@sprucelabs/spruce-skill-utils",
-      "@sprucelabs/spruce-test-fixtures",
-      "typescript"
+      "@sprucelabs/spruce-test-fixtures"
     ],
     "commandOverrides": {
       "sync.schemas": "--shouldFetchCoreSchemas false --moduleToImportFromWhenRemote @sprucelabs/calendar-utils"

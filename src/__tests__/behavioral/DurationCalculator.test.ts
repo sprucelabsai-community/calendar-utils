@@ -1,5 +1,5 @@
 import { SpruceSchemas } from '@sprucelabs/mercury-types'
-import AbstractSpruceTest, { test, assert } from '@sprucelabs/test'
+import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
 import { lunch, tomorrowLunch } from '../../dates'
 import calculateEventDurationMillis from '../../durationCalculators/calculateEventDurationMillis'
 import calculateEventDurationMinutes from '../../durationCalculators/calculateEventDurationMinutes'

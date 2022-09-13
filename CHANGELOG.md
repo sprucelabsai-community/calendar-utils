@@ -1,3 +1,10 @@
+# [27.1.0](https://github.com/sprucelabsai/calendar-utils/compare/v27.0.63...v27.1.0) (2022-09-13)
+
+
+### Features
+
+* duration formatter can capitalize its output ([956f38f](https://github.com/sprucelabsai/calendar-utils/commit/956f38f))
+
 ## [27.0.63](https://github.com/sprucelabsai/calendar-utils/compare/v27.0.62...v27.0.63) (2022-09-13)
 
 ## [27.0.62](https://github.com/sprucelabsai/calendar-utils/compare/v27.0.61...v27.0.62) (2022-09-12)

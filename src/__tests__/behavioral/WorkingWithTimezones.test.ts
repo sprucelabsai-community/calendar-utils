@@ -1,5 +1,5 @@
 import { timezoneChoices } from '@sprucelabs/spruce-core-schemas'
-import AbstractSpruceTest, { test, assert } from '@sprucelabs/test'
+import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
 import { errorAssert } from '@sprucelabs/test-utils'
 import { getTimezoneOffset } from 'date-fns-tz'
 import { generateId } from '../../generateId'

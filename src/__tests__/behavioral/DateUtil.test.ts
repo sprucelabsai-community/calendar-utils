@@ -1,4 +1,4 @@
-import AbstractSpruceTest, { test, assert } from '@sprucelabs/test'
+import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
 import { errorAssertUtil } from '@sprucelabs/test-utils'
 import dateUtil, { IDate } from '../../utilities/date.utility'
 

@@ -1,4 +1,4 @@
-import AbstractSpruceTest, { test, assert } from '@sprucelabs/test'
+import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
 import calendarEventSchema from '#spruce/schemas/calendarUtils/v2021_05_19/calendarEvent.schema'
 
 export default class CalendarEventBuilderTest extends AbstractSpruceTest {

@@ -76,14 +76,14 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
 
 	@test()
 	protected static async canChangeTheSuffixes() {
-		this.assertExpectedSuffix(tomorrowLunch(), 'tomorrow', 'future')
-		this.assertExpectedSuffix(
+		this.assertExpectedPrefix(tomorrowLunch(), 'tomorrow', 'future')
+		this.assertExpectedPrefix(
 			dateUtil.addDays(lunch(), -1),
 			'yesterday',
 			'past'
 		)
-		this.assertExpectedSuffix(dateUtil.addDays(lunch(), 10), 'future', 'future')
-		this.assertExpectedSuffix(dateUtil.addDays(lunch(), -10), 'past', 'back')
+		this.assertExpectedPrefix(dateUtil.addDays(lunch(), 10), 'future', 'future')
+		this.assertExpectedPrefix(dateUtil.addDays(lunch(), -10), 'past', 'back')
 	}
 
 	@test()
@@ -93,7 +93,32 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
 		assert.isEqual(actual, expected)
 	}
 
-	private static assertExpectedSuffix(
+	@test()
+	protected static async canCapitalizeFirst() {
+		this.assertTimeUntilCapitalized(lunch(), 'Today @ 12pm')
+
+		this.assertTimeUntilCapitalized(
+			dateUtil.addDays(lunch(), -1),
+			'Yesterday @ 12pm'
+		)
+
+		this.assertTimeUntilCapitalized(
+			dateUtil.addMinutes(tomorrowLunch(), 30),
+			'Tomorrow @ 12:30pm'
+		)
+	}
+
+	private static assertTimeUntilCapitalized(
+		tomorrow: number,
+		expected: string
+	) {
+		const actual = this.timeUntil(tomorrow, {
+			shouldCapitalize: true,
+		})
+		assert.isEqual(actual, expected)
+	}
+
+	private static assertExpectedPrefix(
 		date: number,
 		key: keyof TimeUntilPrefixOptions,
 		prefix: string
@@ -112,13 +137,9 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
 
 	private static timeUntil(
 		date: number,
-		suffixes?: Partial<TimeUntilPrefixOptions>
+		options?: Partial<TimeUntilPrefixOptions>
 	) {
-		return durationUtil.renderDateTimeUntil(
-			date,
-			new Date().getTime(),
-			suffixes
-		)
+		return durationUtil.renderDateTimeUntil(date, new Date().getTime(), options)
 	}
 }
 

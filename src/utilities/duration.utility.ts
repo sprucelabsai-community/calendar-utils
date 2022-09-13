@@ -57,6 +57,7 @@ const durationUtil = {
 			yesterday = null,
 			future = null,
 			past = null,
+			shouldCapitalize,
 		} = prefixes ?? {}
 		let prefix = today
 
@@ -72,25 +73,37 @@ const durationUtil = {
 		} else if (daysFromNow > 1) {
 			prefix = future
 			startDateAndTime =
-				dateUtil.format(start, 'MMM do') + ` (in ${daysFromNow} days)`
+				this.dates.format(start, 'MMM do') + ` (in ${daysFromNow} days)`
 		} else if (daysFromNow < -1) {
 			prefix = past
 			startDateAndTime =
-				dateUtil.format(start, 'MMM do') + ` (${daysFromNow * -1} days ago)`
+				this.dates.format(start, 'MMM do') + ` (${daysFromNow * -1} days ago)`
 		}
 
-		startDateAndTime += ` @ ${dateUtil.format(start, 'h:mmaaa')}`.replace(
+		startDateAndTime += ` @ ${this.dates.format(start, 'h:mmaaa')}`.replace(
 			':00',
 			''
 		)
-		return `${prefix ? `${prefix} ` : ''}${startDateAndTime}`
+		return optionallUcFirst(
+			`${prefix ? `${prefix} ` : ''}${startDateAndTime}`,
+			shouldCapitalize
+		)
 	},
 
 	renderTimeRange(date1: number, date2: number): string {
 		return this.dates.formatTime(date1) + ' to ' + this.dates.formatTime(date2)
 	},
 }
+
 export default durationUtil
+
+function optionallUcFirst(str: string, shouldCapitalize?: boolean) {
+	if (shouldCapitalize) {
+		return str[0].toUpperCase() + str.substring(1)
+	}
+
+	return str
+}
 
 export interface TimeUntilPrefixOptions {
 	yesterday?: string | null
@@ -98,4 +111,5 @@ export interface TimeUntilPrefixOptions {
 	tomorrow?: string | null
 	future?: string | null
 	past?: string | null
+	shouldCapitalize?: boolean
 }

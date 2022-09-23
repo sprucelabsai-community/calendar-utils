@@ -1,12 +1,5 @@
 import sortBy from 'lodash/sortBy'
-
-export type Person = { id: string; casualName: string }
-export type SorterCalendarEvent = {
-	id: string
-	groupId?: string
-	startDateTimeMs: number
-	personId: string
-}
+import { SorterCalendarEvent } from '../types/calendar.types'
 
 export default class PeopleSorter {
 	private _people?: Person[]
@@ -152,3 +145,5 @@ export default class PeopleSorter {
 		return this._events ?? []
 	}
 }
+
+export type Person = { id: string; casualName: string }

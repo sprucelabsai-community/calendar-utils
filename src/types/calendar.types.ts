@@ -27,3 +27,10 @@ export type Locale = Pick<
 	| 'setZoneName'
 	| 'zoneNameToOffsetMinutes'
 >
+
+export type SorterCalendarEvent = {
+	id: string
+	groupId?: string
+	startDateTimeMs: number
+	personId: string
+}

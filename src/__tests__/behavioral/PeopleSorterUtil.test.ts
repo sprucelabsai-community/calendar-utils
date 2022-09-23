@@ -164,6 +164,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 
 	@test()
 	protected static async cantSortIfPeopleAreNotSet() {
+		this.sorter = new PeopleSorter()
 		this.sorter.setEvents([
 			{ id: 'event111', startDateTimeMs: 1641993534, personId: 'person111' },
 			{ id: 'event222', startDateTimeMs: 1641993848, personId: 'person222' },
@@ -171,23 +172,6 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 		])
 
 		this.sorter.setSelectedEvents(['event111', 'event222'])
-		await assert.doesThrowAsync(() => this.sorter.sort())
-	}
-
-	@test()
-	protected static async cantSortIfPersonIsMissgingInEventsList() {
-		this.sorter.setPeople([
-			{ id: 'person111', casualName: 'C Test' },
-			{ id: 'person222', casualName: 'B Test' },
-			{ id: 'person333', casualName: 'A Test' },
-		])
-
-		this.sorter.setEvents([
-			{ id: 'event111', startDateTimeMs: 1641993534, personId: 'person111' },
-			{ id: 'event222', startDateTimeMs: 1641993848, personId: 'person222' },
-			{ id: 'event444', startDateTimeMs: 1641993833, personId: 'person444' },
-		])
-		this.sorter.setSelectedEvents(['event111', 'event444', 'event222'])
 		await assert.doesThrowAsync(() => this.sorter.sort())
 	}
 
@@ -328,6 +312,35 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 		this.sorter.setSelectedEvents(['1', '3'])
 
 		this.assertResults(['c', 'b', 'd', 'a'])
+	}
+
+	@test()
+	protected static async worksAsExpectedWithEventPointingToBadPerson() {
+		this.set4People()
+		this.sorter.setEvents([
+			{
+				id: '1',
+				groupId: '2',
+				personId: '123123',
+				startDateTimeMs: 0,
+			},
+			{
+				id: '2',
+				groupId: '1',
+				personId: 'd',
+				startDateTimeMs: 1,
+			},
+			{
+				id: '3',
+				groupId: '1',
+				personId: 'c',
+				startDateTimeMs: -1,
+			},
+		])
+
+		this.sorter.setSelectedEvents(['3'])
+
+		this.assertResults(['c', 'd', 'a', 'b'])
 	}
 
 	private static set4People() {

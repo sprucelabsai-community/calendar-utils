@@ -9,7 +9,7 @@ export type SorterCalendarEvent = {
 }
 
 export default class PeopleSorter {
-	private _people?: Person[] = []
+	private _people?: Person[]
 	private _events?: SorterCalendarEvent[]
 	private selectedEvents: string[] = []
 
@@ -119,7 +119,7 @@ export default class PeopleSorter {
 
 	private assertValid() {
 		if (!this._people) {
-			throw new Error('People are not set for sorting')
+			throw new Error('People are not set for sorting!')
 		}
 
 		if (!this.events) {
@@ -127,7 +127,6 @@ export default class PeopleSorter {
 		}
 
 		this.assertEventsAreValid()
-		this.assertPeopleAreValid()
 	}
 
 	private assertEventsAreValid() {
@@ -140,24 +139,6 @@ export default class PeopleSorter {
 		if (missingSelectedEventIds.length > 0) {
 			throw new Error(
 				`Selected event ids are not present in events list: [${missingSelectedEventIds.join(
-					', '
-				)}]`
-			)
-		}
-	}
-
-	private assertPeopleAreValid() {
-		const eventsPersonIds = this.events.map((x) => x.personId)
-
-		const personIds = this.people.map((x) => x.id)
-
-		const missingPersonIds = eventsPersonIds.filter(
-			(k) => personIds.indexOf(k) === -1
-		)
-
-		if (missingPersonIds.length > 0) {
-			throw new Error(
-				`Event person are not present in people list: [${missingPersonIds.join(
 					', '
 				)}]`
 			)

@@ -1,42 +1,46 @@
-import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
+import AbstractSpruceTest, {
+	test,
+	assert,
+	generateId,
+} from '@sprucelabs/test-utils'
 import { default as PeopleSorter } from '../../utilities/PeopleSorter'
 
 export default class PeopleSorterUtilTest extends AbstractSpruceTest {
-	private static peopleSorterUtil: PeopleSorter
+	private static sorter: PeopleSorter
 	protected static async beforeEach() {
-		this.peopleSorterUtil = new PeopleSorter()
-		this.peopleSorterUtil.setEvents([])
-		this.peopleSorterUtil.setSelectedEvents([])
-		this.peopleSorterUtil.setPeople([])
+		this.sorter = new PeopleSorter()
+		this.sorter.setEvents([])
+		this.sorter.setSelectedEvents([])
+		this.sorter.setPeople([])
 	}
 	@test()
 	protected static canCreatePeopleSorterUtility() {
-		assert.isTruthy(this.peopleSorterUtil)
+		assert.isTruthy(this.sorter)
 	}
 
 	@test()
 	protected static async hasSetPeopleMethod() {
-		assert.isFunction(this.peopleSorterUtil.setPeople)
+		assert.isFunction(this.sorter.setPeople)
 	}
 
 	@test()
 	protected static async hasGetPeopleMethod() {
-		assert.isFunction(this.peopleSorterUtil.getPeople)
+		assert.isFunction(this.sorter.getPeople)
 	}
 
 	@test()
 	protected static canProvidePeopleForSorting() {
 		const teammates = [{ id: '111', casualName: 'Test' }]
-		this.peopleSorterUtil.setPeople(teammates)
+		this.sorter.setPeople(teammates)
 
-		const people = this.peopleSorterUtil.getPeople()
+		const people = this.sorter.getPeople()
 		assert.isLength(people, 1)
 		assert.isEqual(people?.[0]?.id, '111')
 	}
 
 	@test()
 	protected static async hasSortMethod() {
-		assert.isFunction(this.peopleSorterUtil.sort)
+		assert.isFunction(this.sorter.sort)
 	}
 
 	@test()
@@ -46,8 +50,8 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 			{ id: '222', casualName: 'BTest' },
 		]
 
-		this.peopleSorterUtil.setPeople(teammates)
-		const sortedPeople = this.peopleSorterUtil.sort()
+		this.sorter.setPeople(teammates)
+		const sortedPeople = this.sorter.sort()
 
 		assert.isLength(sortedPeople, 2)
 		assert.isEqual(sortedPeople?.[0]?.id, '111')
@@ -60,8 +64,8 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 			{ id: '222', casualName: 'A Test' },
 		]
 
-		this.peopleSorterUtil.setPeople(teammates)
-		const sortedPeople = this.peopleSorterUtil.sort()
+		this.sorter.setPeople(teammates)
+		const sortedPeople = this.sorter.sort()
 
 		assert.isLength(sortedPeople, 2)
 		assert.isEqual(sortedPeople?.[0]?.id, '222')
@@ -69,72 +73,69 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 
 	@test()
 	protected static async hasSetEventsMethod() {
-		assert.isFunction(this.peopleSorterUtil.setEvents)
+		assert.isFunction(this.sorter.setEvents)
 	}
 
 	@test()
 	protected static async hasGetEventsMethod() {
-		assert.isFunction(this.peopleSorterUtil.getEvents)
+		assert.isFunction(this.sorter.getEvents)
 	}
 
 	@test()
 	protected static canProvideEventsForSorting() {
-		this.peopleSorterUtil.setEvents([
+		this.sorter.setEvents([
 			{ id: '111', startDateTimeMs: 1641993534, personId: '222' },
 		])
 
-		const events = this.peopleSorterUtil.getEvents()
+		const events = this.sorter.getEvents()
 		assert.isLength(events, 1)
 		assert.isEqual(events?.[0]?.id, '111')
 	}
 
 	@test()
 	protected static async hasSetSelectedEventIdsMethod() {
-		assert.isFunction(this.peopleSorterUtil.setSelectedEvents)
+		assert.isFunction(this.sorter.setSelectedEvents)
 	}
 
 	@test()
 	protected static async hasGetSelectedEventIdsMethod() {
-		assert.isFunction(this.peopleSorterUtil.getSelectedEvents)
+		assert.isFunction(this.sorter.getSelectedEvents)
 	}
 
 	@test()
 	protected static canProvideSelectedEventsForSorting() {
-		this.peopleSorterUtil.setSelectedEvents([{ id: '111' }])
+		this.sorter.setSelectedEvents([{ id: '111' }])
 
-		const events = this.peopleSorterUtil.getSelectedEvents()
+		const events = this.sorter.getSelectedEvents()
 		assert.isLength(events, 1)
 		assert.isEqual(events?.[0]?.id, '111')
 	}
 
 	@test()
 	protected static async sortingThrowsIfPeopleSetAndSelectedEventsSetWithoutEvents() {
-		this.peopleSorterUtil.setPeople([
+		this.sorter.setPeople([
 			{ id: 'person111', casualName: 'B Test' },
 			{ id: 'person222', casualName: 'A Test' },
 		])
 
-		this.peopleSorterUtil.setSelectedEvents([{ id: 'event111' }])
+		this.sorter.setSelectedEvents([{ id: 'event111' }])
 
-		await assert.doesThrowAsync(() => this.peopleSorterUtil.sort())
+		await assert.doesThrowAsync(() => this.sorter.sort())
 	}
 
 	@test()
 	protected static async canSortPeopleByEventStartDateIfSelectedEventsAreSet() {
-		this.peopleSorterUtil.setPeople([
+		this.sorter.setPeople([
 			{ id: 'person111', casualName: 'B Test' },
 			{ id: 'person222', casualName: 'A Test' },
 		])
 
-		this.peopleSorterUtil.setEvents([
+		this.sorter.setEvents([
 			{ id: 'event111', startDateTimeMs: 1641993534, personId: 'person111' },
 			{ id: 'event222', startDateTimeMs: 1641993848, personId: 'person222' },
 		])
-		this.peopleSorterUtil.setSelectedEvents([
-			{ id: 'event111' },
-			{ id: 'event222' },
-		])
-		const sortedPeople = this.peopleSorterUtil.sort()
+		this.sorter.setSelectedEvents([{ id: 'event111' }, { id: 'event222' }])
+		const sortedPeople = this.sorter.sort()
 
 		assert.isLength(sortedPeople, 2)
 		assert.isEqual(sortedPeople?.[0]?.id, 'person111')
@@ -142,22 +143,19 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 
 	@test()
 	protected static async canSortPeopleByEventStartDateIfSelectedEventsAreSetForTwoPersonOutOfTree() {
-		this.peopleSorterUtil.setPeople([
+		this.sorter.setPeople([
 			{ id: 'person111', casualName: 'C Test' },
 			{ id: 'person222', casualName: 'B Test' },
 			{ id: 'person333', casualName: 'A Test' },
 		])
 
-		this.peopleSorterUtil.setEvents([
+		this.sorter.setEvents([
 			{ id: 'event111', startDateTimeMs: 1641993534, personId: 'person111' },
 			{ id: 'event222', startDateTimeMs: 1641993848, personId: 'person222' },
 			{ id: 'event333', startDateTimeMs: 1641993833, personId: 'person333' },
 		])
-		this.peopleSorterUtil.setSelectedEvents([
-			{ id: 'event111' },
-			{ id: 'event222' },
-		])
-		const sortedPeople = this.peopleSorterUtil.sort()
+		this.sorter.setSelectedEvents([{ id: 'event111' }, { id: 'event222' }])
+		const sortedPeople = this.sorter.sort()
 
 		assert.isLength(sortedPeople, 3)
 		assert.isEqual(sortedPeople?.[0]?.id, 'person111')
@@ -165,118 +163,191 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 
 	@test()
 	protected static async cantSortIfPeopleAreNotSet() {
-		this.peopleSorterUtil.setEvents([
+		this.sorter.setEvents([
 			{ id: 'event111', startDateTimeMs: 1641993534, personId: 'person111' },
 			{ id: 'event222', startDateTimeMs: 1641993848, personId: 'person222' },
 			{ id: 'event333', startDateTimeMs: 1641993833, personId: 'person333' },
 		])
 
-		this.peopleSorterUtil.setSelectedEvents([
-			{ id: 'event111' },
-			{ id: 'event222' },
-		])
-		await assert.doesThrowAsync(() => this.peopleSorterUtil.sort())
+		this.sorter.setSelectedEvents([{ id: 'event111' }, { id: 'event222' }])
+		await assert.doesThrowAsync(() => this.sorter.sort())
 	}
 
 	@test()
 	protected static async cantSortIfPersonIsMissgingInEventsList() {
-		this.peopleSorterUtil.setPeople([
+		this.sorter.setPeople([
 			{ id: 'person111', casualName: 'C Test' },
 			{ id: 'person222', casualName: 'B Test' },
 			{ id: 'person333', casualName: 'A Test' },
 		])
 
-		this.peopleSorterUtil.setEvents([
+		this.sorter.setEvents([
 			{ id: 'event111', startDateTimeMs: 1641993534, personId: 'person111' },
 			{ id: 'event222', startDateTimeMs: 1641993848, personId: 'person222' },
 			{ id: 'event444', startDateTimeMs: 1641993833, personId: 'person444' },
 		])
-		this.peopleSorterUtil.setSelectedEvents([
+		this.sorter.setSelectedEvents([
 			{ id: 'event111' },
 			{ id: 'event444' },
 			{ id: 'event222' },
 		])
-		await assert.doesThrowAsync(() => this.peopleSorterUtil.sort())
+		await assert.doesThrowAsync(() => this.sorter.sort())
 	}
 
 	@test()
 	protected static async canSortByEventStartDateAndPeopleCasualName() {
-		this.peopleSorterUtil.setPeople([
+		this.sorter.setPeople([
 			{ id: 'person111', casualName: 'C Test' },
 			{ id: 'person222', casualName: 'K Test' },
 			{ id: 'person333', casualName: 'A Test' },
 			{ id: 'person444', casualName: 'B Test' },
 		])
 
-		this.peopleSorterUtil.setEvents([
+		this.sorter.setEvents([
 			{ id: 'event111', startDateTimeMs: 1641993534, personId: 'person111' },
 			{ id: 'event333', startDateTimeMs: 1641993839, personId: 'person333' },
 			{ id: 'event444', startDateTimeMs: 1641993831, personId: 'person444' },
 		])
-		this.peopleSorterUtil.setSelectedEvents([
-			{ id: 'event111' },
-			{ id: 'event333' },
-		])
 
-		const sortedPeople = this.peopleSorterUtil.sort()
+		this.sorter.setSelectedEvents([{ id: 'event111' }, { id: 'event333' }])
 
-		assert.isLength(sortedPeople, 4)
-		assert.isEqual(sortedPeople?.[0]?.casualName, 'C Test')
-		assert.isEqual(sortedPeople?.[1]?.casualName, 'A Test')
-		assert.isEqual(sortedPeople?.[2]?.casualName, 'B Test')
-		assert.isEqual(sortedPeople?.[3]?.casualName, 'K Test')
+		this.assertResults(['C Test', 'A Test', 'B Test', 'K Test'])
 	}
 
 	@test()
 	protected static async canSortByEventStartDate() {
-		this.peopleSorterUtil.setPeople([
+		this.sorter.setPeople([
 			{ id: 'person111', casualName: 'C Test' },
 			{ id: 'person222', casualName: 'K Test' },
 			{ id: 'person333', casualName: 'A Test' },
 			{ id: 'person444', casualName: 'B Test' },
 		])
 
-		this.peopleSorterUtil.setEvents([
+		this.sorter.setEvents([
 			{ id: 'event111', startDateTimeMs: 1641993534, personId: 'person111' },
 			{ id: 'event222', startDateTimeMs: 1641993840, personId: 'person222' },
 			{ id: 'event333', startDateTimeMs: 1641993839, personId: 'person333' },
 			{ id: 'event444', startDateTimeMs: 1641993831, personId: 'person444' },
 		])
-		this.peopleSorterUtil.setSelectedEvents([
+		this.sorter.setSelectedEvents([
 			{ id: 'event111' },
 			{ id: 'event333' },
 			{ id: 'event222' },
 			{ id: 'event444' },
 		])
 
-		const sortedPeople = this.peopleSorterUtil.sort()
-
-		assert.isLength(sortedPeople, 4)
-		assert.isEqual(sortedPeople?.[0]?.casualName, 'C Test')
-		assert.isEqual(sortedPeople?.[1]?.casualName, 'B Test')
-		assert.isEqual(sortedPeople?.[2]?.casualName, 'A Test')
-		assert.isEqual(sortedPeople?.[3]?.casualName, 'K Test')
+		this.assertResults(['C Test', 'B Test', 'A Test', 'K Test'])
 	}
 
 	@test()
 	protected static async canClearSelectedEvents() {
-		this.peopleSorterUtil.setPeople([
+		this.sorter.setPeople([
 			{ id: 'person111', casualName: 'C Test' },
 			{ id: 'person222', casualName: 'K Test' },
 			{ id: 'person333', casualName: 'A Test' },
 			{ id: 'person444', casualName: 'B Test' },
 		])
 
-		this.peopleSorterUtil.setSelectedEvents([])
-		const selectedEvents = this.peopleSorterUtil.getSelectedEvents()
+		this.sorter.setSelectedEvents([])
+		const selectedEvents = this.sorter.getSelectedEvents()
 		assert.isLength(selectedEvents, 0)
 
-		const sortedPeople = this.peopleSorterUtil.sort()
+		this.assertResults(['A Test', 'B Test', 'C Test', 'K Test'])
+	}
 
-		assert.isLength(sortedPeople, 4)
-		assert.isEqual(sortedPeople?.[0]?.casualName, 'A Test')
-		assert.isEqual(sortedPeople?.[1]?.casualName, 'B Test')
-		assert.isEqual(sortedPeople?.[2]?.casualName, 'C Test')
-		assert.isEqual(sortedPeople?.[3]?.casualName, 'K Test')
+	@test()
+	protected static sortsPeopleWhenGroupMatches() {
+		this.set4People()
+
+		const groupId = generateId()
+
+		this.sorter.setEvents([
+			{
+				id: '1',
+				groupId,
+				personId: 'd',
+				startDateTimeMs: 0,
+			},
+			{
+				id: '2',
+				groupId,
+				personId: 'a',
+				startDateTimeMs: 1,
+			},
+		])
+
+		this.sorter.setSelectedEvents([{ id: '2' }])
+
+		this.assertResults(['d', 'a', 'b', 'c'])
+	}
+
+	@test()
+	protected static async matchesGroup() {
+		this.set4People()
+		this.sorter.setEvents([
+			{
+				id: '1',
+				groupId: '2',
+				personId: 'b',
+				startDateTimeMs: 0,
+			},
+			{
+				id: '2',
+				groupId: '1',
+				personId: 'a',
+				startDateTimeMs: 1,
+			},
+		])
+
+		this.sorter.setSelectedEvents([{ id: '2' }])
+
+		this.assertResults(['a', 'b', 'c', 'd'])
+	}
+
+	@test()
+	protected static async canMatchGroupFromSecondSelectedEvent() {
+		this.set4People()
+		this.sorter.setEvents([
+			{
+				id: '1',
+				groupId: '2',
+				personId: 'b',
+				startDateTimeMs: 0,
+			},
+			{
+				id: '2',
+				groupId: '1',
+				personId: 'd',
+				startDateTimeMs: 1,
+			},
+			{
+				id: '3',
+				groupId: '1',
+				personId: 'c',
+				startDateTimeMs: -1,
+			},
+		])
+
+		this.sorter.setSelectedEvents([{ id: '1' }, { id: '3' }])
+
+		this.assertResults(['c', 'b', 'd', ''])
+	}
+
+	private static set4People() {
+		this.sorter.setPeople([
+			{ id: 'c', casualName: 'c' },
+			{ id: 'd', casualName: 'd' },
+			{ id: 'a', casualName: 'a' },
+			{ id: 'b', casualName: 'b' },
+		])
+	}
+
+	private static assertResults(expected: string[]) {
+		const sortedPeople = this.sorter.sort()
+
+		expected.forEach((name, idx) => {
+			assert.isEqual(sortedPeople?.[idx]?.casualName, name)
+		})
+		return sortedPeople
 	}
 }

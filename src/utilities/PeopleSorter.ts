@@ -9,12 +9,12 @@ export type CalendarEvent = {
 export type SelectedEvent = Pick<CalendarEvent, 'id'>
 
 export default class PeopleSorter {
-	private people: Person[] = []
-	private events: CalendarEvent[] = []
+	private _people?: Person[] = []
+	private _events?: CalendarEvent[]
 	private selectedEvents: SelectedEvent[] = []
 
 	public setPeople(people: Person[]) {
-		this.people = [...people]
+		this._people = [...people]
 	}
 	public getPeople() {
 		return this.people
@@ -75,7 +75,7 @@ export default class PeopleSorter {
 	}
 
 	public setEvents(events: CalendarEvent[]) {
-		this.events = [...events]
+		this._events = [...events]
 	}
 
 	public getEvents() {
@@ -91,17 +91,14 @@ export default class PeopleSorter {
 	}
 
 	private assertValid() {
-		if (!this.people || this.people.length == 0) {
+		if (!this._people) {
 			throw new Error('People are not set for sorting')
 		}
 
-		if (this.events.length > 0 && this.selectedEvents.length == 0) {
+		if (!this.events) {
 			throw new Error('Selected events are not set for sorting')
 		}
 
-		if (this.selectedEvents.length > 0 && this.events.length == 0) {
-			throw new Error('Events are not set for sorting')
-		}
 		this.assertEventsAreValid()
 		this.assertPeopleAreValid()
 	}
@@ -138,5 +135,12 @@ export default class PeopleSorter {
 				)}]`
 			)
 		}
+	}
+
+	private get people(): Person[] {
+		return this._people ?? []
+	}
+	private get events(): CalendarEvent[] {
+		return this._events ?? []
 	}
 }

@@ -8,11 +8,11 @@ const durationUtil = {
 	msToFriendly(duration: number): string {
 		return this.renderDuration(duration)
 	},
-	renderDuration(duration: number): string {
-		let milliseconds = duration % 1000,
-			seconds = Math.floor((duration / 1000) % 60),
-			minutes = Math.floor((duration / (1000 * 60)) % 60),
-			hours = Math.floor((duration / (1000 * 60 * 60)) % 24)
+	renderDuration(durationMs: number): string {
+		let milliseconds = durationMs % 1000,
+			seconds = Math.floor((durationMs / 1000) % 60),
+			minutes = Math.floor((durationMs / (1000 * 60)) % 60),
+			hours = Math.floor((durationMs / (1000 * 60 * 60)) % 24)
 		let durationStr = ''
 		if (hours > 0) {
 			durationStr += `${hours}hr`

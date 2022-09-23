@@ -89,19 +89,6 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 	}
 
 	@test()
-	protected static async sortingThrowsIfPeopleAreSetAndEventsSetWithoutSelectedEvents() {
-		this.peopleSorterUtil.setPeople([
-			{ id: '111', casualName: 'B Test' },
-			{ id: '222', casualName: 'A Test' },
-		])
-		this.peopleSorterUtil.setEvents([
-			{ id: '111', startDateTimeMs: 1641993534, personId: '111' },
-			{ id: '222', startDateTimeMs: 1641993848, personId: '222' },
-		])
-		await assert.doesThrowAsync(() => this.peopleSorterUtil.sort())
-	}
-
-	@test()
 	protected static async hasSetSelectedEventIdsMethod() {
 		assert.isFunction(this.peopleSorterUtil.setSelectedEvents)
 	}

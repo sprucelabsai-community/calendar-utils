@@ -104,11 +104,12 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 
 	@test()
 	protected static canProvideSelectedEventsForSorting() {
-		this.sorter.setSelectedEvents([{ id: '111' }])
+		this.sorter.setSelectedEvents(['111'])
 
 		const events = this.sorter.getSelectedEvents()
+
 		assert.isLength(events, 1)
-		assert.isEqual(events?.[0]?.id, '111')
+		assert.isEqual(events?.[0], '111')
 	}
 
 	@test()
@@ -118,7 +119,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 			{ id: 'person222', casualName: 'A Test' },
 		])
 
-		this.sorter.setSelectedEvents([{ id: 'event111' }])
+		this.sorter.setSelectedEvents(['event111'])
 
 		await assert.doesThrowAsync(() => this.sorter.sort())
 	}
@@ -134,7 +135,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 			{ id: 'event111', startDateTimeMs: 1641993534, personId: 'person111' },
 			{ id: 'event222', startDateTimeMs: 1641993848, personId: 'person222' },
 		])
-		this.sorter.setSelectedEvents([{ id: 'event111' }, { id: 'event222' }])
+		this.sorter.setSelectedEvents(['event111', 'event222'])
 		const sortedPeople = this.sorter.sort()
 
 		assert.isLength(sortedPeople, 2)
@@ -154,7 +155,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 			{ id: 'event222', startDateTimeMs: 1641993848, personId: 'person222' },
 			{ id: 'event333', startDateTimeMs: 1641993833, personId: 'person333' },
 		])
-		this.sorter.setSelectedEvents([{ id: 'event111' }, { id: 'event222' }])
+		this.sorter.setSelectedEvents(['event111', 'event222'])
 		const sortedPeople = this.sorter.sort()
 
 		assert.isLength(sortedPeople, 3)
@@ -169,7 +170,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 			{ id: 'event333', startDateTimeMs: 1641993833, personId: 'person333' },
 		])
 
-		this.sorter.setSelectedEvents([{ id: 'event111' }, { id: 'event222' }])
+		this.sorter.setSelectedEvents(['event111', 'event222'])
 		await assert.doesThrowAsync(() => this.sorter.sort())
 	}
 
@@ -186,11 +187,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 			{ id: 'event222', startDateTimeMs: 1641993848, personId: 'person222' },
 			{ id: 'event444', startDateTimeMs: 1641993833, personId: 'person444' },
 		])
-		this.sorter.setSelectedEvents([
-			{ id: 'event111' },
-			{ id: 'event444' },
-			{ id: 'event222' },
-		])
+		this.sorter.setSelectedEvents(['event111', 'event444', 'event222'])
 		await assert.doesThrowAsync(() => this.sorter.sort())
 	}
 
@@ -209,7 +206,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 			{ id: 'event444', startDateTimeMs: 1641993831, personId: 'person444' },
 		])
 
-		this.sorter.setSelectedEvents([{ id: 'event111' }, { id: 'event333' }])
+		this.sorter.setSelectedEvents(['event111', 'event333'])
 
 		this.assertResults(['C Test', 'A Test', 'B Test', 'K Test'])
 	}
@@ -230,10 +227,10 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 			{ id: 'event444', startDateTimeMs: 1641993831, personId: 'person444' },
 		])
 		this.sorter.setSelectedEvents([
-			{ id: 'event111' },
-			{ id: 'event333' },
-			{ id: 'event222' },
-			{ id: 'event444' },
+			'event111',
+			'event333',
+			'event222',
+			'event444',
 		])
 
 		this.assertResults(['C Test', 'B Test', 'A Test', 'K Test'])
@@ -276,7 +273,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 			},
 		])
 
-		this.sorter.setSelectedEvents([{ id: '2' }])
+		this.sorter.setSelectedEvents(['2'])
 
 		this.assertResults(['d', 'a', 'b', 'c'])
 	}
@@ -299,7 +296,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 			},
 		])
 
-		this.sorter.setSelectedEvents([{ id: '2' }])
+		this.sorter.setSelectedEvents(['2'])
 
 		this.assertResults(['a', 'b', 'c', 'd'])
 	}
@@ -328,9 +325,9 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
 			},
 		])
 
-		this.sorter.setSelectedEvents([{ id: '1' }, { id: '3' }])
+		this.sorter.setSelectedEvents(['1', '3'])
 
-		this.assertResults(['c', 'b', 'd', ''])
+		this.assertResults(['c', 'b', 'd', 'a'])
 	}
 
 	private static set4People() {

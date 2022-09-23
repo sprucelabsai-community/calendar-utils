@@ -1,17 +1,17 @@
 import sortBy from 'lodash/sortBy'
 
 export type Person = { id: string; casualName: string }
-export type CalendarEvent = {
+export type SorterCalendarEvent = {
 	id: string
+	groupId?: string
 	startDateTimeMs: number
 	personId: string
 }
-export type SelectedEvent = Pick<CalendarEvent, 'id'>
 
 export default class PeopleSorter {
 	private _people?: Person[] = []
-	private _events?: CalendarEvent[]
-	private selectedEvents: SelectedEvent[] = []
+	private _events?: SorterCalendarEvent[]
+	private selectedEvents: string[] = []
 
 	public setPeople(people: Person[]) {
 		this._people = [...people]
@@ -23,58 +23,85 @@ export default class PeopleSorter {
 	public sort() {
 		this.assertValid()
 
-		let peopleSortResult: Person[] = []
-		if (this.selectedEvents.length > 0 && this.events.length > 0) {
-			let selectedEventsWithValidPeople = this.events.filter((e) => {
-				const eventsMatch = this.selectedEvents.find((se) => se.id === e.id)
-				const peopleMatch = this.people.find((p) => p.id === e.personId)
-				if (peopleMatch && eventsMatch) {
-					return true
-				}
-				return false
-			})
-			selectedEventsWithValidPeople = sortBy(selectedEventsWithValidPeople, [
-				'startDateTimeMs',
-			])
-			const selectedPeopleWithValidEvents = selectedEventsWithValidPeople.map(
-				(e) => {
-					const match = this.people.find((p) => p.id === e.personId)
-					if (match) {
-						return match
-					}
-					return null
-				}
-			) as Person[]
+		let people: Person[] = []
+		if (this.shouldSort()) {
+			const selectedPeopleWithValidEvents =
+				this.peopleWithSelectedEventsSortedByStartTime()
 
-			const nonSelectedPeople = this.people.filter((p) => {
-				const match = selectedPeopleWithValidEvents.find(
-					(sp) => sp?.id === p.id
-				)
-				if (match) {
-					return false
-				}
-				return true
-			})
+			const nonSelectedPeople = this.peopleExcluding(
+				selectedPeopleWithValidEvents
+			)
+
 			if (
 				selectedPeopleWithValidEvents &&
 				selectedPeopleWithValidEvents.length > 0
 			) {
-				peopleSortResult = selectedPeopleWithValidEvents
+				people = selectedPeopleWithValidEvents
 			}
 
 			if (nonSelectedPeople && nonSelectedPeople.length > 0) {
-				peopleSortResult = peopleSortResult.concat(
-					sortBy(nonSelectedPeople, ['casualName'])
-				)
+				people = people.concat(sortBy(nonSelectedPeople, ['casualName']))
 			}
 		} else {
-			peopleSortResult = sortBy(this.people, ['casualName'])
+			people = sortBy(this.people, ['casualName'])
 		}
 
-		return peopleSortResult
+		return people
 	}
 
-	public setEvents(events: CalendarEvent[]) {
+	private peopleExcluding(selectedPeopleWithValidEvents: Person[]) {
+		return this.people.filter((p) => {
+			const match = selectedPeopleWithValidEvents.find((sp) => sp?.id === p.id)
+			if (match) {
+				return false
+			}
+			return true
+		})
+	}
+
+	private shouldSort() {
+		return this.selectedEvents.length > 0 && this.events.length > 0
+	}
+
+	private peopleWithSelectedEventsSortedByStartTime() {
+		let selectedEvents = this.events.filter((e) => {
+			const eventsMatch = this.selectedEvents.find((id) => id === e.id)
+			const peopleMatch = this.people.find((p) => p.id === e.personId)
+
+			if (peopleMatch && eventsMatch) {
+				return true
+			}
+			return false
+		})
+
+		const groupsIds = selectedEvents.map((e) => e.groupId).filter((g) => !!g)
+
+		const matchOnGroup =
+			groupsIds.length > 0
+				? this.events.filter(
+						(e) =>
+							!selectedEvents.find((se) => se.id === e.id) &&
+							groupsIds.indexOf(e.groupId) > -1
+				  )
+				: []
+
+		selectedEvents = sortBy(
+			[...selectedEvents, ...matchOnGroup],
+			['startDateTimeMs']
+		)
+
+		const people = selectedEvents.map((e) => {
+			const match = this.people.find((p) => p.id === e.personId)
+			if (match) {
+				return match
+			}
+			return null
+		}) as Person[]
+
+		return people
+	}
+
+	public setEvents(events: SorterCalendarEvent[]) {
 		this._events = [...events]
 	}
 
@@ -82,7 +109,7 @@ export default class PeopleSorter {
 		return this.events
 	}
 
-	public setSelectedEvents(selectedEvents: Pick<CalendarEvent, 'id'>[]) {
+	public setSelectedEvents(selectedEvents: string[]) {
 		this.selectedEvents = [...selectedEvents]
 	}
 
@@ -106,9 +133,9 @@ export default class PeopleSorter {
 	private assertEventsAreValid() {
 		const eventIds = this.events.map((x) => x.id)
 
-		const missingSelectedEventIds = this.selectedEvents
-			.filter((k) => eventIds.indexOf(k.id) === -1)
-			.map((e) => e.id)
+		const missingSelectedEventIds = this.selectedEvents.filter(
+			(id) => eventIds.indexOf(id) === -1
+		)
 
 		if (missingSelectedEventIds.length > 0) {
 			throw new Error(
@@ -140,7 +167,7 @@ export default class PeopleSorter {
 	private get people(): Person[] {
 		return this._people ?? []
 	}
-	private get events(): CalendarEvent[] {
+	private get events(): SorterCalendarEvent[] {
 		return this._events ?? []
 	}
 }

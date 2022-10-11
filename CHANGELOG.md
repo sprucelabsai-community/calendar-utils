@@ -1,3 +1,10 @@
+# [28.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v27.1.63...v28.0.0) (2022-10-11)
+
+
+### Breaking Changes
+
+* **auto-upgrade:** upgraded packages [upgrade-all] ([e4adc3a](https://github.com/sprucelabsai/calendar-utils/commit/e4adc3a))
+
 ## [27.1.63](https://github.com/sprucelabsai/calendar-utils/compare/v27.1.62...v27.1.63) (2022-10-11)
 
 ## [27.1.62](https://github.com/sprucelabsai/calendar-utils/compare/v27.1.61...v27.1.62) (2022-10-10)

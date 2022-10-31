@@ -122,6 +122,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	protected static async usesLocaleOffsetToGetFirstZoneName() {
 		this.assertUsesLocaleToLoadDefaultZoneName(0, ['UTC'])
 		this.assertUsesLocaleToLoadDefaultZoneName(-360, [
+			'America/Bahia_Banderas', // Oct 30th 2am -> April 2nd 2am
 			'America/Denver',
 			'America/Belize',
 		])
@@ -278,7 +279,8 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		possibleZones: TimezoneName[]
 	) {
 		this.locale.setTimezoneOffsetMinutes(offset)
-		assert.isAbove(possibleZones.indexOf(this.getZoneName() as any), -1)
+		const a = this.getZoneName()
+		assert.isAbove(possibleZones.indexOf(a as any), -1)
 	}
 
 	private static async assertSetsZoneName(name: TimezoneName) {

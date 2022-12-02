@@ -1,3 +1,10 @@
+# [31.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v30.0.90...v31.0.0) (2022-12-02)
+
+
+### Breaking Changes
+
+* **auto-upgrade:** upgraded packages [upgrade-all] ([ac5c333](https://github.com/sprucelabsai/calendar-utils/commit/ac5c333))
+
 ## [30.0.90](https://github.com/sprucelabsai/calendar-utils/compare/v30.0.89...v30.0.90) (2022-12-01)
 
 ## [30.0.89](https://github.com/sprucelabsai/calendar-utils/compare/v30.0.88...v30.0.89) (2022-12-01)

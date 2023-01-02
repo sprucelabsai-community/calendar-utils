@@ -152,8 +152,10 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		zone: TimezoneName,
 		expected: string
 	) {
+		const currentDate = new Date()
+
 		const date = dateUtil.date({
-			year: 2022,
+			year: currentDate.getFullYear(),
 			month: 0,
 			day: 1,
 			hour: 10,

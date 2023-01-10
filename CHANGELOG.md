@@ -1,3 +1,5 @@
+## [31.0.70](https://github.com/sprucelabsai/calendar-utils/compare/v31.0.69...v31.0.70) (2023-01-10)
+
 ## [31.0.69](https://github.com/sprucelabsai/calendar-utils/compare/v31.0.68...v31.0.69) (2023-01-09)
 
 ## [31.0.68](https://github.com/sprucelabsai/calendar-utils/compare/v31.0.67...v31.0.68) (2023-01-09)

@@ -2,6 +2,7 @@ import AbstractSpruceTest, {
 	test,
 	assert,
 	errorAssert,
+	generateId,
 } from '@sprucelabs/test-utils'
 import DateParser from '../../parsing/DateParser'
 import dateUtil, { IDate } from '../../utilities/date.utility'
@@ -330,7 +331,7 @@ export default class DateParserTest extends AbstractSpruceTest {
 
 	@test()
 	protected static async returnsNullIfNothingParsed() {
-		this.assertParsedIsEqualTo('nothing', null)
+		this.assertParsedIsEqualTo(generateId(), null)
 	}
 
 	private static reloadWithNow(options?: Partial<IDate>) {

@@ -1,3 +1,10 @@
+# [31.1.0](https://github.com/sprucelabsai/calendar-utils/compare/v31.0.113...v31.1.0) (2023-01-15)
+
+
+### Features
+
+* ok date parser moved from calendar skill ([de3396c](https://github.com/sprucelabsai/calendar-utils/commit/de3396c))
+
 ## [31.0.113](https://github.com/sprucelabsai/calendar-utils/compare/v31.0.112...v31.0.113) (2023-01-15)
 
 ## [31.0.112](https://github.com/sprucelabsai/calendar-utils/compare/v31.0.111...v31.0.112) (2023-01-15)

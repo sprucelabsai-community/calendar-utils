@@ -46,6 +46,7 @@ export default class DateParserTest extends AbstractSpruceTest {
 	}
 
 	@test('parses time 11 as 11:00am', '11', { hour: 11, minute: 0 })
+	@test('parses time 11p as 11:00pm', '11p', { hour: 23, minute: 0 })
 	@test('parses time 1 as 1:00am', '1', { hour: 1, minute: 0 })
 	@test('parses time 2 as 2:00am', '2', { hour: 2, minute: 0 })
 	@test('parses time 5 as 5:00am', '5', { hour: 5, minute: 0 })

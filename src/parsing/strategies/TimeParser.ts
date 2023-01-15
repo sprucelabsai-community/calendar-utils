@@ -3,7 +3,7 @@ import { AbstractParser, ParserContext, SplitDate } from '../AbstractParser'
 
 export default class TimeParser extends AbstractParser {
 	public parse(str: string, date: SplitDate, context: ParserContext): string {
-		const match = str.match(/(\d{1,2})(:(\d{2}))? ?(am|pm)?/)?.[0]
+		const match = str.match(/(\d{1,2})(:(\d{2}))? ?(am?|pm?)?/)?.[0]
 
 		if (!match) {
 			return str
@@ -20,7 +20,7 @@ export default class TimeParser extends AbstractParser {
 			date.minute = parseInt(match.split(':')[1], 10)
 		}
 
-		if (match.includes('pm')) {
+		if (match.includes('p')) {
 			date.hour += 12
 		} else if (date.hour === 12 && match.includes('am')) {
 			date.hour = 0

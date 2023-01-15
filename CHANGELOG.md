@@ -1,3 +1,10 @@
+# [31.3.0](https://github.com/sprucelabsai/calendar-utils/compare/v31.2.1...v31.3.0) (2023-01-15)
+
+
+### Features
+
+* locale support! ([ad21bea](https://github.com/sprucelabsai/calendar-utils/commit/ad21bea))
+
 ## [31.2.1](https://github.com/sprucelabsai/calendar-utils/compare/v31.2.0...v31.2.1) (2023-01-15)
 
 # [31.2.0](https://github.com/sprucelabsai/calendar-utils/compare/v31.1.1...v31.2.0) (2023-01-15)

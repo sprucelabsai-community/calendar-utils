@@ -20,10 +20,11 @@ export default class DateParser {
 
 	public parse(str: string) {
 		const now = this.now()
-		const original = str
 		const date = dateUtil.splitDate(now) as SplitDate
 
 		let parsed = str.toLocaleLowerCase().replace(/[^a-z0-9: ]/g, '')
+		const original = parsed
+
 		const context: ParserContext = {
 			hasYear: false,
 		}

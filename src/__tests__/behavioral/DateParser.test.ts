@@ -331,7 +331,14 @@ export default class DateParserTest extends AbstractSpruceTest {
 
 	@test()
 	protected static async returnsNullIfNothingParsed() {
-		this.assertParsedIsEqualTo(generateId(), null)
+		this.assertParsesAsNull('hey there')
+		this.assertParsesAsNull('go team')
+		this.assertParsesAsNull('hello world')
+		this.assertParsesAsNull('how does this work')
+	}
+
+	private static assertParsesAsNull(str: string) {
+		this.assertParsedIsEqualTo(str, null)
 	}
 
 	private static reloadWithNow(options?: Partial<IDate>) {

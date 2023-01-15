@@ -15,6 +15,7 @@ export { default as calendarEventTargetSchema } from './.spruce/schemas/calendar
 export { default as eventExclusionDateSchema } from './.spruce/schemas/calendarUtils/v2021_05_19/eventExclusionDate.schema'
 export { default as eventTimeBlockSchema } from './.spruce/schemas/calendarUtils/v2021_05_19/eventTimeBlock.schema'
 export { default as calendarEventLineIconSchema } from './.spruce/schemas/calendarUtils/v2021_05_19/calendarEventLineIcon.schema'
+export { default as DateParser } from './parsing/DateParser'
 export * from './dates'
 export { SpruceSchemas } from '#spruce/schemas/schemas.types'
 export * from './constants'

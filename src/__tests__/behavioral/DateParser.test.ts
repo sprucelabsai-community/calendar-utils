@@ -3,13 +3,25 @@ import AbstractSpruceTest, {
 	assert,
 	errorAssert,
 } from '@sprucelabs/test-utils'
+import LocaleImpl from '../../locales/Locale'
 import DateParser from '../../parsing/DateParser'
 import dateUtil, { IDate } from '../../utilities/date.utility'
 
 export default class DateParserTest extends AbstractSpruceTest {
 	private static parser: DateParser
+	private static locale: LocaleImpl
+	private static readonly startOf2020 = {
+		year: 2020,
+		month: 0,
+		day: 1,
+		hour: 0,
+		minute: 0,
+	}
+
 	protected static async beforeEach() {
 		await super.beforeEach()
+		this.locale = new LocaleImpl()
+		this.locale.setTimezoneOffsetMinutes(0)
 		this.reloadParser(() => this.normalizeDate(now(), { hour: 0 }))
 	}
 
@@ -18,7 +30,7 @@ export default class DateParserTest extends AbstractSpruceTest {
 		//@ts-ignore
 		const err = assert.doesThrow(() => DateParser.Parser())
 		errorAssert.assertError(err, 'MISSING_PARAMETERS', {
-			parameters: ['now'],
+			parameters: ['now', 'locale'],
 		})
 	}
 
@@ -336,6 +348,23 @@ export default class DateParserTest extends AbstractSpruceTest {
 		this.assertParsesAsNull('how does this work')
 	}
 
+	@test('can parse 4pm with different timezone', '4pm', 60, 16 + 1)
+	@test('can parse 5pm with different timezone', '5pm', 120, 17 + 2)
+	protected static async timezoneOffsetIsAppliedToTimeParser(
+		str: string,
+		offsetMinutes: number,
+		hour: number
+	) {
+		this.locale.setTimezoneOffsetMinutes(offsetMinutes)
+		this.reloadAsJan12020()
+		const actual = this.parse(str)!
+		const expected = this.normalizeDate(now(), {
+			...this.startOf2020,
+			hour,
+		})
+		this.assertTimestampsAreCloseEnough(actual, expected)
+	}
+
 	private static assertParsesAsNull(str: string) {
 		this.assertParsedIsEqualTo(str, null)
 	}
@@ -345,11 +374,11 @@ export default class DateParserTest extends AbstractSpruceTest {
 	}
 
 	private static reloadAsJan12020() {
-		this.reloadWithNow({ year: 2020, month: 0, day: 1, hour: 0, minute: 0 })
+		this.reloadWithNow(this.startOf2020)
 	}
 
 	private static reloadParser(now: () => number) {
-		this.parser = DateParser.Parser(now)
+		this.parser = DateParser.Parser(now, this.locale)
 	}
 
 	private static assertParsedEquals(str: string, options: Partial<IDate>) {
@@ -361,10 +390,10 @@ export default class DateParserTest extends AbstractSpruceTest {
 		const normalized = expected ? this.normalizeDate(expected) : null
 		const actual = this.parse(str)
 
-		this.assertTimestampsAreEqual(actual, normalized)
+		this.assertTimestampsAreCloseEnough(actual, normalized)
 	}
 
-	private static assertTimestampsAreEqual(
+	private static assertTimestampsAreCloseEnough(
 		actual: number | null,
 		expected: number | null
 	) {
@@ -372,12 +401,23 @@ export default class DateParserTest extends AbstractSpruceTest {
 			assert.fail("Expected parsed to return null, but it didn't")
 			return
 		}
+
 		if (expected && actual) {
 			assert.isEqual(
 				dateUtil.formatDateTime(actual),
 				dateUtil.formatDateTime(expected)
 			)
+
+			return
 		}
+
+		assert.isEqual(
+			actual,
+			expected,
+			`The timestamps were not close enough!\n\n
+Actual: ${actual ? dateUtil.formatDateTime(actual) : 'null'}
+Expected: ${expected ? dateUtil.formatDateTime(expected) : 'null'}`
+		)
 	}
 
 	private static parse(str: string) {
@@ -388,7 +428,7 @@ export default class DateParserTest extends AbstractSpruceTest {
 		const expected = this.parse(str2)
 		const actual = this.parse(str1)
 
-		this.assertTimestampsAreEqual(actual, expected)
+		this.assertTimestampsAreCloseEnough(actual, expected)
 	}
 
 	private static normalizeDate(date: number, options?: Partial<IDate>) {

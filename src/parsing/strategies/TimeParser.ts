@@ -10,21 +10,23 @@ export default class TimeParser extends AbstractParser {
 		}
 
 		if (match) {
-			date.hour = parseInt(match, 10)
+			date.hour =
+				parseInt(match, 10) + this.locale.getTimezoneOffsetMinutes() / 60
 			date.minute = 0
+			str = str.replace(match, '')
 		}
 
-		if (str.includes(':')) {
-			date.minute = parseInt(str.split(':')[1], 10)
+		if (match.includes(':')) {
+			date.minute = parseInt(match.split(':')[1], 10)
 		}
 
-		if (str.includes('pm')) {
+		if (match.includes('pm')) {
 			date.hour += 12
-		} else if (date.hour === 12 && str.includes('am')) {
+		} else if (date.hour === 12 && match.includes('am')) {
 			date.hour = 0
 		}
 
-		if (!context.hasYear && dateUtil.date(date) < this.now() && str !== 'now') {
+		if (!context.hasYear && dateUtil.date(date) < this.now()) {
 			date.hour += 12
 		}
 

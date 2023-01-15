@@ -1,3 +1,4 @@
+import { Locale } from '../types/calendar.types'
 import { Parser } from './AbstractParser'
 import DowParser from './strategies/DowParser'
 import MonthParser from './strategies/MonthParser'
@@ -6,6 +7,7 @@ import WeekParser from './strategies/WeekParser'
 import YearParser from './strategies/YearParser'
 
 export default class ParserFactory {
+	private locale: Locale
 	public all() {
 		return [
 			this.Parser('Year'),
@@ -19,19 +21,20 @@ export default class ParserFactory {
 	private strategies: {
 		[K in ParserStrategy]: () => Parser
 	} = {
-		Year: () => new YearParser(this.now),
-		Month: () => new MonthParser(this.now),
-		Dow: () => new DowParser(this.now),
-		Time: () => new TimeParser(this.now),
-		Week: () => new WeekParser(this.now),
+		Year: () => new YearParser(this.now, this.locale),
+		Month: () => new MonthParser(this.now, this.locale),
+		Dow: () => new DowParser(this.now, this.locale),
+		Time: () => new TimeParser(this.now, this.locale),
+		Week: () => new WeekParser(this.now, this.locale),
 	}
 
-	private constructor(now: () => number) {
+	private constructor(now: () => number, locale: Locale) {
 		this.now = now
+		this.locale = locale
 	}
 
-	public static Factory(now: () => number) {
-		return new this(now)
+	public static Factory(now: () => number, locale: Locale) {
+		return new this(now, locale)
 	}
 
 	public Parser(parserType: ParserStrategy): Parser {

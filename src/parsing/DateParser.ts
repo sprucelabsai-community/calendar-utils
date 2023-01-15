@@ -1,4 +1,5 @@
 import { assertOptions } from '@sprucelabs/schema'
+import { Locale } from '../types/calendar.types'
 import dateUtil from '../utilities/date.utility'
 import { Parser, ParserContext, SplitDate } from './AbstractParser'
 import ParserFactory from './ParserFactory'
@@ -7,15 +8,15 @@ export default class DateParser {
 	private now: () => number
 	private parsers: Parser[] = []
 
-	private constructor(now: () => number) {
+	private constructor(now: () => number, locale: Locale) {
 		this.now = now
-		const parsers = ParserFactory.Factory(now)
+		const parsers = ParserFactory.Factory(now, locale)
 		this.parsers = [...parsers.all()]
 	}
 
-	public static Parser(now: () => number) {
-		assertOptions({ now }, ['now'])
-		return new this(now)
+	public static Parser(now: () => number, locale: Locale) {
+		assertOptions({ now, locale }, ['now', 'locale'])
+		return new this(now, locale)
 	}
 
 	public parse(str: string) {
@@ -33,6 +34,8 @@ export default class DateParser {
 			for (const parser of this.parsers) {
 				parsed = parser.parse(parsed, date, context)
 			}
+		} else {
+			parsed = ''
 		}
 
 		if (parsed === original) {

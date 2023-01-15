@@ -1,3 +1,10 @@
+# [31.2.0](https://github.com/sprucelabsai/calendar-utils/compare/v31.1.1...v31.2.0) (2023-01-15)
+
+
+### Features
+
+* date parser returns null when it can't parse anything from the incoming string ([ea099ea](https://github.com/sprucelabsai/calendar-utils/commit/ea099ea))
+
 ## [31.1.1](https://github.com/sprucelabsai/calendar-utils/compare/v31.1.0...v31.1.1) (2023-01-15)
 
 # [31.1.0](https://github.com/sprucelabsai/calendar-utils/compare/v31.0.113...v31.1.0) (2023-01-15)

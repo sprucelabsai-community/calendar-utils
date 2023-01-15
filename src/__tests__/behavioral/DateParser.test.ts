@@ -328,6 +328,11 @@ export default class DateParserTest extends AbstractSpruceTest {
 		})
 	}
 
+	@test()
+	protected static async returnsNullIfNothingParsed() {
+		this.assertParsedIsEqualTo('nothing', null)
+	}
+
 	private static reloadWithNow(options?: Partial<IDate>) {
 		this.reloadParser(() => this.normalizeDate(new Date().getTime(), options))
 	}
@@ -345,18 +350,27 @@ export default class DateParserTest extends AbstractSpruceTest {
 		this.assertParsedIsEqualTo(str, expected)
 	}
 
-	private static assertParsedIsEqualTo(str: string, expected: number) {
-		const normalized = this.normalizeDate(expected)
+	private static assertParsedIsEqualTo(str: string, expected: number | null) {
+		const normalized = expected ? this.normalizeDate(expected) : null
 		const actual = this.parse(str)
 
 		this.assertTimestampsAreEqual(actual, normalized)
 	}
 
-	private static assertTimestampsAreEqual(actual: number, normalized: number) {
-		assert.isEqual(
-			dateUtil.formatDateTime(actual),
-			dateUtil.formatDateTime(normalized)
-		)
+	private static assertTimestampsAreEqual(
+		actual: number | null,
+		expected: number | null
+	) {
+		if (expected === null && actual !== null) {
+			assert.fail("Expected parsed to return null, but it didn't")
+			return
+		}
+		if (expected && actual) {
+			assert.isEqual(
+				dateUtil.formatDateTime(actual),
+				dateUtil.formatDateTime(expected)
+			)
+		}
 	}
 
 	private static parse(str: string) {
@@ -366,6 +380,7 @@ export default class DateParserTest extends AbstractSpruceTest {
 	private static assertParsedMatch(str2: string, str1: string) {
 		const expected = this.parse(str2)
 		const actual = this.parse(str1)
+
 		this.assertTimestampsAreEqual(actual, expected)
 	}
 

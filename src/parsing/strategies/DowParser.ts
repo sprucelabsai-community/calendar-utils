@@ -54,8 +54,9 @@ export default class DowParser extends AbstractParser {
 				match
 			) {
 				date.day += 1
-				str = str.replace(match, '')
 			}
+
+			str = str.replace(match, '')
 		}
 		return str
 	}

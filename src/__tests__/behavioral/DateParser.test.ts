@@ -348,8 +348,8 @@ export default class DateParserTest extends AbstractSpruceTest {
 		this.assertParsesAsNull('how does this work')
 	}
 
-	@test('can parse 4pm with different timezone', '4pm', 60, 16 + 1)
-	@test('can parse 5pm with different timezone', '5pm', 120, 17 + 2)
+	@test('can parse 4pm with different timezone', '4pm', 60, 16 - 1)
+	@test('can parse 5pm with different timezone', '5pm', 120, 17 - 2)
 	protected static async timezoneOffsetIsAppliedToTimeParser(
 		str: string,
 		offsetMinutes: number,

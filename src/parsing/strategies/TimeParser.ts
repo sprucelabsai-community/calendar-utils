@@ -11,7 +11,7 @@ export default class TimeParser extends AbstractParser {
 
 		if (match) {
 			date.hour =
-				parseInt(match, 10) + this.locale.getTimezoneOffsetMinutes() / 60
+				parseInt(match, 10) - this.locale.getTimezoneOffsetMinutes() / 60
 			date.minute = 0
 			str = str.replace(match, '')
 		}

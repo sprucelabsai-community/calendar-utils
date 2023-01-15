@@ -7,9 +7,11 @@ import ParserFactory from './ParserFactory'
 export default class DateParser {
 	private now: () => number
 	private parsers: Parser[] = []
+	protected locale: Locale
 
 	private constructor(now: () => number, locale: Locale) {
 		this.now = now
+		this.locale = locale
 		const parsers = ParserFactory.Factory(now, locale)
 		this.parsers = [...parsers.all()]
 	}

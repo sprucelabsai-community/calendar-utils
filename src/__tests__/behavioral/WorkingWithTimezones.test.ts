@@ -6,12 +6,12 @@ import { generateId } from '../../generateId'
 import DateUtilDecorator from '../../locales/DateUtilDecorator'
 import LocaleImpl from '../../locales/Locale'
 import TimezoneChoiceSorter from '../../locales/TimezoneChoiceSorter'
-import { DateUtils, TimezoneName } from '../../types/calendar.types'
+import { DateUtil, TimezoneName } from '../../types/calendar.types'
 import dateUtil, { IDate } from '../../utilities/date.utility'
 
 export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	private static locale: LocaleImpl
-	private static dates: DateUtils = dateUtil as any
+	private static dates: DateUtil = dateUtil as DateUtil
 	private static decorator: DateUtilDecorator
 
 	protected static async beforeEach() {
@@ -256,6 +256,17 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		assert.isEqual(hitCount, 1)
 		await this.setZone('Africa/Abidjan')
 		assert.isEqual(hitCount, 1)
+	}
+
+	@test()
+	protected static async startOfDayHonorsLocale() {
+		await this.setZone('America/Denver')
+		const actual = this.dates.getStartOfDay()
+		const date = new Date()
+		date.setUTCHours(0, 0, 0, 0)
+		const hours = -7
+		const expected = date.getTime() - hours * 60 * 60 * 1000
+		assert.isEqual(actual, expected)
 	}
 
 	private static async assertNewDateHonorsLocale(

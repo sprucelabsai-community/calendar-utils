@@ -1,5 +1,5 @@
 import { assertOptions } from '@sprucelabs/schema'
-import { DateUtils, Locale } from '../types/calendar.types'
+import { DateUtil, Locale } from '../types/calendar.types'
 import { IDate } from '../utilities/date.utility'
 
 export default class DateUtilDecorator {
@@ -10,7 +10,7 @@ export default class DateUtilDecorator {
 		this.locale = locale
 	}
 
-	public makeLocaleAware(dateUtil: any): DateUtils {
+	public makeLocaleAware(dateUtil: any): DateUtil {
 		assertOptions({ dateUtil }, ['dateUtil'])
 		return {
 			...dateUtil,
@@ -31,6 +31,9 @@ export default class DateUtilDecorator {
 			},
 			format: (date: number, format: string) => {
 				return dateUtil.format(this.addOffset(date, false), format)
+			},
+			getStartOfDay: (date: number) => {
+				return this.addOffset(dateUtil.getStartOfDay(date))
 			},
 		}
 	}

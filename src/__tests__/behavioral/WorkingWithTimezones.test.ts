@@ -272,6 +272,20 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		assert.isEqual(actual, expected)
 	}
 
+	@test('end of day honors locale America/Denver', 'America/Denver', -7)
+	@test('end of day honors locale America/Belize', 'America/Belize', -6)
+	protected static async endOfDayHonorsLocale(
+		zone: TimezoneName,
+		offsetHours: number
+	) {
+		await this.setZone(zone)
+		const actual = this.dates.getEndOfDay()
+		const date = new Date()
+		date.setUTCHours(23 + offsetHours * -1, 59, 59, 999)
+		const expected = date.getTime()
+		assert.isEqual(actual, expected)
+	}
+
 	private static async assertNewDateHonorsLocale(
 		zone: TimezoneName,
 		d: Partial<IDate>,

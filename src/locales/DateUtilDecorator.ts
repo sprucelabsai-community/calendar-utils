@@ -35,6 +35,9 @@ export default class DateUtilDecorator {
 			getStartOfDay: (date: number) => {
 				return this.addOffset(dateUtil.getStartOfDay(date))
 			},
+			getEndOfDay: (date: number) => {
+				return this.addOffset(dateUtil.getEndOfDay(date))
+			},
 		}
 	}
 

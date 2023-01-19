@@ -258,14 +258,17 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		assert.isEqual(hitCount, 1)
 	}
 
-	@test()
-	protected static async startOfDayHonorsLocale() {
-		await this.setZone('America/Denver')
+	@test('start of day honors locale America/Denver', 'America/Denver', -7)
+	@test('start of day honors locale America/Belize', 'America/Belize', -6)
+	protected static async startOfDayHonorsLocale(
+		zone: TimezoneName,
+		offsetHours: number
+	) {
+		await this.setZone(zone)
 		const actual = this.dates.getStartOfDay()
 		const date = new Date()
-		date.setUTCHours(0, 0, 0, 0)
-		const hours = -7
-		const expected = date.getTime() - hours * 60 * 60 * 1000
+		date.setUTCHours(offsetHours * -1, 0, 0, 0)
+		const expected = date.getTime()
 		assert.isEqual(actual, expected)
 	}
 

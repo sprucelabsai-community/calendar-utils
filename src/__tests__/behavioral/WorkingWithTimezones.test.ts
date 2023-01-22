@@ -65,7 +65,9 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	@test()
 	protected static throwsWithBadZone() {
 		const name = generateId()
-		const err = assert.doesThrow(() => this.zoneNameToOffset(name as any))
+		const err = assert.doesThrow(() =>
+			this.zoneNameToOffsetMinutes(name as any)
+		)
 		errorAssert.assertError(err, 'INVALID_TIMEZONE_NAME', {
 			name,
 		})
@@ -73,8 +75,8 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 
 	@test()
 	protected static doesntThrowWithValidZoneName() {
-		this.zoneNameToOffset('America/Denver')
-		this.zoneNameToOffset('Africa/Cairo')
+		this.zoneNameToOffsetMinutes('America/Denver')
+		this.zoneNameToOffsetMinutes('Africa/Cairo')
 	}
 
 	@test()
@@ -217,7 +219,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 
 		const date = new Date()
 		const zone = 'Africa/Casablanca'
-		const offset = this.zoneNameToOffset(zone) * 60 * 1000
+		const offset = this.zoneNameToOffsetMinutes(zone) * 60 * 1000
 		const expected =
 			date.getTime() - date.getTimezoneOffset() * 60 * 1000 - offset
 
@@ -345,6 +347,38 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		assert.isEqual(actual, expected)
 	}
 
+	@test()
+	protected static async splitDateHonorsLocale() {
+		const jan222023 = 1674419514883
+
+		const zone1 = 'America/Denver'
+		const zone2 = 'Pacific/Wake'
+
+		const split1 = await this.setZoneAndSplit(zone1, jan222023)
+		const split2 = await this.setZoneAndSplit(zone2, jan222023)
+
+		assert.isEqualDeep(split1, {
+			year: 2023,
+			month: 0,
+			day: 22,
+			hour: 13,
+			minute: 31,
+		})
+
+		assert.isEqualDeep(split2, {
+			year: 2023,
+			month: 0,
+			day: 23,
+			hour: 8,
+			minute: 31,
+		})
+	}
+
+	private static async setZoneAndSplit(zone: TimezoneName, date: number) {
+		await this.setZone(zone)
+		return this.dates.splitDate(date)
+	}
+
 	private static async assertNewDateHonorsLocale(
 		zone: TimezoneName,
 		d: Partial<IDate>,
@@ -393,11 +427,11 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 
 	private static assertZoneNameToOffsetEqualsExpected(name: TimezoneName) {
 		const expected = getTimezoneOffset(name) / 1000 / 60
-		const actual = this.zoneNameToOffset(name)
+		const actual = this.zoneNameToOffsetMinutes(name)
 		assert.isEqual(expected, actual)
 	}
 
-	private static zoneNameToOffset(name: TimezoneName): any {
+	private static zoneNameToOffsetMinutes(name: TimezoneName): any {
 		return this.locale.zoneNameToOffsetMinutes(name)
 	}
 

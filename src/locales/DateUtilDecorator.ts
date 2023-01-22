@@ -44,6 +44,9 @@ export default class DateUtilDecorator {
 			getEndOfMonth: (date: number) => {
 				return this.addOffset(dateUtil.getEndOfMonth(date))
 			},
+			splitDate: (timestamp: number) => {
+				return dateUtil.splitDate(this.addOffset(timestamp, false))
+			},
 		}
 	}
 

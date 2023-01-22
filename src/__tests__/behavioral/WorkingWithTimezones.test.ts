@@ -266,8 +266,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	) {
 		await this.setZone(zone)
 		const actual = this.dates.getStartOfDay()
-		const date = new Date()
-		date.setUTCHours(offsetHours * -1, 0, 0, 0)
+		const date = this.DateStartOfDay(offsetHours)
 		const expected = date.getTime()
 		assert.isEqual(actual, expected)
 	}
@@ -283,6 +282,66 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		const date = new Date()
 		date.setUTCHours(23 + offsetHours * -1, 59, 59, 999)
 		const expected = date.getTime()
+		assert.isEqual(actual, expected)
+	}
+
+	@test(
+		'start of month honors locale America/Denver',
+		1674370800000,
+		'America/Denver',
+		-7
+	)
+	@test(
+		'start of month honors locale America/Belize',
+		1674370800000,
+		'America/Belize',
+		-6
+	)
+	protected static async startOfMonthHonorsLocale(
+		now: number,
+		zone: TimezoneName,
+		offsetHours: number
+	) {
+		await this.setZone(zone)
+
+		const date = this.DateStartOfDay(offsetHours)
+		const input = date.getTime()
+
+		date.setUTCDate(1)
+
+		const expected = date.getTime()
+		const actual = this.dates.getStartOfMonth(input)
+
+		assert.isEqual(actual, expected)
+	}
+
+	@test(
+		'end of month honors locale America/Denver',
+		1610737924928,
+		'America/Denver',
+		-7
+	)
+	@test(
+		'end of month honors locale America/Belize',
+		1610737924928,
+		'America/Belize',
+		-6
+	)
+	protected static async endOfMonthHonorsLocale(
+		now: number,
+		zone: TimezoneName,
+		offsetHours: number
+	) {
+		await this.setZone(zone)
+
+		const date = new Date()
+
+		date.setUTCFullYear(2021, 0, 31)
+		date.setUTCHours(23 + offsetHours * -1, 59, 59, 999)
+
+		const expected = date.getTime()
+		const actual = this.dates.getEndOfMonth(now)
+
 		assert.isEqual(actual, expected)
 	}
 
@@ -302,6 +361,12 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 			...d,
 		})
 		assert.isEqual(results, expected)
+	}
+
+	private static DateStartOfDay(offsetHours: number) {
+		const date = new Date()
+		date.setUTCHours(offsetHours * -1, 0, 0, 0)
+		return date
 	}
 
 	private static assertUsesLocaleToLoadDefaultZoneName(

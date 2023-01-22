@@ -38,6 +38,12 @@ export default class DateUtilDecorator {
 			getEndOfDay: (date: number) => {
 				return this.addOffset(dateUtil.getEndOfDay(date))
 			},
+			getStartOfMonth: (date: number) => {
+				return this.addOffset(dateUtil.getStartOfMonth(date))
+			},
+			getEndOfMonth: (date: number) => {
+				return this.addOffset(dateUtil.getEndOfMonth(date))
+			},
 		}
 	}
 

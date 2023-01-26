@@ -281,7 +281,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	) {
 		await this.setZone(zone)
 		const actual = this.dates.getEndOfDay()
-		const date = new Date()
+		const date = this.DateWithOffset(offsetHours)
 		date.setUTCHours(23 + offsetHours * -1, 59, 59, 999)
 		const expected = date.getTime()
 		assert.isEqual(actual, expected)
@@ -289,30 +289,24 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 
 	@test(
 		'start of month honors locale America/Denver',
-		1674370800000,
-		'America/Denver',
-		-7
+		1672552800000,
+		1669878000000,
+		'America/Denver'
 	)
 	@test(
 		'start of month honors locale America/Belize',
 		1674370800000,
-		'America/Belize',
-		-6
+		1672552800000,
+		'America/Belize'
 	)
 	protected static async startOfMonthHonorsLocale(
 		now: number,
-		zone: TimezoneName,
-		offsetHours: number
+		expected: number,
+		zone: TimezoneName
 	) {
 		await this.setZone(zone)
 
-		const date = this.DateStartOfDay(offsetHours)
-		const input = date.getTime()
-
-		date.setUTCDate(1)
-
-		const expected = date.getTime()
-		const actual = this.dates.getStartOfMonth(input)
+		const actual = this.dates.getStartOfMonth(now)
 
 		assert.isEqual(actual, expected)
 	}
@@ -320,30 +314,22 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	@test(
 		'end of month honors locale America/Denver',
 		1610737924928,
-		'America/Denver',
-		-7
+		1612162799999,
+		'America/Denver'
 	)
 	@test(
 		'end of month honors locale America/Belize',
 		1610737924928,
-		'America/Belize',
-		-6
+		1612159199999,
+		'America/Belize'
 	)
 	protected static async endOfMonthHonorsLocale(
 		now: number,
-		zone: TimezoneName,
-		offsetHours: number
+		expected: number,
+		zone: TimezoneName
 	) {
 		await this.setZone(zone)
-
-		const date = new Date()
-
-		date.setUTCFullYear(2021, 0, 31)
-		date.setUTCHours(23 + offsetHours * -1, 59, 59, 999)
-
-		const expected = date.getTime()
 		const actual = this.dates.getEndOfMonth(now)
-
 		assert.isEqual(actual, expected)
 	}
 
@@ -397,10 +383,16 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		assert.isEqual(results, expected)
 	}
 
-	private static DateStartOfDay(offsetHours: number) {
-		const date = new Date()
+	private static DateStartOfDay(offsetHours: number, timestamp?: number) {
+		const date = this.DateWithOffset(offsetHours, timestamp)
 		date.setUTCHours(offsetHours * -1, 0, 0, 0)
 		return date
+	}
+
+	private static DateWithOffset(offsetHours: number, timestamp?: number) {
+		return new Date(
+			(timestamp ?? new Date().getTime()) + offsetHours * 60 * 60 * 1000
+		)
 	}
 
 	private static assertUsesLocaleToLoadDefaultZoneName(

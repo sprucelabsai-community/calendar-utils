@@ -10,7 +10,7 @@ export default class DateUtilDecorator {
 		this.locale = locale
 	}
 
-	public makeLocaleAware(dateUtil: any): DateUtil {
+	public makeLocaleAware(dateUtil: DateUtil): DateUtil {
 		assertOptions({ dateUtil }, ['dateUtil'])
 		return {
 			...dateUtil,
@@ -27,27 +27,33 @@ export default class DateUtilDecorator {
 				return this.addOffset(value!)
 			},
 			setTimeOfDay: (...args: number[]) => {
-				return this.addOffset(dateUtil.setTimeOfDay(...args))
+				return this.addOffset(
+					dateUtil.setTimeOfDay(...(args as [number, number, number]))
+				)
 			},
 			format: (date: number, format: string) => {
 				return dateUtil.format(this.addOffset(date, false), format)
 			},
-			getStartOfDay: (date: number) => {
-				return this.addOffset(dateUtil.getStartOfDay(date))
+			getStartOfDay: (date: number | undefined) => {
+				return this.addOffset(dateUtil.getStartOfDay(this.offsetDate(date)))
 			},
-			getEndOfDay: (date: number) => {
-				return this.addOffset(dateUtil.getEndOfDay(date))
+			getEndOfDay: (date: number | undefined) => {
+				return this.addOffset(dateUtil.getEndOfDay(this.offsetDate(date)))
 			},
-			getStartOfMonth: (date: number) => {
-				return this.addOffset(dateUtil.getStartOfMonth(date))
+			getStartOfMonth: (date: number | undefined) => {
+				return this.addOffset(dateUtil.getStartOfMonth(this.offsetDate(date)))
 			},
-			getEndOfMonth: (date: number) => {
-				return this.addOffset(dateUtil.getEndOfMonth(date))
+			getEndOfMonth: (date: number | undefined) => {
+				return this.addOffset(dateUtil.getEndOfMonth(this.offsetDate(date)))
 			},
 			splitDate: (timestamp: number) => {
 				return dateUtil.splitDate(this.addOffset(timestamp, false))
 			},
 		}
+	}
+
+	private offsetDate(date: number | undefined): any {
+		return this.addOffset(date ?? new Date().getTime(), false)
 	}
 
 	private addOffset(value: number, shouldInverse = true): number {

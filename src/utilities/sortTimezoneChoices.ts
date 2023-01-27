@@ -13,8 +13,14 @@ export default function sortTimezoneChoices<S extends Schema>(
 
 	const copy = cloneDeep(schema)
 
-	//@ts-ignore
-	copy.fields[fieldName].options.choices = choices
+	const field = copy.fields?.[fieldName]
+
+	if (field) {
+		field.options = {
+			...field.options,
+			choices,
+		}
+	}
 
 	return copy
 }

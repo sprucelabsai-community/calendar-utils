@@ -387,6 +387,14 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		assert.isEqualDeep(schema.fields.timezone.options.choices, [])
 	}
 
+	@test()
+	protected static async doesNotCrashIfSChemaIsMissingOptions() {
+		const schema = this.buildSchemaWithTimezoneFieldNamed()
+		//@ts-ignore
+		delete schema.fields.timezone.options
+		sortTimezoneChoices(this.locale, schema, 'timezone')
+	}
+
 	private static buildSchemaWithTimezoneFieldNamed(fieldName = 'timezone') {
 		return buildSchema({
 			id: 'withTimezone',

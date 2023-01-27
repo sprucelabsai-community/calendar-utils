@@ -1,3 +1,10 @@
+# [31.4.0](https://github.com/sprucelabsai/calendar-utils/compare/v31.3.32...v31.4.0) (2023-01-27)
+
+
+### Features
+
+* sortTimezoneChoices utility for appling to a schema ([90816ef](https://github.com/sprucelabsai/calendar-utils/commit/90816ef))
+
 ## [31.3.32](https://github.com/sprucelabsai/calendar-utils/compare/v31.3.31...v31.3.32) (2023-01-27)
 
 ## [31.3.31](https://github.com/sprucelabsai/calendar-utils/compare/v31.3.30...v31.3.31) (2023-01-27)

@@ -1,3 +1,4 @@
+import { buildSchema, cloneDeep, SchemaRegistry } from '@sprucelabs/schema'
 import { timezoneChoices } from '@sprucelabs/spruce-core-schemas'
 import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
 import { errorAssert } from '@sprucelabs/test-utils'
@@ -8,6 +9,7 @@ import LocaleImpl from '../../locales/Locale'
 import TimezoneChoiceSorter from '../../locales/TimezoneChoiceSorter'
 import { DateUtil, TimezoneName } from '../../types/calendar.types'
 import dateUtil, { IDate } from '../../utilities/date.utility'
+import sortTimezoneChoices from '../../utilities/sortTimezoneChoices'
 
 export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	private static locale: LocaleImpl
@@ -15,6 +17,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	private static decorator: DateUtilDecorator
 
 	protected static async beforeEach() {
+		SchemaRegistry.getInstance().forgetAllSchemas()
 		await super.beforeEach()
 		this.locale = new LocaleImpl()
 		this.decorator = new DateUtilDecorator(this.locale)
@@ -357,6 +360,44 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 			day: 23,
 			hour: 8,
 			minute: 31,
+		})
+	}
+
+	@test('can sort timezones on schema with utility 1', 'timezone')
+	@test('can sort timezones on schema with utility 2', 'location')
+	protected static async sorterUtilityFunctionUpdatesSchema(fieldName: string) {
+		const schema = this.buildSchemaWithTimezoneFieldNamed(fieldName)
+
+		const sorter = new TimezoneChoiceSorter(this.locale)
+		const choices = sorter.sort(timezoneChoices)
+
+		const expected = cloneDeep(schema)
+
+		//@ts-ignore
+		expected.fields[fieldName].options.choices = choices
+
+		const actual = sortTimezoneChoices(this.locale, schema, fieldName)
+		assert.isEqualDeep(actual, expected)
+	}
+
+	@test()
+	protected static async sorterUtilityDoesNotMutateOriginalSchema() {
+		const schema = this.buildSchemaWithTimezoneFieldNamed()
+		sortTimezoneChoices(this.locale, schema, 'timezone')
+		assert.isEqualDeep(schema.fields.timezone.options.choices, [])
+	}
+
+	private static buildSchemaWithTimezoneFieldNamed(fieldName = 'timezone') {
+		return buildSchema({
+			id: 'withTimezone',
+			fields: {
+				[fieldName]: {
+					type: 'select',
+					options: {
+						choices: [],
+					},
+				},
+			},
 		})
 	}
 

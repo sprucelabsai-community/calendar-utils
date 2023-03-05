@@ -1,3 +1,10 @@
+# [32.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v31.4.58...v32.0.0) (2023-03-05)
+
+
+### Breaking Changes
+
+* upgrade ([f388b03](https://github.com/sprucelabsai/calendar-utils/commit/f388b03))
+
 ## [31.4.58](https://github.com/sprucelabsai/calendar-utils/compare/v31.4.57...v31.4.58) (2023-03-04)
 
 ## [31.4.57](https://github.com/sprucelabsai/calendar-utils/compare/v31.4.56...v31.4.57) (2023-03-03)

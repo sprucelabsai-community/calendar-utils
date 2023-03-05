@@ -1,3 +1,10 @@
+# [33.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v32.0.0...v33.0.0) (2023-03-05)
+
+
+### Breaking Changes
+
+* upgrade ([a73ab24](https://github.com/sprucelabsai/calendar-utils/commit/a73ab24))
+
 # [32.0.0](https://github.com/sprucelabsai/calendar-utils/compare/v31.4.58...v32.0.0) (2023-03-05)
 
 

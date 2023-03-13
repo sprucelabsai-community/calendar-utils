@@ -263,27 +263,23 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		assert.isEqual(hitCount, 1)
 	}
 
-	@test('start of day honors locale America/Denver', 'America/Denver', -7)
-	@test('start of day honors locale America/Belize', 'America/Belize', -6)
-	protected static async startOfDayHonorsLocale(
-		zone: TimezoneName,
-		offsetHours: number
-	) {
+	@test('start of day honors locale America/Denver', 'America/Denver')
+	@test('start of day honors locale America/Belize', 'America/Belize')
+	protected static async startOfDayHonorsLocale(zone: TimezoneName) {
 		await this.setZone(zone)
 		const actual = this.dates.getStartOfDay()
-		const date = this.DateStartOfDay(offsetHours)
+		const date = this.DateStartOfDay(zone)
 		const expected = date.getTime()
 		assert.isEqual(actual, expected)
 	}
 
 	@test('end of day honors locale America/Denver', 'America/Denver', -7)
 	@test('end of day honors locale America/Belize', 'America/Belize', -6)
-	protected static async endOfDayHonorsLocale(
-		zone: TimezoneName,
-		offsetHours: number
-	) {
+	protected static async endOfDayHonorsLocale(zone: TimezoneName) {
 		await this.setZone(zone)
 		const actual = this.dates.getEndOfDay()
+		const offset = getTimezoneOffset(zone, new Date())
+		const offsetHours = offset / 1000 / 60 / 60
 		const date = this.DateWithOffset(offsetHours)
 		date.setUTCHours(23 + offsetHours * -1, 59, 59, 999)
 		const expected = date.getTime()
@@ -432,10 +428,13 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		assert.isEqual(results, expected)
 	}
 
-	private static DateStartOfDay(offsetHours: number, timestamp?: number) {
-		const date = this.DateWithOffset(offsetHours, timestamp)
-		date.setUTCHours(offsetHours * -1, 0, 0, 0)
-		return date
+	private static DateStartOfDay(timeZone: TimezoneName, timestamp?: number) {
+		const date = timestamp ? new Date(timestamp) : new Date()
+		date.setUTCHours(0, 0, 0, 0)
+		const stamp = date.getTime()
+		const offset = getTimezoneOffset(timeZone, date)
+		const actual = stamp - offset
+		return new Date(actual)
 	}
 
 	private static DateWithOffset(offsetHours: number, timestamp?: number) {

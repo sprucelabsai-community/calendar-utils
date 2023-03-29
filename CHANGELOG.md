@@ -1,3 +1,5 @@
+## [35.0.6](https://github.com/sprucelabsai-community/calendar-utils/compare/v35.0.5...v35.0.6) (2023-03-29)
+
 ## [35.0.5](https://github.com/sprucelabsai-community/calendar-utils/compare/v35.0.4...v35.0.5) (2023-03-28)
 
 ## [35.0.4](https://github.com/sprucelabsai-community/calendar-utils/compare/v35.0.3...v35.0.4) (2023-03-28)

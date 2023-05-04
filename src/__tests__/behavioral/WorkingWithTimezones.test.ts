@@ -429,10 +429,12 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	}
 
 	private static DateStartOfDay(timeZone: TimezoneName, timestamp?: number) {
-		const date = timestamp ? new Date(timestamp) : new Date()
+		const now = timestamp ?? new Date().getTime()
+		const offset = getTimezoneOffset(timeZone, now)
+
+		const date = new Date(now + offset)
 		date.setUTCHours(0, 0, 0, 0)
 		const stamp = date.getTime()
-		const offset = getTimezoneOffset(timeZone, date)
 		const actual = stamp - offset
 		return new Date(actual)
 	}

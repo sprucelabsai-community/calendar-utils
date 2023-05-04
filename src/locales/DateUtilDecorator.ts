@@ -16,7 +16,7 @@ export default class DateUtilDecorator {
 			...dateUtil,
 			//@ts-ignore
 			__beenDecorated: true,
-			__local: this,
+			__locale: this,
 			date: (date?: IDate) => {
 				let value: number | undefined
 				if (!date) {

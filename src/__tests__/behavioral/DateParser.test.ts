@@ -52,6 +52,10 @@ export default class DateParserTest extends AbstractSpruceTest {
 	@test('parses time 5 as 5:00am', '5', { hour: 5, minute: 0 })
 	@test('parses time 5pm as 5:00pm', '5pm', { hour: 17, minute: 0 })
 	@test('parses time 5 pm as 5:00pm', '5 pm', { hour: 17, minute: 0 })
+	@test('parses time 530p as 5:30pm', '530p', { hour: 17, minute: 30 })
+	@test('parses time 53p as 5:30pm', '53p', { hour: 17, minute: 30 })
+	@test('parses time 535p as 5:35pm', '535p', { hour: 17, minute: 35 })
+	@test('parses time 5:30pm as 5:30pm', '5:30pm', { hour: 17, minute: 30 })
 	protected static async parsesTimeForward(
 		str: string,
 		options: Partial<IDate>

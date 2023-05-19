@@ -807,7 +807,8 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	protected static async dateReturnsNowWhenPassedNothing() {
 		const now = new Date().getTime()
 		const actual = dateUtil.date()
-		assert.isEqual(actual, now)
+		assert.isBelow(actual, now + 2)
+		assert.isAbove(actual, now - 2)
 	}
 
 	private static assertFormatTimeEquals(

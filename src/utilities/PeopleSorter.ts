@@ -1,4 +1,3 @@
-import sortBy from 'lodash/sortBy'
 import { SorterCalendarEvent } from '../types/calendar.types'
 
 export default class PeopleSorter {
@@ -33,10 +32,10 @@ export default class PeopleSorter {
 			}
 
 			if (nonSelectedPeople && nonSelectedPeople.length > 0) {
-				people = people.concat(sortBy(nonSelectedPeople, ['casualName']))
+				people = people.concat(sortByCasualName(nonSelectedPeople))
 			}
 		} else {
-			people = sortBy(this.people, ['casualName'])
+			people = sortByCasualName(this.people)
 		}
 
 		return people
@@ -78,9 +77,8 @@ export default class PeopleSorter {
 				  )
 				: []
 
-		selectedEvents = sortBy(
-			[...selectedEvents, ...matchOnGroup],
-			['startDateTimeMs']
+		selectedEvents = [...selectedEvents, ...matchOnGroup].sort(
+			(a, b) => a.startDateTimeMs - b.startDateTimeMs
 		)
 
 		const people = selectedEvents.map((e) => {
@@ -147,3 +145,9 @@ export default class PeopleSorter {
 }
 
 export type Person = { id: string; casualName: string }
+
+function sortByCasualName(people: Person[]) {
+	return people.sort((a, b) => {
+		return a.casualName < b.casualName ? -1 : 1
+	})
+}

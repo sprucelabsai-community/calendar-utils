@@ -1,3 +1,10 @@
+# [36.1.0](https://github.com/sprucelabsai-community/calendar-utils/compare/v36.0.29...v36.1.0) (2023-05-21)
+
+
+### Features
+
+* repeating rule text generator! ([166c1ad](https://github.com/sprucelabsai-community/calendar-utils/commit/166c1ad))
+
 ## [36.0.29](https://github.com/sprucelabsai-community/calendar-utils/compare/v36.0.28...v36.0.29) (2023-05-20)
 
 ## [36.0.28](https://github.com/sprucelabsai-community/calendar-utils/compare/v36.0.27...v36.0.28) (2023-05-19)

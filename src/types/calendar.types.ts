@@ -16,6 +16,7 @@ export type DayOfWeek = NonNullable<CalendarEvent['daysOfWeek']>[number]
 
 export type TimezoneChoices = typeof timezoneChoices
 export type TimezoneName = TimezoneChoices[number]['value']
+export type Repeats = NonNullable<CalendarEvent['repeats']>
 
 export type Locale = Pick<
 	LocaleImpl,

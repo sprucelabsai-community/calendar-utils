@@ -36,10 +36,22 @@ export default class RepeatingRuleTextGenerator {
 	public generate(
 		event: Pick<
 			CalendarEvent,
-			'repeats' | 'interval' | 'daysOfWeek' | 'occurrences' | 'repeatsUntil'
+			| 'repeats'
+			| 'interval'
+			| 'daysOfWeek'
+			| 'occurrences'
+			| 'repeatsUntil'
+			| 'activeUntilDate'
 		>
 	) {
-		const { repeats, repeatsUntil, interval, daysOfWeek, occurrences } = event
+		const {
+			repeats,
+			repeatsUntil,
+			interval,
+			daysOfWeek,
+			occurrences,
+			activeUntilDate,
+		} = event
 
 		let message = ''
 
@@ -54,10 +66,11 @@ export default class RepeatingRuleTextGenerator {
 				message = `Repeats ${repeats}`
 			}
 
-			if (occurrences) {
+			const until = activeUntilDate ?? repeatsUntil
+			if (until) {
+				message += ` until ${this.dates.formatDate(until)}.`
+			} else if (occurrences) {
 				message += ` for ${occurrences} times.`
-			} else if (repeatsUntil) {
-				message += ` until ${this.dates.formatDate(repeatsUntil)}.`
 			} else {
 				message += ` forever.`
 			}

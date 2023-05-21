@@ -120,6 +120,34 @@ export default class RepeatingRuleTextGeneratorTest extends AbstractSpruceTest {
 		)
 	}
 
+	@test()
+	protected static async activeUntilDateBeatsOccurrences() {
+		const date = tomorrowLunch()
+		const until = dateUtil.formatDate(date)
+		this.assertGenerates(
+			{
+				repeats: 'weekly',
+				occurrences: 10,
+				activeUntilDate: date,
+			},
+			`Repeats weekly until ${until}.`
+		)
+	}
+
+	@test()
+	protected static async activeUntilBeatsRepeatsUntil() {
+		const date = tomorrowLunch()
+		const until = dateUtil.formatDate(date)
+		this.assertGenerates(
+			{
+				repeats: 'weekly',
+				repeatsUntil: dateUtil.addDays(date, 1),
+				activeUntilDate: date,
+			},
+			`Repeats weekly until ${until}.`
+		)
+	}
+
 	private static assertGenerates(
 		values: Partial<CalendarEvent>,
 		expected: string

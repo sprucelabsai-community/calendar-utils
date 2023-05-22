@@ -12,6 +12,7 @@ export default class LocaleImpl
 	implements Locale
 {
 	private zoneNameByOffset: Record<number, TimezoneName> = {}
+	private offsetsForDate: Record<string, number> = {}
 	private offset = new Date().getTimezoneOffset() * -1
 	protected currentZone?: TimezoneName
 	private timezoneChoices: SelectChoice[]
@@ -29,7 +30,15 @@ export default class LocaleImpl
 
 	public getTimezoneOffsetMinutes(onDate?: number): number {
 		if (onDate) {
-			return this.zoneNameToOffsetMinutes(this.getZoneName(), onDate)
+			const dateRoundedToNearestHour = onDate - (onDate % 3600000)
+			const key = `${this.getZoneName()}-${dateRoundedToNearestHour}`
+			if (!this.offsetsForDate[key]) {
+				this.offsetsForDate[key] = this.zoneNameToOffsetMinutes(
+					this.getZoneName(),
+					onDate
+				)
+			}
+			return this.offsetsForDate[key]
 		}
 		return this.offset
 	}

@@ -406,6 +406,35 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		this.getZoneAndAssertHits(count2)
 	}
 
+	@test()
+	protected static async getTimezoneOffsetMinutesCachesByTheHour() {
+		const tenAm = this.dates.setTimeOfDay(this.dates.date(), 10, 0, 0, 0)
+		const tenFifteen = this.dates.setTimeOfDay(this.dates.date(), 10, 15, 0, 0)
+		const tenThirty = this.dates.setTimeOfDay(this.dates.date(), 10, 30, 0, 0)
+		const tenFourtyFive = this.dates.setTimeOfDay(
+			this.dates.date(),
+			10,
+			45,
+			0,
+			0
+		)
+
+		this.locale.zoneNameToOffsetMinutesCount = 0
+		this.getTimezoneOffsetAndAssertHitCount(tenAm, 1)
+		this.getTimezoneOffsetAndAssertHitCount(tenAm, 1)
+		this.getTimezoneOffsetAndAssertHitCount(tenFifteen, 1)
+		this.getTimezoneOffsetAndAssertHitCount(tenThirty, 1)
+		this.getTimezoneOffsetAndAssertHitCount(tenFourtyFive, 1)
+	}
+
+	private static getTimezoneOffsetAndAssertHitCount(
+		forDate: number,
+		expected: number
+	) {
+		this.locale.getTimezoneOffsetMinutes(forDate)
+		this.assertOffsetMinutesToZoneHitCount(expected)
+	}
+
 	private static getZoneNameAndHitCount() {
 		this.getZoneName()
 		const count = this.locale.zoneNameToOffsetMinutesCount

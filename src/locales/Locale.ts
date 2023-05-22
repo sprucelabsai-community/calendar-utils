@@ -11,8 +11,9 @@ export default class LocaleImpl
 	extends AbstractEventEmitter<LocaleContract>
 	implements Locale
 {
+	private zoneNameByOffset: Record<number, TimezoneName> = {}
 	private offset = new Date().getTimezoneOffset() * -1
-	private currentZone?: TimezoneName
+	protected currentZone?: TimezoneName
 	private timezoneChoices: SelectChoice[]
 
 	public constructor() {
@@ -58,12 +59,18 @@ export default class LocaleImpl
 			return 'UTC'
 		}
 
-		return this.timezoneChoices
+		if (this.zoneNameByOffset[offset]) {
+			return this.zoneNameByOffset[offset]
+		}
+
+		this.zoneNameByOffset[offset] = this.timezoneChoices
 			.map((t) => t.value)
 			.find((name) => {
 				const o = this.zoneNameToOffsetMinutes(name as any)
 				return o === offset
 			}) as TimezoneName
+
+		return this.zoneNameByOffset[offset]
 	}
 
 	public zoneNameToOffsetMinutes(name: TimezoneName, onDate?: number) {

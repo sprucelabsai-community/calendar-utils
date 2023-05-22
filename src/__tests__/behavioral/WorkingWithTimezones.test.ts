@@ -12,14 +12,14 @@ import dateUtil, { IDate } from '../../utilities/date.utility'
 import sortTimezoneChoices from '../../utilities/sortTimezoneChoices'
 
 export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
-	private static locale: LocaleImpl
+	private static locale: SpyLocale
 	private static dates: DateUtil = dateUtil as DateUtil
 	private static decorator: DateUtilDecorator
 
 	protected static async beforeEach() {
 		SchemaRegistry.getInstance().forgetAllSchemas()
 		await super.beforeEach()
-		this.locale = new LocaleImpl()
+		this.locale = new SpyLocale()
 		this.decorator = new DateUtilDecorator(this.locale)
 		this.dates = this.decorator.makeLocaleAware(dateUtil)
 	}
@@ -391,6 +391,36 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		sortTimezoneChoices(this.locale, schema, 'timezone')
 	}
 
+	@test()
+	protected static async getZoneNameOnlyDoesLookupOnce() {
+		this.locale.clearCurrentZone()
+		const count = this.getZoneNameAndHitCount()
+		this.getZoneAndAssertHits(count)
+		this.getZoneAndAssertHits(count)
+		this.locale.setTimezoneOffsetMinutes(60)
+		const count2 = this.getZoneNameAndHitCount()
+		assert.isNotEqual(count, count2)
+		this.getZoneAndAssertHits(count2)
+		this.getZoneAndAssertHits(count2)
+		this.locale.setTimezoneOffsetMinutes(60)
+		this.getZoneAndAssertHits(count2)
+	}
+
+	private static getZoneNameAndHitCount() {
+		this.getZoneName()
+		const count = this.locale.zoneNameToOffsetMinutesCount
+		return count
+	}
+
+	private static getZoneAndAssertHits(expected: number) {
+		this.getZoneName()
+		this.assertOffsetMinutesToZoneHitCount(expected)
+	}
+
+	private static assertOffsetMinutesToZoneHitCount(expected: number) {
+		assert.isEqual(this.locale.zoneNameToOffsetMinutesCount, expected)
+	}
+
 	private static buildSchemaWithTimezoneFieldNamed(fieldName = 'timezone') {
 		return buildSchema({
 			id: 'withTimezone',
@@ -500,5 +530,17 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 
 	private static async setZone(zone: TimezoneName) {
 		await this.locale.setZoneName(zone)
+	}
+}
+
+class SpyLocale extends LocaleImpl {
+	public zoneNameToOffsetMinutesCount = 0
+	public clearCurrentZone() {
+		this.currentZone = undefined
+	}
+
+	public zoneNameToOffsetMinutes(name: TimezoneName, onDate?: number) {
+		this.zoneNameToOffsetMinutesCount++
+		return super.zoneNameToOffsetMinutes(name, onDate)
 	}
 }

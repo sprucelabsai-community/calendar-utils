@@ -146,6 +146,11 @@ const calendarEventSchema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent
 	                type: 'number',
 	                options: undefined
 	            },
+	            /** . */
+	            'meta': {
+	                type: 'raw',
+	                options: {valueType: `Record<string, any>`,}
+	            },
 	    }
 }
 

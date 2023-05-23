@@ -191,6 +191,12 @@ export default buildSchema({
 		totalInRepeating: {
 			type: 'number',
 		},
+		meta: {
+			type: 'raw',
+			options: {
+				valueType: 'Record<string, any>',
+			},
+		},
 	},
 })
 

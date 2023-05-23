@@ -15,12 +15,11 @@ export default class LocaleImpl
 	private offsetsForDate: Record<string, number> = {}
 	private offset = new Date().getTimezoneOffset() * -1
 	protected currentZone?: TimezoneName
-	private timezoneChoices: SelectChoice[]
+
+	private _timezoneChoices?: SelectChoice[]
 
 	public constructor() {
 		super(localeContract)
-		const sorter = new TimezoneChoiceSorter(this)
-		this.timezoneChoices = sorter.sort(timezoneChoices as any)
 	}
 
 	public setTimezoneOffsetMinutes(offset: number): void {
@@ -92,6 +91,15 @@ export default class LocaleImpl
 		}
 
 		return results / 1000 / 60
+	}
+
+	private get timezoneChoices(): SelectChoice[] {
+		if (!this._timezoneChoices) {
+			const sorter = new TimezoneChoiceSorter(this)
+			this._timezoneChoices = sorter.sort(timezoneChoices as any)
+		}
+
+		return this._timezoneChoices
 	}
 }
 

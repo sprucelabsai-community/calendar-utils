@@ -1,3 +1,10 @@
+# [36.2.0](https://github.com/sprucelabsai-community/calendar-utils/compare/v36.1.9...v36.2.0) (2023-05-23)
+
+
+### Features
+
+* events have meta data ([80a6475](https://github.com/sprucelabsai-community/calendar-utils/commit/80a6475))
+
 ## [36.1.9](https://github.com/sprucelabsai-community/calendar-utils/compare/v36.1.8...v36.1.9) (2023-05-23)
 
 ## [36.1.8](https://github.com/sprucelabsai-community/calendar-utils/compare/v36.1.7...v36.1.8) (2023-05-23)

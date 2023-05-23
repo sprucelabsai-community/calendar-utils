@@ -25,6 +25,7 @@ export default class LocaleImpl
 	public setTimezoneOffsetMinutes(offset: number): void {
 		assertOptions({ offset }, ['offset'])
 		this.offset = offset
+		this.currentZone = undefined
 	}
 
 	public getTimezoneOffsetMinutes(onDate?: number): number {
@@ -56,10 +57,12 @@ export default class LocaleImpl
 	}
 
 	public getZoneName() {
-		return (
-			this.currentZone ??
-			this.offsetMinutesToZoneName(this.getTimezoneOffsetMinutes())
-		)
+		if (!this.currentZone) {
+			this.currentZone = this.offsetMinutesToZoneName(
+				this.getTimezoneOffsetMinutes()
+			)
+		}
+		return this.currentZone
 	}
 
 	public offsetMinutesToZoneName(offset: number) {

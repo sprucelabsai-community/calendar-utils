@@ -427,6 +427,13 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		this.getTimezoneOffsetAndAssertHitCount(tenFourtyFive, 1)
 	}
 
+	@test()
+	protected static async getZoneNameCachesAfterFirstLookup() {
+		this.locale.offsetMinutesToZoneName = () => 'Africa/Abidjan'
+		this.getZoneName()
+		assert.isEqual(this.locale.currentZone, 'Africa/Abidjan')
+	}
+
 	private static getTimezoneOffsetAndAssertHitCount(
 		forDate: number,
 		expected: number
@@ -563,6 +570,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 }
 
 class SpyLocale extends LocaleImpl {
+	public currentZone?: TimezoneName
 	public zoneNameToOffsetMinutesCount = 0
 	public clearCurrentZone() {
 		this.currentZone = undefined

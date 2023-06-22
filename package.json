@@ -67,10 +67,10 @@
   "dependencies": {
     "@sprucelabs/error": "^5.1.11",
     "@sprucelabs/mercury-event-emitter": "^40.1.83",
-    "@sprucelabs/mercury-types": "^45.0.54",
-    "@sprucelabs/schema": "^28.6.49",
-    "@sprucelabs/spruce-core-schemas": "^38.1.52",
-    "@sprucelabs/spruce-event-utils": "^37.0.68",
+    "@sprucelabs/mercury-types": "^45.0.55",
+    "@sprucelabs/schema": "^28.8.1",
+    "@sprucelabs/spruce-core-schemas": "^38.1.53",
+    "@sprucelabs/spruce-event-utils": "^37.0.69",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
     "rrule": "^2.7.2"

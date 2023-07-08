@@ -1,3 +1,10 @@
+# [37.0.0](https://github.com/sprucelabsai-community/calendar-utils/compare/v36.2.53...v37.0.0) (2023-07-08)
+
+
+### Breaking Changes
+
+* upgrade ([c7e55e7](https://github.com/sprucelabsai-community/calendar-utils/commit/c7e55e7))
+
 ## [36.2.53](https://github.com/sprucelabsai-community/calendar-utils/compare/v36.2.52...v36.2.53) (2023-06-22)
 
 ## [36.2.52](https://github.com/sprucelabsai-community/calendar-utils/compare/v36.2.51...v36.2.52) (2023-06-22)

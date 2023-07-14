@@ -21,7 +21,7 @@ export default class DateUtilDecorator {
 				let value: number | undefined
 				if (!date) {
 					const d = new Date()
-					value = d.getTime() - d.getTimezoneOffset() * 60 * 1000
+					value = d.getTime()
 				} else {
 					value = dateUtil.date(date)
 				}

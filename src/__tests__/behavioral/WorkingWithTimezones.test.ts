@@ -214,25 +214,6 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		assert.isEqual(actualTime, 'Dec 31st, 2021 @ 7pm')
 	}
 
-	@test()
-	protected static async newDatesMoveToUtc() {
-		Date.prototype.getTimezoneOffset = () => {
-			return -360
-		}
-
-		const date = new Date()
-		const zone = 'Africa/Casablanca'
-		const offset = this.zoneNameToOffsetMinutes(zone) * 60 * 1000
-		const expected =
-			date.getTime() - date.getTimezoneOffset() * 60 * 1000 - offset
-
-		await this.setZone(zone)
-		const actual = this.dates.date()
-
-		assert.isAbove(actual, expected - 10)
-		assert.isBelow(actual, expected + 10)
-	}
-
 	@test('setting zone emits event 1', 'Africa/Casablanca')
 	@test('setting zone emits event 2', 'Africa/Cairo')
 	protected static async settingZoneEmitsEvent(zoneName: TimezoneName) {
@@ -408,21 +389,21 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 
 	@test()
 	protected static async getTimezoneOffsetMinutesCachesByTheHour() {
-		const tenAm = this.dates.setTimeOfDay(this.dates.date(), 10, 0, 0, 0)
-		const tenFifteen = this.dates.setTimeOfDay(this.dates.date(), 10, 15, 0, 0)
-		const tenThirty = this.dates.setTimeOfDay(this.dates.date(), 10, 30, 0, 0)
-		const tenFourtyFive = this.dates.setTimeOfDay(
-			this.dates.date(),
-			10,
-			45,
-			0,
-			0
-		)
+		await this.locale.setZoneName('UTC')
+		const date = this.dates.date()
+		const tenAm = this.dates.setTimeOfDay(date, 10, 0, 0, 0)
+		const tenFifteen = this.dates.setTimeOfDay(date, 10, 15, 0, 0)
+		const tenThirty = this.dates.setTimeOfDay(date, 10, 30, 0, 0)
+		const tenFourtyFive = this.dates.setTimeOfDay(date, 10, 45, 0, 0)
 
 		this.locale.zoneNameToOffsetMinutesCount = 0
+		this.locale.clearCache()
+
 		this.getTimezoneOffsetAndAssertHitCount(tenAm, 1)
 		this.getTimezoneOffsetAndAssertHitCount(tenAm, 1)
+
 		this.getTimezoneOffsetAndAssertHitCount(tenFifteen, 1)
+
 		this.getTimezoneOffsetAndAssertHitCount(tenThirty, 1)
 		this.getTimezoneOffsetAndAssertHitCount(tenFourtyFive, 1)
 	}
@@ -574,6 +555,10 @@ class SpyLocale extends LocaleImpl {
 	public zoneNameToOffsetMinutesCount = 0
 	public clearCurrentZone() {
 		this.currentZone = undefined
+	}
+
+	public clearCache() {
+		this.offsetsForDate = {}
 	}
 
 	public zoneNameToOffsetMinutes(name: TimezoneName, onDate?: number) {

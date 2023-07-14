@@ -1,3 +1,10 @@
+# [38.0.0](https://github.com/sprucelabsai-community/calendar-utils/compare/v37.0.10...v38.0.0) (2023-07-14)
+
+
+### Breaking Changes
+
+* new dates do NOT move to UTC ([20ea7cd](https://github.com/sprucelabsai-community/calendar-utils/commit/20ea7cd))
+
 ## [37.0.10](https://github.com/sprucelabsai-community/calendar-utils/compare/v37.0.9...v37.0.10) (2023-07-13)
 
 ## [37.0.9](https://github.com/sprucelabsai-community/calendar-utils/compare/v37.0.8...v37.0.9) (2023-07-13)

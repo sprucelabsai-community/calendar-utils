@@ -374,6 +374,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 
 	@test()
 	protected static async getZoneNameOnlyDoesLookupOnce() {
+		await this.locale.setZoneName('UTC')
 		this.locale.clearCurrentZone()
 		const count = this.getZoneNameAndHitCount()
 		this.getZoneAndAssertHits(count)

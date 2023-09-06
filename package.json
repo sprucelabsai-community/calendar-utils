@@ -70,7 +70,7 @@
     "@sprucelabs/mercury-types": "^46.0.54",
     "@sprucelabs/schema": "^29.0.46",
     "@sprucelabs/spruce-core-schemas": "^39.0.62",
-    "@sprucelabs/spruce-event-utils": "^38.0.65",
+    "@sprucelabs/spruce-event-utils": "^38.0.66",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
     "rrule": "^2.7.2"

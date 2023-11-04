@@ -1,5 +1,7 @@
 import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
 import dateUtil from '../../utilities/date.utility'
+// const dotenv = require('dotenv')
+// dotenv.config()
 
 export default class DateFnsTzPatchingTest extends AbstractSpruceTest {
 	@test()
@@ -9,6 +11,7 @@ export default class DateFnsTzPatchingTest extends AbstractSpruceTest {
 		const date2 = dateUtil.format(date.getTime(), 'PPpp')
 		require('date-fns-tz')
 		const date3 = dateUtil.format(date.getTime(), 'PPpp')
-		assert.isEqual(date1, date2, date3)
+		assert.isEqual(date1, date2)
+		assert.isEqual(date1, date3)
 	}
 }

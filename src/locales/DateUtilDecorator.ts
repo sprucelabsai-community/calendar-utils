@@ -1,4 +1,5 @@
 import { assertOptions } from '@sprucelabs/schema'
+import { toDate } from 'date-fns-tz'
 import { DateUtil, Locale } from '../types/calendar.types'
 import { IDate } from '../utilities/date.utility'
 
@@ -24,8 +25,17 @@ export default class DateUtilDecorator {
 					value = d.getTime()
 				} else {
 					value = dateUtil.date(date)
+					const { year, month, day } = date
+					const dateString = `${year}-${(month + 1)
+						.toString()
+						.padStart(2, '0')}-${day.toString().padStart(2, '0')}T12:00:00`
+
+					const zonedDate = toDate(dateString).getTime()
+					const offset = this.calculateOffset(zonedDate)
+
+					return value - offset
 				}
-				return this.addOffset(value!)
+				return this.addOffset(value)
 			},
 			setTimeOfDay: (...args: number[]) => {
 				return this.addOffset(
@@ -58,10 +68,14 @@ export default class DateUtilDecorator {
 	}
 
 	private addOffset(value: number, shouldInverse = true): number {
-		let offset = this.locale.getTimezoneOffsetMinutes(value) * 60 * 1000
+		let offset = this.calculateOffset(value)
 		if (shouldInverse) {
 			offset = offset * -1
 		}
 		return value + offset
+	}
+
+	private calculateOffset(value: number) {
+		return this.locale.getTimezoneOffsetMinutes(value) * 60 * 1000
 	}
 }

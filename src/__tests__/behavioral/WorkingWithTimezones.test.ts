@@ -340,6 +340,19 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		})
 	}
 
+	@test()
+	protected static async dateHonorsDaylightSavingsTimeInDenver() {
+		await this.setZone('America/Denver')
+		const expected = 1699167600000
+		const actual = this.dates.date({
+			year: 2023,
+			month: 10,
+			day: 5,
+		})
+
+		assert.isEqual(actual, expected)
+	}
+
 	@test('can sort timezones on schema with utility 1', 'timezone')
 	@test('can sort timezones on schema with utility 2', 'location')
 	protected static async sorterUtilityFunctionUpdatesSchema(fieldName: string) {

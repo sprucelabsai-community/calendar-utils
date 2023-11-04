@@ -9,6 +9,7 @@ export default class DateFnsTzPatchingTest extends AbstractSpruceTest {
 		const date2 = dateUtil.format(date.getTime(), 'PPpp')
 
 		require('date-fns-tz')
+
 		const date3 = dateUtil.format(date.getTime(), 'PPpp')
 		assert.isEqual(date1, date2)
 		assert.isEqual(date1, date3)

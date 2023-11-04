@@ -1,3 +1,6 @@
+const dotenv = require('dotenv')
+dotenv.config()
+
 module.exports = async () => {
 	const timezones = [
 		'Australia/Adelaide',
@@ -7,6 +10,7 @@ module.exports = async () => {
 		'US/Pacific',
 		'UTC',
 	]
+
 	const tzIndex = process.env.TEST_TZ_INDEX
 		? parseInt(process.env.TEST_TZ_INDEX)
 		: 0

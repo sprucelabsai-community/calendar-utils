@@ -509,6 +509,20 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		)
 	}
 
+	@test()
+	protected static async passingTimezoneToGetTimezoneOffsetDoesNotCache() {
+		const now = Date.now()
+		const offset1 = this.locale.getTimezoneOffsetMinutes(
+			now,
+			'Europe/Amsterdam'
+		)
+		const offset2 = this.locale.getTimezoneOffsetMinutes(
+			now,
+			'America/Los_Angeles'
+		)
+		assert.isNotEqual(offset1, offset2)
+	}
+
 	private static getTimezoneOffsetAndAssertHitCount(
 		forDate: number,
 		expected: number
@@ -573,19 +587,10 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		timezone: TimezoneName,
 		timestamp?: number
 	) {
-		// Use the passed timestamp or the current time
 		const referenceTime = timestamp != null ? new Date(timestamp) : new Date()
-
-		// Convert the reference time to the specified timezone
 		const zonedTime = utcToZonedTime(referenceTime, timezone)
-
-		// Get the start of the day in the specified timezone
 		const startOfZonedDay = startOfDay(zonedTime)
-
-		// Convert the start of the zoned day back to UTC
 		const startOfUtcDay = zonedTimeToUtc(startOfZonedDay, timezone)
-
-		// Return the time in milliseconds since the Unix Epoch
 		return startOfUtcDay.getTime()
 	}
 

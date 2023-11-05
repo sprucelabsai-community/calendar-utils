@@ -34,12 +34,10 @@ export default class LocaleImpl
 	): number {
 		if (onDate) {
 			const dateRoundedToNearestHour = onDate - (onDate % 3600000)
-			const key = `${this.getZoneName()}-${dateRoundedToNearestHour}`
+			const zone = timezone ?? this.getZoneName()
+			const key = `${zone}-${dateRoundedToNearestHour}`
 			if (!(key in this.offsetsForDate)) {
-				this.offsetsForDate[key] = this.zoneNameToOffsetMinutes(
-					timezone ?? this.getZoneName(),
-					onDate
-				)
+				this.offsetsForDate[key] = this.zoneNameToOffsetMinutes(zone, onDate)
 			}
 			return this.offsetsForDate[key]
 		}

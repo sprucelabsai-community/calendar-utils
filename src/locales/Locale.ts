@@ -32,8 +32,9 @@ export default class LocaleImpl
 		onDate?: number,
 		timezone?: TimezoneName
 	): number {
-		if (onDate) {
-			const dateRoundedToNearestHour = onDate - (onDate % 3600000)
+		if (onDate || timezone) {
+			const date = onDate ? onDate : Date.now()
+			const dateRoundedToNearestHour = date - (date % 3600000)
 			const zone = timezone ?? this.getZoneName()
 			const key = `${zone}-${dateRoundedToNearestHour}`
 			if (!(key in this.offsetsForDate)) {

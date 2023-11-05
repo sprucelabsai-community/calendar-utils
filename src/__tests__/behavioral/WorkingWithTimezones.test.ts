@@ -523,6 +523,22 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		assert.isNotEqual(offset1, offset2)
 	}
 
+	@test()
+	protected static async getTimezoneOffsetWorksWithTimezoneAndNoDate() {
+		const now = Date.now()
+		const offset1 = this.locale.getTimezoneOffsetMinutes(
+			now,
+			'Europe/Amsterdam'
+		)
+
+		const offset2 = this.locale.getTimezoneOffsetMinutes(
+			undefined,
+			'Europe/Amsterdam'
+		)
+
+		assert.isEqual(offset1, offset2)
+	}
+
 	private static getTimezoneOffsetAndAssertHitCount(
 		forDate: number,
 		expected: number

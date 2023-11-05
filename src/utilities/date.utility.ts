@@ -18,11 +18,7 @@ export type DateUnit = 'days' | 'weeks' | 'months' | 'years' | 'minutes'
 const dateUtil = {
 	eventDaysOfWeek: daysOfWeek,
 	getStartOfDay(timestamp?: number) {
-		if (!timestamp) {
-			timestamp = new Date().getTime()
-		}
-
-		const date = new Date(timestamp)
+		const date = timestamp ? new Date(timestamp) : new Date()
 
 		date.setUTCHours(0, 0, 0, 0)
 

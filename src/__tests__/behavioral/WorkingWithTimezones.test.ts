@@ -2,7 +2,8 @@ import { buildSchema, cloneDeep, SchemaRegistry } from '@sprucelabs/schema'
 import { timezoneChoices } from '@sprucelabs/spruce-core-schemas'
 import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
 import { errorAssert } from '@sprucelabs/test-utils'
-import { getTimezoneOffset } from 'date-fns-tz'
+import { endOfDay, startOfDay } from 'date-fns'
+import { getTimezoneOffset, utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz'
 import { generateId } from '../../generateId'
 import DateUtilDecorator from '../../locales/DateUtilDecorator'
 import LocaleImpl from '../../locales/Locale'
@@ -251,15 +252,14 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	}
 
 	@test('start of day honors locale America/Denver', 'America/Denver')
-	@test('start fo day honors locale America/Los_Angeles', 'America/Los_Angeles')
+	@test('start of day honors locale America/Los_Angeles', 'America/Los_Angeles')
 	@test('start of day honors locale America/Belize', 'America/Belize')
 	protected static async startOfDayHonorsLocale(zone: TimezoneName) {
 		await this.setZone(zone)
 
 		const actual = this.dates.getStartOfDay()
 
-		const date = this.DateStartOfDay(zone)
-		const expected = date.getTime()
+		const expected = this.getExpectedStartOfDay(zone)
 
 		assert.isEqual(actual, expected)
 	}
@@ -269,17 +269,28 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	protected static async endOfDayHonorsLocale(zone: TimezoneName) {
 		await this.setZone(zone)
 		const actual = this.dates.getEndOfDay()
-
-		const offset = getTimezoneOffset(
-			zone,
-			Date.now() - this.localMachinesOffset()
-		)
-		const offsetHours = offset / 1000 / 60 / 60
-		const date = this.DateWithOffset(offsetHours)
-		date.setUTCHours(23 + offsetHours * -1, 59, 59, 999)
-
-		const expected = date.getTime()
+		const expected = this.getExpectedEndOfDay(zone)
 		assert.isEqual(actual, expected)
+	}
+
+	private static getExpectedEndOfDay(
+		timezone: string,
+		timestamp?: number
+	): number {
+		// Use the passed timestamp or the current time
+		const referenceTime = timestamp != null ? new Date(timestamp) : new Date()
+
+		// Convert the reference time to the specified timezone
+		const zonedTime = utcToZonedTime(referenceTime, timezone)
+
+		// Get the end of the day in the specified timezone
+		const endOfZonedDay = endOfDay(zonedTime)
+
+		// Convert the end of the zoned day back to UTC
+		const endOfUtcDay = zonedTimeToUtc(endOfZonedDay, timezone)
+
+		// Return the time in milliseconds since the Unix Epoch
+		return endOfUtcDay.getTime()
 	}
 
 	@test(
@@ -558,32 +569,24 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		assert.isEqual(results, expected)
 	}
 
-	private static DateStartOfDay(timeZone: TimezoneName, timestamp?: number) {
-		const nowOffsetMs = this.localMachinesOffset(timestamp)
-		const now = (timestamp ?? Date.now()) - nowOffsetMs
-		const offset = getTimezoneOffset(timeZone, now)
+	private static getExpectedStartOfDay(
+		timezone: TimezoneName,
+		timestamp?: number
+	) {
+		// Use the passed timestamp or the current time
+		const referenceTime = timestamp != null ? new Date(timestamp) : new Date()
 
-		const date = new Date(now + offset)
-		date.setUTCHours(0, 0, 0, 0)
-		const stamp = date.getTime()
+		// Convert the reference time to the specified timezone
+		const zonedTime = utcToZonedTime(referenceTime, timezone)
 
-		const actual = stamp - offset
-		return new Date(actual)
-	}
+		// Get the start of the day in the specified timezone
+		const startOfZonedDay = startOfDay(zonedTime)
 
-	private static localMachinesOffset(timestamp?: number | undefined) {
-		const now = timestamp ?? Date.now()
-		const offset = process.env.TZ
-			? getTimezoneOffset(process.env.TZ, now)
-			: new Date(now).getTimezoneOffset() * 60 * 1000
+		// Convert the start of the zoned day back to UTC
+		const startOfUtcDay = zonedTimeToUtc(startOfZonedDay, timezone)
 
-		return offset
-	}
-
-	private static DateWithOffset(offsetHours: number, timestamp?: number) {
-		return new Date(
-			(timestamp ?? new Date().getTime()) + offsetHours * 60 * 60 * 1000
-		)
+		// Return the time in milliseconds since the Unix Epoch
+		return startOfUtcDay.getTime()
 	}
 
 	private static assertUsesLocaleToLoadDefaultZoneName(

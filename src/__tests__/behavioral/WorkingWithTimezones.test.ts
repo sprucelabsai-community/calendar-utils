@@ -8,10 +8,12 @@ import { generateId } from '../../generateId'
 import DateUtilDecorator from '../../locales/DateUtilDecorator'
 import LocaleImpl from '../../locales/Locale'
 import TimezoneChoiceSorter from '../../locales/TimezoneChoiceSorter'
-import { DateUtil, TimezoneName } from '../../types/calendar.types'
-import calendarUtil, {
+import {
+	DateUtil,
 	RepeatingCalendarEvent,
-} from '../../utilities/calendar.utility'
+	TimezoneName,
+} from '../../types/calendar.types'
+import calendarUtil from '../../utilities/calendar.utility'
 import dateUtil, { IDate } from '../../utilities/date.utility'
 import sortTimezoneChoices from '../../utilities/sortTimezoneChoices'
 

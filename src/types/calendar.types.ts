@@ -35,3 +35,18 @@ export type SorterCalendarEvent = {
 	startDateTimeMs: number
 	personId: string
 }
+
+export type RepeatingCalendarEvent = Pick<
+	CalendarEvent,
+	| 'repeats'
+	| 'repeatsUntil'
+	| 'daysOfWeek'
+	| 'daysOfMonth'
+	| 'interval'
+	| 'startDateTimeMs'
+	| 'occurrences'
+	| 'nthOccurrences'
+	| 'timeBlocks'
+	| 'nthInRepeating'
+	| 'totalInRepeating'
+>

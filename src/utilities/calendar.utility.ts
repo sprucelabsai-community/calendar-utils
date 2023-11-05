@@ -1,7 +1,11 @@
 import { RRule, datetime } from 'rrule'
 import { calculateOffsetAtDate } from '../locales/DateUtilDecorator'
 import LocaleImpl from '../locales/Locale'
-import { CalendarEvent, TimezoneName } from '../types/calendar.types'
+import {
+	CalendarEvent,
+	RepeatingCalendarEvent,
+	TimezoneName,
+} from '../types/calendar.types'
 import dateUtil from './date.utility'
 
 const calendarUtil = {
@@ -172,18 +176,3 @@ const calendarUtil = {
 }
 
 export default calendarUtil
-
-export type RepeatingCalendarEvent = Pick<
-	CalendarEvent,
-	| 'repeats'
-	| 'repeatsUntil'
-	| 'daysOfWeek'
-	| 'daysOfMonth'
-	| 'interval'
-	| 'startDateTimeMs'
-	| 'occurrences'
-	| 'nthOccurrences'
-	| 'timeBlocks'
-	| 'nthInRepeating'
-	| 'totalInRepeating'
->

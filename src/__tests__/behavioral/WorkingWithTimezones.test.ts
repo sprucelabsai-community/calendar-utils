@@ -257,6 +257,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		await this.setZone(zone)
 
 		const actual = this.dates.getStartOfDay()
+
 		const date = this.DateStartOfDay(zone)
 		const expected = date.getTime()
 
@@ -572,7 +573,11 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 
 	private static localMachinesOffset(timestamp?: number | undefined) {
 		const now = timestamp ?? Date.now()
-		return new Date(now).getTimezoneOffset() * 60 * 1000
+		const offset = process.env.TZ
+			? getTimezoneOffset(process.env.TZ, now)
+			: new Date(now).getTimezoneOffset() * 60 * 1000
+
+		return offset
 	}
 
 	private static DateWithOffset(offsetHours: number, timestamp?: number) {

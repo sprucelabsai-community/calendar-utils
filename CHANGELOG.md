@@ -1,3 +1,10 @@
+# [39.0.0](https://github.com/sprucelabsai-community/calendar-utils/compare/v38.0.158...v39.0.0) (2023-11-05)
+
+
+### Breaking Changes
+
+* better DST support ([0a492d2](https://github.com/sprucelabsai-community/calendar-utils/commit/0a492d2))
+
 ## [38.0.158](https://github.com/sprucelabsai-community/calendar-utils/compare/v38.0.157...v38.0.158) (2023-11-04)
 
 ## [38.0.157](https://github.com/sprucelabsai-community/calendar-utils/compare/v38.0.156...v38.0.157) (2023-11-04)

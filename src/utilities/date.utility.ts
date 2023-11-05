@@ -589,7 +589,8 @@ const dateUtil = {
 	format(timestamp: number, format: string) {
 		const date = new Date(timestamp)
 		const offsetMinutes = date.getTimezoneOffset()
-		return formatDate(timestamp + offsetMinutes * 60 * 1000, format)
+		const offsetMs = timestamp + offsetMinutes * 60 * 1000
+		return formatDate(offsetMs, format)
 	},
 
 	formatTime(timestamp: number): string {

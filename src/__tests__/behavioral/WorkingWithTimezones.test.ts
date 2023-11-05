@@ -8,6 +8,9 @@ import DateUtilDecorator from '../../locales/DateUtilDecorator'
 import LocaleImpl from '../../locales/Locale'
 import TimezoneChoiceSorter from '../../locales/TimezoneChoiceSorter'
 import { DateUtil, TimezoneName } from '../../types/calendar.types'
+import calendarUtil, {
+	RepeatingCalendarEvent,
+} from '../../utilities/calendar.utility'
 import dateUtil, { IDate } from '../../utilities/date.utility'
 import sortTimezoneChoices from '../../utilities/sortTimezoneChoices'
 
@@ -15,6 +18,9 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	private static locale: SpyLocale
 	private static dates: DateUtil = dateUtil as DateUtil
 	private static decorator: DateUtilDecorator
+
+	private static readonly nov4th202312pmLa = 1699124400000
+	private static readonly nov5th202312pmLa = 1699214400000
 
 	protected static async beforeEach() {
 		SchemaRegistry.getInstance().forgetAllSchemas()
@@ -245,12 +251,15 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	}
 
 	@test('start of day honors locale America/Denver', 'America/Denver')
+	@test('start fo day honors locale America/Los_Angeles', 'America/Los_Angeles')
 	@test('start of day honors locale America/Belize', 'America/Belize')
 	protected static async startOfDayHonorsLocale(zone: TimezoneName) {
 		await this.setZone(zone)
+
 		const actual = this.dates.getStartOfDay()
 		const date = this.DateStartOfDay(zone)
 		const expected = date.getTime()
+
 		assert.isEqual(actual, expected)
 	}
 
@@ -259,10 +268,15 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	protected static async endOfDayHonorsLocale(zone: TimezoneName) {
 		await this.setZone(zone)
 		const actual = this.dates.getEndOfDay()
-		const offset = getTimezoneOffset(zone, new Date())
+
+		const offset = getTimezoneOffset(
+			zone,
+			Date.now() - this.localMachinesOffset()
+		)
 		const offsetHours = offset / 1000 / 60 / 60
 		const date = this.DateWithOffset(offsetHours)
 		date.setUTCHours(23 + offsetHours * -1, 59, 59, 999)
+
 		const expected = date.getTime()
 		assert.isEqual(actual, expected)
 	}
@@ -429,6 +443,60 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		assert.isEqual(this.locale.currentZone, 'Africa/Abidjan')
 	}
 
+	@test()
+	protected static async canGetDateInLosAngelesAcrossDst() {
+		this.locale.setZoneName('America/Los_Angeles')
+
+		const beforeDst = this.dates.date({
+			year: 2023,
+			month: 10,
+			day: 4,
+			hour: 12,
+		})
+
+		assert.isEqual(beforeDst, this.nov4th202312pmLa)
+
+		const afterDst = this.dates.date({
+			year: 2023,
+			month: 10,
+			day: 5,
+			hour: 12,
+		})
+
+		assert.isEqual(afterDst, this.nov5th202312pmLa)
+	}
+
+	@test()
+	protected static async honorsDstInLosAngelesWhenGeneratingRepeating() {
+		const event: RepeatingCalendarEvent = {
+			startDateTimeMs: this.nov4th202312pmLa,
+			repeats: 'daily',
+			occurrences: 2,
+			timeBlocks: [{ title: 'Session', isBusy: true, durationMinutes: 120 }],
+		}
+
+		const [e1, e2] = calendarUtil.applyRuleAndGetEvents(
+			event,
+			this.dates.date({
+				year: 2024,
+				month: 0,
+				day: 1,
+			}),
+			'America/Los_Angeles'
+		)
+
+		assert.isEqual(
+			e1.startDateTimeMs,
+			this.nov4th202312pmLa,
+			`e1 not match expected ${e1.startDateTimeMs} != ${this.nov4th202312pmLa}`
+		)
+		assert.isEqual(
+			e2.startDateTimeMs,
+			this.nov5th202312pmLa,
+			`e2 not match expected ${e2.startDateTimeMs} != ${this.nov5th202312pmLa}`
+		)
+	}
+
 	private static getTimezoneOffsetAndAssertHitCount(
 		forDate: number,
 		expected: number
@@ -490,14 +558,21 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 	}
 
 	private static DateStartOfDay(timeZone: TimezoneName, timestamp?: number) {
-		const now = timestamp ?? new Date().getTime()
+		const nowOffsetMs = this.localMachinesOffset(timestamp)
+		const now = (timestamp ?? Date.now()) - nowOffsetMs
 		const offset = getTimezoneOffset(timeZone, now)
 
 		const date = new Date(now + offset)
 		date.setUTCHours(0, 0, 0, 0)
 		const stamp = date.getTime()
+
 		const actual = stamp - offset
 		return new Date(actual)
+	}
+
+	private static localMachinesOffset(timestamp?: number | undefined) {
+		const now = timestamp ?? Date.now()
+		return new Date(now).getTimezoneOffset() * 60 * 1000
 	}
 
 	private static DateWithOffset(offsetHours: number, timestamp?: number) {

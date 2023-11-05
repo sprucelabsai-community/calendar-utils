@@ -1,6 +1,6 @@
 import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
-import { dateUtil } from '../..'
 import calendarUtil from '../../utilities/calendar.utility'
+import dateUtil from '../../utilities/date.utility'
 
 export default class CalendarUtilTest extends AbstractSpruceTest {
 	@test()
@@ -13,7 +13,8 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
 				repeats: 'daily',
 				timeBlocks: [{ title: 'Session', isBusy: false, durationMinutes: 60 }],
 			},
-			dateUntil
+			dateUntil,
+			'UTC'
 		)
 
 		assert.isTruthy(events)
@@ -36,7 +37,8 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
 					{ title: 'Lunch', isBusy: false, durationMinutes: 60 },
 				],
 			},
-			dateUntil
+			dateUntil,
+			'UTC'
 		)
 
 		assert.isTruthy(events)
@@ -60,6 +62,7 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
 			daysOfMonth: ['7'],
 		})
 		assert.isTruthy(events)
+
 		const eventsSplitDate = events.map((e) => {
 			return dateUtil.splitDate(e.startDateTimeMs)
 		})
@@ -201,6 +204,7 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
 	@test()
 	public static async getEventFromRangeByDateMonthlyRepeatingIncludesTotalInRepeating() {
 		const start = dateUtil.getStartOfMonth(new Date().getTime())
+
 		const event = this.getEventFromRangeByDate(
 			start,
 			dateUtil.addMonths(start, 3)
@@ -231,7 +235,8 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
 				timeBlocks: [{ title: 'Session', isBusy: true, durationMinutes: 120 }],
 				...values,
 			},
-			dateUntil
+			dateUntil,
+			'UTC'
 		)
 		return events
 	}
@@ -244,7 +249,8 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
 				timeBlocks: [{ title: 'Session', isBusy: true, durationMinutes: 120 }],
 				daysOfMonth: ['1'],
 			},
-			dateUntil
+			dateUntil,
+			'UTC'
 		)
 	}
 

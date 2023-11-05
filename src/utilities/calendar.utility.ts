@@ -1,5 +1,7 @@
-import { RRule } from 'rrule'
-import { CalendarEvent } from '../types/calendar.types'
+import { RRule, datetime } from 'rrule'
+import { calculateOffsetAtDate } from '../locales/DateUtilDecorator'
+import LocaleImpl from '../locales/Locale'
+import { CalendarEvent, TimezoneName } from '../types/calendar.types'
 import dateUtil from './date.utility'
 
 const calendarUtil = {
@@ -8,6 +10,8 @@ const calendarUtil = {
 		monthly: RRule.MONTHLY,
 		daily: RRule.DAILY,
 	},
+
+	locale: new LocaleImpl(),
 
 	weekDaysMapToRRuleDays: {
 		mon: RRule.MO,
@@ -20,23 +24,15 @@ const calendarUtil = {
 	},
 
 	applyRuleAndGetEvents(
-		e: Pick<
-			CalendarEvent,
-			| 'repeats'
-			| 'repeatsUntil'
-			| 'daysOfWeek'
-			| 'daysOfMonth'
-			| 'interval'
-			| 'startDateTimeMs'
-			| 'occurrences'
-			| 'nthOccurrences'
-			| 'timeBlocks'
-			| 'nthInRepeating'
-			| 'totalInRepeating'
-		>,
-		dateUntil: number
+		e: RepeatingCalendarEvent,
+		dateUntil: number,
+		timezone: TimezoneName
 	) {
-		const events = this.applyRuleAndGetEventsWithoutExclusion(e, dateUntil)
+		const events = this.applyRuleAndGetEventsWithoutExclusion(
+			e,
+			dateUntil,
+			timezone
+		)
 		const excludedEvents = events.filter((e) => !this.isExcluded(e))
 
 		return excludedEvents
@@ -56,7 +52,8 @@ const calendarUtil = {
 			| 'nthInRepeating'
 			| 'totalInRepeating'
 		>,
-		dateUntil: number
+		dateUntil: number,
+		timezone: TimezoneName
 	) {
 		let repeatsUntil: number | undefined
 
@@ -67,11 +64,26 @@ const calendarUtil = {
 				repeatsUntil = dateUntil
 			}
 
+			const offset =
+				this.locale.getTimezoneOffsetMinutes(e.startDateTimeMs, timezone) *
+				60 *
+				1000
+
+			const startSplit = dateUtil.splitDate(e.startDateTimeMs + offset)
+
+			const dtstart = datetime(
+				startSplit.year,
+				startSplit.month + 1,
+				startSplit.day,
+				startSplit.hour,
+				startSplit.minute
+			)
+
 			const rule = new RRule({
 				freq: this.freqMapToRRule[e.repeats],
 				interval: e.interval ?? 1,
 				byweekday: e.daysOfWeek?.map((d) => this.weekDaysMapToRRuleDays[d]),
-				dtstart: new Date(e.startDateTimeMs),
+				dtstart,
 				bymonthday: e.daysOfMonth?.map((d) => parseInt(d)),
 				until: new Date(repeatsUntil),
 				count: e.occurrences,
@@ -83,21 +95,32 @@ const calendarUtil = {
 				}),
 			})
 
-			const events = this.mapRulesToEvents(rule, e)
+			const events = this.mapRulesToEvents(rule, e, timezone)
 
 			return events
 		}
 
 		return [e]
 	},
-	mapRulesToEvents(rule: RRule, e: Pick<CalendarEvent, 'startDateTimeMs'>) {
+	mapRulesToEvents(
+		rule: RRule,
+		e: Pick<CalendarEvent, 'startDateTimeMs'>,
+		timezone: TimezoneName
+	) {
 		const allEvents = rule.all()
-		let events = allEvents.map((r, idx) => ({
-			...e,
-			nthInRepeating: idx,
-			totalInRepeating: allEvents.length,
-			startDateTimeMs: r.getTime(),
-		})) as CalendarEvent[]
+
+		let events = allEvents.map((r, idx) => {
+			const iosDate = dateUtil.splitDate(r.getTime())
+			const startDateTimeMs = dateUtil.date(iosDate)
+			const offset = calculateOffsetAtDate(iosDate, this.locale, timezone)
+
+			return {
+				...e,
+				nthInRepeating: idx,
+				totalInRepeating: allEvents.length,
+				startDateTimeMs: startDateTimeMs - offset,
+			}
+		}) as CalendarEvent[]
 
 		return events
 	},
@@ -123,25 +146,17 @@ const calendarUtil = {
 	},
 
 	getEventFromRangeByDate(
-		values: Pick<
-			CalendarEvent,
-			| 'repeats'
-			| 'repeatsUntil'
-			| 'daysOfWeek'
-			| 'daysOfMonth'
-			| 'interval'
-			| 'startDateTimeMs'
-			| 'occurrences'
-			| 'nthOccurrences'
-			| 'timeBlocks'
-			| 'nthInRepeating'
-			| 'totalInRepeating'
-		>,
-		date: number
+		values: RepeatingCalendarEvent,
+		date: number,
+		timezone: TimezoneName
 	) {
 		const dateUntil = dateUtil.addYears(new Date().getTime(), 10)
 		const searchDate = dateUtil.splitDate(date)
-		const repeatingEvents = this.applyRuleAndGetEvents(values, dateUntil)
+		const repeatingEvents = this.applyRuleAndGetEvents(
+			values,
+			dateUntil,
+			timezone
+		)
 		return repeatingEvents.find((e) => {
 			const event = dateUtil.splitDate(e.startDateTimeMs)
 			if (
@@ -157,3 +172,18 @@ const calendarUtil = {
 }
 
 export default calendarUtil
+
+export type RepeatingCalendarEvent = Pick<
+	CalendarEvent,
+	| 'repeats'
+	| 'repeatsUntil'
+	| 'daysOfWeek'
+	| 'daysOfMonth'
+	| 'interval'
+	| 'startDateTimeMs'
+	| 'occurrences'
+	| 'nthOccurrences'
+	| 'timeBlocks'
+	| 'nthInRepeating'
+	| 'totalInRepeating'
+>

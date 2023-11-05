@@ -35,8 +35,8 @@ export default class DurationUtilTest extends AbstractSpruceTest {
 	)
 	@test(
 		'can render time range 2',
-		dateUtil.setTimeOfDay(new Date().getTime(), 2, 0, 0, 0),
-		dateUtil.setTimeOfDay(new Date().getTime(), 2, 45, 0, 0),
+		dateUtil.setTimeOfDay(Date.UTC(2023), 2, 0, 0, 0),
+		dateUtil.setTimeOfDay(Date.UTC(2023), 2, 45, 0, 0),
 		'2am to 2:45am'
 	)
 	protected static canRenderTimeRanges(

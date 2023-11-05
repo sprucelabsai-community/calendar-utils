@@ -1,6 +1,6 @@
 import { assertOptions } from '@sprucelabs/schema'
 import { toDate } from 'date-fns-tz'
-import { DateUtil, Locale } from '../types/calendar.types'
+import { DateUtil, Locale, TimezoneName } from '../types/calendar.types'
 import { IDate } from '../utilities/date.utility'
 
 export default class DateUtilDecorator {
@@ -25,13 +25,12 @@ export default class DateUtilDecorator {
 					value = d.getTime()
 				} else {
 					value = dateUtil.date(date)
-					const { year, month, day } = date
-					const dateString = `${year}-${(month + 1)
-						.toString()
-						.padStart(2, '0')}-${day.toString().padStart(2, '0')}T12:00:00`
-
-					const zonedDate = toDate(dateString).getTime()
-					const offset = this.calculateOffset(zonedDate)
+					const locale = this.locale
+					const offset = calculateOffsetAtDate(
+						date,
+						locale,
+						locale.getZoneName()
+					)
 
 					return value - offset
 				}
@@ -78,4 +77,20 @@ export default class DateUtilDecorator {
 	private calculateOffset(value: number) {
 		return this.locale.getTimezoneOffsetMinutes(value) * 60 * 1000
 	}
+}
+
+export function calculateOffsetAtDate(
+	date: IDate,
+	locale: Locale,
+	timezone: TimezoneName
+) {
+	const { year, month, day } = date
+	const dateString = `${year}-${(month + 1).toString().padStart(2, '0')}-${day
+		.toString()
+		.padStart(2, '0')}T12:00:00-00:00`
+
+	const zonedDate = toDate(dateString).getTime()
+	const offset =
+		locale.getTimezoneOffsetMinutes(zonedDate, timezone) * 60 * 1000
+	return offset
 }

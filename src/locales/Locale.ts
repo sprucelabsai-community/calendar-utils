@@ -28,13 +28,16 @@ export default class LocaleImpl
 		this.currentZone = undefined
 	}
 
-	public getTimezoneOffsetMinutes(onDate?: number): number {
+	public getTimezoneOffsetMinutes(
+		onDate?: number,
+		timezone?: TimezoneName
+	): number {
 		if (onDate) {
 			const dateRoundedToNearestHour = onDate - (onDate % 3600000)
 			const key = `${this.getZoneName()}-${dateRoundedToNearestHour}`
 			if (!(key in this.offsetsForDate)) {
 				this.offsetsForDate[key] = this.zoneNameToOffsetMinutes(
-					this.getZoneName(),
+					timezone ?? this.getZoneName(),
 					onDate
 				)
 			}

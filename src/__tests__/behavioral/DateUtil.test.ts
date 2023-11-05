@@ -817,7 +817,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 		expected: string
 	) {
 		const time = dateUtil.formatTime(
-			dateUtil.setTimeOfDay(new Date().getTime(), hour, minutes, 0, 0)
+			dateUtil.setTimeOfDay(Date.UTC(2023), hour, minutes, 0, 0)
 		)
 		assert.isEqual(time, expected)
 	}

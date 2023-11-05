@@ -445,7 +445,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 
 	@test()
 	protected static async canGetDateInLosAngelesAcrossDst() {
-		this.locale.setZoneName('America/Los_Angeles')
+		await this.locale.setZoneName('America/Los_Angeles')
 
 		const beforeDst = this.dates.date({
 			year: 2023,

@@ -671,6 +671,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
 	@test('can add 1 month', 1, 441788400000, 444466800000)
 	@test('can add 2 months', 2, 444466800000, 449650800000)
 	@test('can add 4 months', 4, 1601510400000, 1612137600000)
+	@test('can add month to november 2023', 1, 1698796800000, 1701388800000)
 	protected static canAddMonths(
 		months: number,
 		start: number,

@@ -541,6 +541,14 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		assert.isEqual(offset1, offset2)
 	}
 
+	@test()
+	protected static async canAddMonthsProperly() {
+		const start = 1698818400000
+		await this.locale.setZoneName('America/Denver')
+		const actual = this.dates.addMonths(start, 1)
+		assert.isEqual(actual, 1701414000000)
+	}
+
 	private static getTimezoneOffsetAndAssertHitCount(
 		forDate: number,
 		expected: number

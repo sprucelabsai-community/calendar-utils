@@ -59,6 +59,12 @@ export default class DateUtilDecorator {
 			splitDate: (timestamp: number) => {
 				return dateUtil.splitDate(this.addOffset(timestamp, false))
 			},
+
+			addMonths: (date: number, months: number) => {
+				return this.addOffset(
+					dateUtil.addMonths(this.addOffset(date, false), months)
+				)
+			},
 		}
 	}
 

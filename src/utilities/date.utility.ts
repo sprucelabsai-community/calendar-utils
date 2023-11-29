@@ -603,7 +603,9 @@ const dateUtil = {
 		return this.formatDate(timestamp) + ' @ ' + this.formatTime(timestamp)
 	},
 	add(timestamp: number, count: number, unit: DateUnit) {
-		return adders[unit](timestamp, count)
+		const name = this.adders[unit]
+		//@ts-ignore
+		return this[name as any](timestamp, count)
 	},
 	isSameDay(timestamp1: number, timestamp2: number) {
 		const { day, year, month } = this.splitDate(timestamp1)
@@ -614,14 +616,13 @@ const dateUtil = {
 	getTotalDaysInMonth(year: number, month: number) {
 		return new Date(year, month + 1, 0).getDate()
 	},
+	adders: {
+		years: 'addYears',
+		weeks: 'addWeeks',
+		days: 'addDays',
+		minutes: 'addMinutes',
+		months: 'addMonths',
+	},
 }
 
 export default dateUtil
-
-const adders: Record<DateUnit, (timestamp: number, count: number) => number> = {
-	years: dateUtil.addYears.bind(dateUtil),
-	weeks: dateUtil.addWeeks.bind(dateUtil),
-	days: dateUtil.addDays.bind(dateUtil),
-	minutes: dateUtil.addMinutes.bind(dateUtil),
-	months: dateUtil.addMonths.bind(dateUtil),
-}

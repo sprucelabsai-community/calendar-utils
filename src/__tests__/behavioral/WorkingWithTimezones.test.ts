@@ -551,6 +551,8 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 		await this.locale.setZoneName('America/Denver')
 		const actual = this.dates.addMonths(start, months)
 		assert.isEqual(actual, expected)
+		const actual2 = this.dates.add(start, months, 'months')
+		assert.isEqual(actual2, expected)
 	}
 
 	@test(

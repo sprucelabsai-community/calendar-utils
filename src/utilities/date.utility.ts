@@ -603,7 +603,7 @@ const dateUtil = {
 		return this.formatDate(timestamp) + ' @ ' + this.formatTime(timestamp)
 	},
 	add(timestamp: number, count: number, unit: DateUnit) {
-		const name = this.adders[unit]
+		const name = adders[unit]
 		//@ts-ignore
 		return this[name as any](timestamp, count)
 	},
@@ -616,13 +616,14 @@ const dateUtil = {
 	getTotalDaysInMonth(year: number, month: number) {
 		return new Date(year, month + 1, 0).getDate()
 	},
-	adders: {
-		years: 'addYears',
-		weeks: 'addWeeks',
-		days: 'addDays',
-		minutes: 'addMinutes',
-		months: 'addMonths',
-	},
 }
 
 export default dateUtil
+
+const adders = {
+	years: 'addYears',
+	weeks: 'addWeeks',
+	days: 'addDays',
+	minutes: 'addMinutes',
+	months: 'addMonths',
+}

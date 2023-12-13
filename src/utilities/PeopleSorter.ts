@@ -74,7 +74,7 @@ export default class PeopleSorter {
 						(e) =>
 							!selectedEvents.find((se) => se.id === e.id) &&
 							groupsIds.indexOf(e.groupId) > -1
-				  )
+					)
 				: []
 
 		selectedEvents = [...selectedEvents, ...matchOnGroup].sort(

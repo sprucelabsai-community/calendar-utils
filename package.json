@@ -19,7 +19,8 @@
     "namespace": "calendar-utils",
     "upgradeIgnoreList": [
       "@sprucelabs/spruce-skill-utils",
-      "@sprucelabs/spruce-test-fixtures"
+      "@sprucelabs/spruce-test-fixtures",
+      "date-fns"
     ],
     "commandOverrides": {
       "sync.schemas": "--shouldFetchCoreSchemas false --moduleToImportFromWhenRemote @sprucelabs/calendar-utils"
@@ -71,6 +72,7 @@
     "@sprucelabs/schema": "^29.3.7",
     "@sprucelabs/spruce-core-schemas": "^39.0.169",
     "@sprucelabs/spruce-event-utils": "^38.0.192",
+    "date-fns": "2.30.0",
     "date-fns-tz": "^2.0.0",
     "rrule": "^2.8.1"
   },

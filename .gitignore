@@ -40,9 +40,11 @@ node_modules/
 *.rej
 
 /build/
-/esm
+esm/
 
 tmp/
 
 yarn.lock
 package-lock.json
+
+**/.spruce/*cache.json

@@ -1,3 +1,11 @@
+# [40.0.0](https://github.com/sprucelabsai-community/calendar-utils/compare/v39.0.292...v40.0.0) (2024-04-17)
+
+
+### Breaking Changes
+
+* upgrade ([383d6c9](https://github.com/sprucelabsai-community/calendar-utils/commit/383d6c9))
+* upgrade ([2a5a378](https://github.com/sprucelabsai-community/calendar-utils/commit/2a5a378))
+
 ## [39.0.292](https://github.com/sprucelabsai-community/calendar-utils/compare/v39.0.291...v39.0.292) (2024-04-05)
 
 ## [39.0.291](https://github.com/sprucelabsai-community/calendar-utils/compare/v39.0.290...v39.0.291) (2024-04-04)

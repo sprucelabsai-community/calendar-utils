@@ -4,23 +4,23 @@ import TimezoneChoiceSorter from '../locales/TimezoneChoiceSorter'
 import { Locale } from '../types/calendar.types'
 
 export default function sortTimezoneChoices<S extends Schema>(
-	locale: Locale,
-	schema: S,
-	fieldName: SchemaFieldNames<S>
+    locale: Locale,
+    schema: S,
+    fieldName: SchemaFieldNames<S>
 ) {
-	const sorter = new TimezoneChoiceSorter(locale)
-	const choices = sorter.sort(timezoneChoices)
+    const sorter = new TimezoneChoiceSorter(locale)
+    const choices = sorter.sort(timezoneChoices)
 
-	const copy = cloneDeep(schema)
+    const copy = cloneDeep(schema)
 
-	const field = copy.fields?.[fieldName]
+    const field = copy.fields?.[fieldName]
 
-	if (field) {
-		field.options = {
-			...field.options,
-			choices,
-		}
-	}
+    if (field) {
+        field.options = {
+            ...field.options,
+            choices,
+        }
+    }
 
-	return copy
+    return copy
 }

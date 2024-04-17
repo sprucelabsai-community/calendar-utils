@@ -4,99 +4,107 @@ import { DateUtil, Locale, TimezoneName } from '../types/calendar.types'
 import { IDate } from '../utilities/date.utility'
 
 export default class DateUtilDecorator {
-	private locale: Locale
+    private locale: Locale
 
-	public constructor(locale: Locale) {
-		assertOptions({ locale }, ['locale'])
-		this.locale = locale
-	}
+    public constructor(locale: Locale) {
+        assertOptions({ locale }, ['locale'])
+        this.locale = locale
+    }
 
-	public makeLocaleAware(dateUtil: DateUtil): DateUtil {
-		assertOptions({ dateUtil }, ['dateUtil'])
-		return {
-			...dateUtil,
-			//@ts-ignore
-			__beenDecorated: true,
-			__locale: this.locale,
-			date: (date?: IDate) => {
-				let value: number | undefined
-				if (!date) {
-					const d = new Date()
-					value = d.getTime()
-				} else {
-					value = dateUtil.date(date)
-					const locale = this.locale
-					const offset = calculateOffsetAtDate(
-						date,
-						locale,
-						locale.getZoneName()
-					)
+    public makeLocaleAware(dateUtil: DateUtil): DateUtil {
+        assertOptions({ dateUtil }, ['dateUtil'])
+        return {
+            ...dateUtil,
+            //@ts-ignore
+            __beenDecorated: true,
+            __locale: this.locale,
+            date: (date?: IDate) => {
+                let value: number | undefined
+                if (!date) {
+                    const d = new Date()
+                    value = d.getTime()
+                } else {
+                    value = dateUtil.date(date)
+                    const locale = this.locale
+                    const offset = calculateOffsetAtDate(
+                        date,
+                        locale,
+                        locale.getZoneName()
+                    )
 
-					return value - offset
-				}
-				return this.addOffset(value)
-			},
-			setTimeOfDay: (...args: number[]) => {
-				return this.addOffset(
-					dateUtil.setTimeOfDay(...(args as [number, number, number]))
-				)
-			},
-			format: (date: number, format: string) => {
-				return dateUtil.format(this.addOffset(date, false), format)
-			},
-			getStartOfDay: (date: number | undefined) => {
-				return this.addOffset(dateUtil.getStartOfDay(this.offsetDate(date)))
-			},
-			getEndOfDay: (date: number | undefined) => {
-				return this.addOffset(dateUtil.getEndOfDay(this.offsetDate(date)))
-			},
-			getStartOfMonth: (date: number | undefined) => {
-				return this.addOffset(dateUtil.getStartOfMonth(this.offsetDate(date)))
-			},
-			getEndOfMonth: (date: number | undefined) => {
-				return this.addOffset(dateUtil.getEndOfMonth(this.offsetDate(date)))
-			},
-			splitDate: (timestamp: number) => {
-				return dateUtil.splitDate(this.addOffset(timestamp, false))
-			},
+                    return value - offset
+                }
+                return this.addOffset(value)
+            },
+            setTimeOfDay: (...args: number[]) => {
+                return this.addOffset(
+                    dateUtil.setTimeOfDay(...(args as [number, number, number]))
+                )
+            },
+            format: (date: number, format: string) => {
+                return dateUtil.format(this.addOffset(date, false), format)
+            },
+            getStartOfDay: (date: number | undefined) => {
+                return this.addOffset(
+                    dateUtil.getStartOfDay(this.offsetDate(date))
+                )
+            },
+            getEndOfDay: (date: number | undefined) => {
+                return this.addOffset(
+                    dateUtil.getEndOfDay(this.offsetDate(date))
+                )
+            },
+            getStartOfMonth: (date: number | undefined) => {
+                return this.addOffset(
+                    dateUtil.getStartOfMonth(this.offsetDate(date))
+                )
+            },
+            getEndOfMonth: (date: number | undefined) => {
+                return this.addOffset(
+                    dateUtil.getEndOfMonth(this.offsetDate(date))
+                )
+            },
+            splitDate: (timestamp: number) => {
+                return dateUtil.splitDate(this.addOffset(timestamp, false))
+            },
 
-			addMonths: (date: number, months: number) => {
-				return this.addOffset(
-					dateUtil.addMonths(this.addOffset(date, false), months)
-				)
-			},
-		}
-	}
+            addMonths: (date: number, months: number) => {
+                return this.addOffset(
+                    dateUtil.addMonths(this.addOffset(date, false), months)
+                )
+            },
+        }
+    }
 
-	private offsetDate(date: number | undefined): any {
-		return this.addOffset(date ?? new Date().getTime(), false)
-	}
+    private offsetDate(date: number | undefined): any {
+        return this.addOffset(date ?? new Date().getTime(), false)
+    }
 
-	private addOffset(value: number, shouldInverse = true): number {
-		let offset = this.calculateOffset(value)
-		if (shouldInverse) {
-			offset = offset * -1
-		}
-		return value + offset
-	}
+    private addOffset(value: number, shouldInverse = true): number {
+        let offset = this.calculateOffset(value)
+        if (shouldInverse) {
+            offset = offset * -1
+        }
+        return value + offset
+    }
 
-	private calculateOffset(value: number) {
-		return this.locale.getTimezoneOffsetMinutes(value) * 60 * 1000
-	}
+    private calculateOffset(value: number) {
+        return this.locale.getTimezoneOffsetMinutes(value) * 60 * 1000
+    }
 }
 
 export function calculateOffsetAtDate(
-	date: IDate,
-	locale: Locale,
-	timezone: TimezoneName
+    date: IDate,
+    locale: Locale,
+    timezone: TimezoneName
 ) {
-	const { year, month, day } = date
-	const dateString = `${year}-${(month + 1).toString().padStart(2, '0')}-${day
-		.toString()
-		.padStart(2, '0')}T12:00:00-00:00`
+    const { year, month, day } = date
+    const dateString = `${year}-${(month + 1).toString().padStart(2, '0')}-${day
+        .toString()
+        .padStart(2, '0')}T12:00:00-00:00`
 
-	const zonedDate = toDate(dateString).getTime()
-	const offset =
-		locale.getTimezoneOffsetMinutes(zonedDate, timezone) * 60 * 1000
-	return offset
+    const zonedDate = toDate(dateString).getTime()
+    const offset =
+        locale.getTimezoneOffsetMinutes(zonedDate, timezone) * 60 * 1000
+    return offset
 }

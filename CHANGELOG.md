@@ -1,3 +1,47 @@
+## [40.0.37](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.36...v40.0.37) (2024-05-08)
+
+## [40.0.36](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.35...v40.0.36) (2024-05-08)
+
+## [40.0.35](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.34...v40.0.35) (2024-05-07)
+
+## [40.0.34](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.33...v40.0.34) (2024-05-07)
+
+## [40.0.33](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.32...v40.0.33) (2024-05-07)
+
+## [40.0.32](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.31...v40.0.32) (2024-05-06)
+
+## [40.0.31](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.30...v40.0.31) (2024-05-02)
+
+## [40.0.30](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.29...v40.0.30) (2024-05-01)
+
+## [40.0.29](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.28...v40.0.29) (2024-05-01)
+
+## [40.0.28](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.27...v40.0.28) (2024-05-01)
+
+## [40.0.27](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.26...v40.0.27) (2024-05-01)
+
+## [40.0.26](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.25...v40.0.26) (2024-04-30)
+
+## [40.0.25](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.24...v40.0.25) (2024-04-29)
+
+## [40.0.24](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.23...v40.0.24) (2024-04-28)
+
+## [40.0.23](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.22...v40.0.23) (2024-04-28)
+
+## [40.0.22](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.21...v40.0.22) (2024-04-27)
+
+## [40.0.21](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.20...v40.0.21) (2024-04-27)
+
+## [40.0.20](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.19...v40.0.20) (2024-04-27)
+
+## [40.0.19](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.18...v40.0.19) (2024-04-26)
+
+## [40.0.18](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.17...v40.0.18) (2024-04-26)
+
+## [40.0.17](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.16...v40.0.17) (2024-04-25)
+
+## [40.0.16](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.15...v40.0.16) (2024-04-25)
+
 ## [40.0.15](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.14...v40.0.15) (2024-04-25)
 
 ## [40.0.14](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.13...v40.0.14) (2024-04-24)

@@ -2,9 +2,12 @@ import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
 import { lunch, tomorrowLunch } from '../../dates'
 import calculateEventDurationMillis from '../../durationCalculators/calculateEventDurationMillis'
 import calculateEventDurationMinutes from '../../durationCalculators/calculateEventDurationMinutes'
+import DateUtilDecorator from '../../locales/DateUtilDecorator'
+import LocaleImpl from '../../locales/Locale'
+import { TimezoneName } from '../../types/calendar.types'
 import dateUtil from '../../utilities/date.utility'
 import durationUtil, {
-    TimeUntilPrefixOptions,
+    TimeUntilOptions,
 } from '../../utilities/duration.utility'
 import generateEventValues from './generateEventValues'
 
@@ -116,6 +119,96 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
         )
     }
 
+    @test()
+    protected static async returnsExpectedForDenver() {
+        await this.assertTimeUntilEquals(
+            // June 19, 601am 2024
+            1718798497739,
+            // June 20, 6pm 2024
+            1718928000000,
+            'America/Denver',
+            'tomorrow @ 6pm'
+        )
+
+        await this.assertTimeUntilEquals(
+            // June 19, 10pm 2024
+            1718856000000,
+            // June 21, 7am 2024
+            1718974800000,
+            'America/Denver',
+            'Jun 21st (in 2 days) @ 7am'
+        )
+
+        await this.assertTimeUntilEquals(
+            //March 9, 4pm, 2024
+            1710025200000,
+            //March 11, 4am, 2024
+            1710151200000,
+            'America/Denver',
+            'Mar 11th (in 2 days) @ 4am'
+        )
+
+        await this.assertTimeUntilEquals(
+            //March 9, 4am, 2024
+            1709982000000,
+            //March 11, 4am, 2024
+            1710151200000,
+            'America/Denver',
+            'Mar 11th (in 2 days) @ 4am'
+        )
+    }
+
+    @test()
+    protected static async returnsExpectedForPacific() {
+        await this.assertTimeUntilEquals(
+            // June 19, 501am 2024
+            1718798497739,
+            // June 20, 5pm 2024
+            1718928000000,
+            'America/Los_Angeles',
+            'tomorrow @ 5pm'
+        )
+
+        await this.assertTimeUntilEquals(
+            //March 9, 3am, 2024
+            1709982000000,
+            //March 11, 3am, 2024
+            1710151200000,
+            'America/Los_Angeles',
+            'Mar 11th (in 2 days) @ 3am'
+        )
+    }
+
+    @test()
+    protected static async returnsEpectedForEasternEuropeanSummerTime() {
+        await this.assertTimeUntilEquals(
+            // Jun 19, 3pm, 2024
+            1718798400000,
+            // Jun 21, 1am, 2024
+            1718920800000,
+            'Europe/Bucharest',
+            'Jun 21st (in 2 days) @ 1am'
+        )
+    }
+
+    private static async assertTimeUntilEquals(
+        now: number,
+        then: number,
+        timezone: TimezoneName,
+        expected: string
+    ) {
+        const locale = new LocaleImpl()
+        await locale.setZoneName(timezone)
+
+        const decorator = new DateUtilDecorator(locale)
+        durationUtil.dates = decorator.makeLocaleAware(dateUtil)
+
+        const actual = durationUtil.renderDateTimeUntil(then, now, {
+            timezoneName: timezone,
+        })
+        assert.isEqual(actual, expected)
+    }
+
     private static assertTimeUntilCapitalized(
         tomorrow: number,
         expected: string
@@ -128,7 +221,7 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
 
     private static assertExpectedPrefix(
         date: number,
-        key: keyof TimeUntilPrefixOptions,
+        key: keyof TimeUntilOptions,
         prefix: string
     ) {
         const actual = this.timeUntilWithPrefix(date, key, prefix)
@@ -137,7 +230,7 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
 
     private static timeUntilWithPrefix(
         date: number,
-        key: keyof TimeUntilPrefixOptions,
+        key: keyof TimeUntilOptions,
         prefix: string | null
     ) {
         return this.timeUntil(date, { [key]: prefix })
@@ -145,7 +238,7 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
 
     private static timeUntil(
         date: number,
-        options?: Partial<TimeUntilPrefixOptions>
+        options?: Partial<TimeUntilOptions>
     ) {
         return durationUtil.renderDateTimeUntil(
             date,

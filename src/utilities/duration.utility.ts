@@ -1,3 +1,4 @@
+import { TimezoneName } from '../types/calendar.types'
 import dateUtil from './date.utility'
 
 const durationUtil = {
@@ -41,15 +42,15 @@ const durationUtil = {
      */
     dateTimeUntilFriendly(
         start: number,
-        prefixes?: Partial<TimeUntilPrefixOptions>
+        prefixes?: Partial<TimeUntilOptions>
     ): string {
         return this.renderDateTimeUntil(start, new Date().getTime(), prefixes)
     },
 
     renderDateTimeUntil(
-        start: number,
-        now: number,
-        prefixes?: Partial<TimeUntilPrefixOptions>
+        beginning: number,
+        end: number,
+        prefixes?: Partial<TimeUntilOptions>
     ): string {
         const {
             today = null,
@@ -59,10 +60,15 @@ const durationUtil = {
             past = null,
             shouldCapitalize,
         } = prefixes ?? {}
+
         let prefix = today
 
         let startDateAndTime = 'today'
-        const daysFromNow = Math.round((start - now) / (1000 * 3600 * 24))
+        const daysFromNow = Math.round(
+            (this.dates.getStartOfDay(beginning) -
+                this.dates.getStartOfDay(end)) /
+                (1000 * 3600 * 24)
+        )
 
         if (daysFromNow === -1) {
             prefix = yesterday
@@ -73,18 +79,17 @@ const durationUtil = {
         } else if (daysFromNow > 1) {
             prefix = future
             startDateAndTime =
-                this.dates.format(start, 'MMM do') + ` (in ${daysFromNow} days)`
+                this.dates.format(beginning, 'MMM do') +
+                ` (in ${daysFromNow} days)`
         } else if (daysFromNow < -1) {
             prefix = past
             startDateAndTime =
-                this.dates.format(start, 'MMM do') +
+                this.dates.format(beginning, 'MMM do') +
                 ` (${daysFromNow * -1} days ago)`
         }
 
-        startDateAndTime += ` @ ${this.dates.format(start, 'h:mmaaa')}`.replace(
-            ':00',
-            ''
-        )
+        startDateAndTime +=
+            ` @ ${this.dates.format(beginning, 'h:mmaaa')}`.replace(':00', '')
         return optionallUcFirst(
             `${prefix ? `${prefix} ` : ''}${startDateAndTime}`,
             shouldCapitalize
@@ -108,11 +113,12 @@ function optionallUcFirst(str: string, shouldCapitalize?: boolean) {
     return str
 }
 
-export interface TimeUntilPrefixOptions {
+export interface TimeUntilOptions {
     yesterday?: string | null
     today?: string | null
     tomorrow?: string | null
     future?: string | null
     past?: string | null
     shouldCapitalize?: boolean
+    timezoneName?: TimezoneName
 }

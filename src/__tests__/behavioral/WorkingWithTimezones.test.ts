@@ -15,6 +15,7 @@ import {
 } from '../../types/calendar.types'
 import calendarUtil from '../../utilities/calendar.utility'
 import dateUtil, { IDate } from '../../utilities/date.utility'
+import dateAssert from '../../utilities/dateAssert'
 import sortTimezoneChoices from '../../utilities/sortTimezoneChoices'
 
 export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
@@ -74,6 +75,29 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
         errorAssert.assertError(err, 'MISSING_PARAMETERS', {
             parameters: ['dateUtil'],
         })
+    }
+
+    @test()
+    protected static async makeLocaleAwareMarksItAsLocalAware() {
+        assert.doesThrow(() => dateAssert.isLocaleAware(dateUtil))
+        dateAssert.isLocaleAware(this.dates)
+    }
+
+    @test('can assert timezone 1', 'America/New_York', 'America/Los_Angeles')
+    @test('can assert timezone 2', 'America/Los_Angeles', 'America/Chicago')
+    protected static async canAssertTimezoneOnDateUtil(
+        pass: TimezoneName,
+        fail: TimezoneName
+    ) {
+        assert.doesThrow(() => dateAssert.currentTimezoneEquals(dateUtil, fail))
+
+        await this.locale.setZoneName(pass)
+
+        assert.doesThrow(() =>
+            dateAssert.currentTimezoneEquals(this.dates, fail)
+        )
+
+        dateAssert.currentTimezoneEquals(this.dates, pass)
     }
 
     @test()

@@ -2,6 +2,7 @@ import { timezoneChoices } from '@sprucelabs/spruce-core-schemas'
 import { SpruceSchemas } from '#spruce/schemas/schemas.types'
 import LocaleImpl from '../locales/Locale'
 import dateUtil from '../utilities/date.utility'
+import durationUtil from '../utilities/duration.utility'
 
 type D = typeof dateUtil
 /**
@@ -9,6 +10,9 @@ type D = typeof dateUtil
  */
 export interface DateUtils extends D {}
 export interface DateUtil extends D {}
+
+type Du = typeof durationUtil
+export interface DurationUtil extends Du {}
 
 export type CalendarEvent =
     SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEvent

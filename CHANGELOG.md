@@ -1,3 +1,10 @@
+# [40.1.0](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.140...v40.1.0) (2024-06-19)
+
+
+### Features
+
+* DurationUtilBuilder and dateAssert utility ([750a4b8](https://github.com/sprucelabsai-community/calendar-utils/commit/750a4b8))
+
 ## [40.0.140](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.139...v40.0.140) (2024-06-19)
 
 ## [40.0.139](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.0.138...v40.0.139) (2024-06-19)

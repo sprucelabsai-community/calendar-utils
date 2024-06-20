@@ -150,4 +150,11 @@ export default class DurationUtilTest extends AbstractSpruceTest {
             dateAssert.currentTimezoneEquals(durationUtil, fail)
         )
     }
+
+    @test()
+    protected static async builderTracksLastBuiltDurationUtil() {
+        const durationUtil =
+            await DurationUtilBuilder.getForTimezone('America/New_York')
+        assert.isEqual(DurationUtilBuilder.lastBuiltDurationUtil, durationUtil)
+    }
 }

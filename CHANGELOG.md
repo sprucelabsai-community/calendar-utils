@@ -1,3 +1,10 @@
+# [41.0.0](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.1.2...v41.0.0) (2024-06-20)
+
+
+### Breaking Changes
+
+* removed deprecated methods ([0696e40](https://github.com/sprucelabsai-community/calendar-utils/commit/0696e40))
+
 ## [40.1.2](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.1.1...v40.1.2) (2024-06-19)
 
 ## [40.1.1](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.1.0...v40.1.1) (2024-06-19)

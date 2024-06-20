@@ -1,3 +1,10 @@
+# [41.1.0](https://github.com/sprucelabsai-community/calendar-utils/compare/v41.0.0...v41.1.0) (2024-06-20)
+
+
+### Features
+
+* DurationUtilBuilder.lastBuiltDurationUtil ([efe4f46](https://github.com/sprucelabsai-community/calendar-utils/commit/efe4f46))
+
 # [41.0.0](https://github.com/sprucelabsai-community/calendar-utils/compare/v40.1.2...v41.0.0) (2024-06-20)
 
 

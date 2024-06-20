@@ -3,12 +3,6 @@ import dateUtil from './date.utility'
 
 const durationUtil = {
     dates: dateUtil,
-    /**
-     * @deprecated durationUtil.msToFriendly(...) -> durationUtil.renderDuration(...)
-     */
-    msToFriendly(duration: number): string {
-        return this.renderDuration(duration)
-    },
     renderDuration(durationMs: number): string {
         let milliseconds = durationMs % 1000,
             seconds = Math.floor((durationMs / 1000) % 60),
@@ -35,16 +29,6 @@ const durationUtil = {
             durationStr += `${milliseconds}ms`
         }
         return durationStr.trim()
-    },
-
-    /**
-     * @deprecated durationUtil.dateTimeUntilFriendly(...) -> durationUtil.renderDateTimeUntil(...)
-     */
-    dateTimeUntilFriendly(
-        start: number,
-        prefixes?: Partial<TimeUntilOptions>
-    ): string {
-        return this.renderDateTimeUntil(start, new Date().getTime(), prefixes)
     },
 
     renderDateTimeUntil(

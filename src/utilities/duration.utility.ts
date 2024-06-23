@@ -49,8 +49,8 @@ const durationUtil = {
 
         let startDateAndTime = 'today'
         const daysFromNow = Math.round(
-            (this.dates.getStartOfDay(beginning) -
-                this.dates.getStartOfDay(end)) /
+            (this.dates.getStartOfDay(end) -
+                this.dates.getStartOfDay(beginning)) /
                 (1000 * 3600 * 24)
         )
 
@@ -63,17 +63,18 @@ const durationUtil = {
         } else if (daysFromNow > 1) {
             prefix = future
             startDateAndTime =
-                this.dates.format(beginning, 'MMM do') +
-                ` (in ${daysFromNow} days)`
+                this.dates.format(end, 'MMM do') + ` (in ${daysFromNow} days)`
         } else if (daysFromNow < -1) {
             prefix = past
             startDateAndTime =
-                this.dates.format(beginning, 'MMM do') +
+                this.dates.format(end, 'MMM do') +
                 ` (${daysFromNow * -1} days ago)`
         }
 
-        startDateAndTime +=
-            ` @ ${this.dates.format(beginning, 'h:mmaaa')}`.replace(':00', '')
+        startDateAndTime += ` @ ${this.dates.format(end, 'h:mmaaa')}`.replace(
+            ':00',
+            ''
+        )
         return optionallUcFirst(
             `${prefix ? `${prefix} ` : ''}${startDateAndTime}`,
             shouldCapitalize

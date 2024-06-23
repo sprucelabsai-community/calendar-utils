@@ -203,7 +203,7 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
         const decorator = new DateUtilDecorator(locale)
         durationUtil.dates = decorator.makeLocaleAware(dateUtil)
 
-        const actual = durationUtil.renderDateTimeUntil(then, now, {
+        const actual = durationUtil.renderDateTimeUntil(now, then, {
             timezoneName: timezone,
         })
         assert.isEqual(actual, expected)
@@ -240,9 +240,10 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
         date: number,
         options?: Partial<TimeUntilOptions>
     ) {
+        debugger
         return durationUtil.renderDateTimeUntil(
-            date,
             new Date().getTime(),
+            date,
             options
         )
     }

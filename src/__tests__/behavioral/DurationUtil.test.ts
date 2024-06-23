@@ -1,7 +1,5 @@
 import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
-import { TimezoneName } from '../../types/calendar.types'
 import dateUtil from '../../utilities/date.utility'
-import dateAssert from '../../utilities/dateAssert'
 import durationUtil from '../../utilities/duration.utility'
 import DurationUtilBuilder from '../../utilities/DurationUtilBuilder'
 
@@ -65,24 +63,6 @@ export default class DurationUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async canGetDurationUtilForTimezone() {
-        const durationUtil =
-            await DurationUtilBuilder.getForTimezone('America/New_York')
-
-        dateAssert.isLocaleAware(durationUtil.dates)
-    }
-
-    @test('sets timezone on locale 1', 'America/New_York')
-    @test('sets timezone on locale 2', 'Europe/London')
-    protected static async setsTheCorrectTimezoneOnTheLocale(
-        name: TimezoneName
-    ) {
-        const durationUtil = await DurationUtilBuilder.getForTimezone(name)
-
-        dateAssert.currentTimezoneEquals(durationUtil.dates, name)
-    }
-
-    @test()
     protected static async shouldNotBeTheSameDurationUtil() {
         const durationUtil1 =
             await DurationUtilBuilder.getForTimezone('America/New_York')
@@ -122,33 +102,6 @@ export default class DurationUtilTest extends AbstractSpruceTest {
 
         const actual = durationUtil.renderDuration(1000)
         assert.isEqual(actual, '1sec')
-    }
-
-    @test()
-    protected static async canAssertDateUtilIsLocaleAware() {
-        const durationUtil =
-            await DurationUtilBuilder.getForTimezone('America/New_York')
-        dateAssert.isLocaleAware(durationUtil)
-    }
-
-    @test()
-    protected static async throwsWhenDateUtilNotLocaleAware() {
-        assert.doesThrow(() => {
-            dateAssert.isLocaleAware(durationUtil)
-        })
-    }
-
-    @test('can assert timezone 1', 'America/New_York', 'Europe/London')
-    @test('can assert timezone 2', 'Europe/London', 'America/New_York')
-    protected static async canAssertTimezone(
-        pass: TimezoneName,
-        fail: TimezoneName
-    ) {
-        const durationUtil = await DurationUtilBuilder.getForTimezone(pass)
-        dateAssert.currentTimezoneEquals(durationUtil, pass)
-        assert.doesThrow(() =>
-            dateAssert.currentTimezoneEquals(durationUtil, fail)
-        )
     }
 
     @test()

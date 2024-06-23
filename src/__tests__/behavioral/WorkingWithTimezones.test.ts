@@ -6,7 +6,6 @@ import { endOfDay, startOfDay } from 'date-fns'
 import { getTimezoneOffset, toZonedTime, fromZonedTime } from 'date-fns-tz'
 import { generateId } from '../../generateId'
 import DateUtilDecorator from '../../locales/DateUtilDecorator'
-import LocaleImpl from '../../locales/Locale'
 import TimezoneChoiceSorter from '../../locales/TimezoneChoiceSorter'
 import {
     DateUtil,
@@ -15,8 +14,8 @@ import {
 } from '../../types/calendar.types'
 import calendarUtil from '../../utilities/calendar.utility'
 import dateUtil, { IDate } from '../../utilities/date.utility'
-import dateAssert from '../../utilities/dateAssert'
 import sortTimezoneChoices from '../../utilities/sortTimezoneChoices'
+import SpyLocale from './SpyLocale'
 
 export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     private static locale: SpyLocale
@@ -75,29 +74,6 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
         errorAssert.assertError(err, 'MISSING_PARAMETERS', {
             parameters: ['dateUtil'],
         })
-    }
-
-    @test()
-    protected static async makeLocaleAwareMarksItAsLocalAware() {
-        assert.doesThrow(() => dateAssert.isLocaleAware(dateUtil))
-        dateAssert.isLocaleAware(this.dates)
-    }
-
-    @test('can assert timezone 1', 'America/New_York', 'America/Los_Angeles')
-    @test('can assert timezone 2', 'America/Los_Angeles', 'America/Chicago')
-    protected static async canAssertTimezoneOnDateUtil(
-        pass: TimezoneName,
-        fail: TimezoneName
-    ) {
-        assert.doesThrow(() => dateAssert.currentTimezoneEquals(dateUtil, fail))
-
-        await this.locale.setZoneName(pass)
-
-        assert.doesThrow(() =>
-            dateAssert.currentTimezoneEquals(this.dates, fail)
-        )
-
-        dateAssert.currentTimezoneEquals(this.dates, pass)
     }
 
     @test()
@@ -744,22 +720,5 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 
     private static async setZone(zone: TimezoneName) {
         await this.locale.setZoneName(zone)
-    }
-}
-
-class SpyLocale extends LocaleImpl {
-    public declare currentZone?: TimezoneName
-    public zoneNameToOffsetMinutesCount = 0
-    public clearCurrentZone() {
-        this.currentZone = undefined
-    }
-
-    public clearCache() {
-        this.offsetsForDate = {}
-    }
-
-    public zoneNameToOffsetMinutes(name: TimezoneName, onDate?: number) {
-        this.zoneNameToOffsetMinutesCount++
-        return super.zoneNameToOffsetMinutes(name, onDate)
     }
 }

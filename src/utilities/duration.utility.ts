@@ -1,4 +1,3 @@
-import { TimezoneName } from '../types/calendar.types'
 import dateUtil from './date.utility'
 
 const durationUtil = {
@@ -32,7 +31,6 @@ const durationUtil = {
     },
 
     renderDateTimeUntil(
-        beginning: number,
         end: number,
         prefixes?: Partial<TimeUntilOptions>
     ): string {
@@ -43,14 +41,14 @@ const durationUtil = {
             future = null,
             past = null,
             shouldCapitalize,
+            now = Date.now(),
         } = prefixes ?? {}
 
         let prefix = today
 
         let startDateAndTime = 'today'
         const daysFromNow = Math.round(
-            (this.dates.getStartOfDay(end) -
-                this.dates.getStartOfDay(beginning)) /
+            (this.dates.getStartOfDay(end) - this.dates.getStartOfDay(now)) /
                 (1000 * 3600 * 24)
         )
 
@@ -105,5 +103,5 @@ export interface TimeUntilOptions {
     future?: string | null
     past?: string | null
     shouldCapitalize?: boolean
-    timezoneName?: TimezoneName
+    now?: number
 }

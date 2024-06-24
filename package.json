@@ -53,9 +53,6 @@
     "resolve-paths.lint": "yarn run build.resolve-paths ; yarn run lint",
     "test": "jest",
     "update.dependencies": "yarn run clean.dependencies && yarn",
-    "upgrade.packages": "yarn-upgrade-all && rm -f yarn.lock ; yarn ; yarn fix.lint ; true",
-    "upgrade.packages.all": "yarn install && yarn upgrade.packages",
-    "upgrade.packages.test": "yarn upgrade.packages.all && yarn lint && yarn build.dev && yarn test",
     "watch.tests": "jest --watch",
     "watch.tsc": "tsc -w",
     "post.watch.build": "yarn run build.copy-files && yarn run build.resolve-paths",
@@ -65,7 +62,7 @@
   },
   "dependencies": {
     "@sprucelabs/error": "^6.0.64",
-    "@sprucelabs/mercury-event-emitter": "^42.0.150",
+    "@sprucelabs/mercury-event-emitter": "^42.0.151",
     "@sprucelabs/mercury-types": "^47.0.113",
     "@sprucelabs/schema": "^30.0.109",
     "@sprucelabs/spruce-core-schemas": "^40.1.54",
@@ -82,7 +79,7 @@
     "@sprucelabs/test": "^9.0.30",
     "@sprucelabs/test-utils": "^5.1.2",
     "@types/lodash": "^4.17.5",
-    "@types/node": "^20.14.7",
+    "@types/node": "^20.14.8",
     "chokidar-cli": "^3.0.0",
     "dotenv": "^16.4.5",
     "eslint": "^9.5.0",
@@ -93,8 +90,7 @@
     "ts-node": "^10.9.2",
     "tsc-watch": "^6.2.0",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.5.2",
-    "yarn-upgrade-all": "^0.7.2"
+    "typescript": "^5.5.2"
   },
   "jest": {
     "globalSetup": "<rootDir>/globalSetup.js",

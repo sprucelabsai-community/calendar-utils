@@ -1,3 +1,5 @@
+## [42.0.20](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.19...v42.0.20) (2024-06-28)
+
 ## [42.0.19](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.18...v42.0.19) (2024-06-28)
 
 ## [42.0.18](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.17...v42.0.18) (2024-06-28)

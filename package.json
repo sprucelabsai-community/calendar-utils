@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "42.0.449",
+  "version": "42.0.450",
   "files": [
     "build/**/*",
     "!build/__tests__",
@@ -79,7 +79,7 @@
     "@sprucelabs/test": "^9.0.55",
     "@sprucelabs/test-utils": "^5.1.466",
     "@types/lodash": "^4.17.12",
-    "@types/node": "^22.7.9",
+    "@types/node": "^22.8.0",
     "chokidar-cli": "^3.0.0",
     "dotenv": "^16.4.5",
     "eslint": "^9.13.0",

@@ -11,10 +11,12 @@ export default class DurationUtilBuilder {
     public static async getForTimezone(timezone: TimezoneName) {
         const locale = new LocaleImpl()
         await locale.setZoneName(timezone)
+
         const durationUtilCopy = { ...this.durationUtil }
         durationUtilCopy.dates = new DateUtilDecorator(locale).makeLocaleAware(
             dateUtil
         )
+
         this.lastBuiltDurationUtil = durationUtilCopy
         return durationUtilCopy
     }

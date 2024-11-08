@@ -3,12 +3,16 @@ import AbstractSpruceTest, {
     test,
     assert,
     errorAssert,
+    generateId,
 } from '@sprucelabs/test-utils'
 import DateUtilDecorator from '../../locales/DateUtilDecorator'
 import { DateUtil, TimezoneName } from '../../types/calendar.types'
 import dateUtil from '../../utilities/date.utility'
 import dateAssert from '../../utilities/dateAssert'
 import DateUtilBuilder from '../../utilities/DateUtilBuilder'
+import decorateDateUtilWithMockMethods, {
+    MockDateUtil,
+} from '../../utilities/decorateDateUtilWithMockMethods.utility'
 import durationUtil from '../../utilities/duration.utility'
 import DurationUtilBuilder from '../../utilities/DurationUtilBuilder'
 import SpyLocale from './SpyLocale'
@@ -18,12 +22,15 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
     private static dates: DateUtil = dateUtil as DateUtil
     private static decorator: DateUtilDecorator
 
+    private static mockDateUtil: MockDateUtil
+
     protected static async beforeEach() {
         SchemaRegistry.getInstance().forgetAllSchemas()
         await super.beforeEach()
         this.locale = new SpyLocale()
         this.decorator = new DateUtilDecorator(this.locale)
         this.dates = this.decorator.makeLocaleAware(dateUtil)
+        this.mockDateUtil = decorateDateUtilWithMockMethods(dateUtil)
         DateUtilBuilder.reset()
     }
 
@@ -154,5 +161,140 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
     ) {
         await DateUtilBuilder.getForTimezone(timezone)
         dateAssert.timezoneOfLastBuiltDateUtilEquals(timezone)
+    }
+
+    @test()
+    protected static async mockDateUtilHasSameMethodsAsDateUtil() {
+        for (const method of this.dateUtilMethods) {
+            assert.isFunction(
+                //@ts-ignore
+                this.mockDateUtil[method],
+                `dateUtil.${method} is not a function`
+            )
+        }
+    }
+
+    @test()
+    protected static async everyFunctionHasAnAssertVersionOfIt() {
+        for (const method of this.dateUtilMethods) {
+            const assertionName = `assert${method.charAt(0).toUpperCase()}${method.slice(
+                1
+            )}Called`
+            assert.isFunction(
+                //@ts-ignore
+                this.mockDateUtil[assertionName],
+                `mockDateUtil.${assertionName} is not a function`
+            )
+        }
+    }
+
+    @test()
+    protected static async assertStartOfDayThrowsIfNotActuallyCalled() {
+        assert.doesThrow(
+            () => this.mockDateUtil.assertGetStartOfDayCalled(),
+            'not called'
+        )
+    }
+
+    @test()
+    protected static async getStartOfDayDoesNotThrowIfCalled() {
+        this.mockDateUtil.getStartOfDay()
+        this.mockDateUtil.assertGetStartOfDayCalled()
+    }
+
+    @test()
+    protected static async canAssertIfCalledOnMultipleMethods() {
+        this.mockDateUtil.getStartOfDay()
+        this.mockDateUtil.assertGetStartOfDayCalled()
+
+        assert.doesThrow(
+            () => this.mockDateUtil.assertGetStartOfWeekCalled(),
+            'not called'
+        )
+        this.mockDateUtil.getStartOfWeek()
+        this.mockDateUtil.assertGetStartOfWeekCalled()
+    }
+
+    @test()
+    protected static async throwsIfParamatersDontMatch() {
+        this.mockDateUtil.format(Date.now(), 'yyyy-MM-dd')
+        assert.doesThrow(
+            () =>
+                this.mockDateUtil.assertFormatCalled(
+                    Date.now() + 100,
+                    generateId()
+                ),
+            'expected'
+        )
+    }
+
+    @test()
+    protected static async mockDateUtilReturnsSameValuesAsDateUtil() {
+        assert.isEqual(
+            this.mockDateUtil.getStartOfDay(),
+            dateUtil.getStartOfDay()
+        )
+
+        assert.isEqual(
+            this.mockDateUtil.getStartOfWeek(),
+            dateUtil.getStartOfWeek()
+        )
+
+        assert.isEqual(
+            this.mockDateUtil.addDays(this.mockDateUtil.getStartOfDay(), 100),
+            dateUtil.addDays(dateUtil.getStartOfDay(), 100)
+        )
+    }
+
+    @test()
+    protected static async dateUtilBuilderCanUseMockDateUtil() {
+        DateUtilBuilder.didBuild((dateUtil) =>
+            decorateDateUtilWithMockMethods(dateUtil)
+        )
+
+        const dateUtil = (await DateUtilBuilder.getForTimezone(
+            'America/New_York'
+        )) as MockDateUtil
+
+        dateUtil.getStartOfDay()
+        dateUtil.assertGetStartOfDayCalled()
+    }
+
+    @test()
+    protected static async dateUtilBuilderCanUseMockToCheckArgs() {
+        DateUtilBuilder.didBuild((dateUtil) =>
+            decorateDateUtilWithMockMethods(dateUtil)
+        )
+
+        const dateUtil = (await DateUtilBuilder.getForTimezone(
+            'America/New_York'
+        )) as MockDateUtil
+
+        const date = Date.now()
+        const format = 'yyyy-MM-dd'
+
+        dateUtil.format(date, format)
+        dateUtil.assertFormatCalled(date, format)
+    }
+
+    @test()
+    protected static async dateUtilBuilderResetsDidBuildHandler() {
+        DateUtilBuilder.didBuild((dateUtil) =>
+            decorateDateUtilWithMockMethods(dateUtil)
+        )
+        DateUtilBuilder.reset()
+
+        const dateUtil = (await DateUtilBuilder.getForTimezone(
+            'America/New_York'
+        )) as MockDateUtil
+
+        assert.doesThrow(() => assert.isFunction(dateUtil.assertAddDaysCalled))
+    }
+
+    private static get dateUtilMethods() {
+        return Object.keys(dateUtil).filter(
+            //@ts-ignore
+            (key) => typeof dateUtil[key] === 'function'
+        ) as (keyof typeof dateUtil)[]
     }
 }

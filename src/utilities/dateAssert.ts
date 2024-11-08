@@ -1,3 +1,4 @@
+import { assertOptions } from '@sprucelabs/schema'
 import { assert } from '@sprucelabs/test-utils'
 import {
     DateUtil,
@@ -5,11 +6,12 @@ import {
     Locale,
     TimezoneName,
 } from '../types/calendar.types'
+import DateUtilBuilder from './DateUtilBuilder'
 
 const dateAssert = {
     isLocaleAware(datesOrDuration: DateUtil | DurationUtil) {
         //@ts-ignore
-        if (datesOrDuration.dates) {
+        if (datesOrDuration?.dates) {
             //@ts-ignore
             this.isLocaleAware(datesOrDuration.dates)
             return
@@ -17,9 +19,15 @@ const dateAssert = {
 
         assert.isTrue(
             //@ts-ignore
-            datesOrDuration.__beenDecorated,
+            datesOrDuration?.__beenDecorated,
             `DateUtil is not locale aware. Try using the DateUtilDecorator to make it locale aware.`
         )
+    },
+
+    timezoneOfLastBuiltDateUtilEquals(timezone: TimezoneName) {
+        assertOptions({ timezone }, ['timezone'])
+        this.isLocaleAware(DateUtilBuilder.lastBuiltDateUtil!)
+        this.currentTimezoneEquals(DateUtilBuilder.lastBuiltDateUtil!, timezone)
     },
 
     currentTimezoneEquals(

@@ -1,9 +1,14 @@
 import { SchemaRegistry } from '@sprucelabs/schema'
-import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
+import AbstractSpruceTest, {
+    test,
+    assert,
+    errorAssert,
+} from '@sprucelabs/test-utils'
 import DateUtilDecorator from '../../locales/DateUtilDecorator'
 import { DateUtil, TimezoneName } from '../../types/calendar.types'
 import dateUtil from '../../utilities/date.utility'
 import dateAssert from '../../utilities/dateAssert'
+import DateUtilBuilder from '../../utilities/DateUtilBuilder'
 import durationUtil from '../../utilities/duration.utility'
 import DurationUtilBuilder from '../../utilities/DurationUtilBuilder'
 import SpyLocale from './SpyLocale'
@@ -19,6 +24,7 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
         this.locale = new SpyLocale()
         this.decorator = new DateUtilDecorator(this.locale)
         this.dates = this.decorator.makeLocaleAware(dateUtil)
+        DateUtilBuilder.reset()
     }
 
     @test()
@@ -58,7 +64,6 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
         name: TimezoneName
     ) {
         const durationUtil = await DurationUtilBuilder.getForTimezone(name)
-
         dateAssert.currentTimezoneEquals(durationUtil.dates, name)
     }
 
@@ -87,5 +92,67 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
         assert.doesThrow(() =>
             dateAssert.currentTimezoneEquals(durationUtil, fail)
         )
+    }
+
+    @test('can build date util for America/New_York', 'America/New_York')
+    @test('can build date util for Europe/London', 'Europe/London')
+    protected static async canBuildDateUtilForTimezone(timezone: TimezoneName) {
+        const dateUtil = await DateUtilBuilder.getForTimezone(timezone)
+        dateAssert.isLocaleAware(dateUtil)
+        dateAssert.currentTimezoneEquals(dateUtil, timezone)
+    }
+
+    @test()
+    protected static async dateUtilBuilderTracksLastBuilt() {
+        const dateUtil =
+            await DateUtilBuilder.getForTimezone('America/New_York')
+        assert.isEqual(DateUtilBuilder.lastBuiltDateUtil, dateUtil)
+    }
+
+    @test()
+    protected static async dateAssertBuiltTimezoneThrowsWhenNothingWasBuilt() {
+        const err = assert.doesThrow(() =>
+            //@ts-ignore
+            dateAssert.timezoneOfLastBuiltDateUtilEquals()
+        )
+        errorAssert.assertError(err, 'MISSING_PARAMETERS', {
+            parameters: ['timezone'],
+        })
+    }
+
+    @test()
+    protected static async throwsIfDateUtilNotLocaleAware() {
+        assert.doesThrow(
+            () =>
+                dateAssert.timezoneOfLastBuiltDateUtilEquals(
+                    'America/New_York'
+                ),
+            'aware'
+        )
+    }
+
+    @test(
+        'last built throws when timezones dont match 1',
+        'America/New_York',
+        'America/Los_Angeles'
+    )
+    protected static async lastBuiltThrowsWhenTimezoneDoesNotMatch(
+        tz1: TimezoneName,
+        tz2: TimezoneName
+    ) {
+        await DateUtilBuilder.getForTimezone(tz1)
+        assert.doesThrow(
+            () => dateAssert.timezoneOfLastBuiltDateUtilEquals(tz2),
+            'timezone is not'
+        )
+    }
+
+    @test('last built matches if timezone matches', 'America/New_York')
+    @test('last built matches if timezone matches 2', 'Europe/London')
+    protected static async lastBuiltMatchesIfTimezoneMatches(
+        timezone: TimezoneName
+    ) {
+        await DateUtilBuilder.getForTimezone(timezone)
+        dateAssert.timezoneOfLastBuiltDateUtilEquals(timezone)
     }
 }

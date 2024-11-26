@@ -2,7 +2,7 @@ import LocaleImpl from '../../locales/Locale'
 import { TimezoneName } from '../../types/calendar.types'
 
 export default class SpyLocale extends LocaleImpl {
-    public declare currentZone?: TimezoneName
+    declare public currentZone?: TimezoneName
     public zoneNameToOffsetMinutesCount = 0
     public clearCurrentZone() {
         this.currentZone = undefined

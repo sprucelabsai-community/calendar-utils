@@ -62,11 +62,11 @@
   },
   "dependencies": {
     "@sprucelabs/error": "^6.0.554",
-    "@sprucelabs/mercury-event-emitter": "^42.0.639",
-    "@sprucelabs/mercury-types": "^47.0.629",
-    "@sprucelabs/schema": "^30.0.589",
-    "@sprucelabs/spruce-core-schemas": "^40.1.575",
-    "@sprucelabs/spruce-event-utils": "^40.1.355",
+    "@sprucelabs/mercury-event-emitter": "^42.0.641",
+    "@sprucelabs/mercury-types": "^47.0.630",
+    "@sprucelabs/schema": "^30.0.590",
+    "@sprucelabs/spruce-core-schemas": "^40.1.576",
+    "@sprucelabs/spruce-event-utils": "^40.1.356",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "rrule": "^2.8.1"

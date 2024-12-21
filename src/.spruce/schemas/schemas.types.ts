@@ -70,7 +70,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				
 				'icon': ("add-circle" | "add-square" | "add" | "alarm" | "arrow-back" | "arrow-down-circle" | "arrow-down" | "arrow-next" | "arrow-up-circle" | "arrow-up" | "attachment" | "award-badge" | "binoculars" | "bolt" | "book-open" | "book" | "bookmark" | "calendar-add" | "calendar" | "camera" | "cellphone" | "checkmark" | "chevron-down" | "chevron-left" | "chevron-right" | "chevron-up" | "clipboard" | "clock" | "close-circle" | "close-square" | "close" | "code" | "coffee" | "command" | "corner-down-left" | "corner-down-right" | "corner-left-down" | "corner-left-up" | "corner-right-down" | "corner-right-up" | "corner-up-left" | "corner-up-right" | "crop" | "delete" | "document-blank" | "document-new" | "document-text" | "download-cloud" | "download" | "edit-box" | "edit-line" | "email" | "emoji-happy" | "emoji-sad" | "external-link" | "fav-heart" | "flag" | "flip-01" | "flip-02" | "folder" | "globe" | "hash-tag" | "headphones" | "help-buoy" | "help-circle" | "home" | "info" | "jump" | "layers" | "link-angle" | "link-flat" | "loader" | "location-pin" | "lock" | "map" | "message-circle" | "message-square" | "mic-off" | "mic-on" | "minus-circle" | "minus-square" | "money-sign" | "more-horizontal" | "more-vertical" | "notification-off" | "notification-on" | "object" | "pause-circle" | "phone-unavailable" | "phone" | "photo" | "picked" | "play-circle" | "present" | "refresh-circle" | "refresh" | "repeat" | "restricted" | "rotate" | "search-no" | "search" | "selector-checked" | "selector-circle-filled" | "selector-circle" | "send" | "settings-filled" | "settings" | "share" | "shopping-bag" | "shopping-cart" | "sort-filter-down" | "sort-filter-up" | "sound-off" | "sound-on" | "sprucebot" | "star-filled" | "star" | "sun" | "tag" | "time" | "tool" | "trending-down" | "trending-up" | "triangle" | "unlock" | "upload-cloud" | "upload" | "user-add" | "user-delete" | "user" | "users" | "video-off" | "video" | "warning" | "wifi" | "zoom-in" | "zoom-out")
 				
-				'hint'?: string| undefined | null
+				'hint'?: string | undefined | null
 		}
 
 		interface CalendarEventLineIconSchema extends SpruceSchema.Schema {
@@ -105,17 +105,17 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 		interface EventTimeBlock {
 			
 				
-				'title'?: string| undefined | null
+				'title'?: string | undefined | null
 				
-				'subtitle'?: string| undefined | null
+				'subtitle'?: string | undefined | null
 				
 				'isBusy': boolean
 				
 				'durationMinutes': number
 				
-				'rightIcons'?: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventLineIcon[]| undefined | null
+				'rightIcons'?: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventLineIcon[] | undefined | null
 				
-				'leftIcons'?: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventLineIcon[]| undefined | null
+				'leftIcons'?: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventLineIcon[] | undefined | null
 		}
 
 		interface EventTimeBlockSchema extends SpruceSchema.Schema {
@@ -173,15 +173,15 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 		interface CalendarEventTarget {
 			
 				
-				'locationId'?: string| undefined | null
+				'locationId'?: string | undefined | null
 				
 				'personId': string
 				
-				'organizationId'?: string| undefined | null
+				'organizationId'?: string | undefined | null
 				
-				'skillId'?: string| undefined | null
+				'skillId'?: string | undefined | null
 				
-				'roleId'?: string| undefined | null
+				'roleId'?: string | undefined | null
 		}
 
 		interface CalendarEventTargetSchema extends SpruceSchema.Schema {
@@ -239,47 +239,47 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				
 				'calendarId': string
 				
-				'eventTypeSlug'?: string| undefined | null
+				'eventTypeSlug'?: string | undefined | null
 				
 				'startDateTimeMs': SpruceSchema.DateTimeFieldValue
 				
-				'isBusy'?: boolean| undefined | null
+				'isBusy'?: boolean | undefined | null
 				
-				'isResizeable'?: boolean| undefined | null
+				'isResizeable'?: boolean | undefined | null
 				
-				'style'?: ("draft" | "tentative" | "upcoming" | "unavailable" | "blocked" | "active" | "past" | "warn" | "critical")| undefined | null
+				'style'?: ("draft" | "tentative" | "upcoming" | "unavailable" | "blocked" | "active" | "past" | "warn" | "critical") | undefined | null
 				
-				'groupId'?: string| undefined | null
+				'groupId'?: string | undefined | null
 				
 				'timeBlocks': SpruceSchemas.CalendarUtils.v2021_05_19.EventTimeBlock[]
 				
-				'repeats'?: ("weekly" | "monthly" | "daily")| undefined | null
+				'repeats'?: ("weekly" | "monthly" | "daily") | undefined | null
 				
-				'daysOfWeek'?: ("sun" | "mon" | "tue" | "wed" | "thur" | "fri" | "sat")[]| undefined | null
+				'daysOfWeek'?: ("sun" | "mon" | "tue" | "wed" | "thur" | "fri" | "sat")[] | undefined | null
 				
-				'daysOfMonth'?: ("1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12" | "13" | "14" | "15" | "16" | "17" | "18" | "19" | "20" | "21" | "22" | "23" | "24" | "25" | "26" | "27" | "28" | "29" | "30" | "31")[]| undefined | null
+				'daysOfMonth'?: ("1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12" | "13" | "14" | "15" | "16" | "17" | "18" | "19" | "20" | "21" | "22" | "23" | "24" | "25" | "26" | "27" | "28" | "29" | "30" | "31")[] | undefined | null
 				
-				'repeatsUntil'?: SpruceSchema.DateTimeFieldValue| undefined | null
+				'repeatsUntil'?: SpruceSchema.DateTimeFieldValue | undefined | null
 				
-				'occurrences'?: number| undefined | null
+				'occurrences'?: number | undefined | null
 				
-				'interval'?: number| undefined | null
+				'interval'?: number | undefined | null
 				
-				'nthOccurrences'?: number[]| undefined | null
+				'nthOccurrences'?: number[] | undefined | null
 				
-				'activeUntilDate'?: SpruceSchema.DateTimeFieldValue| undefined | null
+				'activeUntilDate'?: SpruceSchema.DateTimeFieldValue | undefined | null
 				
-				'exclusionDates'?: SpruceSchemas.CalendarUtils.v2021_05_19.EventExclusionDate[]| undefined | null
+				'exclusionDates'?: SpruceSchemas.CalendarUtils.v2021_05_19.EventExclusionDate[] | undefined | null
 				
-				'dateDeleted'?: SpruceSchema.DateTimeFieldValue| undefined | null
+				'dateDeleted'?: SpruceSchema.DateTimeFieldValue | undefined | null
 				
 				'dateCreated': SpruceSchema.DateTimeFieldValue
 				
-				'nthInRepeating'?: number| undefined | null
+				'nthInRepeating'?: number | undefined | null
 				
-				'totalInRepeating'?: number| undefined | null
+				'totalInRepeating'?: number | undefined | null
 				
-				'meta'?: (Record<string, any>)| undefined | null
+				'meta'?: (Record<string, any>) | undefined | null
 		}
 
 		interface CalendarEventSchema extends SpruceSchema.Schema {

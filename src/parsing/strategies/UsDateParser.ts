@@ -10,7 +10,7 @@ export default class UsDateParser extends AbstractParser {
                 matches[3].length === 2 ? `20${matches[3]}` : matches[3]
             )
 
-            date.hour = 0
+            date.hour = -this.locale.getTimezoneOffsetMinutes() / 60
             date.minute = 0
             date.second = 0
             date.milliseconds = 0

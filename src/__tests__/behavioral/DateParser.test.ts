@@ -149,6 +149,16 @@ export default class DateParserTest extends AbstractSpruceTest {
     @test('parses month Oct 3', 'Oct 3', { month: 9, day: 3 })
     @test('parses month Nov 3', 'Nov 3', { month: 10, day: 3 })
     @test('parses month Dec 3', 'Dec 3', { month: 11, day: 3 })
+    @test('can parse us date format 1/2/2022', '1/2/2022', {
+        year: 2022,
+        month: 1,
+        day: 1,
+    })
+    @test('can parse us date format 1/2/27', '2/10/27', {
+        year: 2027,
+        month: 1,
+        day: 10,
+    })
     protected static async parsesMonthAndDay(
         str: string,
         options: Partial<IDate>
@@ -161,20 +171,6 @@ export default class DateParserTest extends AbstractSpruceTest {
             year: 2020,
             ...options,
         })
-    }
-
-    @test('can parse us date format 1/2/2022', '1/2/2022')
-    @test('can parse us date format 1/2/27', '1/2/27')
-    protected static async canParseUsDateFormat(str: string) {
-        this.assertParsedIsEqualTo(
-            str,
-            this.normalizeDate(new Date(str).getTime(), {
-                hour: 0,
-                minute: 0,
-                second: 0,
-                milliseconds: 0,
-            })
-        )
     }
 
     @test()

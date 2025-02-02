@@ -25,7 +25,7 @@ export default class DateParser {
         const now = this.now()
         const date = dateUtil.splitDate(now) as SplitDate
 
-        let parsed = str.toLocaleLowerCase().replace(/[^a-z0-9: ]/g, '')
+        let parsed = str.toLocaleLowerCase().replace(/[^a-z0-9: \/]/g, '')
         const original = parsed
 
         const context: ParserContext = {
@@ -44,7 +44,7 @@ export default class DateParser {
             return null
         }
 
-        let normalized = dateUtil.date({
+        const normalized = dateUtil.date({
             ...date,
             milliseconds: 0,
             second: 0,

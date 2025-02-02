@@ -3,20 +3,13 @@ import { Parser } from './AbstractParser'
 import DowParser from './strategies/DowParser'
 import MonthParser from './strategies/MonthParser'
 import TimeParser from './strategies/TimeParser'
+import UsDateParser from './strategies/UsDateParser'
 import WeekParser from './strategies/WeekParser'
 import YearParser from './strategies/YearParser'
 
 export default class ParserFactory {
     private locale: Locale
-    public all() {
-        return [
-            this.Parser('Year'),
-            this.Parser('Month'),
-            this.Parser('Dow'),
-            this.Parser('Week'),
-            this.Parser('Time'),
-        ]
-    }
+
     private now: () => number
     private strategies: {
         [K in ParserStrategy]: () => Parser
@@ -26,11 +19,23 @@ export default class ParserFactory {
         Dow: () => new DowParser(this.now, this.locale),
         Time: () => new TimeParser(this.now, this.locale),
         Week: () => new WeekParser(this.now, this.locale),
+        UsDate: () => new UsDateParser(this.now, this.locale),
     }
 
     private constructor(now: () => number, locale: Locale) {
         this.now = now
         this.locale = locale
+    }
+
+    public all() {
+        return [
+            this.Parser('UsDate'),
+            this.Parser('Year'),
+            this.Parser('Month'),
+            this.Parser('Dow'),
+            this.Parser('Week'),
+            this.Parser('Time'),
+        ]
     }
 
     public static Factory(now: () => number, locale: Locale) {
@@ -42,4 +47,10 @@ export default class ParserFactory {
     }
 }
 
-export type ParserStrategy = 'Year' | 'Month' | 'Dow' | 'Time' | 'Week'
+export type ParserStrategy =
+    | 'Year'
+    | 'Month'
+    | 'Dow'
+    | 'Time'
+    | 'Week'
+    | 'UsDate'

@@ -163,6 +163,33 @@ export default class DateParserTest extends AbstractSpruceTest {
         })
     }
 
+    @test('can parse us date format 1/2/2022', '1/2/2022')
+    @test('can parse us date format 1/2/27', '1/2/27')
+    protected static async canParseUsDateFormat(str: string) {
+        this.assertParsedIsEqualTo(
+            str,
+            this.normalizeDate(new Date(str).getTime(), {
+                hour: 0,
+                minute: 0,
+                second: 0,
+                milliseconds: 0,
+            })
+        )
+    }
+
+    @test()
+    protected static async canParseUsDateWithTime() {
+        this.assertParsedEquals('12/20/2019 3:45pm', {
+            year: 2019,
+            month: 11,
+            day: 20,
+            hour: 15,
+            minute: 45,
+            second: 0,
+            milliseconds: 0,
+        })
+    }
+
     @test('January 10 equals Jan 10', 'January 1', 'Jan 1')
     @test('February 1 equals Feb 1', 'February 1', 'Feb 1')
     @test('March 10 equals Mar 10', 'March 1', 'Mar 1')

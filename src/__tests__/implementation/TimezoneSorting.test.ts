@@ -44,14 +44,14 @@ export default class TimezoneSortingTest extends AbstractSpruceTest {
             [{ label: '(+0) UTC', value: 'UTC' }]
         )
         const expectedMinutes =
-            this.locale.zoneNameToOffsetMinutes('America/Detroit')
+            this.locale.zoneNameToOffsetMinutes('America/New_York')
 
         this.assertSortMatchesExpected(
-            [{ label: 'something', value: 'America/Detroit' }],
+            [{ label: 'something', value: 'America/New_York' }],
             [
                 {
                     label: `(${expectedMinutes / 60}) something`,
-                    value: 'America/Detroit',
+                    value: 'America/New_York',
                 },
             ]
         )
@@ -70,15 +70,15 @@ export default class TimezoneSortingTest extends AbstractSpruceTest {
     protected static sortsOptions() {
         const expected = [
             'America/Denver',
-            'America/Detroit',
+            'America/New_York',
             'UTC',
-            'Europe/Minsk',
+            'Europe/Moscow',
         ]
         const res = this.sort([
             { label: 'UTC', value: 'UTC' },
             { label: 'Denver', value: 'America/Denver' },
-            { label: 'Minsk', value: 'Europe/Minsk' },
-            { label: 'Detroit', value: 'America/Detroit' },
+            { label: 'Minsk', value: 'Europe/Moscow' },
+            { label: 'Detroit', value: 'America/New_York' },
         ])
 
         assert.isEqualDeep(

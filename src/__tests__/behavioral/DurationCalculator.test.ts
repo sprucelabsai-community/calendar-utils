@@ -186,7 +186,7 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
             1718798400000,
             // Jun 21, 1am, 2024
             1718920800000,
-            'Europe/Bucharest',
+            'Europe/Athens',
             'Jun 21st (in 2 days) @ 1am'
         )
     }

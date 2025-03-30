@@ -1,21 +1,22 @@
 import { SelectChoice } from '@sprucelabs/schema'
-import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
+import AbstractSpruceTest, { test, suite, assert } from '@sprucelabs/test-utils'
 import { errorAssert } from '@sprucelabs/test-utils'
 import LocaleImpl from '../../locales/Locale'
 import TimezoneChoiceSorter from '../../locales/TimezoneChoiceSorter'
 
+@suite()
 export default class TimezoneSortingTest extends AbstractSpruceTest {
-    private static sorter: TimezoneChoiceSorter
-    private static locale: LocaleImpl
+    private sorter!: TimezoneChoiceSorter
+    private locale!: LocaleImpl
 
-    protected static async beforeEach() {
+    protected async beforeEach() {
         await super.beforeEach()
         this.locale = new LocaleImpl()
         this.sorter = new TimezoneChoiceSorter(this.locale)
     }
 
     @test()
-    protected static throwsWhenMissingOnConstructor() {
+    protected throwsWhenMissingOnConstructor() {
         //@ts-ignore
         const err = assert.doesThrow(() => new TimezoneChoiceSorter())
         errorAssert.assertError(err, 'MISSING_PARAMETERS', {
@@ -24,7 +25,7 @@ export default class TimezoneSortingTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static sortThrowsWhenMissing() {
+    protected sortThrowsWhenMissing() {
         //@ts-ignore
         const err = assert.doesThrow(() => this.sorter.sort())
         errorAssert.assertError(err, 'MISSING_PARAMETERS', {
@@ -33,12 +34,12 @@ export default class TimezoneSortingTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static sortDoesntThrowWhenReceivesExpected() {
+    protected sortDoesntThrowWhenReceivesExpected() {
         this.assertSortMatchesExpected([], [])
     }
 
     @test()
-    protected static dropsInOffsetForOneOption() {
+    protected dropsInOffsetForOneOption() {
         this.assertSortMatchesExpected(
             [{ label: 'UTC', value: 'UTC' }],
             [{ label: '(+0) UTC', value: 'UTC' }]
@@ -58,7 +59,7 @@ export default class TimezoneSortingTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static returnsAllOptions() {
+    protected returnsAllOptions() {
         const res = this.sort([
             { label: 'UTC', value: 'UTC' },
             { label: 'Denver', value: 'America/Denver' },
@@ -67,7 +68,7 @@ export default class TimezoneSortingTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static sortsOptions() {
+    protected sortsOptions() {
         const expected = [
             'America/Denver',
             'America/New_York',
@@ -88,7 +89,7 @@ export default class TimezoneSortingTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async sortsAlphabeticalAfterOffset() {
+    protected async sortsAlphabeticalAfterOffset() {
         const res = this.sort([
             { label: 'Denver', value: 'America/Denver' },
             { label: 'Yellow Knife', value: 'America/YellowKnife' },
@@ -97,7 +98,7 @@ export default class TimezoneSortingTest extends AbstractSpruceTest {
         assert.isEqual(res[0].value, 'America/Denver')
     }
 
-    private static assertSortMatchesExpected(
+    private assertSortMatchesExpected(
         choices: SelectChoice[],
         expected: SelectChoice[]
     ) {
@@ -105,7 +106,7 @@ export default class TimezoneSortingTest extends AbstractSpruceTest {
         assert.isEqualDeep(res, expected)
     }
 
-    private static sort(choices: SelectChoice[]) {
+    private sort(choices: SelectChoice[]) {
         return this.sorter.sort(choices as any)
     }
 }

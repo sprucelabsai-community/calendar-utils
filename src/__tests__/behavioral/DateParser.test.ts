@@ -1,5 +1,6 @@
 import AbstractSpruceTest, {
     test,
+    suite,
     assert,
     errorAssert,
 } from '@sprucelabs/test-utils'
@@ -7,10 +8,11 @@ import LocaleImpl from '../../locales/Locale'
 import DateParser from '../../parsing/DateParser'
 import dateUtil, { IDate } from '../../utilities/date.utility'
 
+@suite()
 export default class DateParserTest extends AbstractSpruceTest {
-    private static parser: DateParser
-    private static locale: LocaleImpl
-    private static readonly startOf2020 = {
+    private parser!: DateParser
+    private locale!: LocaleImpl
+    private readonly startOf2020 = {
         year: 2020,
         month: 0,
         day: 1,
@@ -18,7 +20,7 @@ export default class DateParserTest extends AbstractSpruceTest {
         minute: 0,
     }
 
-    protected static async beforeEach() {
+    protected async beforeEach() {
         await super.beforeEach()
         this.locale = new LocaleImpl()
         this.locale.setTimezoneOffsetMinutes(0)
@@ -26,7 +28,7 @@ export default class DateParserTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async throwsWhenMissingNow() {
+    protected async throwsWhenMissingNow() {
         //@ts-ignore
         const err = assert.doesThrow(() => DateParser.Parser())
         errorAssert.assertError(err, 'MISSING_PARAMETERS', {
@@ -35,20 +37,20 @@ export default class DateParserTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async canCreateDateParser() {
+    protected async canCreateDateParser() {
         assert.isTrue(this.parser instanceof DateParser)
     }
 
     @test()
-    protected static async returnsNowForNow() {
+    protected async returnsNowForNow() {
         this.reloadParser(() => new Date().getTime())
         this.assertParsedIsEqualTo('now', now())
     }
 
     @test('parses time 11 as 11:00am', '11', { hour: 11, minute: 0 })
     @test('parses time 11p as 11:00pm', '11p', { hour: 23, minute: 0 })
-    @test('parses time 1 as 1:00am', '1', { hour: 1, minute: 0 })
-    @test('parses time 2 as 2:00am', '2', { hour: 2, minute: 0 })
+    @test('parses time 1 as 1:00am', '3', { hour: 3, minute: 0 })
+    @test('parses time 7 as 7:00am', '7', { hour: 7, minute: 0 })
     @test('parses time 5 as 5:00am', '5', { hour: 5, minute: 0 })
     @test('parses time 5pm as 5:00pm', '5pm', { hour: 17, minute: 0 })
     @test('parses time 5 pm as 5:00pm', '5 pm', { hour: 17, minute: 0 })
@@ -56,16 +58,13 @@ export default class DateParserTest extends AbstractSpruceTest {
     @test('parses time 53p as 5:30pm', '53p', { hour: 17, minute: 30 })
     @test('parses time 535p as 5:35pm', '535p', { hour: 17, minute: 35 })
     @test('parses time 5:30pm as 5:30pm', '5:30pm', { hour: 17, minute: 30 })
-    protected static async parsesTimeForward(
-        str: string,
-        options: Partial<IDate>
-    ) {
+    protected async parsesTimeForward(str: string, options: Partial<IDate>) {
         this.assertParsedEquals(str, options)
     }
 
     @test()
-    protected static async parsesTimeAfterNow() {
-        DateParserTest.reloadWithNow({ hour: 13 })
+    protected async parsesTimeAfterNow() {
+        this.reloadWithNow({ hour: 13 })
         this.assertParsedEquals('11', { hour: 23, minute: 0 })
     }
 
@@ -85,18 +84,18 @@ export default class DateParserTest extends AbstractSpruceTest {
             minute: 45,
         }
     )
-    protected static async canParseMinutesInTime(str: string, options: IDate) {
+    protected async canParseMinutesInTime(str: string, options: IDate) {
         this.assertParsedEquals(str, options)
     }
 
     @test()
-    protected static async parsesMinutesAfterNow() {
+    protected async parsesMinutesAfterNow() {
         this.reloadWithNow({ hour: 10 })
         this.assertParsedEquals('9:23', { hour: 21, minute: 23 })
     }
 
     @test()
-    protected static async parsesYear() {
+    protected async parsesYear() {
         this.reloadWithNow({ year: 2020 })
         this.assertParsedEquals('2021', { year: 2021 })
     }
@@ -104,10 +103,7 @@ export default class DateParserTest extends AbstractSpruceTest {
     @test('parses day of week in Jan 2020 - Monday', 'Monday', { day: 6 })
     @test('parses day of week in Jan 2020 - tuesday', 'tuesday', { day: 7 })
     @test('parses day of week in Jan 2020 - Sunday', 'Sunday', { day: 5 })
-    protected static async parsesDayOfWeek(
-        str: string,
-        options: Partial<IDate>
-    ) {
+    protected async parsesDayOfWeek(str: string, options: Partial<IDate>) {
         this.reloadWithNow({ day: 1, month: 0, year: 2020 })
         this.assertParsedEquals(str, { month: 0, year: 2020, ...options })
     }
@@ -128,7 +124,7 @@ export default class DateParserTest extends AbstractSpruceTest {
     @test('parses day of week in March 2020 - Sunday', 'Sunday', {
         day: 1,
     })
-    protected static async parsesDayOfWeekInDifferentMonth(
+    protected async parsesDayOfWeekInDifferentMonth(
         str: string,
         options: Partial<IDate>
     ) {
@@ -149,10 +145,7 @@ export default class DateParserTest extends AbstractSpruceTest {
     @test('parses month Oct 3', 'Oct 3', { month: 9, day: 3 })
     @test('parses month Nov 3', 'Nov 3', { month: 10, day: 3 })
     @test('parses month Dec 3', 'Dec 3', { month: 11, day: 3 })
-    protected static async parsesMonthAndDay(
-        str: string,
-        options: Partial<IDate>
-    ) {
+    protected async parsesMonthAndDay(str: string, options: Partial<IDate>) {
         this.reloadParser(() =>
             this.normalizeDate(now(), { year: 2020, month: 0, day: 1 })
         )
@@ -180,7 +173,7 @@ export default class DateParserTest extends AbstractSpruceTest {
         hour: 15,
         minute: 45,
     })
-    protected static async canParseUsDateWithTime(str: string, options: IDate) {
+    protected async canParseUsDateWithTime(str: string, options: IDate) {
         this.assertParsedEquals(str, {
             hour: 0,
             minute: 0,
@@ -214,7 +207,7 @@ export default class DateParserTest extends AbstractSpruceTest {
     @test('Oct. 3 equals Oct 3', 'Oct. 3', 'Oct 3')
     @test('Nov. 3 equals Nov 3', 'Nov. 3', 'Nov 3')
     @test('Dec. 3 equals Dec 3', 'Dec. 3', 'Dec 3')
-    protected static async monthParserHandlesMonthInDifferentForms(
+    protected async monthParserHandlesMonthInDifferentForms(
         str1: string,
         str2: string
     ) {
@@ -222,10 +215,7 @@ export default class DateParserTest extends AbstractSpruceTest {
     }
 
     @test('Jan 2nd equals Jan 2', 'Jan 2nd', 'Jan 2')
-    protected static async canParsDayOfMonthWithOrdinal(
-        str1: string,
-        str2: string
-    ) {
+    protected async canParsDayOfMonthWithOrdinal(str1: string, str2: string) {
         const expected = this.parse(str2)
         const actual = this.parse(str1)
         assert.isEqualDeep(actual, expected)
@@ -241,16 +231,13 @@ export default class DateParserTest extends AbstractSpruceTest {
         hour: 17,
         minute: 20,
     })
-    protected static async canParseTomorrow(
-        str: string,
-        options?: Partial<IDate>
-    ) {
+    protected async canParseTomorrow(str: string, options?: Partial<IDate>) {
         this.reloadWithNow()
         this.assertParsedIsEqualTo(str, this.normalizeDate(tomorrow(), options))
     }
 
     @test()
-    protected static async parsesYears() {
+    protected async parsesYears() {
         this.reloadWithNow({ year: 2020 })
         this.assertParsedEquals('2020', { year: 2020 })
     }
@@ -267,7 +254,7 @@ export default class DateParserTest extends AbstractSpruceTest {
     @test('can parse date and time Jan 4th 4pm', 'Jan 4th 4pm', {
         day: 4,
     })
-    protected static canParseDateAndTime(str: string, options: Partial<IDate>) {
+    protected canParseDateAndTime(str: string, options: Partial<IDate>) {
         this.reloadWithNow({ year: 2020, month: 0, day: 1, hour: 0, minute: 0 })
         this.assertParsedEquals(str, {
             year: 2020,
@@ -295,7 +282,7 @@ export default class DateParserTest extends AbstractSpruceTest {
             day: 4,
         }
     )
-    protected static async canParseDateAndTimeWithYear(
+    protected async canParseDateAndTimeWithYear(
         str: string,
         options: Partial<IDate>
     ) {
@@ -317,10 +304,7 @@ export default class DateParserTest extends AbstractSpruceTest {
     @test('parses day of week fri = friday', 'fri', 'friday')
     @test('parses day of week sat = saturday', 'sat', 'saturday')
     @test('parses day of week sun. = sunday', 'sun.', 'sunday')
-    protected static canParseDayOfWeekInDifferentForms(
-        str1: string,
-        str2: string
-    ) {
+    protected canParseDayOfWeekInDifferentForms(str1: string, str2: string) {
         this.assertParsedMatch(str2, str1)
     }
 
@@ -341,10 +325,7 @@ export default class DateParserTest extends AbstractSpruceTest {
         hour: 21,
         minute: 32,
     })
-    protected static parsesDayOfWeekWithTime(
-        str: string,
-        options: Partial<IDate>
-    ) {
+    protected parsesDayOfWeekWithTime(str: string, options: Partial<IDate>) {
         this.reloadAsJan12020()
         this.assertParsedEquals(str, {
             year: 2020,
@@ -371,7 +352,7 @@ export default class DateParserTest extends AbstractSpruceTest {
     @test('can parse 3 weeks', '3 weeks', {
         day: 22,
     })
-    protected static parsesByAddingWeeks(str: string, options: Partial<IDate>) {
+    protected parsesByAddingWeeks(str: string, options: Partial<IDate>) {
         this.reloadAsJan12020()
         this.assertParsedEquals(str, {
             year: 2020,
@@ -383,7 +364,7 @@ export default class DateParserTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async returnsNullIfNothingParsed() {
+    protected async returnsNullIfNothingParsed() {
         this.assertParsesAsNull('hey there')
         this.assertParsesAsNull('go team')
         this.assertParsesAsNull('hello world')
@@ -392,7 +373,7 @@ export default class DateParserTest extends AbstractSpruceTest {
 
     @test('can parse 4pm with different timezone', '4pm', 60, 16 - 1)
     @test('can parse 5pm with different timezone', '5pm', 120, 17 - 2)
-    protected static async timezoneOffsetIsAppliedToTimeParser(
+    protected async timezoneOffsetIsAppliedToTimeParser(
         str: string,
         offsetMinutes: number,
         hour: number
@@ -407,37 +388,37 @@ export default class DateParserTest extends AbstractSpruceTest {
         this.assertTimestampsAreCloseEnough(actual, expected)
     }
 
-    private static assertParsesAsNull(str: string) {
+    private assertParsesAsNull(str: string) {
         this.assertParsedIsEqualTo(str, null)
     }
 
-    private static reloadWithNow(options?: Partial<IDate>) {
+    private reloadWithNow(options?: Partial<IDate>) {
         this.reloadParser(() =>
             this.normalizeDate(new Date().getTime(), options)
         )
     }
 
-    private static reloadAsJan12020() {
+    private reloadAsJan12020() {
         this.reloadWithNow(this.startOf2020)
     }
 
-    private static reloadParser(now: () => number) {
+    private reloadParser(now: () => number) {
         this.parser = DateParser.Parser(now, this.locale)
     }
 
-    private static assertParsedEquals(str: string, options: Partial<IDate>) {
+    private assertParsedEquals(str: string, options: Partial<IDate>) {
         const expected = this.normalizeDate(now(), options)
         this.assertParsedIsEqualTo(str, expected)
     }
 
-    private static assertParsedIsEqualTo(str: string, expected: number | null) {
+    private assertParsedIsEqualTo(str: string, expected: number | null) {
         const normalized = expected ? this.normalizeDate(expected) : null
         const actual = this.parse(str)
 
         this.assertTimestampsAreCloseEnough(actual, normalized)
     }
 
-    private static assertTimestampsAreCloseEnough(
+    private assertTimestampsAreCloseEnough(
         actual: number | null,
         expected: number | null
     ) {
@@ -464,18 +445,18 @@ Expected: ${expected ? dateUtil.formatDateTime(expected) : 'null'}`
         )
     }
 
-    private static parse(str: string) {
+    private parse(str: string) {
         return this.parser.parse(str)
     }
 
-    private static assertParsedMatch(str2: string, str1: string) {
+    private assertParsedMatch(str2: string, str1: string) {
         const expected = this.parse(str2)
         const actual = this.parse(str1)
 
         this.assertTimestampsAreCloseEnough(actual, expected)
     }
 
-    private static normalizeDate(date: number, options?: Partial<IDate>) {
+    private normalizeDate(date: number, options?: Partial<IDate>) {
         const { year, month, day, hour, minute } = dateUtil.splitDate(date)
 
         const normalized = dateUtil.date({

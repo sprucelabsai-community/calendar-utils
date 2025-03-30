@@ -1,6 +1,7 @@
 import { SchemaRegistry } from '@sprucelabs/schema'
 import AbstractSpruceTest, {
     test,
+    suite,
     assert,
     errorAssert,
     generateId,
@@ -17,14 +18,15 @@ import durationUtil from '../../utilities/duration.utility'
 import DurationUtilBuilder from '../../utilities/DurationUtilBuilder'
 import SpyLocale from './SpyLocale'
 
+@suite()
 export default class AssertingDatesTest extends AbstractSpruceTest {
-    private static locale: SpyLocale
-    private static dates: DateUtil = dateUtil as DateUtil
-    private static decorator: DateUtilDecorator
+    private locale!: SpyLocale
+    private dates: DateUtil = dateUtil as DateUtil
+    private decorator!: DateUtilDecorator
 
-    private static mockDateUtil: MockDateUtil
+    private mockDateUtil!: MockDateUtil
 
-    protected static async beforeEach() {
+    protected async beforeEach() {
         SchemaRegistry.getInstance().forgetAllSchemas()
         await super.beforeEach()
         this.locale = new SpyLocale()
@@ -35,14 +37,14 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async makeLocaleAwareMarksItAsLocalAware() {
+    protected async makeLocaleAwareMarksItAsLocalAware() {
         assert.doesThrow(() => dateAssert.isLocaleAware(dateUtil))
         dateAssert.isLocaleAware(this.dates)
     }
 
     @test('can assert timezone 1', 'America/New_York', 'America/Los_Angeles')
     @test('can assert timezone 2', 'America/Los_Angeles', 'America/Chicago')
-    protected static async canAssertTimezoneOnDateUtil(
+    protected async canAssertTimezoneOnDateUtil(
         pass: TimezoneName,
         fail: TimezoneName
     ) {
@@ -58,7 +60,7 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async canGetDurationUtilForTimezone() {
+    protected async canGetDurationUtilForTimezone() {
         const durationUtil =
             await DurationUtilBuilder.getForTimezone('America/New_York')
 
@@ -67,22 +69,20 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
 
     @test('sets timezone on locale 1', 'America/New_York')
     @test('sets timezone on locale 2', 'Europe/London')
-    protected static async setsTheCorrectTimezoneOnTheLocale(
-        name: TimezoneName
-    ) {
+    protected async setsTheCorrectTimezoneOnTheLocale(name: TimezoneName) {
         const durationUtil = await DurationUtilBuilder.getForTimezone(name)
         dateAssert.currentTimezoneEquals(durationUtil.dates, name)
     }
 
     @test()
-    protected static async canAssertDateUtilIsLocaleAware() {
+    protected async canAssertDateUtilIsLocaleAware() {
         const durationUtil =
             await DurationUtilBuilder.getForTimezone('America/New_York')
         dateAssert.isLocaleAware(durationUtil)
     }
 
     @test()
-    protected static async throwsWhenDateUtilNotLocaleAware() {
+    protected async throwsWhenDateUtilNotLocaleAware() {
         assert.doesThrow(() => {
             dateAssert.isLocaleAware(durationUtil)
         })
@@ -90,10 +90,7 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
 
     @test('can assert timezone 1', 'America/New_York', 'Europe/London')
     @test('can assert timezone 2', 'Europe/London', 'America/New_York')
-    protected static async canAssertTimezone(
-        pass: TimezoneName,
-        fail: TimezoneName
-    ) {
+    protected async canAssertTimezone(pass: TimezoneName, fail: TimezoneName) {
         const durationUtil = await DurationUtilBuilder.getForTimezone(pass)
         dateAssert.currentTimezoneEquals(durationUtil, pass)
         assert.doesThrow(() =>
@@ -103,21 +100,21 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
 
     @test('can build date util for America/New_York', 'America/New_York')
     @test('can build date util for Europe/London', 'Europe/London')
-    protected static async canBuildDateUtilForTimezone(timezone: TimezoneName) {
+    protected async canBuildDateUtilForTimezone(timezone: TimezoneName) {
         const dateUtil = await DateUtilBuilder.getForTimezone(timezone)
         dateAssert.isLocaleAware(dateUtil)
         dateAssert.currentTimezoneEquals(dateUtil, timezone)
     }
 
     @test()
-    protected static async dateUtilBuilderTracksLastBuilt() {
+    protected async dateUtilBuilderTracksLastBuilt() {
         const dateUtil =
             await DateUtilBuilder.getForTimezone('America/New_York')
         assert.isEqual(DateUtilBuilder.lastBuiltDateUtil, dateUtil)
     }
 
     @test()
-    protected static async dateAssertBuiltTimezoneThrowsWhenNothingWasBuilt() {
+    protected async dateAssertBuiltTimezoneThrowsWhenNothingWasBuilt() {
         const err = assert.doesThrow(() =>
             //@ts-ignore
             dateAssert.timezoneOfLastBuiltDateUtilEquals()
@@ -128,7 +125,7 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async throwsIfDateUtilNotLocaleAware() {
+    protected async throwsIfDateUtilNotLocaleAware() {
         assert.doesThrow(
             () =>
                 dateAssert.timezoneOfLastBuiltDateUtilEquals(
@@ -143,7 +140,7 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
         'America/New_York',
         'America/Los_Angeles'
     )
-    protected static async lastBuiltThrowsWhenTimezoneDoesNotMatch(
+    protected async lastBuiltThrowsWhenTimezoneDoesNotMatch(
         tz1: TimezoneName,
         tz2: TimezoneName
     ) {
@@ -156,15 +153,13 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
 
     @test('last built matches if timezone matches', 'America/New_York')
     @test('last built matches if timezone matches 2', 'Europe/London')
-    protected static async lastBuiltMatchesIfTimezoneMatches(
-        timezone: TimezoneName
-    ) {
+    protected async lastBuiltMatchesIfTimezoneMatches(timezone: TimezoneName) {
         await DateUtilBuilder.getForTimezone(timezone)
         dateAssert.timezoneOfLastBuiltDateUtilEquals(timezone)
     }
 
     @test()
-    protected static async mockDateUtilHasSameMethodsAsDateUtil() {
+    protected async mockDateUtilHasSameMethodsAsDateUtil() {
         for (const method of this.dateUtilMethods) {
             assert.isFunction(
                 //@ts-ignore
@@ -175,7 +170,7 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async everyFunctionHasAnAssertVersionOfIt() {
+    protected async everyFunctionHasAnAssertVersionOfIt() {
         for (const method of this.dateUtilMethods) {
             const assertionName = `assert${method.charAt(0).toUpperCase()}${method.slice(
                 1
@@ -189,7 +184,7 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async assertStartOfDayThrowsIfNotActuallyCalled() {
+    protected async assertStartOfDayThrowsIfNotActuallyCalled() {
         assert.doesThrow(
             () => this.mockDateUtil.assertGetStartOfDayCalled(),
             'not called'
@@ -197,13 +192,13 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async getStartOfDayDoesNotThrowIfCalled() {
+    protected async getStartOfDayDoesNotThrowIfCalled() {
         this.mockDateUtil.getStartOfDay()
         this.mockDateUtil.assertGetStartOfDayCalled()
     }
 
     @test()
-    protected static async canAssertIfCalledOnMultipleMethods() {
+    protected async canAssertIfCalledOnMultipleMethods() {
         this.mockDateUtil.getStartOfDay()
         this.mockDateUtil.assertGetStartOfDayCalled()
 
@@ -216,7 +211,7 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async throwsIfParamatersDontMatch() {
+    protected async throwsIfParamatersDontMatch() {
         this.mockDateUtil.format(Date.now(), 'yyyy-MM-dd')
         assert.doesThrow(
             () =>
@@ -229,7 +224,7 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async mockDateUtilReturnsSameValuesAsDateUtil() {
+    protected async mockDateUtilReturnsSameValuesAsDateUtil() {
         assert.isEqual(
             this.mockDateUtil.getStartOfDay(),
             dateUtil.getStartOfDay()
@@ -247,7 +242,7 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async dateUtilBuilderCanUseMockDateUtil() {
+    protected async dateUtilBuilderCanUseMockDateUtil() {
         DateUtilBuilder.didBuild((dateUtil) =>
             decorateDateUtilWithMockMethods(dateUtil)
         )
@@ -261,7 +256,7 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async dateUtilBuilderCanUseMockToCheckArgs() {
+    protected async dateUtilBuilderCanUseMockToCheckArgs() {
         DateUtilBuilder.didBuild((dateUtil) =>
             decorateDateUtilWithMockMethods(dateUtil)
         )
@@ -278,7 +273,7 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async dateUtilBuilderResetsDidBuildHandler() {
+    protected async dateUtilBuilderResetsDidBuildHandler() {
         DateUtilBuilder.didBuild((dateUtil) =>
             decorateDateUtilWithMockMethods(dateUtil)
         )
@@ -291,7 +286,7 @@ export default class AssertingDatesTest extends AbstractSpruceTest {
         assert.doesThrow(() => assert.isFunction(dateUtil.assertAddDaysCalled))
     }
 
-    private static get dateUtilMethods() {
+    private get dateUtilMethods() {
         return Object.keys(dateUtil).filter(
             //@ts-ignore
             (key) => typeof dateUtil[key] === 'function'

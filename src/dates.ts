@@ -1,8 +1,7 @@
 import dateUtil from './utilities/date.utility'
 
 export function now(): number {
-    const date = new Date()
-    return date.getTime()
+    return Date.now()
 }
 
 export function startOfToday() {

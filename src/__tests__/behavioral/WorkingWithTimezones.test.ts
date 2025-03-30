@@ -1,6 +1,6 @@
 import { buildSchema, cloneDeep, SchemaRegistry } from '@sprucelabs/schema'
 import { timezoneChoices } from '@sprucelabs/spruce-core-schemas'
-import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
+import AbstractSpruceTest, { test, suite, assert } from '@sprucelabs/test-utils'
 import { errorAssert } from '@sprucelabs/test-utils'
 import { endOfDay, startOfDay } from 'date-fns'
 import { getTimezoneOffset, toZonedTime, fromZonedTime } from 'date-fns-tz'
@@ -17,15 +17,16 @@ import dateUtil, { IDate } from '../../utilities/date.utility'
 import sortTimezoneChoices from '../../utilities/sortTimezoneChoices'
 import SpyLocale from './SpyLocale'
 
+@suite()
 export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
-    private static locale: SpyLocale
-    private static dates: DateUtil = dateUtil as DateUtil
-    private static decorator: DateUtilDecorator
+    private locale!: SpyLocale
+    private dates: DateUtil = dateUtil as DateUtil
+    private decorator!: DateUtilDecorator
 
-    private static readonly nov4th202312pmLa = 1699124400000
-    private static readonly nov5th202312pmLa = 1699214400000
+    private readonly nov4th202312pmLa = 1699124400000
+    private readonly nov5th202312pmLa = 1699214400000
 
-    protected static async beforeEach() {
+    protected async beforeEach() {
         SchemaRegistry.getInstance().forgetAllSchemas()
         await super.beforeEach()
         this.locale = new SpyLocale()
@@ -34,7 +35,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static throwsWhenMissingOffset() {
+    protected throwsWhenMissingOffset() {
         const err = assert.doesThrow(() =>
             //@ts-ignore
             this.locale.setTimezoneOffsetMinutes()
@@ -45,7 +46,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async setsAndGetsAsExpected() {
+    protected async setsAndGetsAsExpected() {
         this.test(0)
         this.test(10)
         this.test(40)
@@ -53,13 +54,13 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async startsAtBrowsersTimezone() {
+    protected async startsAtBrowsersTimezone() {
         this.assertOffset(new Date().getTimezoneOffset() * -1)
         new Date().toLocaleTimeString()
     }
 
     @test()
-    protected static async dateUtilDecoratorThrowsWithMissing() {
+    protected async dateUtilDecoratorThrowsWithMissing() {
         //@ts-ignore
         const err = assert.doesThrow(() => new DateUtilDecorator())
         errorAssert.assertError(err, 'MISSING_PARAMETERS', {
@@ -68,7 +69,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async decoratingFailsWhenMissing() {
+    protected async decoratingFailsWhenMissing() {
         //@ts-ignore
         const err = assert.doesThrow(() => this.decorator.makeLocaleAware())
         errorAssert.assertError(err, 'MISSING_PARAMETERS', {
@@ -77,7 +78,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static throwsWithBadZone() {
+    protected throwsWithBadZone() {
         const name = generateId()
         const err = assert.doesThrow(() =>
             this.zoneNameToOffsetMinutes(name as any)
@@ -88,19 +89,19 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static doesntThrowWithValidZoneName() {
+    protected doesntThrowWithValidZoneName() {
         this.zoneNameToOffsetMinutes('America/Denver')
         this.zoneNameToOffsetMinutes('Africa/Cairo')
     }
 
     @test()
-    protected static getsExpected() {
+    protected getsExpected() {
         this.assertZoneNameToOffsetEqualsExpected('Africa/Cairo')
         this.assertZoneNameToOffsetEqualsExpected('Africa/Lagos')
     }
 
     @test()
-    protected static async canSetZone() {
+    protected async canSetZone() {
         await this.assertSetsZoneName('Africa/Cairo')
         await this.assertSetsZoneName('America/New_York')
     }
@@ -108,7 +109,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     @test('expected zone based on offset 1', 0)
     @test('expected zone based on offset 2', -420)
     @test('expected zone based on offset 3', -240)
-    protected static matchesFirstZoneNameBasedOnOffset(offset: number) {
+    protected matchesFirstZoneNameBasedOnOffset(offset: number) {
         const sorter = new TimezoneChoiceSorter(this.locale)
 
         const expected =
@@ -130,14 +131,14 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async findsOffsetForAllTimezones() {
+    protected async findsOffsetForAllTimezones() {
         timezoneChoices.forEach(({ value }) =>
             this.locale.zoneNameToOffsetMinutes(value)
         )
     }
 
     @test()
-    protected static async usesLocaleOffsetToGetFirstZoneName() {
+    protected async usesLocaleOffsetToGetFirstZoneName() {
         this.assertUsesLocaleToLoadDefaultZoneName(0, ['UTC'])
         this.assertUsesLocaleToLoadDefaultZoneName(-360, [
             'America/Chicago', // Oct 30th 2am -> April 2nd 2am
@@ -147,7 +148,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async updatingZoneNameUpdatesOffset() {
+    protected async updatingZoneNameUpdatesOffset() {
         await this.assertSettingZoneNameUpdatesOffset(
             'Africa/Johannesburg',
             120
@@ -157,7 +158,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async formatTimeHonorsZoneName() {
+    protected async formatTimeHonorsZoneName() {
         await this.assertNewDateHonorsLocale(
             'America/Denver',
             {},
@@ -173,7 +174,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     @test('format time honors local', 'America/Denver', '3am')
     @test('format time honors local', 'Europe/Moscow', '1pm')
     @test('format time honors local', 'Africa/Johannesburg', '12pm')
-    protected static async formatTimeHonorsLocal(
+    protected async formatTimeHonorsLocal(
         zone: TimezoneName,
         expected: string
     ) {
@@ -200,7 +201,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     @test('set time honors local', 'America/Denver')
     @test('set time honors local', 'Europe/Moscow')
     @test('set time honors local', 'Africa/Johannesburg')
-    protected static async settingTimeOfDayHonorsLocale(zone: TimezoneName) {
+    protected async settingTimeOfDayHonorsLocale(zone: TimezoneName) {
         const date = dateUtil.date({
             year: 2022,
             month: 0,
@@ -219,7 +220,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async formatDateTimeHonorsLocale() {
+    protected async formatDateTimeHonorsLocale() {
         const date = dateUtil.date({
             year: 2022,
             month: 0,
@@ -236,7 +237,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 
     @test('setting zone emits event 1', 'Africa/Lagos')
     @test('setting zone emits event 2', 'Africa/Cairo')
-    protected static async settingZoneEmitsEvent(zoneName: TimezoneName) {
+    protected async settingZoneEmitsEvent(zoneName: TimezoneName) {
         let wasHit = false
         let passedZone: string | undefined | null
 
@@ -252,7 +253,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async doesNotFireChangeTimezonesWhenSettingToSame() {
+    protected async doesNotFireChangeTimezonesWhenSettingToSame() {
         let hitCount = 0
         await this.locale.on('did-change-timezones', () => {
             hitCount++
@@ -270,7 +271,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
         'America/Los_Angeles'
     )
     @test('start of day honors locale America/Chicago', 'America/Chicago')
-    protected static async startOfDayHonorsLocale(zone: TimezoneName) {
+    protected async startOfDayHonorsLocale(zone: TimezoneName) {
         await this.setZone(zone)
 
         const actual = this.dates.getStartOfDay()
@@ -282,17 +283,14 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 
     @test('end of day honors locale America/Denver', 'America/Denver', -7)
     @test('end of day honors locale America/Chicago', 'America/Chicago', -6)
-    protected static async endOfDayHonorsLocale(zone: TimezoneName) {
+    protected async endOfDayHonorsLocale(zone: TimezoneName) {
         await this.setZone(zone)
         const actual = this.dates.getEndOfDay()
         const expected = this.getExpectedEndOfDay(zone)
         assert.isEqual(actual, expected)
     }
 
-    private static getExpectedEndOfDay(
-        timezone: string,
-        timestamp?: number
-    ): number {
+    private getExpectedEndOfDay(timezone: string, timestamp?: number): number {
         // Use the passed timestamp or the current time
         const referenceTime =
             timestamp != null ? new Date(timestamp) : new Date()
@@ -322,7 +320,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
         1672552800000,
         'America/Chicago'
     )
-    protected static async startOfMonthHonorsLocale(
+    protected async startOfMonthHonorsLocale(
         now: number,
         expected: number,
         zone: TimezoneName
@@ -346,7 +344,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
         1612159199999,
         'America/Chicago'
     )
-    protected static async endOfMonthHonorsLocale(
+    protected async endOfMonthHonorsLocale(
         now: number,
         expected: number,
         zone: TimezoneName
@@ -357,7 +355,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async splitDateHonorsLocale() {
+    protected async splitDateHonorsLocale() {
         const jan222023 = 1674419514883
 
         const zone1 = 'America/Denver'
@@ -384,7 +382,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async dateHonorsDaylightSavingsTimeInDenver() {
+    protected async dateHonorsDaylightSavingsTimeInDenver() {
         await this.setZone('America/Denver')
         const expected = 1699167600000
         const actual = this.dates.date({
@@ -398,9 +396,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 
     @test('can sort timezones on schema with utility 1', 'timezone')
     @test('can sort timezones on schema with utility 2', 'location')
-    protected static async sorterUtilityFunctionUpdatesSchema(
-        fieldName: string
-    ) {
+    protected async sorterUtilityFunctionUpdatesSchema(fieldName: string) {
         const schema = this.buildSchemaWithTimezoneFieldNamed(fieldName)
 
         const sorter = new TimezoneChoiceSorter(this.locale)
@@ -416,14 +412,14 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async sorterUtilityDoesNotMutateOriginalSchema() {
+    protected async sorterUtilityDoesNotMutateOriginalSchema() {
         const schema = this.buildSchemaWithTimezoneFieldNamed()
         sortTimezoneChoices(this.locale, schema, 'timezone')
         assert.isEqualDeep(schema.fields.timezone.options.choices, [])
     }
 
     @test()
-    protected static async doesNotCrashIfSChemaIsMissingOptions() {
+    protected async doesNotCrashIfSChemaIsMissingOptions() {
         const schema = this.buildSchemaWithTimezoneFieldNamed()
         //@ts-ignore
         delete schema.fields.timezone.options
@@ -431,7 +427,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async getZoneNameOnlyDoesLookupOnce() {
+    protected async getZoneNameOnlyDoesLookupOnce() {
         await this.locale.setZoneName('UTC')
         this.locale.clearCurrentZone()
         const count = this.getZoneNameAndHitCount()
@@ -447,7 +443,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async getTimezoneOffsetMinutesCachesByTheHour() {
+    protected async getTimezoneOffsetMinutesCachesByTheHour() {
         await this.locale.setZoneName('UTC')
         const date = this.dates.date()
         const tenAm = this.dates.setTimeOfDay(date, 10, 0, 0, 0)
@@ -468,14 +464,14 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async getZoneNameCachesAfterFirstLookup() {
+    protected async getZoneNameCachesAfterFirstLookup() {
         this.locale.offsetMinutesToZoneName = () => 'UTC'
         this.getZoneName()
         assert.isEqual(this.locale.currentZone, 'UTC')
     }
 
     @test()
-    protected static async canGetDateInLosAngelesAcrossDst() {
+    protected async canGetDateInLosAngelesAcrossDst() {
         await this.locale.setZoneName('America/Los_Angeles')
 
         const beforeDst = this.dates.date({
@@ -498,7 +494,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async honorsDstInLosAngelesWhenGeneratingRepeating() {
+    protected async honorsDstInLosAngelesWhenGeneratingRepeating() {
         const event: RepeatingCalendarEvent = {
             startDateTimeMs: this.nov4th202312pmLa,
             repeats: 'daily',
@@ -531,7 +527,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async passingTimezoneToGetTimezoneOffsetDoesNotCache() {
+    protected async passingTimezoneToGetTimezoneOffsetDoesNotCache() {
         const now = Date.now()
         const offset1 = this.locale.getTimezoneOffsetMinutes(
             now,
@@ -545,7 +541,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async getTimezoneOffsetWorksWithTimezoneAndNoDate() {
+    protected async getTimezoneOffsetWorksWithTimezoneAndNoDate() {
         const now = Date.now()
         const offset1 = this.locale.getTimezoneOffsetMinutes(
             now,
@@ -562,7 +558,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
 
     @test('can add 1 month to nov 1 in denver', 1, 1698818400000, 1701414000000)
     @test('can add 1 month to dec in denver', 1, 1701414000000, 1704092400000)
-    protected static async canAddMonthsProperly(
+    protected async canAddMonthsProperly(
         months: number,
         start: number,
         expected: number
@@ -586,7 +582,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
         1704092400000,
         1701414000000
     )
-    protected static async canSubtractMonthsProperly(
+    protected async canSubtractMonthsProperly(
         months: number,
         start: number,
         expected: number
@@ -596,7 +592,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
         assert.isEqual(actual, expected)
     }
 
-    private static getTimezoneOffsetAndAssertHitCount(
+    private getTimezoneOffsetAndAssertHitCount(
         forDate: number,
         expected: number
     ) {
@@ -604,22 +600,22 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
         this.assertOffsetMinutesToZoneHitCount(expected)
     }
 
-    private static getZoneNameAndHitCount() {
+    private getZoneNameAndHitCount() {
         this.getZoneName()
         const count = this.locale.zoneNameToOffsetMinutesCount
         return count
     }
 
-    private static getZoneAndAssertHits(expected: number) {
+    private getZoneAndAssertHits(expected: number) {
         this.getZoneName()
         this.assertOffsetMinutesToZoneHitCount(expected)
     }
 
-    private static assertOffsetMinutesToZoneHitCount(expected: number) {
+    private assertOffsetMinutesToZoneHitCount(expected: number) {
         assert.isEqual(this.locale.zoneNameToOffsetMinutesCount, expected)
     }
 
-    private static buildSchemaWithTimezoneFieldNamed(fieldName = 'timezone') {
+    private buildSchemaWithTimezoneFieldNamed(fieldName = 'timezone') {
         return buildSchema({
             id: 'withTimezone',
             fields: {
@@ -633,12 +629,12 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
         })
     }
 
-    private static async setZoneAndSplit(zone: TimezoneName, date: number) {
+    private async setZoneAndSplit(zone: TimezoneName, date: number) {
         await this.setZone(zone)
         return this.dates.splitDate(date)
     }
 
-    private static async assertNewDateHonorsLocale(
+    private async assertNewDateHonorsLocale(
         zone: TimezoneName,
         d: Partial<IDate>,
         expected: number
@@ -656,10 +652,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
         assert.isEqual(results, expected)
     }
 
-    private static getExpectedStartOfDay(
-        timezone: TimezoneName,
-        timestamp?: number
-    ) {
+    private getExpectedStartOfDay(timezone: TimezoneName, timestamp?: number) {
         const referenceTime =
             timestamp != null ? new Date(timestamp) : new Date()
         const zonedTime = toZonedTime(referenceTime, timezone)
@@ -668,7 +661,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
         return startOfUtcDay.getTime()
     }
 
-    private static assertUsesLocaleToLoadDefaultZoneName(
+    private assertUsesLocaleToLoadDefaultZoneName(
         offset: number,
         possibleZones: TimezoneName[]
     ) {
@@ -677,43 +670,43 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
         assert.isAbove(possibleZones.indexOf(a as any), -1)
     }
 
-    private static async assertSetsZoneName(name: TimezoneName) {
+    private async assertSetsZoneName(name: TimezoneName) {
         await this.setZone(name)
         this.assertZoneName(name)
     }
 
-    private static assertZoneName(name: TimezoneName) {
+    private assertZoneName(name: TimezoneName) {
         assert.isEqual(this.getZoneName(), name)
     }
 
-    private static getZoneName(): string {
+    private getZoneName(): string {
         return this.locale.getZoneName()
     }
 
-    private static assertZoneNameToOffsetEqualsExpected(name: TimezoneName) {
+    private assertZoneNameToOffsetEqualsExpected(name: TimezoneName) {
         const expected = getTimezoneOffset(name, Date.now()) / 1000 / 60
         const actual = this.zoneNameToOffsetMinutes(name)
         assert.isEqual(expected, actual)
     }
 
-    private static zoneNameToOffsetMinutes(name: TimezoneName): any {
+    private zoneNameToOffsetMinutes(name: TimezoneName): any {
         return this.locale.zoneNameToOffsetMinutes(name)
     }
 
-    private static test(offset: number) {
+    private test(offset: number) {
         this.setOffset(offset)
         this.assertOffset(offset)
     }
 
-    private static assertOffset(expected: number) {
+    private assertOffset(expected: number) {
         assert.isEqual(this.locale.getTimezoneOffsetMinutes(), expected)
     }
 
-    private static setOffset(offset: number) {
+    private setOffset(offset: number) {
         this.locale.setTimezoneOffsetMinutes(offset)
     }
 
-    private static async assertSettingZoneNameUpdatesOffset(
+    private async assertSettingZoneNameUpdatesOffset(
         name: TimezoneName,
         expected: number
     ) {
@@ -721,7 +714,7 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
         this.assertOffset(expected)
     }
 
-    private static async setZone(zone: TimezoneName) {
+    private async setZone(zone: TimezoneName) {
         await this.locale.setZoneName(zone)
     }
 }

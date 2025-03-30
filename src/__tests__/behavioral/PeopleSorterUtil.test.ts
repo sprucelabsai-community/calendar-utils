@@ -1,35 +1,37 @@
 import AbstractSpruceTest, {
     test,
+    suite,
     assert,
     generateId,
 } from '@sprucelabs/test-utils'
 import { default as PeopleSorter } from '../../utilities/PeopleSorter'
 
+@suite()
 export default class PeopleSorterUtilTest extends AbstractSpruceTest {
-    private static sorter: PeopleSorter
-    protected static async beforeEach() {
+    private sorter!: PeopleSorter
+    protected async beforeEach() {
         this.sorter = new PeopleSorter()
         this.sorter.setEvents([])
         this.sorter.setSelectedEvents([])
         this.sorter.setPeople([])
     }
     @test()
-    protected static canCreatePeopleSorterUtility() {
+    protected canCreatePeopleSorterUtility() {
         assert.isTruthy(this.sorter)
     }
 
     @test()
-    protected static async hasSetPeopleMethod() {
+    protected async hasSetPeopleMethod() {
         assert.isFunction(this.sorter.setPeople)
     }
 
     @test()
-    protected static async hasGetPeopleMethod() {
+    protected async hasGetPeopleMethod() {
         assert.isFunction(this.sorter.getPeople)
     }
 
     @test()
-    protected static canProvidePeopleForSorting() {
+    protected canProvidePeopleForSorting() {
         const teammates = [{ id: '111', casualName: 'Test' }]
         this.sorter.setPeople(teammates)
 
@@ -39,12 +41,12 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async hasSortMethod() {
+    protected async hasSortMethod() {
         assert.isFunction(this.sorter.sort)
     }
 
     @test()
-    protected static async sortReturnPeopleForStart() {
+    protected async sortReturnPeopleForStart() {
         const teammates = [
             { id: '111', casualName: 'ATest' },
             { id: '222', casualName: 'BTest' },
@@ -58,7 +60,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async sortReturnsPeopleOrderedByCasualNameIfNoEventsProvided() {
+    protected async sortReturnsPeopleOrderedByCasualNameIfNoEventsProvided() {
         const teammates = [
             { id: '111', casualName: 'B Test' },
             { id: '222', casualName: 'A Test' },
@@ -72,17 +74,17 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async hasSetEventsMethod() {
+    protected async hasSetEventsMethod() {
         assert.isFunction(this.sorter.setEvents)
     }
 
     @test()
-    protected static async hasGetEventsMethod() {
+    protected async hasGetEventsMethod() {
         assert.isFunction(this.sorter.getEvents)
     }
 
     @test()
-    protected static canProvideEventsForSorting() {
+    protected canProvideEventsForSorting() {
         this.sorter.setEvents([
             { id: '111', startDateTimeMs: 1641993534, personId: '222' },
         ])
@@ -93,17 +95,17 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async hasSetSelectedEventIdsMethod() {
+    protected async hasSetSelectedEventIdsMethod() {
         assert.isFunction(this.sorter.setSelectedEvents)
     }
 
     @test()
-    protected static async hasGetSelectedEventIdsMethod() {
+    protected async hasGetSelectedEventIdsMethod() {
         assert.isFunction(this.sorter.getSelectedEvents)
     }
 
     @test()
-    protected static canProvideSelectedEventsForSorting() {
+    protected canProvideSelectedEventsForSorting() {
         this.sorter.setSelectedEvents(['111'])
 
         const events = this.sorter.getSelectedEvents()
@@ -113,7 +115,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async sortingThrowsIfPeopleSetAndSelectedEventsSetWithoutEvents() {
+    protected async sortingThrowsIfPeopleSetAndSelectedEventsSetWithoutEvents() {
         this.sorter.setPeople([
             { id: 'person111', casualName: 'B Test' },
             { id: 'person222', casualName: 'A Test' },
@@ -125,7 +127,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async canSortPeopleByEventStartDateIfSelectedEventsAreSet() {
+    protected async canSortPeopleByEventStartDateIfSelectedEventsAreSet() {
         this.sorter.setPeople([
             { id: 'person111', casualName: 'B Test' },
             { id: 'person222', casualName: 'A Test' },
@@ -151,7 +153,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async canSortPeopleByEventStartDateIfSelectedEventsAreSetForTwoPersonOutOfTree() {
+    protected async canSortPeopleByEventStartDateIfSelectedEventsAreSetForTwoPersonOutOfTree() {
         this.sorter.setPeople([
             { id: 'person111', casualName: 'C Test' },
             { id: 'person222', casualName: 'B Test' },
@@ -183,7 +185,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async cantSortIfPeopleAreNotSet() {
+    protected async cantSortIfPeopleAreNotSet() {
         this.sorter = new PeopleSorter()
         this.sorter.setEvents([
             {
@@ -208,7 +210,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async canSortByEventStartDateAndPeopleCasualName() {
+    protected async canSortByEventStartDateAndPeopleCasualName() {
         this.sorter.setPeople([
             { id: 'person111', casualName: 'C Test' },
             { id: 'person222', casualName: 'K Test' },
@@ -240,7 +242,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async canSortByEventStartDate() {
+    protected async canSortByEventStartDate() {
         this.sorter.setPeople([
             { id: 'person111', casualName: 'C Test' },
             { id: 'person222', casualName: 'K Test' },
@@ -281,7 +283,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async canClearSelectedEvents() {
+    protected async canClearSelectedEvents() {
         this.sorter.setPeople([
             { id: 'person111', casualName: 'C Test' },
             { id: 'person222', casualName: 'K Test' },
@@ -297,7 +299,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static sortsPeopleWhenGroupMatches() {
+    protected sortsPeopleWhenGroupMatches() {
         this.set4People()
 
         const groupId = generateId()
@@ -323,7 +325,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async matchesGroup() {
+    protected async matchesGroup() {
         this.set4People()
         this.sorter.setEvents([
             {
@@ -346,7 +348,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async canMatchGroupFromSecondSelectedEvent() {
+    protected async canMatchGroupFromSecondSelectedEvent() {
         this.set4People()
         this.sorter.setEvents([
             {
@@ -375,7 +377,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async worksAsExpectedWithEventPointingToBadPerson() {
+    protected async worksAsExpectedWithEventPointingToBadPerson() {
         this.set4People()
         this.sorter.setEvents([
             {
@@ -403,7 +405,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
         this.assertResults(['c', 'd', 'a', 'b'])
     }
 
-    private static set4People() {
+    private set4People() {
         this.sorter.setPeople([
             { id: 'c', casualName: 'c' },
             { id: 'd', casualName: 'd' },
@@ -412,7 +414,7 @@ export default class PeopleSorterUtilTest extends AbstractSpruceTest {
         ])
     }
 
-    private static assertResults(expected: string[]) {
+    private assertResults(expected: string[]) {
         const sortedPeople = this.sorter.sort()
 
         expected.forEach((name, idx) => {

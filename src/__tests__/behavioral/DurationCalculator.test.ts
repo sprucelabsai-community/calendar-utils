@@ -1,4 +1,4 @@
-import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
+import AbstractSpruceTest, { test, suite, assert } from '@sprucelabs/test-utils'
 import { lunch, tomorrowLunch } from '../../dates'
 import calculateEventDurationMillis from '../../durationCalculators/calculateEventDurationMillis'
 import calculateEventDurationMinutes from '../../durationCalculators/calculateEventDurationMinutes'
@@ -13,9 +13,10 @@ import generateEventValues from './generateEventValues'
 
 const MONTH_DAY_FORMAT = 'MMM do'
 //extracted from calendar skill, most tests there.
+@suite()
 export default class DurationCalculatorTest extends AbstractSpruceTest {
     @test()
-    protected static async canCalculateDurationMillis() {
+    protected async canCalculateDurationMillis() {
         const event = generateEventValues()
         const durationMin = calculateEventDurationMinutes(event)
         const expected = durationMin * 60 * 1000
@@ -57,7 +58,7 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
         dateUtil.format(dateUtil.addDays(lunch(), -3), MONTH_DAY_FORMAT) +
             ' (3 days ago) @ 12pm'
     )
-    protected static async expectedFriendlyStartBasedOnFirstBookedService(
+    protected async expectedFriendlyStartBasedOnFirstBookedService(
         date: number,
         expected: string
     ) {
@@ -72,13 +73,13 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async canChangeTheSuffixForToday() {
+    protected async canChangeTheSuffixForToday() {
         const actual = this.timeUntil(lunch(), { today: 'is' })
         assert.isEqual(actual.substring(0, 3), `is `)
     }
 
     @test()
-    protected static async canChangeTheSuffixes() {
+    protected async canChangeTheSuffixes() {
         this.assertExpectedPrefix(tomorrowLunch(), 'tomorrow', 'future')
         this.assertExpectedPrefix(
             dateUtil.addDays(lunch(), -1),
@@ -98,14 +99,14 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async nullPrefixRendersNoPrefix() {
+    protected async nullPrefixRendersNoPrefix() {
         const actual = this.timeUntilWithPrefix(lunch(), 'today', null)
         const expected = 'today @ 12pm'
         assert.isEqual(actual, expected)
     }
 
     @test()
-    protected static async canCapitalizeFirst() {
+    protected async canCapitalizeFirst() {
         this.assertTimeUntilCapitalized(lunch(), 'Today @ 12pm')
 
         this.assertTimeUntilCapitalized(
@@ -120,7 +121,7 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async returnsExpectedForDenver() {
+    protected async returnsExpectedForDenver() {
         await this.assertTimeUntilEquals(
             // June 19, 601am 2024
             1718798497739,
@@ -159,7 +160,7 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async returnsExpectedForPacific() {
+    protected async returnsExpectedForPacific() {
         await this.assertTimeUntilEquals(
             // June 19, 501am 2024
             1718798497739,
@@ -180,7 +181,7 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async returnsEpectedForEasternEuropeanSummerTime() {
+    protected async returnsEpectedForEasternEuropeanSummerTime() {
         await this.assertTimeUntilEquals(
             // Jun 19, 3pm, 2024
             1718798400000,
@@ -191,7 +192,7 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
         )
     }
 
-    private static async assertTimeUntilEquals(
+    private async assertTimeUntilEquals(
         now: number,
         then: number,
         timezone: TimezoneName,
@@ -209,17 +210,14 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
         assert.isEqual(actual, expected)
     }
 
-    private static assertTimeUntilCapitalized(
-        tomorrow: number,
-        expected: string
-    ) {
+    private assertTimeUntilCapitalized(tomorrow: number, expected: string) {
         const actual = this.timeUntil(tomorrow, {
             shouldCapitalize: true,
         })
         assert.isEqual(actual, expected)
     }
 
-    private static assertExpectedPrefix(
+    private assertExpectedPrefix(
         date: number,
         key: keyof TimeUntilOptions,
         prefix: string
@@ -228,7 +226,7 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
         assert.isEqual(actual.substring(0, prefix.length + 1), `${prefix} `)
     }
 
-    private static timeUntilWithPrefix(
+    private timeUntilWithPrefix(
         date: number,
         key: keyof TimeUntilOptions,
         prefix: string | null
@@ -236,11 +234,7 @@ export default class DurationCalculatorTest extends AbstractSpruceTest {
         return this.timeUntil(date, { [key]: prefix })
     }
 
-    private static timeUntil(
-        date: number,
-        options?: Partial<TimeUntilOptions>
-    ) {
-        debugger
+    private timeUntil(date: number, options?: Partial<TimeUntilOptions>) {
         return durationUtil.renderDateTimeUntil(date, options)
     }
 }

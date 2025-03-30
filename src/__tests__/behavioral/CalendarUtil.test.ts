@@ -1,10 +1,11 @@
-import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
+import AbstractSpruceTest, { test, suite, assert } from '@sprucelabs/test-utils'
 import calendarUtil from '../../utilities/calendar.utility'
 import dateUtil from '../../utilities/date.utility'
 
+@suite()
 export default class CalendarUtilTest extends AbstractSpruceTest {
     @test()
-    public static async applyRuleAndGetEventsPassesThroughOneTimeBlock() {
+    public async applyRuleAndGetEventsPassesThroughOneTimeBlock() {
         const start = dateUtil.getStartOfDay()
         const dateUntil = dateUtil.addDays(start, 7)
         const events = calendarUtil.applyRuleAndGetEvents(
@@ -27,7 +28,7 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    public static async applyRuleAndGetEventsPassesThroughTwoTimeBlocks() {
+    public async applyRuleAndGetEventsPassesThroughTwoTimeBlocks() {
         const start = dateUtil.getStartOfDay()
         const dateUntil = dateUtil.addDays(start, 7)
         const events = calendarUtil.applyRuleAndGetEvents(
@@ -55,9 +56,7 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
 
     @test('applyRuleAndGetMonthlyRepeatingDaysOfMonth 0 hour', 0)
     @test('applyRuleAndGetMonthlyRepeatingDaysOfMonth 13 hour', 13)
-    public static async applyRuleAndGetMonthlyRepeatingDaysOfMonth(
-        hour: number
-    ) {
+    public async applyRuleAndGetMonthlyRepeatingDaysOfMonth(hour: number) {
         const start = this.getStart({
             hour,
         })
@@ -86,7 +85,7 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
 
     @test('applyRuleAndGetMonthlyRepeating 0 hour', 0)
     @test('applyRuleAndGetMonthlyRepeating 13 hour', 13)
-    public static async applyRuleAndGetMonthlyRepeating(hour: number) {
+    public async applyRuleAndGetMonthlyRepeating(hour: number) {
         const start = this.getStart({
             day: 3,
             hour,
@@ -142,7 +141,7 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
             { year: 2020, month: 9, day: 6, hour: 13, minute: 0 },
         ]
     )
-    public static async applyRuleAndGetMonthlyRepeatingMultipleDaysOfMonth(
+    public async applyRuleAndGetMonthlyRepeatingMultipleDaysOfMonth(
         hour: number,
         daysOfMonth: string[],
         expected: any
@@ -167,7 +166,7 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    public static async applyRuleAndGetMonthlyRepeatingIncludesNthInRepeating() {
+    public async applyRuleAndGetMonthlyRepeatingIncludesNthInRepeating() {
         const start = this.getStart()
 
         const events = this.applyRulesAndGetEventsForNMonths(start, 3, {
@@ -181,7 +180,7 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    public static async getEventFromRangeByDateMonthlyRepeatingIncludesNthInRepeating() {
+    public async getEventFromRangeByDateMonthlyRepeatingIncludesNthInRepeating() {
         const start = this.getStart()
         const dateUntil = dateUtil.addMonths(start, 3)
         const event = this.getEventFromRangeByDate(start, dateUntil)
@@ -192,7 +191,7 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    public static async applyRuleAndGetMonthlyRepeatingIncludesTotalInRepeating() {
+    public async applyRuleAndGetMonthlyRepeatingIncludesTotalInRepeating() {
         const start = this.getStart()
 
         const events = this.applyRulesAndGetEventsForNMonths(start, 10, {
@@ -206,7 +205,7 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
     }
 
     @test()
-    public static async getEventFromRangeByDateMonthlyRepeatingIncludesTotalInRepeating() {
+    public async getEventFromRangeByDateMonthlyRepeatingIncludesTotalInRepeating() {
         const start = dateUtil.getStartOfMonth(new Date().getTime())
 
         const event = this.getEventFromRangeByDate(
@@ -226,7 +225,7 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
         assert.isEqual(event2?.totalInRepeating, event.totalInRepeating)
     }
 
-    private static applyRulesAndGetEventsForNMonths(
+    private applyRulesAndGetEventsForNMonths(
         start: number,
         months: number,
         values: any
@@ -247,7 +246,7 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
         return events
     }
 
-    private static getEventFromRangeByDate(start: number, dateUntil: number) {
+    private getEventFromRangeByDate(start: number, dateUntil: number) {
         return calendarUtil.getEventFromRangeByDate(
             {
                 startDateTimeMs: start,
@@ -262,7 +261,7 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
         )
     }
 
-    private static getStart(values?: {
+    private getStart(values?: {
         year?: number
         month?: number
         day?: number
@@ -277,7 +276,7 @@ export default class CalendarUtilTest extends AbstractSpruceTest {
         })
     }
 
-    private static getUTCTimestampForDay(date: {
+    private getUTCTimestampForDay(date: {
         year: number
         month: number
         day: number

@@ -1,9 +1,10 @@
-import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
+import AbstractSpruceTest, { test, suite, assert } from '@sprucelabs/test-utils'
 import dateUtil from '../../utilities/date.utility'
 
+@suite()
 export default class DateFnsTzPatchingTest extends AbstractSpruceTest {
     @test()
-    protected static async canCreateDateFnsTzPatching() {
+    protected async canCreateDateFnsTzPatching() {
         const date1 = dateUtil.format(new Date().getTime(), 'PPpp')
         const date = new Date()
         const date2 = dateUtil.format(date.getTime(), 'PPpp')

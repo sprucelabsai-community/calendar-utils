@@ -1,7 +1,8 @@
-import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
+import AbstractSpruceTest, { test, suite, assert } from '@sprucelabs/test-utils'
 import { errorAssertUtil } from '@sprucelabs/test-utils'
 import dateUtil, { IDate } from '../../utilities/date.utility'
 
+@suite()
 export default class DateUtilityTest extends AbstractSpruceTest {
     private static oldSetUtcHours: (
         hours: number,
@@ -15,17 +16,18 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         this.oldSetUtcHours = Date.prototype.setUTCHours
     }
 
-    protected static async beforeEach() {
-        Date.prototype.setUTCHours = this.oldSetUtcHours
+    protected async beforeEach() {
+        await super.beforeEach()
+        Date.prototype.setUTCHours = DateUtilityTest.oldSetUtcHours
     }
 
     @test()
-    protected static canCreateDateUtility() {
+    protected canCreateDateUtility() {
         assert.isTruthy(dateUtil)
     }
 
     @test()
-    protected static constructsDateInUtcForTomorrow() {
+    protected constructsDateInUtcForTomorrow() {
         const date = new Date()
 
         const tomorrowMillis = date.getTime() + 24 * 60 * 60 * 1000
@@ -42,7 +44,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
     @test('jan 1 2020 12:00am is wed', 1577836800000, 'wed', 3)
     @test('june 1 2021 12:00am is tue', 1622505600000, 'tue', 2)
     @test('oct 26 2020 12:00am is mon', 1603670400000, 'mon', 1)
-    protected static getsRightDayOfWeek(
+    protected getsRightDayOfWeek(
         millis: number,
         expected: string,
         expectedDayIndex: number
@@ -76,7 +78,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         { month: 9, day: 27, year: 2020, hour: 0 },
         1603756800000
     )
-    protected static canBuildDates(date: any, expected: number) {
+    protected canBuildDates(date: any, expected: number) {
         const results = dateUtil.date(date)
         assert.isEqual(results, expected)
     }
@@ -131,7 +133,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         { month: 0, day: 13, year: 2020, hour: 23, minute: 59 },
         1578787200000
     )
-    protected static startOfWeekReturnsSunday(date: any, expected: number) {
+    protected startOfWeekReturnsSunday(date: any, expected: number) {
         const startOfWeek = dateUtil.getStartOfWeek(
             dateUtil.date({
                 year: date.year,
@@ -160,7 +162,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         { month: 9, day: 26, year: 2020, hour: 3, minute: 23 },
         1604188799999
     )
-    protected static endOfWeekReturnsSaturday(date: any, expected: number) {
+    protected endOfWeekReturnsSaturday(date: any, expected: number) {
         const endOfWeek = dateUtil.getEndOfWeek(
             dateUtil.date({
                 year: date.year,
@@ -194,7 +196,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         { month: 9, day: 26, year: 2020, hour: 3, minute: 23 },
         1603670400000
     )
-    protected static getsStartOfDay(date: any, expected: number) {
+    protected getsStartOfDay(date: any, expected: number) {
         const startOfDay = dateUtil.getStartOfDay(
             dateUtil.date({
                 year: date.year,
@@ -227,7 +229,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         { month: 9, day: 26, year: 2020, hour: 3, minute: 23 },
         1603756799999
     )
-    protected static getRightEndOfDay(date: any, expected: number) {
+    protected getRightEndOfDay(date: any, expected: number) {
         const startOfDay = dateUtil.getEndOfDay(
             dateUtil.date({
                 year: date.year,
@@ -255,7 +257,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         { month: 9, day: 26, year: 2020, hour: 3, minute: 23 },
         1601510400000
     )
-    protected static getStartOfMonth(date: IDate, expected: number) {
+    protected getStartOfMonth(date: IDate, expected: number) {
         const startOfDay = dateUtil.getStartOfMonth(
             dateUtil.date({
                 year: date.year,
@@ -278,7 +280,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         { month: 11, day: 1, year: 2020, hour: 0, minute: 0 },
         1609459199999
     )
-    protected static getsEndOfMonth(date: IDate, expected: number) {
+    protected getsEndOfMonth(date: IDate, expected: number) {
         const startOfDay = dateUtil.getEndOfMonth(
             dateUtil.date({
                 year: date.year,
@@ -304,7 +306,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         183,
         1622592000000
     )
-    protected static getRightNDaysFromStartOfDay(
+    protected getRightNDaysFromStartOfDay(
         date: any,
         days: number,
         expected: number
@@ -334,7 +336,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         365 * 24 * 60,
         1635206400000
     )
-    protected static addMinutesReturnsRightTimestamp(
+    protected addMinutesReturnsRightTimestamp(
         date: any,
         minutes: number,
         expected: number
@@ -365,7 +367,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         365 * 24 * 60 * 60 * 1000,
         1635206400000
     )
-    protected static addMillisecondsReturnsRightTimestamp(
+    protected addMillisecondsReturnsRightTimestamp(
         date: any,
         ms: number,
         expected: number
@@ -403,7 +405,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         3,
         1641205800000
     )
-    protected static addDayReturnsRightTimestamp(
+    protected addDayReturnsRightTimestamp(
         date: any,
         days: number,
         expected: number
@@ -444,7 +446,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         1,
         1635206400000
     )
-    protected static addingYears(date: any, years: number, expected: number) {
+    protected addingYears(date: any, years: number, expected: number) {
         const timestamp = new Date(
             Date.UTC(
                 date.year,
@@ -468,7 +470,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         { month: 0, day: 12, year: 2020, hour: 1, minute: 0 },
         120
     )
-    protected static getDurationInMinutesReturnsRightTimestamp(
+    protected getDurationInMinutesReturnsRightTimestamp(
         start: any,
         end: any,
         expected: number
@@ -506,7 +508,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         { month: 2, day: 1, year: 2020, hour: 0, minute: 0 },
         3
     )
-    protected static getDurationInDaysReturnsRightTimestamp(
+    protected getDurationInDaysReturnsRightTimestamp(
         start: any,
         end: any,
         expected: number
@@ -546,7 +548,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         0,
         1586649600000
     )
-    protected static setTimeOfDayReturnsRightTimestamp(
+    protected setTimeOfDayReturnsRightTimestamp(
         start: any,
         hour: number,
         minute: number,
@@ -582,7 +584,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         5,
         1603670400000
     )
-    protected static getRightDateNMonthsFromStartOfDay(
+    protected getRightDateNMonthsFromStartOfDay(
         date: any,
         count: number,
         expected: number
@@ -642,7 +644,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         { hour: 1, minute: 0, seconds: 30, milliseconds: 1 },
         1631840430001
     )
-    protected static canSetTimeOfDayWithSecondsAndMilliseconds(
+    protected canSetTimeOfDayWithSecondsAndMilliseconds(
         timestamp: number,
         time: any,
         expectedTimeStamp: number
@@ -660,11 +662,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
     @test('can add 1 week', 1, 1609484400000, 1610089200000)
     @test('can add 2 weeks', 2, 1609484400000, 1610694000000)
     @test('can add 4 weeks (Oct 1 -> oct 28)', 4, 1601510400000, 1603929600000)
-    protected static canAddWeeks(
-        weeks: number,
-        start: number,
-        expected: number
-    ) {
+    protected canAddWeeks(weeks: number, start: number, expected: number) {
         const actual = dateUtil.addWeeks(start, weeks)
         assert.isEqual(actual, expected)
 
@@ -676,11 +674,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
     @test('can add 2 months', 2, 444466800000, 449650800000)
     @test('can add 4 months', 4, 1601510400000, 1612137600000)
     @test('can add month to november 2023', 1, 1698796800000, 1701388800000)
-    protected static canAddMonths(
-        months: number,
-        start: number,
-        expected: number
-    ) {
+    protected canAddMonths(months: number, start: number, expected: number) {
         const actual = dateUtil.addMonths(start, months)
         assert.isEqual(actual, expected)
 
@@ -694,11 +688,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
     @test('date format 4', 458632800000, 'M', '7')
     @test('date format with time over dst', 1634401800000, 'hmbbb', '430pm')
     @test('date format with time not dst', 1234201800000, 'hmbbb', '550pm')
-    protected static canFormatDate(
-        start: number,
-        format: string,
-        expected: string
-    ) {
+    protected canFormatDate(start: number, format: string, expected: string) {
         const actual = dateUtil.format(start, format)
         assert.isEqual(actual, expected)
     }
@@ -717,17 +707,13 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         689793120000,
         false
     )
-    protected static canCheckSameDay(
-        date1: number,
-        date2: number,
-        isSame: boolean
-    ) {
+    protected canCheckSameDay(date1: number, date2: number, isSame: boolean) {
         const isSameDay = dateUtil.isSameDay(date1, date2)
         assert.isTrue(isSameDay === isSame)
     }
 
     @test()
-    protected static mustSendNumbersToSetTimeOfDay() {
+    protected mustSendNumbersToSetTimeOfDay() {
         errorAssertUtil.assertError(
             assert.doesThrow(() =>
                 //@ts-ignore
@@ -739,7 +725,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static setTimeOfDayGetsAndSetsSameHour() {
+    protected setTimeOfDayGetsAndSetsSameHour() {
         const date = dateUtil.setTimeOfDay(new Date().getTime(), 7, 0)
         const { hour } = dateUtil.splitDate(date)
 
@@ -747,7 +733,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static canIncrementByHour() {
+    protected canIncrementByHour() {
         const endOfDay = dateUtil.getEndOfDay(new Date().getTime())
         let current = dateUtil.getStartOfDay(endOfDay)
         let hours: number[] = []
@@ -769,7 +755,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static setHourUsesUtcSetters() {
+    protected setHourUsesUtcSetters() {
         let args: any
         //@ts-ignore
         Date.prototype.setUTCHours = (hours) => {
@@ -782,18 +768,14 @@ export default class DateUtilityTest extends AbstractSpruceTest {
     @test('gets 31 days for jan 2020', 2020, 0, 31)
     @test('gets 30 days for jun 2020', 2020, 5, 30)
     @test('gets 28 days for feb 2021', 2021, 1, 28)
-    protected static canGetDaysInMonth(
-        year: number,
-        month: number,
-        expected: number
-    ) {
+    protected canGetDaysInMonth(year: number, month: number, expected: number) {
         const total = dateUtil.getTotalDaysInMonth(year, month)
 
         assert.isEqual(total, expected)
     }
 
     @test()
-    protected static rendersFriendlies() {
+    protected rendersFriendlies() {
         const { year } = dateUtil.splitDate(new Date().getTime())
         this.assertFormatTimeEquals(10, 30, '10:30am')
         this.assertFormatTimeEquals(9, 45, '9:45am')
@@ -833,14 +815,14 @@ export default class DateUtilityTest extends AbstractSpruceTest {
     }
 
     @test()
-    protected static async dateReturnsNowWhenPassedNothing() {
+    protected async dateReturnsNowWhenPassedNothing() {
         const now = new Date().getTime()
         const actual = dateUtil.date()
         assert.isBelow(actual, now + 2)
         assert.isAbove(actual, now - 2)
     }
 
-    private static assertFormatTimeEquals(
+    private assertFormatTimeEquals(
         hour: number,
         minutes: number,
         expected: string
@@ -850,7 +832,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         )
         assert.isEqual(time, expected)
     }
-    private static assertFormatDateEquals(
+    private assertFormatDateEquals(
         year: number,
         month: number,
         day: number,
@@ -870,7 +852,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         assert.isEqual(time, expected)
     }
 
-    private static assertFormatDateTimeEquals(
+    private assertFormatDateTimeEquals(
         year: number,
         month: number,
         day: number,
@@ -890,7 +872,7 @@ export default class DateUtilityTest extends AbstractSpruceTest {
         assert.isEqual(time, expected)
     }
 
-    private static stripSeconds(number: number): string {
+    private stripSeconds(number: number): string {
         const str = `${number}`
         return str.slice(0, -4)
     }

@@ -1,9 +1,10 @@
-import AbstractSpruceTest, { test, assert } from '@sprucelabs/test-utils'
+import AbstractSpruceTest, { test, suite, assert } from '@sprucelabs/test-utils'
 import calendarEventSchema from '#spruce/schemas/calendarUtils/v2021_05_19/calendarEvent.schema'
 
+@suite()
 export default class CalendarEventBuilderTest extends AbstractSpruceTest {
     @test()
-    protected static async daysOfMonthOptionsAre1to31() {
+    protected async daysOfMonthOptionsAre1to31() {
         const daysOfMonth = calendarEventSchema.fields.daysOfMonth
         assert.isLength(daysOfMonth.options.choices, 31)
         const values = daysOfMonth.options.choices.map((r) => r.value)

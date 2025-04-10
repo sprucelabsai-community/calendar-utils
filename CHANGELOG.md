@@ -1,3 +1,19 @@
+## [42.0.676](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.675...v42.0.676) (2025-04-09)
+
+## [42.0.675](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.674...v42.0.675) (2025-04-08)
+
+## [42.0.674](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.673...v42.0.674) (2025-04-03)
+
+## [42.0.673](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.672...v42.0.673) (2025-04-03)
+
+## [42.0.672](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.671...v42.0.672) (2025-04-03)
+
+## [42.0.671](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.670...v42.0.671) (2025-04-02)
+
+## [42.0.670](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.669...v42.0.670) (2025-04-02)
+
+## [42.0.669](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.668...v42.0.669) (2025-03-30)
+
 ## [42.0.668](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.667...v42.0.668) (2025-03-27)
 
 ## [42.0.667](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.666...v42.0.667) (2025-03-27)

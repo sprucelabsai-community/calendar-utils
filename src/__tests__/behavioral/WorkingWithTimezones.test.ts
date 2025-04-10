@@ -2,7 +2,7 @@ import { buildSchema, cloneDeep, SchemaRegistry } from '@sprucelabs/schema'
 import { timezoneChoices } from '@sprucelabs/spruce-core-schemas'
 import AbstractSpruceTest, { test, suite, assert } from '@sprucelabs/test-utils'
 import { errorAssert } from '@sprucelabs/test-utils'
-import { endOfDay, startOfDay } from 'date-fns'
+import { endOfDay, endOfWeek, startOfDay, startOfWeek } from 'date-fns'
 import { getTimezoneOffset, toZonedTime, fromZonedTime } from 'date-fns-tz'
 import { generateId } from '../../generateId'
 import DateUtilDecorator from '../../locales/DateUtilDecorator'
@@ -275,9 +275,35 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
         await this.setZone(zone)
 
         const actual = this.dates.getStartOfDay()
-
         const expected = this.getExpectedStartOfDay(zone)
+        assert.isEqual(actual, expected)
+    }
 
+    @test('start of week honors locale America/Denver', 'America/Denver')
+    @test(
+        'start of week honors locale America/Los_Angeles',
+        'America/Los_Angeles'
+    )
+    @test('start of week honors locale America/Chicago', 'America/Chicago')
+    protected async startOfDayWeekLocale(zone: TimezoneName) {
+        await this.setZone(zone)
+
+        const actual = this.dates.getStartOfWeek()
+        const expected = this.getExpectedStartOfWeek(zone)
+        assert.isEqual(actual, expected)
+    }
+
+    @test('end of week honors locale America/Denver', 'America/Denver')
+    @test(
+        'end of week honors locale America/Los_Angeles',
+        'America/Los_Angeles'
+    )
+    @test('end of week honors locale America/Chicago', 'America/Chicago')
+    protected async endOfDayWeekLocale(zone: TimezoneName) {
+        await this.setZone(zone)
+
+        const actual = this.dates.getEndOfWeek()
+        const expected = this.getExpectedEndOfWeek(zone)
         assert.isEqual(actual, expected)
     }
 
@@ -653,10 +679,26 @@ export default class WorkingWithTimezonesTest extends AbstractSpruceTest {
     }
 
     private getExpectedStartOfDay(timezone: TimezoneName, timestamp?: number) {
+        return this.makeZonedTimeUsing(timestamp, timezone, startOfDay)
+    }
+
+    private getExpectedStartOfWeek(timezone: TimezoneName, timestamp?: number) {
+        return this.makeZonedTimeUsing(timestamp, timezone, startOfWeek)
+    }
+
+    private getExpectedEndOfWeek(timezone: TimezoneName, timestamp?: number) {
+        return this.makeZonedTimeUsing(timestamp, timezone, endOfWeek)
+    }
+
+    private makeZonedTimeUsing(
+        timestamp: number | undefined,
+        timezone: string,
+        func: (date: Date) => Date
+    ) {
         const referenceTime =
             timestamp != null ? new Date(timestamp) : new Date()
         const zonedTime = toZonedTime(referenceTime, timezone)
-        const startOfZonedDay = startOfDay(zonedTime)
+        const startOfZonedDay = func(zonedTime)
         const startOfUtcDay = fromZonedTime(startOfZonedDay, timezone)
         return startOfUtcDay.getTime()
     }

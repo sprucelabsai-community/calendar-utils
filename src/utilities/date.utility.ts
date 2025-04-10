@@ -49,7 +49,7 @@ const dateUtil = {
 
         return date.getTime()
     },
-    getEndOfWeek(timestamp: number) {
+    getEndOfWeek(timestamp?: number) {
         if (!timestamp) {
             timestamp = new Date().getTime()
         }

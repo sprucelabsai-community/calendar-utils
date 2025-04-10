@@ -54,6 +54,16 @@ export default class DateUtilDecorator {
                     dateUtil.getEndOfDay(this.offsetDate(date))
                 )
             },
+            getStartOfWeek: (date: number | undefined) => {
+                return this.addOffset(
+                    dateUtil.getStartOfWeek(this.offsetDate(date))
+                )
+            },
+            getEndOfWeek: (date: number | undefined) => {
+                return this.addOffset(
+                    dateUtil.getEndOfWeek(this.offsetDate(date))
+                )
+            },
             getStartOfMonth: (date: number | undefined) => {
                 return this.addOffset(
                     dateUtil.getStartOfMonth(this.offsetDate(date))
@@ -67,7 +77,6 @@ export default class DateUtilDecorator {
             splitDate: (timestamp: number) => {
                 return dateUtil.splitDate(this.addOffset(timestamp, false))
             },
-
             addMonths: (date: number, months: number) => {
                 return this.addOffset(
                     dateUtil.addMonths(this.addOffset(date, false), months)

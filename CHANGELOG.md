@@ -1,3 +1,10 @@
+# [43.0.0](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.712...v43.0.0) (2025-06-10)
+
+
+### Breaking Changes
+
+* jest upgrade ([f370061](https://github.com/sprucelabsai-community/calendar-utils/commit/f370061))
+
 ## [42.0.712](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.711...v42.0.712) (2025-06-07)
 
 ## [42.0.711](https://github.com/sprucelabsai-community/calendar-utils/compare/v42.0.710...v42.0.711) (2025-06-06)

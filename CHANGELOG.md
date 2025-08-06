@@ -1,3 +1,47 @@
+## [43.0.75](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.74...v43.0.75) (2025-08-06)
+
+## [43.0.74](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.73...v43.0.74) (2025-08-05)
+
+## [43.0.73](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.72...v43.0.73) (2025-08-04)
+
+## [43.0.72](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.71...v43.0.72) (2025-08-04)
+
+## [43.0.71](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.70...v43.0.71) (2025-08-04)
+
+## [43.0.70](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.69...v43.0.70) (2025-08-04)
+
+## [43.0.69](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.68...v43.0.69) (2025-08-01)
+
+## [43.0.68](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.67...v43.0.68) (2025-08-01)
+
+## [43.0.67](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.66...v43.0.67) (2025-08-01)
+
+## [43.0.66](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.65...v43.0.66) (2025-07-31)
+
+## [43.0.65](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.64...v43.0.65) (2025-07-31)
+
+## [43.0.64](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.63...v43.0.64) (2025-07-31)
+
+## [43.0.63](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.62...v43.0.63) (2025-07-31)
+
+## [43.0.62](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.61...v43.0.62) (2025-07-31)
+
+## [43.0.61](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.60...v43.0.61) (2025-07-30)
+
+## [43.0.60](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.59...v43.0.60) (2025-07-29)
+
+## [43.0.59](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.58...v43.0.59) (2025-07-26)
+
+## [43.0.58](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.57...v43.0.58) (2025-07-26)
+
+## [43.0.57](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.56...v43.0.57) (2025-07-25)
+
+## [43.0.56](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.55...v43.0.56) (2025-07-25)
+
+## [43.0.55](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.54...v43.0.55) (2025-07-21)
+
+## [43.0.54](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.53...v43.0.54) (2025-07-21)
+
 ## [43.0.53](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.52...v43.0.53) (2025-07-18)
 
 ## [43.0.52](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.51...v43.0.52) (2025-07-18)

@@ -85,7 +85,7 @@ export const lineIcons = [
     'info',
     'jump',
     'layers',
-    'line-graph',
+    'bar-graph',
     'link-angle',
     'link-flat',
     'loader',

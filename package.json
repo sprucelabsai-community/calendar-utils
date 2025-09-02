@@ -62,11 +62,11 @@
   },
   "dependencies": {
     "@sprucelabs/error": "^7.1.11",
-    "@sprucelabs/mercury-event-emitter": "^43.0.113",
+    "@sprucelabs/mercury-event-emitter": "^43.0.114",
     "@sprucelabs/mercury-types": "^48.0.81",
     "@sprucelabs/schema": "^32.1.30",
     "@sprucelabs/spruce-core-schemas": "^41.0.75",
-    "@sprucelabs/spruce-event-utils": "^41.0.90",
+    "@sprucelabs/spruce-event-utils": "^41.0.91",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "rrule": "^2.8.1"
@@ -81,7 +81,7 @@
     "@types/lodash": "^4.17.20",
     "@types/node": "^24.3.0",
     "chokidar-cli": "^3.0.0",
-    "dotenv": "^17.2.1",
+    "dotenv": "^17.2.2",
     "eslint": "^9.34.0",
     "eslint-config-spruce": "^11.2.26",
     "jest": "^30.1.3",

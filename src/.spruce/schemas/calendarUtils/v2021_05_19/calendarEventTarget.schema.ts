@@ -36,11 +36,6 @@ const calendarEventTargetSchema: SpruceSchemas.CalendarUtils.v2021_05_19.Calenda
 	                type: 'id',
 	                options: undefined
 	            },
-	            /** . */
-	            'email': {
-	                type: 'email',
-	                options: undefined
-	            },
 	    }
 }
 

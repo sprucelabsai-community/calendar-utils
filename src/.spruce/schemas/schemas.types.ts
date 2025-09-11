@@ -182,8 +182,6 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				'skillId'?: string | undefined | null
 				
 				'roleId'?: string | undefined | null
-				
-				'email'?: string | undefined | null
 		}
 
 		interface CalendarEventTargetSchema extends SpruceSchema.Schema {
@@ -217,11 +215,6 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 			            /** . */
 			            'roleId': {
 			                type: 'id',
-			                options: undefined
-			            },
-			            /** . */
-			            'email': {
-			                type: 'email',
 			                options: undefined
 			            },
 			    }

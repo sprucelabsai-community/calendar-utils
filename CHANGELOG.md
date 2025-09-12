@@ -1,3 +1,10 @@
+# [43.1.0](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.125...v43.1.0) (2025-09-12)
+
+
+### Features
+
+* venue added to calendarEvent.builder ([8e686d3](https://github.com/sprucelabsai-community/calendar-utils/commit/8e686d3))
+
 ## [43.0.125](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.124...v43.0.125) (2025-09-11)
 
 ## [43.0.124](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.0.123...v43.0.124) (2025-09-11)

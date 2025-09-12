@@ -23,7 +23,8 @@
     ],
     "commandOverrides": {
       "sync.schemas": "--shouldFetchCoreSchemas false --moduleToImportFromWhenRemote @sprucelabs/calendar-utils"
-    }
+    },
+    "version": "v2021_05_19"
   },
   "keywords": [
     "node",

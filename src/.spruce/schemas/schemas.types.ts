@@ -19,6 +19,58 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 	namespace SpruceSchemas.CalendarUtils.v2021_05_19 {
 
 		
+		interface Venue {
+			
+				
+				'provider': string
+				
+				'label': string
+				
+				'joinUrl'?: string | undefined | null
+				
+				'details'?: string | undefined | null
+		}
+
+		interface VenueSchema extends SpruceSchema.Schema {
+			id: 'venue',
+			version: 'v2021_05_19',
+			namespace: 'CalendarUtils',
+			name: 'Venue',
+			moduleToImportFromWhenRemote: '@sprucelabs/calendar-utils',
+			    fields: {
+			            /** . */
+			            'provider': {
+			                type: 'text',
+			                isRequired: true,
+			                options: undefined
+			            },
+			            /** . */
+			            'label': {
+			                type: 'text',
+			                isRequired: true,
+			                options: undefined
+			            },
+			            /** . */
+			            'joinUrl': {
+			                type: 'text',
+			                options: undefined
+			            },
+			            /** . */
+			            'details': {
+			                type: 'text',
+			                options: undefined
+			            },
+			    }
+		}
+
+		interface VenueEntity extends SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.VenueSchema> {}
+
+	}
+
+
+	namespace SpruceSchemas.CalendarUtils.v2021_05_19 {
+
+		
 		interface EventExclusionDate {
 			
 				
@@ -58,6 +110,223 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 		}
 
 		interface EventExclusionDateEntity extends SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.EventExclusionDateSchema> {}
+
+	}
+
+
+	namespace SpruceSchemas.CalendarUtils.v2021_05_19 {
+
+		
+		interface CalendarEvent {
+			
+				
+				'id': string
+				
+				'source': SpruceSchemas.SpruceEventUtils.v2021_09_13.EventSource
+				
+				'target': SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventTarget
+				
+				'calendarId': string
+				
+				'eventTypeSlug'?: string | undefined | null
+				
+				'startDateTimeMs': SpruceSchema.DateTimeFieldValue
+				
+				'isBusy'?: boolean | undefined | null
+				
+				'isResizeable'?: boolean | undefined | null
+				
+				'style'?: ("draft" | "tentative" | "upcoming" | "unavailable" | "blocked" | "active" | "past" | "warn" | "critical") | undefined | null
+				
+				'groupId'?: string | undefined | null
+				
+				'timeBlocks': SpruceSchemas.CalendarUtils.v2021_05_19.EventTimeBlock[]
+				
+				'repeats'?: ("weekly" | "monthly" | "daily") | undefined | null
+				
+				'daysOfWeek'?: ("sun" | "mon" | "tue" | "wed" | "thur" | "fri" | "sat")[] | undefined | null
+				
+				'daysOfMonth'?: ("1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12" | "13" | "14" | "15" | "16" | "17" | "18" | "19" | "20" | "21" | "22" | "23" | "24" | "25" | "26" | "27" | "28" | "29" | "30" | "31")[] | undefined | null
+				
+				'repeatsUntil'?: SpruceSchema.DateTimeFieldValue | undefined | null
+				
+				'occurrences'?: number | undefined | null
+				
+				'interval'?: number | undefined | null
+				
+				'nthOccurrences'?: number[] | undefined | null
+				
+				'activeUntilDate'?: SpruceSchema.DateTimeFieldValue | undefined | null
+				
+				'exclusionDates'?: SpruceSchemas.CalendarUtils.v2021_05_19.EventExclusionDate[] | undefined | null
+				
+				'dateDeleted'?: SpruceSchema.DateTimeFieldValue | undefined | null
+				
+				'dateCreated': SpruceSchema.DateTimeFieldValue
+				
+				'nthInRepeating'?: number | undefined | null
+				
+				'totalInRepeating'?: number | undefined | null
+				
+				'meta'?: (Record<string, any>) | undefined | null
+				
+				'venue'?: SpruceSchemas.CalendarUtils.v2021_05_19.Venue | undefined | null
+		}
+
+		interface CalendarEventSchema extends SpruceSchema.Schema {
+			id: 'calendarEvent',
+			version: 'v2021_05_19',
+			namespace: 'CalendarUtils',
+			name: '',
+			moduleToImportFromWhenRemote: '@sprucelabs/calendar-utils',
+			    fields: {
+			            /** . */
+			            'id': {
+			                type: 'id',
+			                isRequired: true,
+			                options: undefined
+			            },
+			            /** . */
+			            'source': {
+			                type: 'schema',
+			                isRequired: true,
+			                options: {schema: SpruceSchemas.SpruceEventUtils.v2021_09_13.EventSourceSchema,}
+			            },
+			            /** . */
+			            'target': {
+			                type: 'schema',
+			                isRequired: true,
+			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventTargetSchema,}
+			            },
+			            /** . */
+			            'calendarId': {
+			                type: 'id',
+			                isRequired: true,
+			                options: undefined
+			            },
+			            /** . */
+			            'eventTypeSlug': {
+			                type: 'text',
+			                options: undefined
+			            },
+			            /** . */
+			            'startDateTimeMs': {
+			                type: 'dateTime',
+			                isRequired: true,
+			                options: undefined
+			            },
+			            /** . */
+			            'isBusy': {
+			                type: 'boolean',
+			                options: undefined
+			            },
+			            /** . */
+			            'isResizeable': {
+			                type: 'boolean',
+			                options: undefined
+			            },
+			            /** . */
+			            'style': {
+			                type: 'select',
+			                options: {choices: [{"value":"draft","label":"Draft"},{"value":"tentative","label":"Tentative"},{"value":"upcoming","label":"Upcoming"},{"value":"unavailable","label":"Unavailable"},{"value":"blocked","label":"Blocked"},{"value":"active","label":"Active"},{"value":"past","label":"Past"},{"value":"warn","label":"Warning"},{"value":"critical","label":"Critical"}],}
+			            },
+			            /** . */
+			            'groupId': {
+			                type: 'id',
+			                options: undefined
+			            },
+			            /** . */
+			            'timeBlocks': {
+			                type: 'schema',
+			                isRequired: true,
+			                isArray: true,
+			                minArrayLength: 1,
+			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.EventTimeBlockSchema,}
+			            },
+			            /** . */
+			            'repeats': {
+			                type: 'select',
+			                options: {choices: [{"value":"weekly","label":"Weekly"},{"value":"monthly","label":"Monthly"},{"value":"daily","label":"Daily"}],}
+			            },
+			            /** . */
+			            'daysOfWeek': {
+			                type: 'select',
+			                isArray: true,
+			                options: {choices: [{"value":"sun","label":"Sunday"},{"value":"mon","label":"Monday"},{"value":"tue","label":"Tuesday"},{"value":"wed","label":"Wednesday"},{"value":"thur","label":"Thursday"},{"value":"fri","label":"Friday"},{"value":"sat","label":"Saturday"}],}
+			            },
+			            /** . */
+			            'daysOfMonth': {
+			                type: 'select',
+			                isArray: true,
+			                options: {choices: [{"value":"1","label":"1"},{"value":"2","label":"2"},{"value":"3","label":"3"},{"value":"4","label":"4"},{"value":"5","label":"5"},{"value":"6","label":"6"},{"value":"7","label":"7"},{"value":"8","label":"8"},{"value":"9","label":"9"},{"value":"10","label":"10"},{"value":"11","label":"11"},{"value":"12","label":"12"},{"value":"13","label":"13"},{"value":"14","label":"14"},{"value":"15","label":"15"},{"value":"16","label":"16"},{"value":"17","label":"17"},{"value":"18","label":"18"},{"value":"19","label":"19"},{"value":"20","label":"20"},{"value":"21","label":"21"},{"value":"22","label":"22"},{"value":"23","label":"23"},{"value":"24","label":"24"},{"value":"25","label":"25"},{"value":"26","label":"26"},{"value":"27","label":"27"},{"value":"28","label":"28"},{"value":"29","label":"29"},{"value":"30","label":"30"},{"value":"31","label":"31"}],}
+			            },
+			            /** . */
+			            'repeatsUntil': {
+			                type: 'dateTime',
+			                options: undefined
+			            },
+			            /** . */
+			            'occurrences': {
+			                type: 'number',
+			                options: undefined
+			            },
+			            /** . */
+			            'interval': {
+			                type: 'number',
+			                options: undefined
+			            },
+			            /** . */
+			            'nthOccurrences': {
+			                type: 'number',
+			                isArray: true,
+			                options: undefined
+			            },
+			            /** . */
+			            'activeUntilDate': {
+			                type: 'dateTime',
+			                options: undefined
+			            },
+			            /** . */
+			            'exclusionDates': {
+			                type: 'schema',
+			                isArray: true,
+			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.EventExclusionDateSchema,}
+			            },
+			            /** . */
+			            'dateDeleted': {
+			                type: 'dateTime',
+			                options: undefined
+			            },
+			            /** . */
+			            'dateCreated': {
+			                type: 'dateTime',
+			                isRequired: true,
+			                options: undefined
+			            },
+			            /** . */
+			            'nthInRepeating': {
+			                type: 'number',
+			                options: undefined
+			            },
+			            /** . */
+			            'totalInRepeating': {
+			                type: 'number',
+			                options: undefined
+			            },
+			            /** . */
+			            'meta': {
+			                type: 'raw',
+			                options: {valueType: `Record<string, any>`,}
+			            },
+			            /** . */
+			            'venue': {
+			                type: 'schema',
+			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.VenueSchema,}
+			            },
+			    }
+		}
+
+		interface CalendarEventEntity extends SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventSchema> {}
 
 	}
 
@@ -221,216 +490,6 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 		}
 
 		interface CalendarEventTargetEntity extends SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventTargetSchema> {}
-
-	}
-
-
-	namespace SpruceSchemas.CalendarUtils.v2021_05_19 {
-
-		
-		interface CalendarEvent {
-			
-				
-				'id': string
-				
-				'source': SpruceSchemas.SpruceEventUtils.v2021_09_13.EventSource
-				
-				'target': SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventTarget
-				
-				'calendarId': string
-				
-				'eventTypeSlug'?: string | undefined | null
-				
-				'startDateTimeMs': SpruceSchema.DateTimeFieldValue
-				
-				'isBusy'?: boolean | undefined | null
-				
-				'isResizeable'?: boolean | undefined | null
-				
-				'style'?: ("draft" | "tentative" | "upcoming" | "unavailable" | "blocked" | "active" | "past" | "warn" | "critical") | undefined | null
-				
-				'groupId'?: string | undefined | null
-				
-				'timeBlocks': SpruceSchemas.CalendarUtils.v2021_05_19.EventTimeBlock[]
-				
-				'repeats'?: ("weekly" | "monthly" | "daily") | undefined | null
-				
-				'daysOfWeek'?: ("sun" | "mon" | "tue" | "wed" | "thur" | "fri" | "sat")[] | undefined | null
-				
-				'daysOfMonth'?: ("1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12" | "13" | "14" | "15" | "16" | "17" | "18" | "19" | "20" | "21" | "22" | "23" | "24" | "25" | "26" | "27" | "28" | "29" | "30" | "31")[] | undefined | null
-				
-				'repeatsUntil'?: SpruceSchema.DateTimeFieldValue | undefined | null
-				
-				'occurrences'?: number | undefined | null
-				
-				'interval'?: number | undefined | null
-				
-				'nthOccurrences'?: number[] | undefined | null
-				
-				'activeUntilDate'?: SpruceSchema.DateTimeFieldValue | undefined | null
-				
-				'exclusionDates'?: SpruceSchemas.CalendarUtils.v2021_05_19.EventExclusionDate[] | undefined | null
-				
-				'dateDeleted'?: SpruceSchema.DateTimeFieldValue | undefined | null
-				
-				'dateCreated': SpruceSchema.DateTimeFieldValue
-				
-				'nthInRepeating'?: number | undefined | null
-				
-				'totalInRepeating'?: number | undefined | null
-				
-				'meta'?: (Record<string, any>) | undefined | null
-		}
-
-		interface CalendarEventSchema extends SpruceSchema.Schema {
-			id: 'calendarEvent',
-			version: 'v2021_05_19',
-			namespace: 'CalendarUtils',
-			name: '',
-			moduleToImportFromWhenRemote: '@sprucelabs/calendar-utils',
-			    fields: {
-			            /** . */
-			            'id': {
-			                type: 'id',
-			                isRequired: true,
-			                options: undefined
-			            },
-			            /** . */
-			            'source': {
-			                type: 'schema',
-			                isRequired: true,
-			                options: {schema: SpruceSchemas.SpruceEventUtils.v2021_09_13.EventSourceSchema,}
-			            },
-			            /** . */
-			            'target': {
-			                type: 'schema',
-			                isRequired: true,
-			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventTargetSchema,}
-			            },
-			            /** . */
-			            'calendarId': {
-			                type: 'id',
-			                isRequired: true,
-			                options: undefined
-			            },
-			            /** . */
-			            'eventTypeSlug': {
-			                type: 'text',
-			                options: undefined
-			            },
-			            /** . */
-			            'startDateTimeMs': {
-			                type: 'dateTime',
-			                isRequired: true,
-			                options: undefined
-			            },
-			            /** . */
-			            'isBusy': {
-			                type: 'boolean',
-			                options: undefined
-			            },
-			            /** . */
-			            'isResizeable': {
-			                type: 'boolean',
-			                options: undefined
-			            },
-			            /** . */
-			            'style': {
-			                type: 'select',
-			                options: {choices: [{"value":"draft","label":"Draft"},{"value":"tentative","label":"Tentative"},{"value":"upcoming","label":"Upcoming"},{"value":"unavailable","label":"Unavailable"},{"value":"blocked","label":"Blocked"},{"value":"active","label":"Active"},{"value":"past","label":"Past"},{"value":"warn","label":"Warning"},{"value":"critical","label":"Critical"}],}
-			            },
-			            /** . */
-			            'groupId': {
-			                type: 'id',
-			                options: undefined
-			            },
-			            /** . */
-			            'timeBlocks': {
-			                type: 'schema',
-			                isRequired: true,
-			                isArray: true,
-			                minArrayLength: 1,
-			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.EventTimeBlockSchema,}
-			            },
-			            /** . */
-			            'repeats': {
-			                type: 'select',
-			                options: {choices: [{"value":"weekly","label":"Weekly"},{"value":"monthly","label":"Monthly"},{"value":"daily","label":"Daily"}],}
-			            },
-			            /** . */
-			            'daysOfWeek': {
-			                type: 'select',
-			                isArray: true,
-			                options: {choices: [{"value":"sun","label":"Sunday"},{"value":"mon","label":"Monday"},{"value":"tue","label":"Tuesday"},{"value":"wed","label":"Wednesday"},{"value":"thur","label":"Thursday"},{"value":"fri","label":"Friday"},{"value":"sat","label":"Saturday"}],}
-			            },
-			            /** . */
-			            'daysOfMonth': {
-			                type: 'select',
-			                isArray: true,
-			                options: {choices: [{"value":"1","label":"1"},{"value":"2","label":"2"},{"value":"3","label":"3"},{"value":"4","label":"4"},{"value":"5","label":"5"},{"value":"6","label":"6"},{"value":"7","label":"7"},{"value":"8","label":"8"},{"value":"9","label":"9"},{"value":"10","label":"10"},{"value":"11","label":"11"},{"value":"12","label":"12"},{"value":"13","label":"13"},{"value":"14","label":"14"},{"value":"15","label":"15"},{"value":"16","label":"16"},{"value":"17","label":"17"},{"value":"18","label":"18"},{"value":"19","label":"19"},{"value":"20","label":"20"},{"value":"21","label":"21"},{"value":"22","label":"22"},{"value":"23","label":"23"},{"value":"24","label":"24"},{"value":"25","label":"25"},{"value":"26","label":"26"},{"value":"27","label":"27"},{"value":"28","label":"28"},{"value":"29","label":"29"},{"value":"30","label":"30"},{"value":"31","label":"31"}],}
-			            },
-			            /** . */
-			            'repeatsUntil': {
-			                type: 'dateTime',
-			                options: undefined
-			            },
-			            /** . */
-			            'occurrences': {
-			                type: 'number',
-			                options: undefined
-			            },
-			            /** . */
-			            'interval': {
-			                type: 'number',
-			                options: undefined
-			            },
-			            /** . */
-			            'nthOccurrences': {
-			                type: 'number',
-			                isArray: true,
-			                options: undefined
-			            },
-			            /** . */
-			            'activeUntilDate': {
-			                type: 'dateTime',
-			                options: undefined
-			            },
-			            /** . */
-			            'exclusionDates': {
-			                type: 'schema',
-			                isArray: true,
-			                options: {schema: SpruceSchemas.CalendarUtils.v2021_05_19.EventExclusionDateSchema,}
-			            },
-			            /** . */
-			            'dateDeleted': {
-			                type: 'dateTime',
-			                options: undefined
-			            },
-			            /** . */
-			            'dateCreated': {
-			                type: 'dateTime',
-			                isRequired: true,
-			                options: undefined
-			            },
-			            /** . */
-			            'nthInRepeating': {
-			                type: 'number',
-			                options: undefined
-			            },
-			            /** . */
-			            'totalInRepeating': {
-			                type: 'number',
-			                options: undefined
-			            },
-			            /** . */
-			            'meta': {
-			                type: 'raw',
-			                options: {valueType: `Record<string, any>`,}
-			            },
-			    }
-		}
-
-		interface CalendarEventEntity extends SchemaEntity<SpruceSchemas.CalendarUtils.v2021_05_19.CalendarEventSchema> {}
 
 	}
 

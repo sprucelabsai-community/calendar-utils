@@ -9,6 +9,7 @@ import {
     lineIconChoices,
     repeats,
 } from '../../constants'
+import venueBuilder from './venue.builder'
 
 export const eventExclusionDateSchema = buildSchema({
     id: 'eventExclusionDate',
@@ -195,6 +196,12 @@ export default buildSchema({
             type: 'raw',
             options: {
                 valueType: 'Record<string, any>',
+            },
+        },
+        venue: {
+            type: 'schema',
+            options: {
+                schema: venueBuilder,
             },
         },
     },

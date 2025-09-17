@@ -9,7 +9,7 @@ import dateUtil from '../../utilities/date.utility'
 import durationUtil, {
     TimeUntilOptions,
 } from '../../utilities/duration.utility'
-import generateEventValues from './generateEventValues'
+import generateEventValues from '../../utilities/generateEventValues'
 
 const MONTH_DAY_FORMAT = 'MMM do'
 //extracted from calendar skill, most tests there.

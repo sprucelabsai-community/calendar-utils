@@ -19,6 +19,7 @@ export { default as calendarEventLineIconSchema } from './.spruce/schemas/calend
 export { default as DateParser } from './parsing/DateParser'
 export { default as sortTimezoneChoices } from './utilities/sortTimezoneChoices'
 export { default as RepeatingRuleTextGenerator } from './utilities/RepeatingRuleTextGenerator'
+export { default as generateCalendarEventValues } from './utilities/generateEventValues'
 export * from './dates'
 export { SpruceSchemas } from '#spruce/schemas/schemas.types'
 export * from './constants'

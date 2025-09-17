@@ -1,5 +1,5 @@
 import { SpruceSchemas } from '@sprucelabs/mercury-types'
-import dateUtil from '../../utilities/date.utility'
+import dateUtil from './date.utility'
 
 function generateRandomMinutes(maxMinutes: number): number {
     return Math.round((Math.random() * maxMinutes + 15) / 15) * 15

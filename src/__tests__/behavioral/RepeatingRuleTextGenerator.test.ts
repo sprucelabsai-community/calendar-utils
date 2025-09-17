@@ -7,8 +7,8 @@ import AbstractSpruceTest, {
 import { tomorrowLunch } from '../../dates'
 import { CalendarEvent, DayOfWeek, Repeats } from '../../types/calendar.types'
 import dateUtil from '../../utilities/date.utility'
-import RepeatingRuleTextGenerator from '../../utilities/RepeatingRuleTextGenerator'
 import generateEventValues from '../../utilities/generateEventValues'
+import RepeatingRuleTextGenerator from '../../utilities/RepeatingRuleTextGenerator'
 
 @suite()
 export default class RepeatingRuleTextGeneratorTest extends AbstractSpruceTest {

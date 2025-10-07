@@ -72,6 +72,7 @@ export const lineIcons = [
     'emoji-sad',
     'external-link',
     'fav-heart',
+    'fav-heart-filled',
     'flag',
     'flip-01',
     'flip-02',

@@ -168,7 +168,7 @@ declare module '@sprucelabs/spruce-core-schemas/build/.spruce/schemas/core.schem
 				
 				'totalInRepeating'?: number | undefined | null
 				
-				'meta'?: Record<string, any> | undefined | null
+				'meta'?: (Record<string, any>) | undefined | null
 				
 				'venue'?: SpruceSchemas.CalendarUtils.v2021_05_19.Venue | undefined | null
 		}

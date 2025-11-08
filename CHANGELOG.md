@@ -1,3 +1,8 @@
+## <small>43.1.78 (2025-11-08)</small>
+
+* chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([42e22bf](https://github.com/sprucelabsai-community/calendar-utils/commit/42e22bf))
+* chore(auto-upgrade): upgraded packages [upgrade-all] ([55276fe](https://github.com/sprucelabsai-community/calendar-utils/commit/55276fe))
+
 ## [43.1.77](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.1.76...v43.1.77) (2025-11-08)
 
 ## [43.1.76](https://github.com/sprucelabsai-community/calendar-utils/compare/v43.1.75...v43.1.76) (2025-10-31)

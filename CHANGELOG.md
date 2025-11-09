@@ -1,3 +1,7 @@
+## 44.0.0 (2025-11-09)
+
+* major: upgrade ([28bf5ab](https://github.com/sprucelabsai-community/calendar-utils/commit/28bf5ab))
+
 ## <small>43.1.78 (2025-11-08)</small>
 
 * chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([42e22bf](https://github.com/sprucelabsai-community/calendar-utils/commit/42e22bf))

@@ -1,3 +1,7 @@
+## <small>44.0.1 (2025-11-09)</small>
+
+* patch: upgrade ([83c82c1](https://github.com/sprucelabsai-community/calendar-utils/commit/83c82c1))
+
 ## 44.0.0 (2025-11-09)
 
 * major: upgrade ([28bf5ab](https://github.com/sprucelabsai-community/calendar-utils/commit/28bf5ab))

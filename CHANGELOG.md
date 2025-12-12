@@ -1,3 +1,8 @@
+## <small>44.0.29 (2025-12-12)</small>
+
+* chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([2b801a3](https://github.com/sprucelabsai-community/calendar-utils/commit/2b801a3))
+* chore(auto-upgrade): upgraded packages [upgrade-all] ([dec0f68](https://github.com/sprucelabsai-community/calendar-utils/commit/dec0f68))
+
 ## <small>44.0.28 (2025-12-12)</small>
 
 * patch: line icon improvement ([ce902de](https://github.com/sprucelabsai-community/calendar-utils/commit/ce902de))

@@ -32,6 +32,7 @@ export const lineIcons = [
     'book-open',
     'book',
     'bookmark',
+    'bookmark-filled',
     'calendar-add',
     'calendar',
     'camera',

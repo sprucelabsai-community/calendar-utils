@@ -1,3 +1,7 @@
+## 44.1.0 (2026-01-07)
+
+* feat: add exports field for proper ESM support in Node.js ([dc5c13b](https://github.com/sprucelabsai-community/calendar-utils/commit/dc5c13b))
+
 ## <small>44.0.37 (2026-01-07)</small>
 
 * chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([763d0ef](https://github.com/sprucelabsai-community/calendar-utils/commit/763d0ef))

@@ -1,3 +1,7 @@
+## 46.0.0 (2026-01-08)
+
+* major: upgrade dependencies ([6e99a30](https://github.com/sprucelabsai-community/calendar-utils/commit/6e99a30))
+
 ## 45.0.0 (2026-01-08)
 
 * major: upgrade dependencies ([4f22917](https://github.com/sprucelabsai-community/calendar-utils/commit/4f22917))

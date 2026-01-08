@@ -1,3 +1,7 @@
+## 45.0.0 (2026-01-08)
+
+* major: upgrade dependencies ([4f22917](https://github.com/sprucelabsai-community/calendar-utils/commit/4f22917))
+
 ## <small>44.1.1 (2026-01-07)</small>
 
 * chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([b43e9ca](https://github.com/sprucelabsai-community/calendar-utils/commit/b43e9ca))

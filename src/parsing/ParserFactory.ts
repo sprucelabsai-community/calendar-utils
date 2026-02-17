@@ -11,9 +11,7 @@ export default class ParserFactory {
     private locale: Locale
 
     private now: () => number
-    private strategies: {
-        [K in ParserStrategy]: () => Parser
-    } = {
+    private strategies: Record<ParserStrategy, () => Parser> = {
         Year: () => new YearParser(this.now, this.locale),
         Month: () => new MonthParser(this.now, this.locale),
         Dow: () => new DowParser(this.now, this.locale),

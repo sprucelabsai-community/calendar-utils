@@ -1,3 +1,8 @@
+## <small>46.0.13 (2026-03-12)</small>
+
+* chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([f445889](https://github.com/sprucelabsai-community/calendar-utils/commit/f445889))
+* chore(auto-upgrade): upgraded packages [upgrade-all] ([becc020](https://github.com/sprucelabsai-community/calendar-utils/commit/becc020))
+
 ## <small>46.0.12 (2026-03-12)</small>
 
 * chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([6db3dde](https://github.com/sprucelabsai-community/calendar-utils/commit/6db3dde))

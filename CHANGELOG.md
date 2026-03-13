@@ -1,3 +1,8 @@
+## <small>46.0.17 (2026-03-13)</small>
+
+* chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([f31751a](https://github.com/sprucelabsai-community/calendar-utils/commit/f31751a))
+* chore(auto-upgrade): upgraded packages [upgrade-all] ([590f7d3](https://github.com/sprucelabsai-community/calendar-utils/commit/590f7d3))
+
 ## <small>46.0.16 (2026-03-13)</small>
 
 * chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([adb3238](https://github.com/sprucelabsai-community/calendar-utils/commit/adb3238))

@@ -1,3 +1,8 @@
+## <small>46.0.19 (2026-04-08)</small>
+
+* fix: remove ignoreDeprecations from tsconfig (not needed for TS6) ([6e2aeff](https://github.com/sprucelabsai-community/calendar-utils/commit/6e2aeff))
+* chore: fix tsconfig for TypeScript 6 compatibility ([87647b8](https://github.com/sprucelabsai-community/calendar-utils/commit/87647b8))
+
 ## <small>46.0.18 (2026-03-13)</small>
 
 * chore(auto-upgrade): Upgrade Tests Passed [auto-merge] ([4261252](https://github.com/sprucelabsai-community/calendar-utils/commit/4261252))
